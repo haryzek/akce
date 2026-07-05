@@ -1,0 +1,103 @@
+{
+  "typAkce": "filmy",
+  "vygenerovanoAt": "2026-07-05T09:00:00",
+  "obdobiOd": "05.07.2026",
+  "obdobiDo": "19.07.2026",
+  "filmy": [
+    {
+      "nazevCz": "Tichá zima",
+      "nazevOrig": "Silent Winter",
+      "rezie": "Alicja Nowak",
+      "zanr": "drama",
+      "popis": "Rodina se stahuje do chaty na severu Norska a čeká, jak dlouho vydrží spolu, aniž by se pozabíjeli.",
+      "hodnoceni": {
+        "rottenTomatoesAudience": 88,
+        "metacriticUser": 8.1,
+        "imdb": 7.6,
+        "csfd": 82,
+        "vazenePrumer": 83.7,
+        "poznamkaHodnoceni": null
+      },
+      "estetickeSkore": 9,
+      "duvodSkore": "Pomalé, kontemplativní, přesně ten typ melancholie, co mám rád.",
+      "vlastniRecenze": "Skoro žádné dialogy, hodně ticha a sněhu. Kamera drží dlouhé statické záběry, které nutí sedět v nepohodlí spolu s postavami. Není to pro každého, ale pro mě přesně ono.",
+      "specialniProjekce": false,
+      "specialniPopis": null,
+      "projekce": [
+        {"datum": "10.07.2026", "cas": "20:00", "misto": "Kino Aero", "odkaz": "https://kinoaero.cz/tichá-zima"},
+        {"datum": "14.07.2026", "cas": "18:30", "misto": "Bio Oko", "odkaz": "https://biooko.net/ticha-zima"}
+      ]
+    },
+    {
+      "nazevCz": "Poslední autobus do Boskovic",
+      "nazevOrig": "Poslední autobus do Boskovic",
+      "rezie": "Tomáš Havlík",
+      "zanr": "tragikomedie",
+      "popis": "Řidič autobusu na trati, která se má za měsíc zrušit, sváží poslední várku podivných pasažérů.",
+      "hodnoceni": {
+        "rottenTomatoesAudience": 71,
+        "metacriticUser": 6.9,
+        "imdb": 6.8,
+        "csfd": 74,
+        "vazenePrumer": 70.7,
+        "poznamkaHodnoceni": "Zahraniční kritika chybí, film zatím nemá RT/MC skóre v angličtině."
+      },
+      "estetickeSkore": 6,
+      "duvodSkore": "Sympatické, ale trochu rozvláčné a místy sentimentální víc, než by muselo.",
+      "vlastniRecenze": "Česká road movie s dobrým castingem a pár fakt vtipnými scénami, ale scénář si neví rady s koncem a natahuje to o dvacet minut víc, než je zdrávo.",
+      "specialniProjekce": false,
+      "specialniPopis": null,
+      "projekce": [
+        {"datum": "08.07.2026", "cas": "19:00", "misto": "Kino Lucerna", "odkaz": "https://kinolucerna.cz/posledni-autobus"}
+      ]
+    },
+    {
+      "nazevCz": "Sklo a popel",
+      "nazevOrig": "Glass and Ash",
+      "rezie": "Yuki Tanaka",
+      "zanr": "sci-fi / drama",
+      "popis": "V blízké budoucnosti si žena nechává nahrát vzpomínky mrtvého manžela do domácího asistenta a pomalu ztrácí hranici mezi ním a strojem.",
+      "hodnoceni": {
+        "rottenTomatoesAudience": 92,
+        "metacriticUser": 8.6,
+        "imdb": 8.0,
+        "csfd": 86,
+        "vazenePrumer": 87.6,
+        "poznamkaHodnoceni": null
+      },
+      "estetickeSkore": 10,
+      "duvodSkore": "Přesně moje kombinace — chladná estetika, melancholie a sci-fi jako metafora smutku, ne jako efekty.",
+      "vlastniRecenze": "Vizuálně strohé, zvukově famózní, a téma zpracované s citem, ne s lacinou sentimentalitou. Jeden z mála sci-fi filmů poslední doby, kde technologie slouží emoci a ne naopak. Po skončení jsem chvíli jen seděl.",
+      "specialniProjekce": true,
+      "specialniPopis": "Projekce s Q&A s režisérkou po filmu (10.07.)",
+      "projekce": [
+        {"datum": "10.07.2026", "cas": "20:30", "misto": "Bio Oko", "odkaz": "https://biooko.net/sklo-a-popel"},
+        {"datum": "17.07.2026", "cas": "21:00", "misto": "Kino Aero", "odkaz": "https://kinoaero.cz/sklo-a-popel"}
+      ]
+    },
+    {
+      "nazevCz": "Karneval bez masek",
+      "nazevOrig": "Carnaval sans masques",
+      "rezie": "Élodie Marchand",
+      "zanr": "komedie",
+      "popis": "Skupina přátel plánuje maškarní večírek, který se zvrhne v sérii trapných odhalení.",
+      "hodnoceni": {
+        "rottenTomatoesAudience": 64,
+        "metacriticUser": 6.2,
+        "imdb": 6.1,
+        "csfd": 68,
+        "vazenePrumer": 64.2,
+        "poznamkaHodnoceni": null
+      },
+      "estetickeSkore": 4,
+      "duvodSkore": "Lehká zábava, ale nic, co by mě esteticky nebo emočně zasáhlo — spíš do kina s partou na pivo.",
+      "vlastniRecenze": "Fajn odpočinková komedie s pár dobrými hláškami, ale nic, co by přežilo do druhého dne přemýšlení. Herecky solidní, jinak zapomenutelné.",
+      "specialniProjekce": false,
+      "specialniPopis": null,
+      "projekce": [
+        {"datum": "06.07.2026", "cas": "19:30", "misto": "Kino Světozor", "odkaz": "https://kinosvetozor.cz/karneval-bez-masek"},
+        {"datum": "12.07.2026", "cas": "17:00", "misto": "Kino Lucerna", "odkaz": "https://kinolucerna.cz/karneval-bez-masek"}
+      ]
+    }
+  ]
+}

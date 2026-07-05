@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Akce — kulturní přehled</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="hlavicka">
+    <h1>Akce</h1>
+    <p class="podtitul">Kulturní akce v Praze, filtrované podle vkusu</p>
+  </header>
+
+  <section class="ovladaci-panel">
+    <div class="ovladaci-skupina">
+      <label for="filtr-typ">Typ akce</label>
+      <select id="filtr-typ">
+        <option value="vse">Vše</option>
+        <!-- další typy (kvízy, koncerty...) se doplní automaticky podle dat -->
+      </select>
+    </div>
+
+    <div class="ovladaci-skupina">
+      <label for="razeni">Řadit podle</label>
+      <select id="razeni">
+        <option value="estetickeSkore">Estetického skóre</option>
+        <option value="vazenePrumer">Hodnocení (vážený průměr)</option>
+        <option value="datum">Nejbližšího data</option>
+      </select>
+    </div>
+
+    <div class="ovladaci-skupina">
+      <label for="filtr-od">Od data</label>
+      <input type="date" id="filtr-od">
+    </div>
+
+    <div class="ovladaci-skupina">
+      <label for="filtr-do">Do data</label>
+      <input type="date" id="filtr-do">
+    </div>
+
+    <div class="ovladaci-skupina">
+      <label>Rychlá volba</label>
+      <div class="rychle-volby">
+        <button type="button" data-rozsah="dnes">Dnes</button>
+        <button type="button" data-rozsah="tyden">Tento týden</button>
+        <button type="button" data-rozsah="mesic">Tento měsíc</button>
+        <button type="button" data-rozsah="vse">Vše</button>
+      </div>
+    </div>
+  </section>
+
+  <main id="seznam-akci" class="seznam-akci">
+    <!-- karty se generují v js/app.js -->
+  </main>
+
+  <p id="prazdny-stav" class="prazdny-stav" hidden>Žádné akce neodpovídají filtru. Zkus to rozšířit, ne zúžit — jako v životě.</p>
+
+  <footer class="paticka">
+    <p>Data generuje Cowork, appka je jen tupý renderer.</p>
+  </footer>
+
+<script src="js/app.js"></script>
+</body>
+</html>

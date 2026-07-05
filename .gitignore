@@ -1,0 +1,6 @@
+# osobní / lokální věci, nepatří na veřejný web
+.claude/
+
+# systémové smetí
+.DS_Store
+Thumbs.db

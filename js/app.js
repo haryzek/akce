@@ -2,9 +2,16 @@
 // Tupý renderer: načte JSONy z data/, slouží filtry a řazení, vykreslí karty.
 // Žádné AI, žádné API, jen práce s hotovými daty.
 
-// Seznam JSON souborů, které appka umí načíst. Když přibude nový typ akce
-// (kvízy, koncerty...), stačí sem přidat soubor a appka ho zvládne bez dalších změn.
-const ZDROJE_DAT = ["data/filmy.json"];
+// Seznam JSON souborů, které se appka pokusí načíst při startu. Prohlížeč neumí
+// přečíst obsah složky, tak držíme seznam očekávaných souborů tady. Soubory, které
+// ještě neexistují, se ticho přeskočí — takže klidně nech v seznamu i budoucí typy.
+// Přidat nový typ akce = přidat sem řádek (+ časem jeho vlastní kartu ve vykresliKartu).
+const ZDROJE_DAT = [
+  "data/filmy.json",
+  "data/kvizy.json",
+  "data/koncerty.json",
+  "data/prednasky.json",
+];
 
 let VSECHNY_AKCE = []; // sloučená, normalizovaná data ze všech zdrojů
 
@@ -47,10 +54,12 @@ async function nactiVsechnaData() {
     ZDROJE_DAT.map(async (cesta) => {
       try {
         const odpoved = await fetch(cesta);
-        if (!odpoved.ok) throw new Error(`HTTP ${odpoved.status}`);
+        // soubor pro tenhle typ zatím neexistuje (404) — ticho přeskoč, není to chyba
+        if (!odpoved.ok) return null;
         return await odpoved.json();
       } catch (chyba) {
-        console.warn(`Nepodařilo se načíst ${cesta}:`, chyba);
+        // sem spadne jen skutečný problém (rozbitý JSON, síť) — ten chceme vidět
+        console.warn(`Chyba při čtení ${cesta}:`, chyba);
         return null;
       }
     })
@@ -59,13 +68,17 @@ async function nactiVsechnaData() {
   const akce = [];
   for (const soubor of vysledky) {
     if (!soubor) continue;
-    // zatím jediný typ akce je "filmy" — pole s položkami je pojmenované podle typu
-    if (Array.isArray(soubor.filmy)) {
-      for (const film of soubor.filmy) {
-        akce.push({ typAkce: soubor.typAkce || "filmy", data: film });
-      }
+    // Položky jsou v poli pojmenovaném podle typu akce (filmy -> soubor.filmy,
+    // kvizy -> soubor.kvizy...). Když to nesedí, vezmeme první pole v objektu.
+    const typ = soubor.typAkce || "neznamy";
+    let polozky = Array.isArray(soubor[typ]) ? soubor[typ] : null;
+    if (!polozky) {
+      const klic = Object.keys(soubor).find((k) => Array.isArray(soubor[k]));
+      polozky = klic ? soubor[klic] : [];
     }
-    // sem se časem přidá "if (Array.isArray(soubor.kvizy)) ..." atd.
+    for (const polozka of polozky) {
+      akce.push({ typAkce: typ, data: polozka });
+    }
   }
   return akce;
 }

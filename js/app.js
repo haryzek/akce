@@ -15,6 +15,47 @@ const ZDROJE_DAT = [
 
 let VSECHNY_AKCE = []; // sloučená, normalizovaná data ze všech zdrojů
 
+// ---- oblíbené (localStorage, generické napříč typy akcí) ----
+
+const OBLIBENE_KLIC = "akce-oblibene";
+let JEN_OBLIBENE = false; // stav horního přepínače (jen runtime, nepersistuje se)
+
+// Stabilní ID akce s prefixem typu, ať se různé typy nesrazí a přežije to přegenerování dat.
+// Bere co je po ruce napříč typy; pro filmy = "filmy::nazevOrig|rezie".
+function akceId(polozka) {
+  const d = polozka.data || {};
+  const nazev = d.nazevOrig || d.nazevCz || d.nazev || d.title || "";
+  const dopl = d.rezie || d.autor || d.interpret || d.misto || "";
+  return `${polozka.typAkce}::${nazev}|${dopl}`;
+}
+
+function nactiOblibene() {
+  try {
+    return new Set(JSON.parse(localStorage.getItem(OBLIBENE_KLIC) || "[]"));
+  } catch {
+    return new Set(); // rozbité/nedostupné úložiště appku nepoloží
+  }
+}
+
+let OBLIBENE = nactiOblibene();
+
+function ulozOblibene() {
+  try {
+    localStorage.setItem(OBLIBENE_KLIC, JSON.stringify([...OBLIBENE]));
+  } catch {
+    /* privátní režim / plné úložiště — tiše přejdeme, srdíčko aspoň drží do reloadu */
+  }
+}
+
+// srdíčko na kartě (dva stavy). Sdílený helper, ať ho každý typ karty jen zavolá.
+const IKONA_SRDCE =
+  '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.7l-1.55-1.4C6 15 2.75 12.1 2.75 8.5 2.75 5.9 4.8 3.9 7.4 3.9c1.5 0 2.9.7 3.8 1.8.9-1.1 2.3-1.8 3.8-1.8 2.6 0 4.65 2 4.65 4.6 0 3.6-3.25 6.5-7.7 10.8L12 20.7z"/></svg>';
+
+function vykresliSrdce(id, jeOblibene) {
+  const stav = jeOblibene ? " je-oblibene" : "";
+  return `<button type="button" class="srdce${stav}" data-id="${encodeURIComponent(id)}" aria-label="Oblíbené" aria-pressed="${jeOblibene}">${IKONA_SRDCE}</button>`;
+}
+
 // ---- pomocné funkce ----
 
 // "10.07.2026" -> Date objekt, ať se dá řadit/filtrovat
@@ -129,6 +170,7 @@ function ziskejFiltrovaneARazene() {
 
   let vysledek = VSECHNY_AKCE.filter((polozka) => {
     if (typFiltr !== "vse" && polozka.typAkce !== typFiltr) return false;
+    if (JEN_OBLIBENE && !OBLIBENE.has(akceId(polozka))) return false;
     if ((datumOd || datumDo) && !maProjekciVRozmezi(polozka.data.projekce, datumOd, datumDo)) return false;
     return true;
   });
@@ -170,63 +212,117 @@ function projekceVRozmezi(projekce, rozsah) {
   });
 }
 
+// jeden řádek projekce (datum · čas + kino s odkazem). Sdílí ho karta i modal.
+// vsechny (nepovinné): když je předáno, za čas se přidá odkaz "(N)" na modal se všemi projekcemi.
+function vykresliRadekProjekce(p, vsechny) {
+  const misto = escapeHtml(hodnotaNebo(p.misto));
+  const datum = escapeHtml(hodnotaNebo(p.datum));
+  const cas = escapeHtml(hodnotaNebo(p.cas));
+  const odkazOtevreny = p.odkaz
+    ? `<a href="${escapeHtml(p.odkaz)}" target="_blank" rel="noopener">${misto}</a>`
+    : misto;
+  // odkaz s počtem DALŠÍCH projekcí (celkem − tahle jedna), otevře modal
+  const vic =
+    vsechny && vsechny.length > 1
+      ? ` <a class="vic-projekci" href="#" data-projekce="${encodeURIComponent(JSON.stringify(vsechny))}">(${vsechny.length - 1})</a>`
+      : "";
+  return `<li><span class="proj-cas">${datum} · ${cas}${vic}</span> <span class="proj-misto">${odkazOtevreny}</span></li>`;
+}
+
+// V kartě ukážeme jen první projekci. Když je jich víc, za čas přijde odkaz "(N)" na modal.
 function vykresliProjekce(projekce, rozsah) {
   const viditelne = projekceVRozmezi(projekce, rozsah);
   if (!viditelne || viditelne.length === 0) {
-    return "<p class='poznamka-hodnoceni'>Zatím žádné projekce v nabídce.</p>";
+    return "<div class='projekce-blok'><p class='poznamka-hodnoceni'>Zatím žádné projekce v nabídce.</p></div>";
   }
-  const polozky = viditelne
-    .map((p) => {
-      const misto = escapeHtml(hodnotaNebo(p.misto));
-      const datum = escapeHtml(hodnotaNebo(p.datum));
-      const cas = escapeHtml(hodnotaNebo(p.cas));
-      const odkazOtevreny = p.odkaz
-        ? `<a href="${escapeHtml(p.odkaz)}" target="_blank" rel="noopener">${misto}</a>`
-        : misto;
-      return `<li><span>${datum} · ${cas}</span> ${odkazOtevreny}</li>`;
-    })
-    .join("");
-  return `<ul class="projekce-seznam">${polozky}</ul>`;
+  const radek = vykresliRadekProjekce(viditelne[0], viditelne);
+  return `<div class="projekce-blok"><ul class="projekce-seznam">${radek}</ul></div>`;
 }
 
-function vykresliHodnoceniRozpad(hodnoceni) {
-  if (!hodnoceni) return "";
-  const polozky = [
-    ["RT", hodnoceni.rottenTomatoesAudience, "%"],
-    ["MC", hodnoceni.metacriticUser, "/10"],
-    ["IMDb", hodnoceni.imdb, "/10"],
-    ["ČSFD", hodnoceni.csfd, "%"],
-  ]
-    .filter(([, hodnota]) => hodnota !== null && hodnota !== undefined)
-    .map(([nazev, hodnota, jednotka]) => `<span><strong>${nazev}</strong> ${hodnota}${jednotka}</span>`)
-    .join("");
+// vytáhne 11znakové ID videa z různých podob YouTube URL
+// (youtu.be/ID, watch?v=ID, embed/ID, shorts/ID, v/ID). Když to není YT, vrátí null.
+function youtubeId(url) {
+  if (!url) return null;
+  const m = String(url).match(
+    /(?:youtu\.be\/|youtube\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/|v\/))([\w-]{11})/
+  );
+  return m ? m[1] : null;
+}
 
-  const poznamka = hodnoceni.poznamkaHodnoceni
-    ? `<p class="poznamka-hodnoceni">${escapeHtml(hodnoceni.poznamkaHodnoceni)}</p>`
+// "facade" trailer: v kartě je jen lehký náhled (thumbnail + play). Skutečný přehrávač
+// se natáhne až po kliknutí (viz delegovaný listener v init) — ať appka nebrzdí desítkami
+// iframů najednou. Když trailer chybí, vrátí "". Ne-YT odkaz spadne na prostý proklik.
+function vykresliTrailer(trailerUrl) {
+  if (!trailerUrl) return "";
+  const id = youtubeId(trailerUrl);
+  if (!id) {
+    return `<a class="trailer-odkaz" href="${escapeHtml(trailerUrl)}" target="_blank" rel="noopener">▶ Přehrát trailer</a>`;
+  }
+  const thumb = `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+  return `
+    <div class="trailer">
+      <button type="button" class="trailer-facade" data-yt-id="${id}"
+              style="background-image:url('${thumb}')" aria-label="Přehrát trailer">
+        <span class="trailer-play" aria-hidden="true"></span>
+      </button>
+    </div>`;
+}
+
+// malá ikonka "průměru" (mini sloupcový graf) před váženým průměrem
+const IKONA_PRUMER =
+  '<svg class="ikona-prumer" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">' +
+  '<rect x="3" y="11" width="4" height="10" rx="1"/>' +
+  '<rect x="10" y="5" width="4" height="16" rx="1"/>' +
+  '<rect x="17" y="14" width="4" height="7" rx="1"/></svg>';
+
+// Řádek hodnocení (žlutě, jako kolečko skóre): vpředu vážený průměr s ikonkou, za ním
+// rozpad zdrojů jen s první hodnotou (bez /10 a %). poznamkaHodnoceni schválně nezobrazujeme.
+function vykresliHodnoceniRadek(hodnoceni) {
+  const prumer =
+    hodnoceni && hodnoceni.vazenePrumer !== null && hodnoceni.vazenePrumer !== undefined
+      ? `<span class="prumer">${IKONA_PRUMER}${escapeHtml(hodnoceni.vazenePrumer)}</span>`
+      : "";
+
+  const zdroje = hodnoceni
+    ? [
+        ["RT", hodnoceni.rottenTomatoesAudience],
+        ["MC", hodnoceni.metacriticUser],
+        ["IMDb", hodnoceni.imdb],
+        ["ČSFD", hodnoceni.csfd],
+      ]
+        .filter(([, hodnota]) => hodnota !== null && hodnota !== undefined)
+        .map(([nazev, hodnota]) => `<span class="zdroj"><strong>${nazev}</strong> ${escapeHtml(hodnota)}</span>`)
+        .join("")
     : "";
 
-  return `<div class="hodnoceni-rozpad">${polozky}</div>${poznamka}`;
+  // když film nemá žádné hodnocení, ať řádek nezeje prázdnotou — žlutý nápis "Bez hodnocení"
+  const obsah = prumer + zdroje || '<span class="bez-hodnoceni">Bez hodnocení</span>';
+  return `<div class="hodnoceni-radek">${obsah}</div>`;
 }
 
-function vykresliKartuFilmu(film, rozsah) {
+function vykresliKartuFilmu(film, rozsah, id) {
   const skore = hodnotaNebo(film.estetickeSkore, "—");
-  const vazenePrumer = film.hodnoceni?.vazenePrumer;
 
   return `
     <article class="karta">
-      <div class="karta-hlavicka">
-        <div class="karta-titulky">
-          <h2>${escapeHtml(film.nazevCz)}</h2>
-          ${film.nazevOrig && film.nazevOrig !== film.nazevCz ? `<p class="nazev-orig">${escapeHtml(film.nazevOrig)}</p>` : ""}
-        </div>
-        <div class="skore" title="Estetické skóre">${escapeHtml(skore)}</div>
-      </div>
+      <div class="karta-vrch">
+        <div class="karta-vrch-text">
+          <div class="karta-titulky">
+            <h2>${escapeHtml(film.nazevCz)}</h2>
+            ${film.nazevOrig && film.nazevOrig !== film.nazevCz ? `<p class="nazev-orig">${escapeHtml(film.nazevOrig)}</p>` : ""}
+          </div>
 
-      <div class="metadata">
-        <span>${escapeHtml(hodnotaNebo(film.rezie))}</span>
-        <span>·</span>
-        <span>${escapeHtml(hodnotaNebo(film.zanr))}</span>
-        ${vazenePrumer !== null && vazenePrumer !== undefined ? `<span>·</span><span>Hodnocení ${escapeHtml(vazenePrumer)}</span>` : ""}
+          <div class="meta-blok">
+            <div class="meta-radek">${escapeHtml(hodnotaNebo(film.rezie))}</div>
+            <div class="meta-radek">${escapeHtml(hodnotaNebo(film.zanr))}</div>
+            ${vykresliHodnoceniRadek(film.hodnoceni)}
+          </div>
+        </div>
+
+        <div class="karta-vpravo">
+          <div class="skore" title="Estetické skóre">${escapeHtml(skore)}</div>
+          ${vykresliSrdce(id, OBLIBENE.has(id))}
+        </div>
       </div>
 
       ${film.specialniProjekce ? `<span class="stitek-special">${escapeHtml(hodnotaNebo(film.specialniPopis, "Speciální projekce"))}</span>` : ""}
@@ -235,20 +331,21 @@ function vykresliKartuFilmu(film, rozsah) {
 
       ${film.duvodSkore ? `<p class="duvod-skore">${escapeHtml(film.duvodSkore)}</p>` : ""}
 
-      ${vykresliHodnoceniRozpad(film.hodnoceni)}
-
       ${film.vlastniRecenze ? `<p class="recenze">${escapeHtml(film.vlastniRecenze)}</p>` : ""}
 
       ${vykresliProjekce(film.projekce, rozsah)}
+
+      ${vykresliTrailer(film.trailerUrl)}
     </article>
   `;
 }
 
 function vykresliKartu(polozka, rozsah) {
+  const id = akceId(polozka); // generické ID pro srdíčko/oblíbené, funguje napříč typy
   // zatím jediný typ, ale switch je připravený na rozšíření
   switch (polozka.typAkce) {
     case "filmy":
-      return vykresliKartuFilmu(polozka.data, rozsah);
+      return vykresliKartuFilmu(polozka.data, rozsah, id);
     default:
       return "";
   }
@@ -330,8 +427,92 @@ async function init() {
   document.getElementById("filtr-od").addEventListener("change", prekresli);
   document.getElementById("filtr-do").addEventListener("change", prekresli);
 
-  document.querySelectorAll(".rychle-volby button").forEach((tlacitko) => {
+  document.querySelectorAll(".rychle-volby button[data-rozsah]").forEach((tlacitko) => {
     tlacitko.addEventListener("click", () => nastavRychlyRozsah(tlacitko.dataset.rozsah));
+  });
+
+  // Delegovaný klik na kontejner karet (karty se překreslují přes innerHTML, tak posloucháme
+  // na rodiči): buď spustit trailer, nebo otevřít modal se všemi projekcemi.
+  document.getElementById("seznam-akci").addEventListener("click", (e) => {
+    const facade = e.target.closest(".trailer-facade");
+    if (facade) {
+      const id = facade.dataset.ytId;
+      facade.parentElement.innerHTML =
+        `<iframe class="trailer-embed" src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0" ` +
+        `title="Trailer" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" ` +
+        `allowfullscreen></iframe>`;
+      return;
+    }
+    const vic = e.target.closest(".vic-projekci");
+    if (vic) {
+      e.preventDefault(); // je to <a href="#">, ať to neskáče na začátek stránky
+      const nazev = vic.closest(".karta")?.querySelector("h2")?.textContent || "";
+      const projekce = JSON.parse(decodeURIComponent(vic.dataset.projekce));
+      otevriModalProjekci(nazev, projekce);
+      return;
+    }
+    const srdce = e.target.closest(".srdce");
+    if (srdce) {
+      const id = decodeURIComponent(srdce.dataset.id);
+      const noveOblibene = !OBLIBENE.has(id);
+      if (noveOblibene) OBLIBENE.add(id);
+      else OBLIBENE.delete(id);
+      ulozOblibene();
+      srdce.classList.toggle("je-oblibene", noveOblibene);
+      srdce.setAttribute("aria-pressed", noveOblibene);
+      // když je zapnutý filtr oblíbených, odznačená karta musí zmizet → překreslit
+      if (JEN_OBLIBENE) prekresli();
+    }
+  });
+
+  // horní přepínač "jen oblíbené"
+  const prepinacOblibene = document.getElementById("filtr-oblibene");
+  prepinacOblibene.innerHTML = IKONA_SRDCE;
+  prepinacOblibene.addEventListener("click", () => {
+    JEN_OBLIBENE = !JEN_OBLIBENE;
+    prepinacOblibene.classList.toggle("aktivni", JEN_OBLIBENE);
+    prepinacOblibene.setAttribute("aria-pressed", JEN_OBLIBENE);
+    prekresli();
+  });
+
+  nastavModal();
+}
+
+// ---- modal se všemi projekcemi ----
+
+// vykreslí obsah modalu a zobrazí ho. Seznam projekcí je už profiltrovaný podle aktivního filtru.
+function otevriModalProjekci(nazev, projekce) {
+  const modal = document.getElementById("modal-projekci");
+  modal.querySelector(".modal-nazev").textContent = nazev;
+  modal.querySelector(".projekce-seznam").innerHTML = projekce.map(vykresliRadekProjekce).join("");
+  modal.hidden = false;
+}
+
+function zavriModal() {
+  document.getElementById("modal-projekci").hidden = true;
+}
+
+// modal vytvoříme jednou v JS (ať index.html zůstane čistý) a nadrátujeme zavírání:
+// křížek, klik do pozadí (overlay) i Esc.
+function nastavModal() {
+  const modal = document.createElement("div");
+  modal.id = "modal-projekci";
+  modal.className = "modal-overlay";
+  modal.hidden = true;
+  modal.innerHTML = `
+    <div class="modal-okno" role="dialog" aria-modal="true" aria-labelledby="modal-nadpis">
+      <button type="button" class="modal-zavrit" aria-label="Zavřít">×</button>
+      <h3 id="modal-nadpis"><span class="modal-nazev"></span> — všechny projekce</h3>
+      <ul class="projekce-seznam"></ul>
+    </div>`;
+  document.body.appendChild(modal);
+
+  modal.querySelector(".modal-zavrit").addEventListener("click", zavriModal);
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) zavriModal(); // klik do ztmaveného pozadí, ne do okna
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !modal.hidden) zavriModal();
   });
 }
 

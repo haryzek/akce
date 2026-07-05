@@ -90,6 +90,7 @@ Ulož **pouze JSON** (žádný markdown okolo, žádný komentář) přesně v t
       "rezie": "string",
       "zanr": "string",
       "popis": "string (1-2 věty, bez spoilerů)",
+      "trailerUrl": "string (odkaz na YouTube trailer, libovolná podoba) nebo null",
       "hodnoceni": {
         "rottenTomatoesAudience": 85,
         "metacriticUser": 7.8,

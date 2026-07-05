@@ -59,6 +59,7 @@ Soubor `data/filmy.json`. Struktura (appka na ni musí sedět 1:1):
       "rezie": "string",
       "zanr": "string",
       "popis": "string (1-2 věty, bez spoilerů)",
+      "trailerUrl": "string (odkaz na YouTube trailer, libovolná podoba) nebo null",
       "hodnoceni": {
         "rottenTomatoesAudience": 85,
         "metacriticUser": 7.8,

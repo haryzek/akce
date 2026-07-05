@@ -3,7 +3,7 @@
 ## KRITÉRIA VYHLEDÁVÁNÍ
 - Typ akce: filmy v kinech
 - Lokalita: Praha
-- Časové rozmezí: Od [DOPLŇ DATUM dd.mm.yyyy] do [DOPLŇ DATUM dd.mm.yyyy]
+- Časové rozmezí: ode dneška (den spuštění tasku) na následujících 14 dní. Nejdřív si zjisti dnešní datum a spočítej z něj rozmezí od–do ve formátu dd.mm.yyyy.
 
 ## POSTUP (v tomto pořadí, kvůli úspoře tokenů)
 
@@ -111,4 +111,4 @@ Ulož **pouze JSON** (žádný markdown okolo, žádný komentář) přesně v t
 }
 ```
 
-Soubor ulož jako `filmy_YYYY-MM-DD.json` (podle data vygenerování).
+Výsledný JSON ulož jako soubor `filmy.json` do složky "_dev/akce/data/" (přepiš stávající, pokud tam je). Nikam nic nepushuj, žádnej git, jen zapiš soubor na disk.

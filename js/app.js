@@ -25,6 +25,17 @@ function parsujDatum(retezec) {
   return new Date(rok, mesic - 1, den);
 }
 
+// "2026-07-05" z <input type=date> -> lokální Date (ne UTC!). konecDne=true nastaví
+// čas na 23:59:59.999, ať se horní mez chová jako "celý ten den včetně".
+function parsujIsoDatum(retezec, konecDne = false) {
+  if (!retezec) return null;
+  const [rok, mesic, den] = retezec.split("-").map(Number);
+  if (!rok || !mesic || !den) return null;
+  return konecDne
+    ? new Date(rok, mesic - 1, den, 23, 59, 59, 999)
+    : new Date(rok, mesic - 1, den);
+}
+
 // najde nejbližší nadcházející (nebo aspoň nejbližší) datum projekce z pole projekcí
 function nejblizsiDatumProjekce(projekce) {
   if (!projekce || projekce.length === 0) return null;
@@ -97,14 +108,24 @@ function maProjekciVRozmezi(projekce, datumOd, datumDo) {
   });
 }
 
+// aktuálně nastavený datumový filtr (obě meze volitelné). Sdílí ho filtrování
+// i vykreslení, ať se karta a její projekce řídí stejným rozsahem.
+function ziskejAktivniRozsah() {
+  const datumOdRetezec = document.getElementById("filtr-od").value; // formát YYYY-MM-DD z <input type=date>
+  const datumDoRetezec = document.getElementById("filtr-do").value;
+  // POZOR: new Date("2026-07-05") se parsuje jako UTC půlnoc, kdežto datumy projekcí
+  // parsujeme lokálně (parsujDatum). To by rozhodilo hranice o offset pásma. Proto
+  // vstup z <input type=date> parsujeme taky ručně jako lokální čas.
+  return {
+    datumOd: parsujIsoDatum(datumOdRetezec, false),
+    datumDo: parsujIsoDatum(datumDoRetezec, true), // horní mez = konec dne, ať "do" zahrnuje celý den
+  };
+}
+
 function ziskejFiltrovaneARazene() {
   const typFiltr = document.getElementById("filtr-typ").value;
   const razeniPodle = document.getElementById("razeni").value;
-  const datumOdRetezec = document.getElementById("filtr-od").value; // formát YYYY-MM-DD z <input type=date>
-  const datumDoRetezec = document.getElementById("filtr-do").value;
-  const datumOd = datumOdRetezec ? new Date(datumOdRetezec) : null;
-  const datumDo = datumDoRetezec ? new Date(datumDoRetezec) : null;
-  if (datumDo) datumDo.setHours(23, 59, 59, 999); // ať "do" zahrnuje celý ten den
+  const { datumOd, datumDo } = ziskejAktivniRozsah();
 
   let vysledek = VSECHNY_AKCE.filter((polozka) => {
     if (typFiltr !== "vse" && polozka.typAkce !== typFiltr) return false;
@@ -135,11 +156,26 @@ function ziskejFiltrovaneARazene() {
 
 // ---- vykreslení ----
 
-function vykresliProjekce(projekce) {
-  if (!projekce || projekce.length === 0) {
+// nechá jen projekce spadající do rozsahu; když rozsah není nastavený, vrátí vše
+function projekceVRozmezi(projekce, rozsah) {
+  if (!projekce) return [];
+  const { datumOd, datumDo } = rozsah || {};
+  if (!datumOd && !datumDo) return projekce;
+  return projekce.filter((p) => {
+    const d = parsujDatum(p.datum);
+    if (!d) return true; // bez parsovatelného data radši nechat, ať se něco ukáže
+    if (datumOd && d < datumOd) return false;
+    if (datumDo && d > datumDo) return false;
+    return true;
+  });
+}
+
+function vykresliProjekce(projekce, rozsah) {
+  const viditelne = projekceVRozmezi(projekce, rozsah);
+  if (!viditelne || viditelne.length === 0) {
     return "<p class='poznamka-hodnoceni'>Zatím žádné projekce v nabídce.</p>";
   }
-  const polozky = projekce
+  const polozky = viditelne
     .map((p) => {
       const misto = escapeHtml(hodnotaNebo(p.misto));
       const datum = escapeHtml(hodnotaNebo(p.datum));
@@ -172,7 +208,7 @@ function vykresliHodnoceniRozpad(hodnoceni) {
   return `<div class="hodnoceni-rozpad">${polozky}</div>${poznamka}`;
 }
 
-function vykresliKartuFilmu(film) {
+function vykresliKartuFilmu(film, rozsah) {
   const skore = hodnotaNebo(film.estetickeSkore, "—");
   const vazenePrumer = film.hodnoceni?.vazenePrumer;
 
@@ -203,16 +239,16 @@ function vykresliKartuFilmu(film) {
 
       ${film.vlastniRecenze ? `<p class="recenze">${escapeHtml(film.vlastniRecenze)}</p>` : ""}
 
-      ${vykresliProjekce(film.projekce)}
+      ${vykresliProjekce(film.projekce, rozsah)}
     </article>
   `;
 }
 
-function vykresliKartu(polozka) {
+function vykresliKartu(polozka, rozsah) {
   // zatím jediný typ, ale switch je připravený na rozšíření
   switch (polozka.typAkce) {
     case "filmy":
-      return vykresliKartuFilmu(polozka.data);
+      return vykresliKartuFilmu(polozka.data, rozsah);
     default:
       return "";
   }
@@ -222,6 +258,7 @@ function prekresli() {
   const kontejner = document.getElementById("seznam-akci");
   const prazdnyStav = document.getElementById("prazdny-stav");
   const akce = ziskejFiltrovaneARazene();
+  const rozsah = ziskejAktivniRozsah(); // karty zobrazí jen projekce z tohoto rozsahu
 
   if (akce.length === 0) {
     kontejner.innerHTML = "";
@@ -230,7 +267,7 @@ function prekresli() {
   }
 
   prazdnyStav.hidden = true;
-  kontejner.innerHTML = akce.map(vykresliKartu).join("");
+  kontejner.innerHTML = akce.map((polozka) => vykresliKartu(polozka, rozsah)).join("");
 }
 
 // naplní select "Typ akce" podle toho, jaké typy skutečně přišly v datech

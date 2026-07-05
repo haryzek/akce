@@ -4,3 +4,7 @@
 # systémové smetí
 .DS_Store
 Thumbs.db
+
+# lokální kopie/pokusy dat
+data/*kopie*.json
+data/filmyx.json

@@ -8,8 +8,9 @@
 // Přidat nový typ akce = přidat sem řádek (+ časem jeho vlastní kartu ve vykresliKartu).
 const ZDROJE_DAT = [
   "data/filmy.json",
+  "data/vystavy.json",
   "data/kvizy.json",
-  "data/koncerty.json",
+  "data/koncerty_klasika.json",
   "data/prednasky.json",
 ];
 
@@ -137,6 +138,34 @@ async function nactiVsechnaData() {
 
 // ---- filtrování a řazení ----
 
+// překrývá se rozmezí výstavy [datumOd, datumDo] s filtrem? (obě meze filtru volitelné)
+// Výstava nemá projekce, ale interval trvání — "spadá do filtru" = intervaly se protnou.
+function maVystavaVRozmezi(data, datumOd, datumDo) {
+  const od = parsujDatum(data.datumOd);
+  const do_ = parsujDatum(data.datumDo) || od;
+  if (!od) return true; // bez data radši nechat projít, ne skrýt
+  if (datumDo && od > datumDo) return false; // výstava začíná až po konci filtru
+  if (datumOd && (do_ || od) < datumOd) return false; // výstava skončila před filtrem
+  return true;
+}
+
+// rozhodne podle typu akce, jestli položka spadá do datumového filtru
+function maAkceVRozmezi(polozka, datumOd, datumDo) {
+  // výstava má trvání (interval) → překryv; koncert s víc termíny se filtruje jako
+  // filmové projekce (aspoň jeden termín v rozsahu), jednorázový koncert zas přes interval.
+  if (polozka.typAkce === "vystavy") {
+    return maVystavaVRozmezi(polozka.data, datumOd, datumDo);
+  }
+  if (polozka.typAkce === "koncerty_klasika") {
+    const terminy = polozka.data.terminy;
+    if (Array.isArray(terminy) && terminy.length) {
+      return maProjekciVRozmezi(terminy, datumOd, datumDo);
+    }
+    return maVystavaVRozmezi(polozka.data, datumOd, datumDo);
+  }
+  return maProjekciVRozmezi(polozka.data.projekce, datumOd, datumDo);
+}
+
 // má akce aspoň jednu projekci v zadaném rozmezí (obě meze volitelné)?
 function maProjekciVRozmezi(projekce, datumOd, datumDo) {
   if (!projekce || projekce.length === 0) return true; // bez dat radši nechat projít, ne skrýt
@@ -171,7 +200,7 @@ function ziskejFiltrovaneARazene() {
   let vysledek = VSECHNY_AKCE.filter((polozka) => {
     if (typFiltr !== "vse" && polozka.typAkce !== typFiltr) return false;
     if (JEN_OBLIBENE && !OBLIBENE.has(akceId(polozka))) return false;
-    if ((datumOd || datumDo) && !maProjekciVRozmezi(polozka.data.projekce, datumOd, datumDo)) return false;
+    if ((datumOd || datumDo) && !maAkceVRozmezi(polozka, datumOd, datumDo)) return false;
     return true;
   });
 
@@ -183,8 +212,13 @@ function ziskejFiltrovaneARazene() {
       return (b.data.hodnoceni?.vazenePrumer ?? -1) - (a.data.hodnoceni?.vazenePrumer ?? -1);
     }
     if (razeniPodle === "datum") {
-      const dA = nejblizsiDatumProjekce(a.data.projekce);
-      const dB = nejblizsiDatumProjekce(b.data.projekce);
+      // výstavy i koncerty řadí podle začátku (datumOd), filmy podle nejbližší projekce
+      const podleData = (x) =>
+        x.typAkce === "vystavy" || x.typAkce === "koncerty_klasika"
+          ? parsujDatum(x.data.datumOd)
+          : nejblizsiDatumProjekce(x.data.projekce);
+      const dA = podleData(a);
+      const dB = podleData(b);
       if (!dA && !dB) return 0;
       if (!dA) return 1;
       if (!dB) return -1;
@@ -340,12 +374,140 @@ function vykresliKartuFilmu(film, rozsah, id) {
   `;
 }
 
+// datum rozmezí "01.08.2026 – 30.08.2026"; když od==do, jen jeden datum
+function vykresliRozmeziDatumu(datumOd, datumDo) {
+  const od = hodnotaNebo(datumOd, "");
+  const do_ = hodnotaNebo(datumDo, "");
+  if (od && do_ && od !== do_) return `${escapeHtml(od)} – ${escapeHtml(do_)}`;
+  return escapeHtml(od || do_ || "—");
+}
+
+// thumbnail v 16:9 rámu (na místě filmového traileru), klikací na detail výstavy
+function vykresliThumbnail(thumbnail, url, nazev) {
+  if (!thumbnail) return "";
+  const obrazek = `<img class="vystava-obrazek" src="${escapeHtml(thumbnail)}" alt="${escapeHtml(nazev)}" loading="lazy">`;
+  if (!url) return `<div class="vystava-thumb">${obrazek}</div>`;
+  return `<a class="vystava-thumb" href="${escapeHtml(url)}" target="_blank" rel="noopener" aria-label="Otevřít detail výstavy">${obrazek}</a>`;
+}
+
+function vykresliKartuVystavy(v, id) {
+  const skore = hodnotaNebo(v.estetickeSkore, "—");
+  // dolní blok: datum rozmezí + galerie (odkaz), přilepený dolů jako u filmových projekcí
+  const galerie = v.url
+    ? `<a href="${escapeHtml(v.url)}" target="_blank" rel="noopener">${escapeHtml(hodnotaNebo(v.misto))}</a>`
+    : escapeHtml(hodnotaNebo(v.misto));
+
+  return `
+    <article class="karta karta-vystava">
+      <div class="karta-vrch">
+        <div class="karta-vrch-text">
+          <div class="karta-titulky">
+            <h2>${escapeHtml(v.nazevCz)}</h2>
+            <p class="vystava-zanr">${escapeHtml(hodnotaNebo(v.zanr, ""))}</p>
+          </div>
+        </div>
+
+        <div class="karta-vpravo">
+          <div class="skore" title="Estetické skóre">${escapeHtml(skore)}</div>
+          ${vykresliSrdce(id, OBLIBENE.has(id))}
+        </div>
+      </div>
+
+      <p class="popis popis-vystava">${escapeHtml(hodnotaNebo(v.popis))}</p>
+
+      ${v.duvodSkore ? `<p class="duvod-skore">${escapeHtml(v.duvodSkore)}</p>` : ""}
+
+      <div class="projekce-blok">
+        <ul class="projekce-seznam">
+          <li><span class="proj-cas">${vykresliRozmeziDatumu(v.datumOd, v.datumDo)}</span> <span class="proj-misto">${galerie}</span></li>
+        </ul>
+      </div>
+
+      ${vykresliThumbnail(v.thumbnail, v.url, v.nazevCz)}
+    </article>
+  `;
+}
+
+// Termíny koncertu ve tvaru {datum, cas, misto, odkaz} — ať se dají recyklovat filmové
+// řádky projekcí i popup „(N)". Buď víc termínů z pole `terminy` (RAW extra u vícetermínových
+// akcí), nebo jeden odvozený z datumOd/cas. Místo a odkaz jsou u koncertu společné pro všechny.
+function normalizniTerminyKoncertu(k) {
+  const spolecne = { misto: k.misto, odkaz: k.url };
+  if (Array.isArray(k.terminy) && k.terminy.length) {
+    return k.terminy.map((t) => ({ datum: t.datum, cas: t.cas, ...spolecne }));
+  }
+  return [{ datum: k.datumOd, cas: k.cas, ...spolecne }];
+}
+
+// Karta koncertu = klon výstavní (stejný skeleton), akcent modrý (viz .karta-koncert v CSS).
+// Dolní blok = datum · čas + klub (odkaz) + volitelně cena. Když má koncert víc termínů,
+// přidá se za čas klikací „(N)" na modal se všemi termíny — přesně jako projekce u filmů.
+function vykresliKartuKoncertu(k, id, rozsah) {
+  const skore = hodnotaNebo(k.estetickeSkore, "—");
+  const klub = k.url
+    ? `<a href="${escapeHtml(k.url)}" target="_blank" rel="noopener">${escapeHtml(hodnotaNebo(k.misto))}</a>`
+    : escapeHtml(hodnotaNebo(k.misto));
+  // cena jako decentní přívěsek na konec řádku, když je vyplněná
+  const cena = k.cena ? ` <span class="koncert-cena">${escapeHtml(k.cena)}</span>` : "";
+
+  // termíny profiltrované aktivním datumovým rozsahem (stejně jako projekce u filmu)
+  const terminy = normalizniTerminyKoncertu(k);
+  const viditelne = projekceVRozmezi(terminy, rozsah);
+  const prvni = viditelne[0];
+
+  let radek;
+  if (prvni) {
+    const datum = escapeHtml(hodnotaNebo(prvni.datum));
+    const cas = prvni.cas ? ` · ${escapeHtml(prvni.cas)}` : "";
+    // „(N)" na modal jen když je v rozsahu víc termínů (N = počet DALŠÍCH, jako u filmů)
+    const vic =
+      viditelne.length > 1
+        ? ` <a class="vic-projekci" href="#" data-projekce="${encodeURIComponent(JSON.stringify(viditelne))}">(${viditelne.length - 1})</a>`
+        : "";
+    radek = `<li><span class="proj-cas">${datum}${cas}${vic}</span> <span class="proj-misto">${klub}${cena}</span></li>`;
+  } else {
+    // žádný termín v rozsahu — spadneme na rozmezí trvání, ať řádek nezeje prázdnotou
+    radek = `<li><span class="proj-cas">${vykresliRozmeziDatumu(k.datumOd, k.datumDo)}</span> <span class="proj-misto">${klub}${cena}</span></li>`;
+  }
+
+  return `
+    <article class="karta karta-koncert">
+      <div class="karta-vrch">
+        <div class="karta-vrch-text">
+          <div class="karta-titulky">
+            <h2>${escapeHtml(k.nazevCz)}</h2>
+            ${k.autor ? `<p class="vystava-zanr">${escapeHtml(k.autor)}</p>` : `<p class="vystava-zanr">${escapeHtml(hodnotaNebo(k.zanr, ""))}</p>`}
+          </div>
+        </div>
+
+        <div class="karta-vpravo">
+          <div class="skore" title="Estetické skóre">${escapeHtml(skore)}</div>
+          ${vykresliSrdce(id, OBLIBENE.has(id))}
+        </div>
+      </div>
+
+      <p class="popis popis-vystava">${escapeHtml(hodnotaNebo(k.popis))}</p>
+
+      ${k.duvodSkore ? `<p class="duvod-skore">${escapeHtml(k.duvodSkore)}</p>` : ""}
+
+      <div class="projekce-blok">
+        <ul class="projekce-seznam">${radek}</ul>
+      </div>
+
+      ${vykresliThumbnail(k.thumbnail, k.url, k.nazevCz)}
+    </article>
+  `;
+}
+
 function vykresliKartu(polozka, rozsah) {
   const id = akceId(polozka); // generické ID pro srdíčko/oblíbené, funguje napříč typy
-  // zatím jediný typ, ale switch je připravený na rozšíření
   switch (polozka.typAkce) {
     case "filmy":
       return vykresliKartuFilmu(polozka.data, rozsah, id);
+    case "vystavy":
+      return vykresliKartuVystavy(polozka.data, id);
+    case "koncerty_klasika":
+      return vykresliKartuKoncertu(polozka.data, id, rozsah);
     default:
       return "";
   }
@@ -367,6 +529,12 @@ function prekresli() {
   kontejner.innerHTML = akce.map((polozka) => vykresliKartu(polozka, rozsah)).join("");
 }
 
+// Hezké popisky do filtru pro slugy, kde by prosté "první písmeno velké" nestačilo
+// (typicky víceslovné/podtypové slugy). Co tu není, spadne na fallback (capitalize).
+const POPISKY_TYPU = {
+  koncerty_klasika: "Klasika",
+};
+
 // naplní select "Typ akce" podle toho, jaké typy skutečně přišly v datech
 function naplnFiltrTypu() {
   const select = document.getElementById("filtr-typ");
@@ -374,7 +542,7 @@ function naplnFiltrTypu() {
   for (const typ of typy) {
     const option = document.createElement("option");
     option.value = typ;
-    option.textContent = typ.charAt(0).toUpperCase() + typ.slice(1);
+    option.textContent = POPISKY_TYPU[typ] || typ.charAt(0).toUpperCase() + typ.slice(1);
     select.appendChild(option);
   }
 }

@@ -50,6 +50,7 @@ html, body {
   padding: 0 2rem 1.5rem;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 1.5rem;
   font-family: system-ui, -apple-system, sans-serif;
 }
@@ -58,6 +59,13 @@ html, body {
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
+}
+
+/* Od data + Do data jako jedna jednotka: dropy těsně u sebe (stejný odstup jako
+   mezi tlačítky rychlých voleb, 0.4rem), ať menu neroztahují na dvě široké skupiny. */
+.ovladaci-datum {
+  display: flex;
+  gap: 0.4rem;
 }
 
 .ovladaci-skupina label {
@@ -400,6 +408,73 @@ html, body {
 
 .projekce-seznam a:hover {
   text-decoration: underline;
+}
+
+/* Akcentní barva podle typu akce: přepsáním --akcent na úrovni karty zezelená
+   naráz kolečko skóre, odkazy i srdíčko — a nikde jinde se to nedotkne.
+   Nový typ akce = přidat sem jeho třídu s vlastní barvou. Filmy = výchozí zlatá. */
+.karta-vystava {
+  --akcent: #52c48c; /* sytější zelená — kontrastem drží krok se zlatou u filmů */
+}
+
+.karta-koncert {
+  --akcent: #4d9de0; /* chladná modrá — stejná sytost jako zelená u výstav */
+}
+
+/* cena koncertu: decentní přívěsek za názvem klubu v dolním bloku kdy/kde */
+.koncert-cena {
+  color: var(--text-tlumeny);
+  font-size: 0.82rem;
+}
+
+/* ---- výstava: žánr pod názvem, popis dostává veškerý prostor ---- */
+.vystava-zanr {
+  font-size: 0.82rem;
+  color: var(--text-tlumeny);
+  font-family: system-ui, -apple-system, sans-serif;
+  margin: 0.35rem 0 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Popis výstavy je hlavní obsah karty — dostane hodně řádků. Delší popisy se ořežou "…"
+   až u spodního paddingu. Počet řádků je vyladěný tak, aby se vešla naprostá většina
+   popisů ze zdroje (medián ~560, 75. percentil ~800 znaků). */
+.popis-vystava {
+  -webkit-line-clamp: 15; /* přesně na délku popisu William Kentridge (~530 znaků) */
+  margin-top: 0; /* odstup řídí jen card gap (0.9rem), stejný nad i pod popisem */
+}
+
+/* ---- výstava: thumbnail v 16:9 rámu (na místě filmového traileru) ---- */
+.vystava-thumb {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background-color: var(--bg-karta-hover);
+}
+
+.vystava-obrazek {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: filter 0.15s ease, transform 0.2s ease;
+}
+
+a.vystava-thumb:hover .vystava-obrazek {
+  filter: brightness(1.08);
+  transform: scale(1.03);
+}
+
+/* žlutý řádek u výstavy = galerie/místo (na místě filmového hodnocení), jeden řádek */
+.misto-radek {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* ---- trailer (facade: náhled -> po kliknutí přehrávač) ---- */

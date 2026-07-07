@@ -8,3 +8,11 @@ Thumbs.db
 # lokální kopie/pokusy dat
 data/*kopie*.json
 data/filmyx.json
+
+# lokální záloha projektu (repo samo je záloha)
+.backup/
+
+# scraper: RAW meziprodukt (přegeneruje se, nepatří na Pages) + python smetí
+scraper/output/
+__pycache__/
+*.pyc

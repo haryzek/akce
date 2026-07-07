@@ -1,81 +1,154 @@
-# Cowork task: Research filmů v pražských kinech
+# Vytvoření TOP 50 filmů z programu pražských artových kin
 
-## KRITÉRIA VYHLEDÁVÁNÍ
-- Typ akce: filmy v kinech
-- Lokalita: Praha
-- Časové rozmezí: ode dneška (den spuštění tasku) na následujících 14 dní. Nejdřív si zjisti dnešní datum a spočítej z něj rozmezí od–do ve formátu dd.mm.yyyy.
+Karolínko, přikládám:
+- měsíční program kin z ČSFD (XLS),
+- můj estetický profil (DOCX).
 
-## POSTUP (v tomto pořadí, kvůli úspoře tokenů)
+Tvým úkolem je vytvořit spolehlivý JSON, který bude sloužit jako zdroj dat pro moji filmovou aplikaci. Nejdůležitější je správnost dat. Raději vrať méně informací než informace vymyšlené. Nepoužívej žádný starší JSON ani žádná data z předchozích konverzací.
 
-### Krok 1 – Najdi filmy
-Projdi tato kina a agregátory a sestav seznam filmů běžících v daném období:
-- Nezávislá a artová kina (primární cíl): Edison Filmhub, Kino Atlas, Komorní kino Evald,
-  Kino Pilotů, Kino Aero, Kino MAT, Kino Dlabačov, Modřanský biograf, Bio Oko,
-  Ponrepo, Kino Přítomnost, Kino 35 (Francouzský institut), Kino Lucerna
-- Klasická kina/multiplexy (sekundární cíl): CineStar, Cinema City, Kino Hostivař
-- Agregátory: GoOut.net (sekce Kino/Filmy), Kudyznudy.cz, Citybee.cz
+## KROK 1 – ZPRACUJ PROGRAM KIN
+Program je strukturován:
+Praha – název kina
+↓
+datum
+↓
+filmy
+↓
+časy
+Vytěž všechny projekce. Pokud jsou časy zalomené na další řádek, připoj je ke stejnému filmu.
 
-### Krok 2 – Ohodnoť a přefiltruj
-Pro každý nalezený film vyhledej hodnocení ze 4 zdrojů (mezinárodní zdroje preferuj,
-ČSFD jen jako doplněk pro český kontext):
-- rottentomatoes.com — **Audience/Popcornmeter score, NIKDY Tomatometer (kritici)**
-- metacritic.com — User Score
-- imdb.com
-- csfd.cz
+## KROK 2 – FILTR KIN
+Použij pouze tato kina:
+- Bio Oko
+- Edison Filmhub
+- Kino Aero
+- Kino Atlas
+- Kino Lucerna
+- Kino MAT
+- Kino Pilotů
+- Kino Světozor
+- Komorní kino Evald
+- Modřanský biograf
+- Přítomnost Boutique Cinema
+- Kampus Hybernská
+- MeetFactory
+- Spirála
 
-Spočítej **vážené skóre** s váhami:
-- Rotten Tomatoes (audience) 40 %
-- Metacritic (user) 30 %
+Jakékoli jiné kino kompletně ignoruj.
+
+## KROK 3 – OČIŠTĚNÍ NÁZVŮ
+Odstraň suffixy sálů:
+- Gold Class
+- Dolby Atmos
+- Dolby Atmos sál
+- IMAX
+- VIP
+- Theatre Deluxe
+- 4DX sál
+- ČSFD Sál
+- jiné obdobné názvy sálů
+
+Například
+PozváníČSFD Sál
+↓
+Pozvání
+
+## KROK 4 – SLOUČENÍ PROJEKCÍ
+Jeden film = jeden objekt. Spoj všechny projekce stejného filmu. Nejdříve slučuj podle českého názvu. Později po identifikaci podle:
+originální název + rok + režisér.
+
+## KROK 5A – IDENTIFIKUJ FILMY
+U každého filmu zjisti: originální název, režiséra, žánr, stručný popis
+České názvy bývají nejednoznačné. Proto vždy nejdříve ověř identitu filmu.
+Používej dostupné veřejné databáze (například ČSFD jako rozcestník, IMDb, TMDb, Letterboxd, Wikipedii, stránky kin nebo distributora).
+Pokud si nejsi jistá identitou, nic si nevymýšlej.
+
+## KROK 5B – Najdi trailer
+U každého filmu dohledávej trailer na YouTube. Priorita je mít vyplněný trailerUrl u co největšího počtu filmů.
+Preferuj v tomto pořadí:
+1. oficiální trailer od distributora, studia, festivalu, kina nebo streamovací platformy,
+2. trailer z důvěryhodného filmového kanálu,
+3. kvalitní reupload traileru,
+4. jakýkoli YouTube trailer, který podle názvu, roku, režiséra nebo obsahu zjevně odpovídá danému filmu.
+Nepoužívej reaction videa, rozbory, recenze, fanmade střihy, playlisty ani obecné výsledky vyhledávání. Trailer ale nemusí být dokonale oficiální. Důležitější je, aby trailerUrl nebyl zbytečně null.
+Hodnotu null použij pouze tehdy, pokud se trailer nepodaří dohledat vůbec, nebo pokud existuje vážné riziko, že jde o úplně jiný film.jsi
+
+## KROK 5C – ODKAZ NA PROGRAM KINA
+U každé projekce dohledej `odkaz` na program (webovou stránku) toho kina, kde se projekce koná. Cílem je, aby mě odkaz z karty filmu dovedl co nejblíž k nákupu lístku.
+Preferuj v tomto pořadí:
+1. stránka konkrétního filmu na webu daného kina,
+2. stránka programu / rozvrhu daného kina,
+3. hlavní web daného kina.
+Nevymýšlej si URL. Nepoužívej odkaz na ČSFD, agregátory ani obecné vyhledávání. Deep-link přímo do košíku na konkrétní čas nedohledávej – spolehlivě neexistuje; stačí spolehlivá stránka kina.
+Pokud se spolehlivý odkaz na dané kino nepodaří dohledat, ponech `odkaz` null. Nikdy odkaz nevymýšlej.
+
+## KROK 6 – BOB-FIT
+Na základě mého estetického profilu spočítej pro VŠECHNY filmy hodnotu:
+estetickeSkore 0–100
+Vyšší skóre znamená vyšší pravděpodobnost, že se mi film bude líbit.
+Při výpočtu využij celý můj estetický profil.
+Neomezuj se pouze žánrem.
+Hodnoť hlavně:
+- psychologickou hloubku
+- existenciální témata
+- autorskou režii
+- vizuální styl
+- filozofický přesah
+- morální ambivalenci
+- melancholii
+- inteligentní sci-fi
+- evropský, japonský a kvalitní americký autorský film
+
+Naopak snižuj skóre u:
+- dětských animáků
+- rutinních blockbusterů
+- generických komedií
+- čistě efektových filmů
+- laciných hororů
+- filmů bez psychologické hloubky
+
+Do pole duvodSkore stručně vysvětli své rozhodnutí.
+
+## KROK 7 – VÝBĚR KANDIDÁTŮ
+Spočítej Bob-fit pro všechny filmy.
+Poté seřaď všechny filmy podle Bob-fit.
+Následně vyber kandidáty pro dohledávání veřejných hodnocení.
+Pokud je filmů s vysokým Bob-fit méně než 50, postupně přidávej další filmy podle pořadí Bob-fit, dokud nebudeš mít alespoň 50 kandidátů.
+
+## KROK 8 – DOHLEDÁNÍ VEŘEJNÝCH HODNOCENÍ
+Pouze u těchto kandidátů dohledávej:
+- Rotten Tomatoes – Použij výhradně Audience Score (ne Tomatometer).
+- Metacritic – Použij výhradně User Score (ne Metascore kritiků).
+- IMDb – Použij běžný IMDb rating.
+- ČSFD – Použij procentuální hodnocení.
+
+Pokud některé hodnocení není dostupné, ponech hodnotu null. Nikdy hodnoty nevymýšlej.
+
+## KROK 9 – VÁŽENÉ SKÓRE
+Spočítej:
+- Rotten Tomatoes Audience 40 %
+- Metacritic User 30 %
 - IMDb 20 %
 - ČSFD 10 %
 
-Pokud některý zdroj chybí, přepočítej váhy poměrně mezi dostupné zdroje a v poli
-`poznamkaHodnoceni` uveď, který zdroj chyběl.
+IMDb i Metacritic nejdříve převeď na škálu 0–100.
+Pokud některý zdroj chybí, normalizuj váhy pouze podle dostupných zdrojů.
 
-Poté každý film oskóruj **esteticky (1–10)** podle profilu níže a **krátce zdůvodni**.
-Do dalšího kroku (Krok 3) postup pouze filmy s estetickým skóre **6 a více** —
-tím se omezí počet filmů, ke kterým se dohledávají konkrétní projekce, a ušetří se čas/tokeny.
+## KROK 10 – FINÁLNÍ VÝBĚR
+Po výpočtu veřejných hodnocení spočítej interně:
+70 % Bob-fit
+30 % vážené veřejné skóre.
+Toto skóre slouží pouze pro výběr. Do JSON jej nezapisuj.
+Podle něj vyber TOP 50 filmů.
 
-**Estetický profil (pro skórování i osobní recenzi):**
+## KROK 11 – RECENZE
+Ke každému filmu napiš: krátký popis a vlastní doporučení pro mě.
+Bez spoilerů.
+Nepřebírej dlouhé citace z recenzí.
+Shrň vlastními slovy.
 
-Jádro vkusu: **psychologické drama, art-house, ambiciózní sci-fi.** Sjednocující tón napříč vším
-je **melancholie, existenciální tíha a syrovost** — hledá filmy, které se ptají po povaze reality,
-vědomí, svobodné vůli a smyslu, a nebojí se temnoty ani ambivalence.
-
-Silně zvyšuje skóre:
-- **Vizuální propracovanost a detail** — obraz, kompozice, práce se světlem; kochá se detaily,
-  vizuálno je pro něj samostatná hodnota, ne jen nosič děje.
-- **Psychologická hloubka postav** — vnitřní konflikt, morální šeď, rozpad, osamělost.
-- **Krajinná estetika**: pouště, polopouště, kaňony, skály, vyprahlý prostor; fascinují ho i
-  megaměsta a jejich odcizenost. Film s tímhle settingem (přírodní i urbánní) skóruj výš.
-- **Literární gravitace** ve stylu jeho oblíbených autorů — Cormac McCarthy (syrovost, násilí,
-  metafyzika, poušť), Houellebecq (odcizení, civilizační úpadek), Frank Herbert (filozofické sci-fi),
-  D. F. Wallace, Murakami (snovost, melancholie), Remarque, H. Miller. Filmy rezonující s touhle
-  poetikou prioritizuj.
-- **Pomalé, atmosférické, meditativní tempo** spíš než akční spád.
-
-Snižuje / vyřazuje:
-- Čisté komedie, frašky, muzikály, rodinné/dětské filmy.
-- Akční blockbustery bez hlubšího přesahu, mainstreamová "oddechovka".
-- **Ale**: umělecky ambiciózní snímek z malého studia nikdy nediskvalifikuj kvůli velikosti produkce
-  ani nízké návštěvnosti — naopak to bývá plus.
-
-Napiš také krátkou (3–5 vět) vlastní recenzi **bez spoilerů**, v češtině — s ohledem na tenhle profil,
-tzn. řekni na rovinu, jestli si myslíš, že to Boba chytne a proč.
-
-### Krok 3 – Dohledej projekce (jen pro filmy, co prošly filtrem)
-Pro každý film, který prošel filtrem, dohledej konkrétní promítání v daném období:
-datum, čas, kino, přímý odkaz na vstupenky/rozpis (kino web nebo GoOut).
-Jeden film může mít víc projekcí ve víc kinech — všechny uveď.
-
-## STRIKTNÍ PRAVIDLA
-- Žádné halucinace: pokud si nejsi jistý datem/kinem, projekci nezařazuj.
-- Žádné dlouhé rešerše o historii filmů/kin — jen fakta a hodnocení.
-- Pokud info nezjistíš, napiš `null` (v JSON), nikdy si nedomýšlej.
-- Speciální projekce (delegace tvůrců, Q&A, festivalové uvedení) označ v poli `specialniProjekce`.
-
-## VÝSTUP
-Ulož **pouze JSON** (žádný markdown okolo, žádný komentář) přesně v této struktuře:
+## KROK 12 – VÝSTUP
+Výstupní JSON MUSÍ být PŘESNĚ v této struktuře. Nepřidávej žádná další pole. Neměň názvy polí. Neměň pořadí polí. Neměň datové typy. Použij přesně tuto strukturu:
 
 ```json
 {
@@ -83,33 +156,57 @@ Ulož **pouze JSON** (žádný markdown okolo, žádný komentář) přesně v t
   "vygenerovanoAt": "YYYY-MM-DDTHH:MM:SS",
   "obdobiOd": "dd.mm.yyyy",
   "obdobiDo": "dd.mm.yyyy",
+  "poznamka": "Surový seznam filmů z 14 artových kin (ČSFD měsíční program). Hodnocení a estetické skóre zatím nedoplněno – slouží jako zdroj pro další krok.",
   "filmy": [
     {
-      "nazevCz": "string",
-      "nazevOrig": "string",
-      "rezie": "string",
-      "zanr": "string",
-      "popis": "string (1-2 věty, bez spoilerů)",
-      "trailerUrl": "string (odkaz na YouTube trailer, libovolná podoba) nebo null",
+      "nazevCz": "",
+      "nazevOrig": null,
+      "rezie": null,
+      "zanr": null,
+      "popis": null,
+      "trailerUrl": null,
       "hodnoceni": {
-        "rottenTomatoesAudience": 85,
-        "metacriticUser": 7.8,
-        "imdb": 7.2,
-        "csfd": 78,
-        "vazenePrumer": 81.4,
-        "poznamkaHodnoceni": "string nebo null"
+        "rottenTomatoesAudience": null,
+        "metacriticUser": null,
+        "imdb": null,
+        "csfd": null,
+        "vazenePrumer": null,
+        "poznamkaHodnoceni": null
       },
-      "estetickeSkore": 8,
-      "duvodSkore": "string, krátké zdůvodnění",
-      "vlastniRecenze": "string, 3-5 vět bez spoilerů",
+      "estetickeSkore": null,
+      "duvodSkore": null,
+      "vlastniRecenze": null,
       "specialniProjekce": false,
-      "specialniPopis": "string nebo null",
+      "specialniPopis": null,
       "projekce": [
-        {"datum": "dd.mm.yyyy", "cas": "HH:MM", "misto": "string", "odkaz": "string"}
+        {
+          "datum": "dd.mm.yyyy",
+          "cas": "HH:MM",
+          "misto": "",
+          "odkaz": null
+        }
       ]
     }
   ]
 }
 ```
 
-Výsledný JSON ulož jako soubor `filmy.json` do složky "_dev/akce/data/" (přepiš stávající, pokud tam je). Nikam nic nepushuj, žádnej git, jen zapiš soubor na disk.
+## KONTROLA PŘED ODEVZDÁNÍM
+Před vytvořením souboru proveď kontrolu:
+- jsou použita pouze povolená kina,
+- nejsou v názvech filmů suffixy sálů,
+- žádný film není duplicitně,
+- všechny projekce jsou správně sloučené,
+- Rotten Tomatoes používá pouze Audience Score,
+- Metacritic používá pouze User Score,
+- veřejná hodnocení nejsou vymyšlená,
+- vážené skóre je správně spočítané,
+- JSON obsahuje maximálně 50 filmů,
+- JSON přesně odpovídá zadané struktuře.
+- trailerUrl je buď přímý odkaz na konkrétní YouTube video, ideálně oficiální trailer, nebo null,
+- trailerUrl nevede na fanouškovský reupload, reaction video, playlist ani vyhledávání,
+- trailerUrl odpovídá přesně identifikovanému filmu.
+- odkaz u projekce vede na stránku kina (film / program / hlavní web), ne na ČSFD, agregátor ani vyhledávání, nebo je null,
+- odkaz u projekce není vymyšlený.
+
+Výsledek ulož jako filmy.json.

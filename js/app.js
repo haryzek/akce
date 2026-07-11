@@ -29,6 +29,11 @@ let VSECHNY_AKCE = []; // sloučená, normalizovaná data ze všech zdrojů
 const OBLIBENE_KLIC = "akce-oblibene";
 let JEN_OBLIBENE = false; // stav horního přepínače (jen runtime, nepersistuje se)
 
+// horní přepínač "jen špička": aktivní = ukáže jen akce s estetickeSkore >= TOP_PRAH,
+// napříč všemi typy i nezávisle na ostatních filtrech (škála je jednotná 0–100).
+const TOP_PRAH = 80;
+let JEN_TOP = false; // stav (jen runtime, nepersistuje se)
+
 // Stabilní ID akce s prefixem typu, ať se různé typy nesrazí a přežije to přegenerování dat.
 // Bere co je po ruce napříč typy; pro filmy = "filmy::nazevOrig|rezie".
 function akceId(polozka) {
@@ -59,6 +64,10 @@ function ulozOblibene() {
 // srdíčko na kartě (dva stavy). Sdílený helper, ať ho každý typ karty jen zavolá.
 const IKONA_SRDCE =
   '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.7l-1.55-1.4C6 15 2.75 12.1 2.75 8.5 2.75 5.9 4.8 3.9 7.4 3.9c1.5 0 2.9.7 3.8 1.8.9-1.1 2.3-1.8 3.8-1.8 2.6 0 4.65 2 4.65 4.6 0 3.6-3.25 6.5-7.7 10.8L12 20.7z"/></svg>';
+
+// hvězda pro horní přepínač "jen špička" (stejný styl a dva stavy jako srdce)
+const IKONA_HVEZDA =
+  '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.85 6.02 6.6.62-4.98 4.38 1.48 6.48L12 16.9l-5.95 3.2 1.48-6.48L2.55 9.24l6.6-.62z"/></svg>';
 
 function vykresliSrdce(id, jeOblibene) {
   const stav = jeOblibene ? " je-oblibene" : "";
@@ -208,6 +217,7 @@ function ziskejFiltrovaneARazene() {
   let vysledek = VSECHNY_AKCE.filter((polozka) => {
     if (typFiltr !== "vse" && polozka.typAkce !== typFiltr) return false;
     if (JEN_OBLIBENE && !OBLIBENE.has(akceId(polozka))) return false;
+    if (JEN_TOP && (polozka.data.estetickeSkore ?? -1) < TOP_PRAH) return false;
     if ((datumOd || datumDo) && !maAkceVRozmezi(polozka, datumOd, datumDo)) return false;
     return true;
   });
@@ -662,6 +672,16 @@ async function init() {
     JEN_OBLIBENE = !JEN_OBLIBENE;
     prepinacOblibene.classList.toggle("aktivni", JEN_OBLIBENE);
     prepinacOblibene.setAttribute("aria-pressed", JEN_OBLIBENE);
+    prekresli();
+  });
+
+  // horní přepínač "jen špička" (skóre 80 a výš)
+  const prepinacTop = document.getElementById("filtr-top");
+  prepinacTop.innerHTML = IKONA_HVEZDA;
+  prepinacTop.addEventListener("click", () => {
+    JEN_TOP = !JEN_TOP;
+    prepinacTop.classList.toggle("aktivni", JEN_TOP);
+    prepinacTop.setAttribute("aria-pressed", JEN_TOP);
     prekresli();
   });
 

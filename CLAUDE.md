@@ -196,7 +196,7 @@ popis + jednověté doporučení, dole datum rozmezí + galerie (odkaz) a klikac
 mají termín(y), místo, thumbnail, `autor` a žádná veřejná hodnocení; liší se jen slugem/souborem,
 zdrojem a barvou akcentu. Klasika = `data/koncerty_klasika.json` (akcent modrá), Jazz&Blues =
 `data/koncerty_jazzblues.json` (fialová), divadlo = `data/divadlo.json` (červená), party =
-`data/party.json` (růžová). Pole se jmenuje podle slugu (`koncerty`/`divadlo`/`party`). Struktura
+`data/party.json` (oranžová). Pole se jmenuje podle slugu (`koncerty`/`divadlo`/`party`). Struktura
 je jako výstava, ale bez `nazevOrig`, s `autor`/`cas` a volitelným polem `terminy`:
 
 ```json

@@ -12,13 +12,15 @@ const ZDROJE_DAT = [
   "data/kvizy.json",
   "data/koncerty_klasika.json",
   "data/koncerty_jazzblues.json",
+  "data/divadlo.json",
   "data/prednasky.json",
 ];
 
-// Koncertní typy sdílí stejný datový tvar i kartu (klasika, jazz&blues, …) — liší se jen
+// Termínové typy sdílí stejný datový tvar i kartu (koncerty klasika/jazz&blues, divadlo…):
+// mají jeden nebo víc termínů, místo, thumbnail a žádná veřejná hodnocení — liší se jen
 // zdrojem a barvou akcentu. Ať se nemusí vyjmenovávat na deseti místech, drží se tady.
-const KONCERTNI_TYPY = new Set(["koncerty_klasika", "koncerty_jazzblues"]);
-const jeKoncert = (typ) => KONCERTNI_TYPY.has(typ);
+const TERMINOVE_TYPY = new Set(["koncerty_klasika", "koncerty_jazzblues", "divadlo"]);
+const jeTerminovy = (typ) => TERMINOVE_TYPY.has(typ);
 
 let VSECHNY_AKCE = []; // sloučená, normalizovaná data ze všech zdrojů
 
@@ -157,12 +159,12 @@ function maVystavaVRozmezi(data, datumOd, datumDo) {
 
 // rozhodne podle typu akce, jestli položka spadá do datumového filtru
 function maAkceVRozmezi(polozka, datumOd, datumDo) {
-  // výstava má trvání (interval) → překryv; koncert s víc termíny se filtruje jako
-  // filmové projekce (aspoň jeden termín v rozsahu), jednorázový koncert zas přes interval.
+  // výstava má trvání (interval) → překryv; termínový typ (koncert/divadlo) s víc termíny
+  // se filtruje jako filmové projekce (aspoň jeden termín v rozsahu), jednorázový přes interval.
   if (polozka.typAkce === "vystavy") {
     return maVystavaVRozmezi(polozka.data, datumOd, datumDo);
   }
-  if (jeKoncert(polozka.typAkce)) {
+  if (jeTerminovy(polozka.typAkce)) {
     const terminy = polozka.data.terminy;
     if (Array.isArray(terminy) && terminy.length) {
       return maProjekciVRozmezi(terminy, datumOd, datumDo);
@@ -218,9 +220,9 @@ function ziskejFiltrovaneARazene() {
       return (b.data.hodnoceni?.vazenePrumer ?? -1) - (a.data.hodnoceni?.vazenePrumer ?? -1);
     }
     if (razeniPodle === "datum") {
-      // výstavy i koncerty řadí podle začátku (datumOd), filmy podle nejbližší projekce
+      // výstavy i termínové typy řadí podle začátku (datumOd), filmy podle nejbližší projekce
       const podleData = (x) =>
-        x.typAkce === "vystavy" || jeKoncert(x.typAkce)
+        x.typAkce === "vystavy" || jeTerminovy(x.typAkce)
           ? parsujDatum(x.data.datumOd)
           : nejblizsiDatumProjekce(x.data.projekce);
       const dA = podleData(a);
@@ -445,18 +447,20 @@ function normalizniTerminyKoncertu(k) {
   return [{ datum: k.datumOd, cas: k.cas, ...spolecne }];
 }
 
-// CSS třída karty podle koncertního typu — každý typ má vlastní barvu akcentu
-// (klasika modrá, jazz&blues fialová). Nový koncertní typ = řádek sem + barva v CSS.
-const KONCERT_CSS_TRIDA = {
+// CSS třída karty podle termínového typu — každý typ má vlastní barvu akcentu (klasika modrá,
+// jazz&blues fialová, divadlo červená). Nový termínový typ = řádek sem + barva v CSS.
+const TERMINOVA_CSS_TRIDA = {
   koncerty_klasika: "karta-koncert",
   koncerty_jazzblues: "karta-jazzblues",
+  divadlo: "karta-divadlo",
 };
 
-// Karta koncertu = klon výstavní (stejný skeleton), akcent podle typu (viz .karta-koncert /
-// .karta-jazzblues v CSS). Dolní blok = datum · čas + klub (odkaz) + volitelně cena. Když má
-// koncert víc termínů, přidá se za čas klikací „(N)" na modal se všemi termíny — jako u filmů.
-function vykresliKartuKoncertu(k, id, rozsah, typAkce) {
-  const cssTrida = KONCERT_CSS_TRIDA[typAkce] || "karta-koncert";
+// Karta termínového typu (koncert/divadlo) = klon výstavní (stejný skeleton), akcent podle typu
+// (viz .karta-koncert / .karta-jazzblues / .karta-divadlo v CSS). Dolní blok = datum · čas +
+// místo (odkaz) + volitelně cena. Když má akce víc termínů, přidá se za čas klikací „(N)" na
+// modal se všemi termíny — přesně jako projekce u filmů.
+function vykresliKartuTerminu(k, id, rozsah, typAkce) {
+  const cssTrida = TERMINOVA_CSS_TRIDA[typAkce] || "karta-koncert";
   const skore = hodnotaNebo(k.estetickeSkore, "—");
   const klub = k.url
     ? `<a href="${escapeHtml(k.url)}" target="_blank" rel="noopener">${escapeHtml(hodnotaNebo(k.misto))}</a>`
@@ -522,7 +526,8 @@ function vykresliKartu(polozka, rozsah) {
       return vykresliKartuVystavy(polozka.data, id);
     case "koncerty_klasika":
     case "koncerty_jazzblues":
-      return vykresliKartuKoncertu(polozka.data, id, rozsah, polozka.typAkce);
+    case "divadlo":
+      return vykresliKartuTerminu(polozka.data, id, rozsah, polozka.typAkce);
     default:
       return "";
   }
@@ -549,6 +554,7 @@ function prekresli() {
 const POPISKY_TYPU = {
   koncerty_klasika: "Klasika",
   koncerty_jazzblues: "Jazz&Blues",
+  divadlo: "Divadlo",
 };
 
 // naplní select "Typ akce" podle toho, jaké typy skutečně přišly v datech

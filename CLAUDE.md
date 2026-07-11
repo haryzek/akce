@@ -65,14 +65,16 @@ Python, výběr a skórování dělá AI krok podle promptů (`cowork_prompt_kin
 `cowork_prompt_vystavy.md`). Prompty jsou **kontrakt** — appka musí umět zobrazit přesně tu
 strukturu, kterou generují (viz níže).
 
-**Stav (2026-07):** kompletně běží filmy, výstavy, klasika (vážná hudba) i Jazz&Blues (klubová
-scéna) end-to-end. Filmy plní Bobův vychytaný ChatGPT prompt (ručně), zbytek Cowork prompty nad
-RAW ze scraperu. Další typy akcí = nový scraper + nový prompt (postup viz koncertní klony).
+**Stav (2026-07):** kompletně běží filmy, výstavy, klasika (vážná hudba), Jazz&Blues (klubová
+scéna) i divadlo end-to-end. Filmy plní Bobův vychytaný ChatGPT prompt (ručně), zbytek Cowork
+prompty nad RAW ze scraperu. Další typy akcí = nový scraper + nový prompt (postup viz existující
+scrapery — prague.eu klony, nebo goout jako vzor JSON-API zdroje).
 
 ## Scraper (Python nástroj, `scraper/`)
 
-Čistá vanilla Python (`requests` + `beautifulsoup4`, `requirements.txt`). Účel: z webů
-s dobře čitelnou URL (datum + stránkování v URL) vytáhnout akce do **RAW JSONu**.
+Čistá vanilla Python (`requests` + `beautifulsoup4` + `tzdata`, `requirements.txt`). Účel: vytáhnout
+akce do **RAW JSONu** — buď z HTML webů s čitelnou URL (prague.eu), nebo z veřejného JSON API
+agregátoru (goout.net). Každý zdroj = jeden modul, mechaniku si řeší po svém, výstup je stejný RAW kontrakt.
 
 - **Spuštění:** Bob dvojklikne `scrapni.bat`, zadá rozmezí `DD-MM-YYYY` (max ~1 měsíc),
   ono doinstaluje závislosti a spustí `run.py`. Výstup padá do `scraper/output/<typ>.json`.
@@ -85,12 +87,23 @@ s dobře čitelnou URL (datum + stránkování v URL) vytáhnout akce do **RAW J
 - **RAW kontrakt** (14 polí, každé nullovatelné): hlavička `typAkce`, `scrapedAt`,
   `obdobiOd`, `obdobiDo` + pole `polozky[]` s `zdroj`, `nazevCz`, `nazevOrig`, `autor`,
   `zanr`, `datumOd`, `datumDo`, `cas`, `misto`, `adresa`, `url`, `cena`, `thumbnail`, `popis`.
-- Zdroje (všechny prague.eu, server-side HTML, čtou i detail akce): `prague_vystavy.py`
-  (výstavy), `prague_koncerty.py` (klasika, kat. „klasická hudba"), `prague_jazzblues.py`
-  (Jazz&Blues, kat. „klubová scéna" — převážně jazz/soul/blues). Koncertní scrapery jsou si
-  datově blízké (jednorázová/vícetermínová akce, bez hodnocení, thumbnail) → novej stejný typ
-  se klonuje z nejbližšího a mění se jen `TYP_AKCE` + `BASE` URL. ČSFD je za antibotem, program
-  filmů se bere jinudy (Bobův ChatGPT prompt z ČSFD XLS).
+- Zdroje **prague.eu** (server-side HTML, čtou i detail akce): `prague_vystavy.py` (výstavy),
+  `prague_koncerty.py` (klasika, kat. „klasická hudba"), `prague_jazzblues.py` (Jazz&Blues, kat.
+  „klubová scéna" — převážně jazz/soul/blues). Koncertní scrapery jsou si datově blízké
+  (jednorázová/vícetermínová akce, bez hodnocení, thumbnail) → novej stejný typ se klonuje
+  z nejbližšího a mění se jen `TYP_AKCE` + `BASE` URL.
+- Zdroj **goout.net** (`goout_divadlo.py`, divadlo): jiná mechanika — goout je Nuxt SPA, která
+  si program tahá z veřejného JSON API (`/services/entities/v1/schedules`, kat. `categories[]=play`),
+  a scraper volá ten endpoint napřímo. Tři odlišnosti od prague.eu: (1) **stránkování kurzorem**
+  `meta.nextScrollId` (ne číslo strany; `offset` API ignoruje); (2) **datumový filtr serverově**
+  přes `after`/`before` v ISO UTC (Bobovo okno se přes `zoneinfo` Europe/Prague převede z pražského
+  času → proto `tzdata`); (3) **intra-zdroj dedup přímo v subscraperu** — API vrací `schedules`
+  (jednotlivé termíny), jedna hra = N repríz, ale všechny sdílí `relationships.event.id` → seskupí
+  se podle něj do jedné položky s polem `terminy` (deterministicky přes ID, ne fuzzy). Data jsou
+  JSON:API-like: `schedules[]` + `included` (events/venues/images/performers) klíčované ID.
+  Cloudflare goout nevadí, stačí realistický User-Agent. Nový goout typ = klon `goout_divadlo.py`
+  se změnou `categories`/`tags` + mapování.
+- ČSFD je za antibotem, program filmů se bere jinudy (Bobův ChatGPT prompt z ČSFD XLS).
 
 ## JSON kontrakt — filmy
 
@@ -175,12 +188,14 @@ projekce ani trailer, zato má trvání (rozmezí), místo a obrázek. Struktura
 nízké skóre. Karta výstavy: název + skóre-kolečko + srdíčko, žánr pod názvem, dominantní
 popis + jednověté doporučení, dole datum rozmezí + galerie (odkaz) a klikací thumbnail (16:9).
 
-## JSON kontrakt — koncerty (klasika i Jazz&Blues)
+## JSON kontrakt — termínové typy (koncerty i divadlo)
 
-Koncertní typy sdílí **jeden tvar i jednu kartu** — liší se jen slugem/souborem a barvou
-akcentu. Klasika = `data/koncerty_klasika.json` (slug `koncerty_klasika`, akcent modrá),
-Jazz&Blues = `data/koncerty_jazzblues.json` (slug `koncerty_jazzblues`, akcent fialová).
-Struktura je jako výstava, ale bez `nazevOrig`, s `autor`/`cas` a volitelným polem `terminy`:
+**Termínové typy** (koncerty klasika/Jazz&Blues, divadlo) sdílí **jeden tvar i jednu kartu** —
+mají termín(y), místo, thumbnail, `autor` a žádná veřejná hodnocení; liší se jen slugem/souborem,
+zdrojem a barvou akcentu. Klasika = `data/koncerty_klasika.json` (akcent modrá), Jazz&Blues =
+`data/koncerty_jazzblues.json` (fialová), divadlo = `data/divadlo.json` (červená). Pole se jmenuje
+podle slugu (`koncerty`/`divadlo`). Struktura je jako výstava, ale bez `nazevOrig`, s `autor`/`cas`
+a volitelným polem `terminy`:
 
 ```json
 {
@@ -213,11 +228,12 @@ Struktura je jako výstava, ale bez `nazevOrig`, s `autor`/`cas` a volitelným p
 }
 ```
 
-Pole `terminy` je **volitelné** — jen u vícetermínových koncertů (list `{datum, cas}`);
-jednorázový koncert ho vynechá a appka si vystačí s `datumOd`/`cas`. Appka koncerty filtruje
-i řadí přes helper `jeKoncert` (víc termínů → jako filmové projekce, jinak přes interval
-trvání). Karta = klon výstavní, dole datum · čas + klub (odkaz) + volitelně cena, a „(N)"
-popup na další termíny jako u filmů.
+Pole `terminy` je **volitelné** — jen u vícetermínových akcí (repríz/vícedenních koncertů; list
+`{datum, cas}`); jednorázová akce ho vynechá a appka si vystačí s `datumOd`/`cas`. Appka termínové
+typy filtruje i řadí přes helper `jeTerminovy` a množinu `TERMINOVE_TYPY` (víc termínů → jako
+filmové projekce, jinak přes interval trvání), renderuje je `vykresliKartuTerminu` a barvu bere
+z mapy `TERMINOVA_CSS_TRIDA`. Karta = klon výstavní, dole datum · čas + místo (odkaz) + volitelně
+cena, a „(N)" popup na další termíny jako u filmů.
 
 ## Funkce appky (co musí umět)
 

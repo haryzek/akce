@@ -45,10 +45,13 @@
     <div class="ovladaci-skupina">
       <label>Rychlá volba</label>
       <div class="rychle-volby">
-        <button type="button" data-rozsah="dnes">Dnes</button>
-        <button type="button" data-rozsah="tyden">Tento týden</button>
-        <button type="button" data-rozsah="mesic">Tento měsíc</button>
-        <button type="button" data-rozsah="vse">Vše</button>
+        <button type="button" data-rozsah="dnes" title="Dnes">D</button>
+        <button type="button" data-rozsah="zitra" title="Zítra">Z</button>
+        <button type="button" data-rozsah="tyden" title="Tento týden">T</button>
+        <button type="button" data-rozsah="pristi-tyden" title="Příští týden">&gt;T</button>
+        <button type="button" data-rozsah="mesic" title="Tento měsíc">M</button>
+        <button type="button" data-rozsah="pristi-mesic" title="Příští měsíc">&gt;M</button>
+        <button type="button" data-rozsah="vse" title="Vše">Vše</button>
         <!-- přepínač: aktivní (žlutý) = zobrazí jen akce označené srdíčkem -->
         <button type="button" id="filtr-oblibene" class="srdce srdce-filtr" aria-label="Zobrazit jen oblíbené" aria-pressed="false"></button>
         <!-- přepínač: aktivní (žlutý) = zobrazí jen akce s estetickým skóre 80 a výš -->
@@ -67,6 +70,6 @@
     <p>Data generuje Cowork, appka je jen tupý renderer.</p>
   </footer>
 
-<script src="js/app.js?v=6"></script>
+<script src="js/app.js?v=7"></script>
 </body>
 </html>

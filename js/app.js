@@ -598,22 +598,38 @@ function nastavRychlyRozsah(rozsah) {
   const vstupDo = document.getElementById("filtr-do");
   const dnes = new Date();
 
+  // pomocník: Date posunutý o dané dny/měsíce od dneška (nemutuje dnes)
+  const posun = ({ dny = 0, mesice = 0 }) => {
+    const d = new Date(dnes);
+    d.setDate(d.getDate() + dny);
+    d.setMonth(d.getMonth() + mesice);
+    return d;
+  };
+
   if (rozsah === "vse") {
     vstupOd.value = "";
     vstupDo.value = "";
   } else if (rozsah === "dnes") {
     vstupOd.value = naFormatVstupu(dnes);
     vstupDo.value = naFormatVstupu(dnes);
+  } else if (rozsah === "zitra") {
+    const zitra = posun({ dny: 1 });
+    vstupOd.value = naFormatVstupu(zitra);
+    vstupDo.value = naFormatVstupu(zitra);
   } else if (rozsah === "tyden") {
-    const konec = new Date(dnes);
-    konec.setDate(konec.getDate() + 7);
     vstupOd.value = naFormatVstupu(dnes);
-    vstupDo.value = naFormatVstupu(konec);
+    vstupDo.value = naFormatVstupu(posun({ dny: 7 }));
+  } else if (rozsah === "pristi-tyden") {
+    // navazující okno: den po „tomto týdnu" až o týden dál
+    vstupOd.value = naFormatVstupu(posun({ dny: 8 }));
+    vstupDo.value = naFormatVstupu(posun({ dny: 14 }));
   } else if (rozsah === "mesic") {
-    const konec = new Date(dnes);
-    konec.setMonth(konec.getMonth() + 1);
     vstupOd.value = naFormatVstupu(dnes);
-    vstupDo.value = naFormatVstupu(konec);
+    vstupDo.value = naFormatVstupu(posun({ mesice: 1 }));
+  } else if (rozsah === "pristi-mesic") {
+    // navazující okno: den po „tomto měsíci" až o měsíc dál
+    vstupOd.value = naFormatVstupu(posun({ dny: 1, mesice: 1 }));
+    vstupDo.value = naFormatVstupu(posun({ mesice: 2 }));
   }
 
   prekresli();

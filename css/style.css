@@ -98,6 +98,8 @@ html, body {
   border: 1px solid var(--border);
   border-radius: 6px;
   padding: 0.4rem 0.6rem;
+  min-width: 2.2rem; /* zkratky (D, Z, T, >T…) zarovnané do úhledné řady stejné šířky */
+  text-align: center;
   font-size: 0.9rem;
   font-family: inherit;
   cursor: pointer;

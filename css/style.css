@@ -421,6 +421,10 @@ html, body {
   --akcent: #4d9de0; /* chladná modrá — stejná sytost jako zelená u výstav */
 }
 
+.karta-jazzblues {
+  --akcent: #a978d8; /* tlumená fialová — noční klubový tón, stejná sytost jako modrá/zelená */
+}
+
 /* cena koncertu: decentní přívěsek za názvem klubu v dolním bloku kdy/kde */
 .koncert-cena {
   color: var(--text-tlumeny);

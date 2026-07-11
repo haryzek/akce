@@ -11,8 +11,14 @@ const ZDROJE_DAT = [
   "data/vystavy.json",
   "data/kvizy.json",
   "data/koncerty_klasika.json",
+  "data/koncerty_jazzblues.json",
   "data/prednasky.json",
 ];
+
+// Koncertní typy sdílí stejný datový tvar i kartu (klasika, jazz&blues, …) — liší se jen
+// zdrojem a barvou akcentu. Ať se nemusí vyjmenovávat na deseti místech, drží se tady.
+const KONCERTNI_TYPY = new Set(["koncerty_klasika", "koncerty_jazzblues"]);
+const jeKoncert = (typ) => KONCERTNI_TYPY.has(typ);
 
 let VSECHNY_AKCE = []; // sloučená, normalizovaná data ze všech zdrojů
 
@@ -156,7 +162,7 @@ function maAkceVRozmezi(polozka, datumOd, datumDo) {
   if (polozka.typAkce === "vystavy") {
     return maVystavaVRozmezi(polozka.data, datumOd, datumDo);
   }
-  if (polozka.typAkce === "koncerty_klasika") {
+  if (jeKoncert(polozka.typAkce)) {
     const terminy = polozka.data.terminy;
     if (Array.isArray(terminy) && terminy.length) {
       return maProjekciVRozmezi(terminy, datumOd, datumDo);
@@ -214,7 +220,7 @@ function ziskejFiltrovaneARazene() {
     if (razeniPodle === "datum") {
       // výstavy i koncerty řadí podle začátku (datumOd), filmy podle nejbližší projekce
       const podleData = (x) =>
-        x.typAkce === "vystavy" || x.typAkce === "koncerty_klasika"
+        x.typAkce === "vystavy" || jeKoncert(x.typAkce)
           ? parsujDatum(x.data.datumOd)
           : nejblizsiDatumProjekce(x.data.projekce);
       const dA = podleData(a);
@@ -439,10 +445,18 @@ function normalizniTerminyKoncertu(k) {
   return [{ datum: k.datumOd, cas: k.cas, ...spolecne }];
 }
 
-// Karta koncertu = klon výstavní (stejný skeleton), akcent modrý (viz .karta-koncert v CSS).
-// Dolní blok = datum · čas + klub (odkaz) + volitelně cena. Když má koncert víc termínů,
-// přidá se za čas klikací „(N)" na modal se všemi termíny — přesně jako projekce u filmů.
-function vykresliKartuKoncertu(k, id, rozsah) {
+// CSS třída karty podle koncertního typu — každý typ má vlastní barvu akcentu
+// (klasika modrá, jazz&blues fialová). Nový koncertní typ = řádek sem + barva v CSS.
+const KONCERT_CSS_TRIDA = {
+  koncerty_klasika: "karta-koncert",
+  koncerty_jazzblues: "karta-jazzblues",
+};
+
+// Karta koncertu = klon výstavní (stejný skeleton), akcent podle typu (viz .karta-koncert /
+// .karta-jazzblues v CSS). Dolní blok = datum · čas + klub (odkaz) + volitelně cena. Když má
+// koncert víc termínů, přidá se za čas klikací „(N)" na modal se všemi termíny — jako u filmů.
+function vykresliKartuKoncertu(k, id, rozsah, typAkce) {
+  const cssTrida = KONCERT_CSS_TRIDA[typAkce] || "karta-koncert";
   const skore = hodnotaNebo(k.estetickeSkore, "—");
   const klub = k.url
     ? `<a href="${escapeHtml(k.url)}" target="_blank" rel="noopener">${escapeHtml(hodnotaNebo(k.misto))}</a>`
@@ -471,7 +485,7 @@ function vykresliKartuKoncertu(k, id, rozsah) {
   }
 
   return `
-    <article class="karta karta-koncert">
+    <article class="karta ${cssTrida}">
       <div class="karta-vrch">
         <div class="karta-vrch-text">
           <div class="karta-titulky">
@@ -507,7 +521,8 @@ function vykresliKartu(polozka, rozsah) {
     case "vystavy":
       return vykresliKartuVystavy(polozka.data, id);
     case "koncerty_klasika":
-      return vykresliKartuKoncertu(polozka.data, id, rozsah);
+    case "koncerty_jazzblues":
+      return vykresliKartuKoncertu(polozka.data, id, rozsah, polozka.typAkce);
     default:
       return "";
   }
@@ -533,6 +548,7 @@ function prekresli() {
 // (typicky víceslovné/podtypové slugy). Co tu není, spadne na fallback (capitalize).
 const POPISKY_TYPU = {
   koncerty_klasika: "Klasika",
+  koncerty_jazzblues: "Jazz&Blues",
 };
 
 // naplní select "Typ akce" podle toho, jaké typy skutečně přišly v datech

@@ -65,8 +65,9 @@ Python, výběr a skórování dělá AI krok podle promptů (`cowork_prompt_kin
 `cowork_prompt_vystavy.md`). Prompty jsou **kontrakt** — appka musí umět zobrazit přesně tu
 strukturu, kterou generují (viz níže).
 
-**Stav (2026-07):** kompletně běží filmy i výstavy end-to-end. Filmy plní Bobův vychytaný
-ChatGPT prompt (ručně), výstavy Cowork prompt. Další typy akcí = nový scraper + nový prompt.
+**Stav (2026-07):** kompletně běží filmy, výstavy, klasika (vážná hudba) i Jazz&Blues (klubová
+scéna) end-to-end. Filmy plní Bobův vychytaný ChatGPT prompt (ručně), zbytek Cowork prompty nad
+RAW ze scraperu. Další typy akcí = nový scraper + nový prompt (postup viz koncertní klony).
 
 ## Scraper (Python nástroj, `scraper/`)
 
@@ -84,8 +85,12 @@ s dobře čitelnou URL (datum + stránkování v URL) vytáhnout akce do **RAW J
 - **RAW kontrakt** (14 polí, každé nullovatelné): hlavička `typAkce`, `scrapedAt`,
   `obdobiOd`, `obdobiDo` + pole `polozky[]` s `zdroj`, `nazevCz`, `nazevOrig`, `autor`,
   `zanr`, `datumOd`, `datumDo`, `cas`, `misto`, `adresa`, `url`, `cena`, `thumbnail`, `popis`.
-- Zatím jeden zdroj: `prague_vystavy.py` (prague.eu, výstavy — server-side HTML, čte i detail
-  akce). ČSFD je za antibotem, program filmů se bere jinudy (Bobův ChatGPT prompt z ČSFD XLS).
+- Zdroje (všechny prague.eu, server-side HTML, čtou i detail akce): `prague_vystavy.py`
+  (výstavy), `prague_koncerty.py` (klasika, kat. „klasická hudba"), `prague_jazzblues.py`
+  (Jazz&Blues, kat. „klubová scéna" — převážně jazz/soul/blues). Koncertní scrapery jsou si
+  datově blízké (jednorázová/vícetermínová akce, bez hodnocení, thumbnail) → novej stejný typ
+  se klonuje z nejbližšího a mění se jen `TYP_AKCE` + `BASE` URL. ČSFD je za antibotem, program
+  filmů se bere jinudy (Bobův ChatGPT prompt z ČSFD XLS).
 
 ## JSON kontrakt — filmy
 
@@ -169,6 +174,50 @@ projekce ani trailer, zato má trvání (rozmezí), místo a obrázek. Struktura
 **skóruje a řadí, nelimituje** — žádný top50 strop, balast se jen vyhodí a zbytek dostane
 nízké skóre. Karta výstavy: název + skóre-kolečko + srdíčko, žánr pod názvem, dominantní
 popis + jednověté doporučení, dole datum rozmezí + galerie (odkaz) a klikací thumbnail (16:9).
+
+## JSON kontrakt — koncerty (klasika i Jazz&Blues)
+
+Koncertní typy sdílí **jeden tvar i jednu kartu** — liší se jen slugem/souborem a barvou
+akcentu. Klasika = `data/koncerty_klasika.json` (slug `koncerty_klasika`, akcent modrá),
+Jazz&Blues = `data/koncerty_jazzblues.json` (slug `koncerty_jazzblues`, akcent fialová).
+Struktura je jako výstava, ale bez `nazevOrig`, s `autor`/`cas` a volitelným polem `terminy`:
+
+```json
+{
+  "typAkce": "koncerty_jazzblues",
+  "vygenerovanoAt": "2026-07-11T12:00:00",
+  "obdobiOd": "11.07.2026",
+  "obdobiDo": "10.08.2026",
+  "koncerty": [
+    {
+      "nazevCz": "string",
+      "nazevOrig": "string nebo null",
+      "autor": "string nebo null (interpret/kapela; zobrazí se pod názvem místo žánru)",
+      "zanr": "string nebo null",
+      "datumOd": "01.08.2026",
+      "datumDo": "01.08.2026",
+      "cas": "20:00 nebo null",
+      "misto": "string (klub/síň)",
+      "adresa": "string nebo null",
+      "url": "string (detail na zdroji) nebo null",
+      "cena": "string nebo null",
+      "thumbnail": "string (URL) nebo null",
+      "popis": "string (přečištěný, ~860 znaků) nebo null",
+      "estetickeSkore": 74,
+      "duvodSkore": "string (JEDNA krátká věta)",
+      "terminy": [
+        {"datum": "04.08.2026", "cas": "20:00"}
+      ]
+    }
+  ]
+}
+```
+
+Pole `terminy` je **volitelné** — jen u vícetermínových koncertů (list `{datum, cas}`);
+jednorázový koncert ho vynechá a appka si vystačí s `datumOd`/`cas`. Appka koncerty filtruje
+i řadí přes helper `jeKoncert` (víc termínů → jako filmové projekce, jinak přes interval
+trvání). Karta = klon výstavní, dole datum · čas + klub (odkaz) + volitelně cena, a „(N)"
+popup na další termíny jako u filmů.
 
 ## Funkce appky (co musí umět)
 

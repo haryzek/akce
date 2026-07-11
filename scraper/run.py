@@ -30,12 +30,14 @@ from dedup import deduplikuj
 SUBSCRAPERY = [
     "prague_vystavy",
     "prague_koncerty",
+    "prague_jazzblues",
 ]
 
 # Hezké popisky typů akcí pro GUI (slug -> lidský název). Co tu není, spadne na fallback.
 POPISKY_TYPU = {
     "vystavy": "Výstavy",
     "koncerty_klasika": "Klasika (vážná hudba)",
+    "koncerty_jazzblues": "Jazz & Blues (klubová scéna)",
 }
 
 OUTPUT_DIR = os.path.join(os.path.dirname(__file__), "output")

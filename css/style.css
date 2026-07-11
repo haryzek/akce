@@ -463,6 +463,10 @@ html, body {
   --akcent: #e0685c; /* tlumená červená — divadelní opona, stejná sytost jako ostatní akcenty */
 }
 
+.karta-party {
+  --akcent: #e0609f; /* neónová růžová — klubový večer, stejná sytost jako ostatní akcenty */
+}
+
 /* cena koncertu: decentní přívěsek za názvem klubu v dolním bloku kdy/kde */
 .koncert-cena {
   color: var(--text-tlumeny);

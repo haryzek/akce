@@ -66,9 +66,9 @@ Python, výběr a skórování dělá AI krok podle promptů (`cowork_prompt_kin
 strukturu, kterou generují (viz níže).
 
 **Stav (2026-07):** kompletně běží filmy, výstavy, klasika (vážná hudba), Jazz&Blues (klubová
-scéna) i divadlo end-to-end. Filmy plní Bobův vychytaný ChatGPT prompt (ručně), zbytek Cowork
-prompty nad RAW ze scraperu. Další typy akcí = nový scraper + nový prompt (postup viz existující
-scrapery — prague.eu klony, nebo goout jako vzor JSON-API zdroje).
+scéna), divadlo i party end-to-end. Filmy plní Bobův vychytaný ChatGPT prompt (ručně), zbytek
+Cowork prompty nad RAW ze scraperu. Další typy akcí = nový scraper + nový prompt (postup viz
+existující scrapery — prague.eu klony, nebo goout jako vzor JSON-API zdroje).
 
 ## Scraper (Python nástroj, `scraper/`)
 
@@ -92,17 +92,19 @@ agregátoru (goout.net). Každý zdroj = jeden modul, mechaniku si řeší po sv
   „klubová scéna" — převážně jazz/soul/blues). Koncertní scrapery jsou si datově blízké
   (jednorázová/vícetermínová akce, bez hodnocení, thumbnail) → novej stejný typ se klonuje
   z nejbližšího a mění se jen `TYP_AKCE` + `BASE` URL.
-- Zdroj **goout.net** (`goout_divadlo.py`, divadlo): jiná mechanika — goout je Nuxt SPA, která
-  si program tahá z veřejného JSON API (`/services/entities/v1/schedules`, kat. `categories[]=play`),
-  a scraper volá ten endpoint napřímo. Tři odlišnosti od prague.eu: (1) **stránkování kurzorem**
-  `meta.nextScrollId` (ne číslo strany; `offset` API ignoruje); (2) **datumový filtr serverově**
-  přes `after`/`before` v ISO UTC (Bobovo okno se přes `zoneinfo` Europe/Prague převede z pražského
-  času → proto `tzdata`); (3) **intra-zdroj dedup přímo v subscraperu** — API vrací `schedules`
-  (jednotlivé termíny), jedna hra = N repríz, ale všechny sdílí `relationships.event.id` → seskupí
-  se podle něj do jedné položky s polem `terminy` (deterministicky přes ID, ne fuzzy). Data jsou
-  JSON:API-like: `schedules[]` + `included` (events/venues/images/performers) klíčované ID.
-  Cloudflare goout nevadí, stačí realistický User-Agent. Nový goout typ = klon `goout_divadlo.py`
-  se změnou `categories`/`tags` + mapování.
+- Zdroj **goout.net** (`goout_divadlo.py` = divadlo `categories[]=play`, `goout_party.py` = party
+  `categories[]=clubbing`): jiná mechanika — goout je Nuxt SPA, která si program tahá z veřejného
+  JSON API (`/services/entities/v1/schedules`), a scraper volá ten endpoint napřímo. Tři odlišnosti
+  od prague.eu: (1) **stránkování kurzorem** `meta.nextScrollId` (ne číslo strany; `offset` API
+  ignoruje); (2) **datumový filtr serverově** přes `after`/`before` v ISO UTC (Bobovo okno se přes
+  `zoneinfo` Europe/Prague převede z pražského času → proto `tzdata`); (3) **intra-zdroj dedup přímo
+  v subscraperu** — API vrací `schedules` (jednotlivé termíny), jedna akce = N repríz, ale všechny
+  sdílí `relationships.event.id` → seskupí se podle něj do jedné položky s polem `terminy`
+  (deterministicky přes ID, ne fuzzy). Data jsou JSON:API-like: `schedules[]` + `included`
+  (events/venues/images/performers) klíčované ID. Cloudflare goout nevadí, stačí realistický
+  User-Agent. Pozn.: některé kategorie (clubbing) vrací i termíny mimo `after`/`before` okno —
+  `goout_party.py` proto navíc lokálně filtruje termíny přes okno (guard `_v_okne`). Nový goout typ
+  = klon nejbližšího `goout_*` se změnou `categories`/`tags` + mapování.
 - ČSFD je za antibotem, program filmů se bere jinudy (Bobův ChatGPT prompt z ČSFD XLS).
 
 ## JSON kontrakt — filmy
@@ -190,12 +192,12 @@ popis + jednověté doporučení, dole datum rozmezí + galerie (odkaz) a klikac
 
 ## JSON kontrakt — termínové typy (koncerty i divadlo)
 
-**Termínové typy** (koncerty klasika/Jazz&Blues, divadlo) sdílí **jeden tvar i jednu kartu** —
+**Termínové typy** (koncerty klasika/Jazz&Blues, divadlo, party) sdílí **jeden tvar i jednu kartu** —
 mají termín(y), místo, thumbnail, `autor` a žádná veřejná hodnocení; liší se jen slugem/souborem,
 zdrojem a barvou akcentu. Klasika = `data/koncerty_klasika.json` (akcent modrá), Jazz&Blues =
-`data/koncerty_jazzblues.json` (fialová), divadlo = `data/divadlo.json` (červená). Pole se jmenuje
-podle slugu (`koncerty`/`divadlo`). Struktura je jako výstava, ale bez `nazevOrig`, s `autor`/`cas`
-a volitelným polem `terminy`:
+`data/koncerty_jazzblues.json` (fialová), divadlo = `data/divadlo.json` (červená), party =
+`data/party.json` (růžová). Pole se jmenuje podle slugu (`koncerty`/`divadlo`/`party`). Struktura
+je jako výstava, ale bez `nazevOrig`, s `autor`/`cas` a volitelným polem `terminy`:
 
 ```json
 {

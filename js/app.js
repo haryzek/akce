@@ -13,13 +13,14 @@ const ZDROJE_DAT = [
   "data/koncerty_klasika.json",
   "data/koncerty_jazzblues.json",
   "data/divadlo.json",
+  "data/party.json",
   "data/prednasky.json",
 ];
 
 // Termínové typy sdílí stejný datový tvar i kartu (koncerty klasika/jazz&blues, divadlo…):
 // mají jeden nebo víc termínů, místo, thumbnail a žádná veřejná hodnocení — liší se jen
 // zdrojem a barvou akcentu. Ať se nemusí vyjmenovávat na deseti místech, drží se tady.
-const TERMINOVE_TYPY = new Set(["koncerty_klasika", "koncerty_jazzblues", "divadlo"]);
+const TERMINOVE_TYPY = new Set(["koncerty_klasika", "koncerty_jazzblues", "divadlo", "party"]);
 const jeTerminovy = (typ) => TERMINOVE_TYPY.has(typ);
 
 let VSECHNY_AKCE = []; // sloučená, normalizovaná data ze všech zdrojů
@@ -463,6 +464,7 @@ const TERMINOVA_CSS_TRIDA = {
   koncerty_klasika: "karta-koncert",
   koncerty_jazzblues: "karta-jazzblues",
   divadlo: "karta-divadlo",
+  party: "karta-party",
 };
 
 // Karta termínového typu (koncert/divadlo) = klon výstavní (stejný skeleton), akcent podle typu
@@ -537,6 +539,7 @@ function vykresliKartu(polozka, rozsah) {
     case "koncerty_klasika":
     case "koncerty_jazzblues":
     case "divadlo":
+    case "party":
       return vykresliKartuTerminu(polozka.data, id, rozsah, polozka.typAkce);
     default:
       return "";
@@ -565,6 +568,7 @@ const POPISKY_TYPU = {
   koncerty_klasika: "Klasika",
   koncerty_jazzblues: "Jazz&Blues",
   divadlo: "Divadlo",
+  party: "Party",
 };
 
 // naplní select "Typ akce" podle toho, jaké typy skutečně přišly v datech

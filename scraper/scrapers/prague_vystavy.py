@@ -18,9 +18,9 @@ ZDROJ = "prague.eu"
 
 # --- import společných helperů (funguje ať se spouští odkudkoli) ---
 try:
-    from ..common import polozka
+    from ..common import polozka, je_trvalka
 except ImportError:  # když se modul spustí samostatně
-    from common import polozka
+    from common import polozka, je_trvalka
 
 BASE = "https://prague.eu/cs/akce-kategorie/vystavy-expozice/"
 HEADERS = {"User-Agent": "Mozilla/5.0 (akce-scraper; osobni pouziti)"}
@@ -83,6 +83,7 @@ def scrape(od, do):
     session = requests.Session()
     polozky = []
     videne = set()  # data-poid už zpracovaných akcí — ochrana proti smyčce
+    trvalek = 0
     pg = 1
 
     while True:
@@ -100,6 +101,13 @@ def scrape(od, do):
             odkaz = tile.find("figure").find("a") if tile.find("figure") else None
             url = odkaz["href"] if odkaz and odkaz.get("href") else None
             d_od, d_do = _datumy(tile)
+
+            # stálá expozice (běží přes rok) není aktuální dění → ven. prague.eu
+            # nemá žádný příznak jako goout `isPermanent`, tak soudíme podle délky.
+            # Schválně PŘED dotažením detailu, ať se na ni zbytečně nejezdí.
+            if je_trvalka(d_od, d_do):
+                trvalek += 1
+                continue
 
             misto = adresa = popis = None
             if url:
@@ -124,4 +132,6 @@ def scrape(od, do):
         pg += 1
         time.sleep(PAUZA)
 
+    if trvalek:
+        print(f"  [prague.eu/vystavy] odfiltrováno stálých expozic: {trvalek}")
     return polozky

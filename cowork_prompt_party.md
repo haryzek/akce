@@ -6,8 +6,8 @@ a čistota dat. Nic si nevymýšlej – pracuj **pouze** s tím, co je ve vstupn
 externí dohledávání, žádná hodnocení z internetu, žádný starší JSON.
 
 Poznámka: jde o Bobovu appkovou kategorii **Party** — spadá sem klubová a taneční scéna, DJ
-noci, elektronika, koncerty v klubech s tanečním přesahem. Zdroj (goout.net) je bohatý
-agregátor, takže RAW nese slušné popisy, účinkující (DJ/kapely) i cenu.
+noci, elektronika, koncerty v klubech s tanečním přesahem. RAW nese slušné popisy,
+účinkující (DJ/kapely), žánrové tagy i cenu. **Část popisů je anglicky** (viz KROK 4).
 
 ## Vstupy (přečti si je sám ze složky projektu)
 - **RAW data:** `scraper/output/party.json` – syrový, deduplikovaný seznam party ze scraperu.
@@ -44,12 +44,22 @@ Bobovi bude líbit). Skóruj podle své mapy z Kroku 1, hlavně z názvu, účin
 Do `duvodSkore` napiš **jednu jedinou krátkou větu (do ~90 znaků)**, proč Bobovi tuhle party
 doporučuješ – osobně, konkrétně, žádné omáčky. (Zobrazuje se pod popisem na kartě.)
 
-## KROK 4 – PŘEČISTI POPISY (neškrť je natvrdo)
+## KROK 4 – PŘEČISTI POPISY (neškrť je natvrdo) A PŘELOŽ DO ČEŠTINY
 Popis ze zdroje je to nejcennější, proto ho **nech bohatý** – jen ho učeš:
+- **Anglické popisy přelož do češtiny.** Appka je česká, míchané karty hřejí do oka.
+  Překládej volně a čtivě (ne otrocky), názvy akcí, klubů, labelů a jména DJs nech
+  v originále. Překlad není vymýšlení – jen nepřidávej informace, které v původním
+  textu nejsou. České popisy nech česky, jen je učeš.
 - odstraň marketingové fráze, opakování, zbytečná zalomení a balast,
 - **RAW popis je v Markdownu** (hvězdičky pro tučné/kurzívu, odkazy) – převeď na čistý plain
   text: zahoď `*`, `**`, `[text](url)` nahraď jen textem. Karta Markdown nerenderuje.
 - oprav zjevné překlepy a rozházené znaky, sjednoť do plynulého textu,
+- **Popisy mívají na konci provozní přílepky** – rozpis set-times po půlhodinách,
+  ceníky vstupenek, „safe space" kodexy chování, odkazy na predaj. To do popisu nepatří,
+  **vyhoď to** a nech jen text o hudbě a atmosféře. (Cenu z nich netahej – od toho je
+  pole `cena`, viz KROK 5.)
+- Texty občas používají **stylizovaná unicode písmena** (𝗣𝗢𝗦𝗘𝗜𝗗𝗢𝗡, 𝘬𝘶𝘳𝘻í𝘷𝘢) –
+  převeď je na normální znaky,
 - **neškrť pod smysl** – klidně nech 400–800 znaků, pokud text nese obsah.
 Karta v aplikaci pojme zhruba **860 znaků**; delší text se sám elegantně ořízne „…". Necpi
 ale výplň jen kvůli délce – když je zdrojový popis krátký, nech ho krátký. Když popis ve
@@ -62,9 +72,10 @@ vstupu chybí (null), nech null – nic nedomýšlej.
 - **Čas (`cas`)** už z RAW přichází vyplněný (scraper ho tahá přímo ze zdroje) – ten
   **respektuj a přenes beze změny**. Jen když je v RAW `null` a v popisu je čas uveden
   explicitně, smíš ho doplnit ve formátu `HH:MM`. Nikdy ho nepřepisuj.
-- **Cena (`cena`)** z RAW většinou přichází vyplněná (goout ji dodává). Přenes ji beze změny.
-  Když je null a v popisu je explicitně, vytáhni krátký řetězec („od 250 Kč", „zdarma").
-  Když nikde není, nech null – **nic nevymýšlej**.
+- **Cena (`cena`)** z RAW často přichází vyplněná. Přenes ji beze změny. Když je null
+  a v popisu je uvedená explicitně **i s měnou**, vytáhni krátký řetězec („od 250 Kč",
+  „zdarma"). Pozor: **nedoplňuj holá čísla z popisu, když u nich není měna** – nepoznáš,
+  jestli jde o koruny nebo eura. Radši null než hádání.
 - **Účinkující / DJ / label (`autor`)** – z RAW přichází vyplněný. Přenes beze změny;
   zobrazí se pod názvem místo žánru. Když je null, nech null.
 - **Termíny (`terminy`)** – vícetermínové/reprízované party mají v RAW pole `terminy` = list
@@ -73,7 +84,7 @@ vstupu chybí (null), nech null – nic nedomýšlej.
   **nedávej** (jednorázová párty ho nepotřebuje — appka si vystačí s datumOd/cas).
 
 Ostatní pole (misto, adresa, url, thumbnail, nazevOrig, zanr) přenes beze změny;
-prázdné nech jako null. `zanr` z goout bývá strojový slug („drum and bass", „techno") –
+prázdné nech jako null. `zanr` bývá strojový slug („drum and bass", „techno") –
 smíš ho učesat na čitelný tvar, nebo nech jak je.
 
 ## KROK 6 – SEŘAĎ
@@ -132,6 +143,7 @@ Pole `terminy` (jen u vícetermínových party) má tento tvar a vkládá se za 
 - žádný horní limit se neuplatnil,
 - každá párty má `estetickeSkore` (0–100) i `duvodSkore` (jedna krátká věta, do ~90 znaků),
 - popisy jsou přečištěné od Markdownu i balastu, ale ne uměle zkrácené (klidně 400–800 znaků),
+- **všechny popisy jsou česky** (anglické přeložené), bez set-times, ceníků a safe-space kodexů,
 - všechny datumy jsou v tečkovém formátu `DD.MM.YYYY`,
 - `cas`, `cena` a `autor` z RAW jsou zachované beze změny (doplněné z popisu jen když v RAW chyběly),
 - `terminy` je přenesené jen u vícetermínových party (datumy převedené na tečky), jinak vynechané,

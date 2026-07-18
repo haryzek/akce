@@ -24,6 +24,26 @@ POLE = [
 ]
 
 
+def je_trvalka(datum_od, datum_do, prah_dni=365):
+    """
+    Je to stálá expozice podle délky trvání? (DD-MM-YYYY, oba můžou být None)
+
+    Pojistka pro typy s dlouhotrvajícími akcemi — hlavně výstavy. goout sice má
+    příznak `isPermanent`, ale nedává ho spolehlivě (ATLAS běží 4 roky a označený
+    není) a prague.eu žádný takový příznak nemá vůbec. Co běží přes rok, není
+    výstava, ale expozice — a Bobovi jde o to, co se právě děje.
+
+    Práh 365 dní je se slušnou rezervou: nejdelší legitimní výstava v reálných
+    datech měla 178 dní.
+    """
+    try:
+        od = datetime.strptime(datum_od, "%d-%m-%Y")
+        do = datetime.strptime(datum_do, "%d-%m-%Y")
+    except (ValueError, TypeError):
+        return False  # bez datumů nesoudíme, radši nechat projít
+    return (do - od).days >= prah_dni
+
+
 def polozka(zdroj, **kwargs):
     """Vyrobí jednu položku se všemi poli; chybějící doplní None."""
     p = {k: None for k in POLE}

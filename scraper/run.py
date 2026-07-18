@@ -29,11 +29,22 @@ from dedup import deduplikuj
 # Runner si z každého přečte jeho TYP_AKCE a seskupí je — jeden typ může mít víc zdrojů.
 SUBSCRAPERY = [
     "prague_vystavy",
+    "goout_vystavy",  # druhý zdroj výstav — goout jich má výrazně víc než prague.eu
     "prague_koncerty",
     "prague_jazzblues",
     "goout_divadlo",
-    "goout_party",
+    "ra_party",     # RA je pro elektroniku bohatší zdroj → jde první, je základ merge
+    "goout_party",  # doplní, co RA nemá (a české popisy u akcí, které RA nezná)
 ]
+
+# Agresivní dedup profil per typ akce (viz dedup.py). Typy, které tu nejsou,
+# jedou jen na přísném pravidle. Profil je per typ schválně — co je bezpečné
+# u klubovek (místo + den), je nebezpečné u výstav a naopak.
+# Výstavy tu schválně NEJSOU — tolerantnější profil jim na reálných datech dělal
+# jen škodu (spojil "Hornictví" s "Hutnictví"), viz dedup.py.
+PROFIL_DEDUP = {
+    "party": "party",
+}
 
 # Hezké popisky typů akcí pro GUI (slug -> lidský název). Co tu není, spadne na fallback.
 POPISKY_TYPU = {
@@ -112,7 +123,7 @@ def spust(od, do, typy=None, log=print):
             log(f"  OK {len(nasbirane)} položek")
 
         # dedup napříč všemi zdroji daného typu — jedna akce = jedna položka
-        cistych = deduplikuj(polozky)
+        cistych = deduplikuj(polozky, profil=PROFIL_DEDUP.get(typ))
         cesta = zapis_raw(typ, od, do, cistych, OUTPUT_DIR)
         log(f"[uloženo] {cesta}  ({len(polozky)} -> {len(cistych)} po dedup)")
         _guardrail(cesta, cistych, log)

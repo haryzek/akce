@@ -67,8 +67,10 @@ strukturu, kterou generují (viz níže).
 
 **Stav (2026-07):** kompletně běží filmy, výstavy, klasika (vážná hudba), Jazz&Blues (klubová
 scéna), divadlo i party end-to-end. Filmy plní Bobův vychytaný ChatGPT prompt (ručně), zbytek
-Cowork prompty nad RAW ze scraperu. Další typy akcí = nový scraper + nový prompt (postup viz
-existující scrapery — prague.eu klony, nebo goout jako vzor JSON-API zdroje).
+Cowork prompty nad RAW ze scraperu. Dva zdroje mají **party** (ra.co + goout.net) i **výstavy**
+(prague.eu + goout.net). Další typy
+akcí = nový scraper + nový prompt (postup viz existující scrapery — prague.eu klony, goout jako
+vzor JSON-API zdroje, ra.co jako vzor GraphQL zdroje).
 
 ## Scraper (Python nástroj, `scraper/`)
 
@@ -84,6 +86,20 @@ agregátoru (goout.net). Každý zdroj = jeden modul, mechaniku si řeší po sv
 - **Dedup** (`dedup.py`) je generický, běží po sběru per typ: sloučí stejnou akci z víc
   zdrojů (přísný práh na názvy odolný vůči různé délce + shoda datumu/místa), prázdná pole
   doplní z ostatních, `zdroj` → `zdroje` (list). Cíl: do AI kroku jdou desítky, ne stovky.
+  Shoda názvu (`_nazev_shoda`) bere **maximum z containmentu a znakového ratia** (každá
+  metrika chytá jiný typ rozdílu) a porovnává **kmeny slov** (`_kmen` uřízne českou koncovku,
+  ať „Muzeum Karla Zemana" potká „Stálá expozice Muzea Karla Zemana").
+  Má **agresivní profily** (`deduplikuj(polozky, profil="party")`), zapínané per typ přes
+  `PROFIL_DEDUP` v `run.py` — dnes jen `party`. Profil přidává druhou cestu ke sloučení:
+  *místo + konkrétní den + aspoň jedno výrazné společné slovo* (nebo podobnost názvu ≥ 0.5).
+  Proč: RA a goout dávají téže klubovce různě dlouhý název („Poseidon" vs „POSEIDON:
+  Paralich, TRANSmisia, …") a přísný práh je nespojí. Dva guardy proti přestřelení —
+  `GENERICKA_SLOVA` (aby „techno"/„night" samo nespojilo dvě párty) a `SATELITNI_SLOVA`
+  (aby se afterparty neslila s hlavní akcí: „Ben Böhmer LIVE" vs „Ben Böhmer Afterparty").
+  **Výstavy profil schválně nemají** — zkoušený tolerantnější práh (0.62 + povinné místo
+  i překryv trvání) přidal na reálných datech 4 sloučení a všechna byla chybná („Hornictví"
+  + „Hutnictví" v NTM). Výstavy mají krátké popisné názvy, které si jsou v jedné instituci
+  přirozeně podobné. Nedávej jim profil, přísné pravidlo tu stačí.
 - **RAW kontrakt** (14 polí, každé nullovatelné): hlavička `typAkce`, `scrapedAt`,
   `obdobiOd`, `obdobiDo` + pole `polozky[]` s `zdroj`, `nazevCz`, `nazevOrig`, `autor`,
   `zanr`, `datumOd`, `datumDo`, `cas`, `misto`, `adresa`, `url`, `cena`, `thumbnail`, `popis`.
@@ -93,7 +109,7 @@ agregátoru (goout.net). Každý zdroj = jeden modul, mechaniku si řeší po sv
   (jednorázová/vícetermínová akce, bez hodnocení, thumbnail) → novej stejný typ se klonuje
   z nejbližšího a mění se jen `TYP_AKCE` + `BASE` URL.
 - Zdroj **goout.net** (`goout_divadlo.py` = divadlo `categories[]=play`, `goout_party.py` = party
-  `categories[]=clubbing`): jiná mechanika — goout je Nuxt SPA, která si program tahá z veřejného
+  `categories[]=clubbing`, `goout_vystavy.py` = výstavy `categories[]=exhibitions`): jiná mechanika — goout je Nuxt SPA, která si program tahá z veřejného
   JSON API (`/services/entities/v1/schedules`), a scraper volá ten endpoint napřímo. Tři odlišnosti
   od prague.eu: (1) **stránkování kurzorem** `meta.nextScrollId` (ne číslo strany; `offset` API
   ignoruje); (2) **datumový filtr serverově** přes `after`/`before` v ISO UTC (Bobovo okno se přes
@@ -105,6 +121,44 @@ agregátoru (goout.net). Každý zdroj = jeden modul, mechaniku si řeší po sv
   User-Agent. Pozn.: některé kategorie (clubbing) vrací i termíny mimo `after`/`before` okno —
   `goout_party.py` proto navíc lokálně filtruje termíny přes okno (guard `_v_okne`). Nový goout typ
   = klon nejbližšího `goout_*` se změnou `categories`/`tags` + mapování.
+- **`goout_vystavy.py`** (druhý zdroj výstav vedle prague.eu). Odchylky od ostatních goout
+  scraperů, první tři plynou z toho, že výstava trvá měsíce, kdežto párty jeden večer:
+  (1) **`grouped=true`** — zásadní,
+  protože výstava má vlastní `schedule` na KAŽDÝ otevírací den, takže s `grouped=false` vrátí
+  stránka 50 záznamů = jedna jediná výstava (s `true` je to ~48 různých); (2) **trvání se bere
+  z `event.attributes.schedulesRange`** ({first,last}), ne ze `schedule.startAt/endAt` — grouped
+  schedule nese často jen ten jeden den, co spadl do okna, a appka filtruje výstavy překryvem
+  trvání, takže useknutý rozsah by ji rozbil; (3) **filtr doprovodného programu** (`_je_balast`) —
+  goout pod `exhibitions` vede i komentované prohlídky, workshopy, dětské dny a vstupenky
+  („Roční členství Kunsthalle Praha"), filtr je konzervativní a zbytek dočistí Cowork prompt
+  (poznávací znamení: `datumOd` == `datumDo`); (4) **stálé expozice pryč** přes
+  `schedule.attributes.isPermanent` — dvě třetiny toho, co goout vede pod výstavami, jsou
+  trvalky (Loreta, Muzeum Karla Zemana, Zoo Mořský Svět), Bobovi jde o aktuální dění.
+  **Druhá pojistka `je_trvalka()` v `common.py`** (trvání ≥ 365 dní): goout `isPermanent`
+  nedává spolehlivě (ATLAS běží 4 roky a označený není) a **prague.eu žádný takový příznak
+  nemá vůbec**, proto ji používají oba scrapery výstav. V `prague_vystavy.py` je schválně
+  *před* dotažením detailu, ať se na trvalku zbytečně nejezdí. Práh má rezervu — nejdelší
+  legitimní výstava v reálných datech měla 178 dní;
+  (5) **žánrový filtr lokálně, ne v API** (`ZANRY_BOB` + `_zanr_sedi`) — Bob chce jen výtvarné
+  žánry (na webu `?genres=…`), ale serverový `tags[]` whitelist použít NELZE: pětina dočasných
+  výstav nemá vyplněný žádný tag a whitelist by je zahodil, přičemž jsou to zrovna ty nejlepší
+  (Kentridge, Petrbok, Bienále, Vytiska). Pravidlo je proto **„má Bobův žánr NEBO nemá žádný"**;
+  bonusem vypadne balast, co se z názvu pozná špatně (`in_city_guided_tour`, `workshop`,
+  `for_children_*`). Navíc `exhibitionMeta.curator` → `autor`.
+  Dohromady tyhle filtry srazí goout z 220 na ~40 položek a RAW z 4455 na 2345 řádků.
+- Zdroj **ra.co** (`ra_party.py` — Resident Advisor, druhý zdroj typu `party` vedle goout).
+  Třetí mechanika v repu: ra.co je Next.js SPA s nekonečným scrollem, ale program tahá
+  z **veřejného GraphQL endpointu** `POST https://ra.co/graphql` — scraper ho volá napřímo,
+  bez cookies a tokenu, stačí realistický User-Agent (DataDome na endpoint nesahá). Praha =
+  `areaId 451` (z `__NEXT_DATA__` na /events/cz/prague). Proti goout je to jednodušší:
+  **stránkování je normální číslo strany** (`page`/`pageSize` + `totalResults`) a **datumový
+  filtr je serverový a spolehlivý** (`filters.listingDate: {gte, lte}` v `YYYY-MM-DD`),
+  takže lokální guard netřeba. Popis (`content`), cena, žánry i adresa jdou **rovnou
+  v listingu** — detail akce dotahovat netřeba. Dvě pasti: (1) RA `cost` je volný text bez
+  konzistentní měny („300", „33", „80€", „??") → `_cena()` pouští dál jen to, z čeho jde měna
+  poznat, zbytek zahodí a nechá doplnit dedupem z goout; (2) popisy jsou **anglicky** a mívají
+  na konci provozní přílepky (set-times, ceníky, safe-space kodexy) → řeší Cowork prompt,
+  který je překládá do češtiny a přílepky vyhazuje.
 - ČSFD je za antibotem, program filmů se bere jinudy (Bobův ChatGPT prompt z ČSFD XLS).
 
 ## JSON kontrakt — filmy

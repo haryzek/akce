@@ -9,6 +9,12 @@ dohledávání, žádná hodnocení z internetu, žádný starší JSON.
 - **RAW data:** `scraper/output/vystavy.json` – syrový, deduplikovaný seznam výstav ze scraperu.
 - **Bobův estetický profil:** `support/esteticky-profil.md` – kompletní profil.
 
+> **DŮLEŽITÉ k RAW souboru:** je dlouhý (klidně přes 2000 řádků) a je to **vždy kompletní,
+> validní JSON**. Když se ti nevejde do jednoho čtení, **načti ho po částech** (offset/limit)
+> a slož si celý obsah — **nikdy nepředpokládej, že je useknutý**, a kvůli domnělému useknutí
+> nezahazuj žádnou položku. Pokud narazíš na skutečnou syntaktickou chybu, nahlas ji, ale
+> napřed ověř, že nejde jen o limit tvého čtení.
+
 ## KROK 1 – UDĚLEJ SI MAPU BOBA (pro vizuální umění)
 Přečti si CELÝ estetický profil, ne jen sekci o vizuálu. Sestav si vlastní vnitřní mapu
 toho, co Boba na umění a výstavách táhne. Vodítka (neomezuj se na ně):
@@ -26,7 +32,11 @@ Odstraň položky, které fakticky **nejsou umělecká/kulturní výstava**, nap
 - veletrhy a sběratelské burzy (známky, mince, minerály…),
 - dětské pátrací/venkovní hry a čistě edukativní atrakce pro děti,
 - ryze turistické prohlídkové okruhy a expozice bez uměleckého přesahu
-  (historické sály, kasematy, „příběh hradu", propagační expozice institucí).
+  (historické sály, kasematy, „příběh hradu", propagační expozice institucí),
+- **doprovodný program místo výstavy**: komentované prohlídky, kurátorské série
+  („Očima kurátorů: …"), workshopy, dílny, přednášky, dětské dny, vstupenky a členství
+  („Roční členství …"). Poznávací znamení: `datumOd` == `datumDo` (jednodenní akce) —
+  výstava skoro vždy trvá dny až měsíce.
 Buď spíš zdrženlivý: když je něco na hraně (menší galerie, komorní nebo konceptuálnější
 projekt), NECHEJ to v seznamu – od toho je skóre. **Profil slouží k seřazení, ne k mazání.**
 Žádný horní limit počtu výstav není – nech všechno, co uměleckou výstavou opravdu je.

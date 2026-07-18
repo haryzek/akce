@@ -1,6 +1,9 @@
 # osobní / lokální věci, nepatří na veřejný web
 .claude/
 
+# scratch prototypy — hrací písek, nepatří na web
+_scratch/
+
 # systémové smetí
 .DS_Store
 Thumbs.db

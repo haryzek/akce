@@ -4,7 +4,7 @@ Karolínko, přikládám:
 - měsíční program kin z ČSFD (XLS),
 - můj estetický profil (DOCX).
 
-Tvým úkolem je vytvořit spolehlivý JSON, který bude sloužit jako zdroj dat pro moji filmovou aplikaci. Nejdůležitější je správnost dat. Raději vrať méně informací než informace vymyšlené. Nepoužívej žádný starší JSON ani žádná data z předchozích konverzací.
+Tvým úkolem je vytvořit spolehlivý JSON, který bude sloužit jako zdroj dat pro moji filmovou aplikaci. Nepoužívej žádný starší JSON ani žádná data z předchozích konverzací.
 
 ## KROK 1 – ZPRACUJ PROGRAM KIN
 Program je strukturován:
@@ -63,17 +63,7 @@ U každého filmu zjisti: originální název, režiséra, žánr, stručný pop
 Používej dostupné veřejné databáze (například ČSFD jako rozcestník, IMDb, TMDb, Letterboxd, Wikipedii, stránky kin nebo distributora).
 Pokud si nejsi jistá identitou, nic si nevymýšlej.
 
-## KROK 5B – Najdi trailer
-U každého filmu dohledávej trailer na YouTube. Priorita je mít vyplněný trailerUrl u co největšího počtu filmů.
-Preferuj v tomto pořadí:
-1. oficiální trailer od distributora, studia, festivalu, kina nebo streamovací platformy,
-2. trailer z důvěryhodného filmového kanálu,
-3. kvalitní reupload traileru,
-4. jakýkoli YouTube trailer, který podle názvu, roku, režiséra nebo obsahu zjevně odpovídá danému filmu.
-Nepoužívej reaction videa, rozbory, recenze, fanmade střihy, playlisty ani obecné výsledky vyhledávání. Trailer ale nemusí být dokonale oficiální. Důležitější je, aby trailerUrl nebyl zbytečně null.
-Hodnotu null použij pouze tehdy, pokud se trailer nepodaří dohledat vůbec, nebo pokud existuje vážné riziko, že jde o úplně jiný film.jsi
-
-## KROK 5C – ODKAZ NA PROGRAM KINA
+## KROK 5B – ODKAZ NA PROGRAM KINA
 U každé projekce dohledej `odkaz` na program (webovou stránku) toho kina, kde se projekce koná. Cílem je, aby mě odkaz z karty filmu dovedl co nejblíž k nákupu lístku.
 Preferuj v tomto pořadí:
 1. stránka konkrétního filmu na webu daného kina,
@@ -147,7 +137,57 @@ Bez spoilerů.
 Nepřebírej dlouhé citace z recenzí.
 Shrň vlastními slovy.
 
-## KROK 12 – VÝSTUP
+## KROK 12 – Najdi trailer
+
+Tento krok je povinná validační brána. Finální soubor filmy.json nesmíš vytvořit, dokud neprovedeš samostatné a důkladné vyhledávání traileru pro každý jednotlivý film z finální TOP 50.
+
+Pro každý film proveď postupně minimálně tato vyhledávání:
+
+"český název" trailer
+"originální název" trailer
+"originální název" official trailer
+"originální název" rok trailer
+"originální název" režisér trailer
+český název i originální název přímo na YouTube
+případně název filmu v původním písmu nebo alternativní anglický distribuční název
+
+Výsledky vyhodnocuj podle identity filmu, nikoli podle oficiality kanálu. Ověř shodu alespoň pomocí názvu, roku, režiséra, herců, popisu nebo obrazového obsahu.
+
+Povolené jsou:
+
+oficiální trailery,
+festivalové a distribuční trailery,
+trailery zveřejněné kinem nebo streamovací službou,
+kvalitní reupload původního traileru,
+původní kinotrailer ze starého nebo archivního filmového kanálu,
+teaser trailer, pokud plnohodnotný trailer neexistuje,
+trailer bez českých titulků,
+trailer v původním jazyce.
+
+Nepoužívej pouze reaction videa, recenze, videoeseje, fanmade sestřihy, playlisty, vyhledávací stránky ani videa, která zjevně patří k jinému filmu.
+
+trailerUrl: null je povoleno pouze ve zcela výjimečném případě, kdy všechna výše uvedená hledání selhala. Neoficialita, nízký počet zhlédnutí, staré video, cizí jazyk ani neznámý YouTube kanál nejsou důvodem pro null.
+
+Před odevzdáním vytvoř interní kontrolní seznam všech 50 filmů a u každého zaznamenej:
+
+nalezeno / nenalezeno,
+použitý vyhledávací dotaz,
+název nalezeného videa,
+důvod, proč video odpovídá danému filmu.
+
+Tento kontrolní seznam nevkládej do výsledného JSON, ale použij jej pro závěrečnou validaci.
+
+Pokud je trailerUrl vyplněno u méně než 50 filmů, nepovažuj úkol za dokončený. Vrať se ke všem filmům s hodnotou null a proveď druhý rešeršní průchod s alternativními názvy, rokem, režisérem, původním jazykem a méně přísnými nároky na zdroj.
+
+Cílový stav je přesně:
+
+50 filmů / 50 přímých odkazů na konkrétní YouTube video
+
+Teprve po druhém kompletním průchodu může výjimečně zůstat null. V takovém případě musí být v poznamkaHodnoceni stručně uvedeno, že trailer nebyl nalezen ani po opakovaném hledání. Nikdy nepoužij null jen proto, že jsi našla pouze neoficiální, archivní nebo cizojazyčný trailer.
+
+Za neúspěšný výsledek považuj jakýkoli JSON, ve kterém není trailerUrl vyplněn alespoň u 48 z 50 filmů. Pokud je vyplněn u méně filmů, vrať se k položkám s hodnotou null a pokračuj v hledání; soubor zatím nevytvářej.
+
+## KROK 13 – VÝSTUP
 Výstupní JSON MUSÍ být PŘESNĚ v této struktuře. Nepřidávej žádná další pole. Neměň názvy polí. Neměň pořadí polí. Neměň datové typy. Použij přesně tuto strukturu:
 
 ```json
@@ -156,7 +196,7 @@ Výstupní JSON MUSÍ být PŘESNĚ v této struktuře. Nepřidávej žádná da
   "vygenerovanoAt": "YYYY-MM-DDTHH:MM:SS",
   "obdobiOd": "dd.mm.yyyy",
   "obdobiDo": "dd.mm.yyyy",
-  "poznamka": "Surový seznam filmů z 14 artových kin (ČSFD měsíční program). Hodnocení a estetické skóre zatím nedoplněno – slouží jako zdroj pro další krok.",
+  "poznamka": "Výběr TOP 50 filmů z programu 14 pražských artových kin, seřazený podle kombinace estetického profilu a dostupných veřejných hodnocení.",
   "filmy": [
     {
       "nazevCz": "",
@@ -203,9 +243,8 @@ Před vytvořením souboru proveď kontrolu:
 - vážené skóre je správně spočítané,
 - JSON obsahuje maximálně 50 filmů,
 - JSON přesně odpovídá zadané struktuře.
-- trailerUrl je buď přímý odkaz na konkrétní YouTube video, ideálně oficiální trailer, nebo null,
-- trailerUrl nevede na fanouškovský reupload, reaction video, playlist ani vyhledávání,
-- trailerUrl odpovídá přesně identifikovanému filmu.
+- trailerUrl je buď přímý odkaz na konkrétní YouTube video nebo null (zcela výjimečně, jen když nenajdeš ani stopu po traileru),
+- trailerUrl nevede na fanmade trailer, reaction video, rozbor, recenzi, playlist ani vyhledávání; kvalitní reupload skutečného původního traileru je povolen,
 - odkaz u projekce vede na stránku kina (film / program / hlavní web), ne na ČSFD, agregátor ani vyhledávání, nebo je null,
 - odkaz u projekce není vymyšlený.
 

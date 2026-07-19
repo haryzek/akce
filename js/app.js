@@ -399,12 +399,17 @@ function dashPribuzne(film) {
 function vykresliDashTrailer(film) {
   const id = youtubeId(film.trailerUrl);
   if (id) {
+    // wrapper je nutný: prehrajFacade nahrazuje facade.parentElement.innerHTML
+    // iframem — bez vlastního obalu by tím parentem byl rovnou .dash-hlavni
+    // a spuštění trailem by smazalo i popis a wiki box pod ním (byl to bug)
     return `
-      <button type="button" class="trailer-facade dash-trailer" data-yt-id="${id}" aria-label="Přehrát trailer">
-        <img class="trailer-thumb" src="https://i.ytimg.com/vi/${id}/maxresdefault.jpg" alt=""
-             onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/${id}/hqdefault.jpg'">
-        <span class="trailer-play" aria-hidden="true"></span>
-      </button>`;
+      <div class="dash-trailer-slot">
+        <button type="button" class="trailer-facade dash-trailer" data-yt-id="${id}" aria-label="Přehrát trailer">
+          <img class="trailer-thumb" src="https://i.ytimg.com/vi/${id}/maxresdefault.jpg" alt=""
+               onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/${id}/hqdefault.jpg'">
+          <span class="trailer-play" aria-hidden="true"></span>
+        </button>
+      </div>`;
   }
   const dotaz = `${film.nazevOrig || film.nazevCz || ""} ${film.rok || ""} trailer`.trim();
   return `
@@ -466,33 +471,24 @@ const WIKI_STOP_SEKCE = new Set([
 ]);
 
 // Plaintext extract (nadpisy jako "== Plot ==") -> HTML s pořádnými odstavci.
-// Extract má mezi sekcemi nepravidelný počet prázdných řádků — proto se NErenderuje
-// přes white-space: pre-line, ale poskládá do <p> bloků s pevnými rozestupy v CSS:
-// prázdný řádek = předěl odstavce, souvislé řádky (seznamy, např. Cast) drží <br>.
+// DŮLEŽITÉ: MediaWiki extract odděluje jednotlivé odstavce JEN JEDNÍM \n — dvojitý
+// \n\n se objevuje pouze před nadpisem sekce. Proto je každý neprázdný řádek vlastní
+// <p> (i položky seznamů typu Cast — vyjde to jako spaced list, ne jako slitý blok).
+// Prázdné řádky (jen kolem nadpisů) se přeskočí, nenesou obsah.
 function wikiTextNaHtml(text) {
   const vystup = [];
-  let blok = [];
-  const flush = () => {
-    if (blok.length) vystup.push(`<p>${blok.join("<br>")}</p>`);
-    blok = [];
-  };
   for (const radek of String(text).split("\n")) {
+    if (!radek.trim()) continue;
     const nadpis = radek.match(/^(={2,})\s*(.+?)\s*={2,}$/);
     if (nadpis) {
       if (WIKI_STOP_SEKCE.has(nadpis[2].trim().toLowerCase())) break;
-      flush();
       // úroveň podle počtu "=" (== hlavní, === podsekce)
       const trida = nadpis[1].length > 2 ? "dash-wiki-nadpis dash-wiki-podnadpis" : "dash-wiki-nadpis";
       vystup.push(`<span class="${trida}">${escapeHtml(nadpis[2])}</span>`);
       continue;
     }
-    if (!radek.trim()) {
-      flush(); // prázdný řádek = konec odstavce (kolik jich je za sebou, je jedno)
-      continue;
-    }
-    blok.push(escapeHtml(radek));
+    vystup.push(`<p>${escapeHtml(radek)}</p>`);
   }
-  flush();
   return vystup.join("");
 }
 

@@ -540,6 +540,11 @@ body.dashboard-otevreny {
   align-items: start;
 }
 
+/* obal traileru — viz komentář u vykresliDashTrailer, proč musí existovat */
+.dash-trailer-slot {
+  display: block;
+}
+
 .dash-trailer {
   width: 100%;
   aspect-ratio: 16 / 9;
@@ -672,7 +677,7 @@ body.dashboard-otevreny {
 }
 
 .dash-wiki-text p {
-  margin: 0 0 0.8rem;
+  margin: 0 0 1.3rem;
 }
 
 .dash-wiki-text p:last-child {

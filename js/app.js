@@ -337,9 +337,12 @@ function dashBoxy(film) {
   const rok = film.rok || "";
   const rezie = film.rezie || "";
   const zaklad = `${nazev} ${rok}`.trim();
-  // čtvrtý prvek položky: true = boxík přes celou šířku sloupce
+  // čtvrtý prvek položky: true = boxík přes celou šířku sloupce, pátý = id pro pozdější dolití
   return [
     ["Kde to vidět", [
+      // start jako neškodný fallback (Stremio homepage); naplnImdbAStremio přepne na
+      // přímý deep link, jakmile dohledá IMDb ID (recykluje se s IMDb boxíkem níže)
+      ["▶️", "Otevřít ve Stremiu", "https://www.strem.io/", true, "dash-stremio-box"],
       ["🔍", "Google", googleSearch(`${zaklad} film`), true],
     ]],
     ["Hlubší ponor", [
@@ -557,14 +560,21 @@ async function imdbId(film) {
   return vysledek;
 }
 
-// Doplní přímý odkaz do IMDb boxu v otevřeném dashboardu (guard jako u wiki boxu).
-async function naplnImdbBox(film) {
+// Doplní přímé odkazy do IMDb a Stremio boxíků v otevřeném dashboardu (guard jako
+// u wiki boxu). Obojí staví na stejném dohledaném ID, proto jeden společný lookup —
+// Stremio adresuje obsah přes IMDb ID stejně jako IMDb samo (Cinemeta addon).
+async function naplnImdbAStremio(film) {
   const overlay = document.getElementById("dashboard-film");
   const id = domaId(film);
   const tt = await imdbId(film);
   if (!tt || overlay.hidden || decodeURIComponent(overlay.dataset.filmId || "") !== id) return;
-  const box = document.getElementById("dash-imdb-box");
-  if (box) box.href = `https://www.imdb.com/title/${tt}/`;
+  const imdbBox = document.getElementById("dash-imdb-box");
+  if (imdbBox) imdbBox.href = `https://www.imdb.com/title/${tt}/`;
+  const stremioBox = document.getElementById("dash-stremio-box");
+  // detail deep link (bez autoPlay) — otevře stránku filmu ve Stremiu, uživatel
+  // si vybere zdroj sám; autoPlay=true by u nenainstalovaných/nenaladěných
+  // addonů mohlo skončit prázdnou obrazovkou místo přehledu zdrojů
+  if (stremioBox) stremioBox.href = `stremio:///detail/movie/${tt}/${tt}`;
 }
 
 function vykresliDashboard(film) {
@@ -688,7 +698,7 @@ function otevriDashboardFilmu(film) {
   overlay.scrollTop = 0; // při brouzdání tile → tile začínat vždy nahoře
   document.body.classList.add("dashboard-otevreny"); // zamkne scroll pozadí
   naplnWikiBox(film); // wiki box se dolije async, skeleton už stojí
-  naplnImdbBox(film); // IMDb odkaz se přepne na přímý, jakmile se dohledá ID
+  naplnImdbAStremio(film); // IMDb + Stremio odkazy se přepnou na přímé, jakmile se dohledá ID
 }
 
 function zavriDashboard() {

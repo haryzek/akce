@@ -275,10 +275,15 @@ dashboardy. Trailery mají ověřené URL (skript přes YouTube oEmbed; ~99,5 % 
   a bez toho nechodí), EN primárně, CS fallback, cache per film (`WIKI_CACHE`), async
   dolití s guardem na přepnutí filmu (`naplnWikiBox`). Selhání = decentní hláška.
 - **IMDb**: boxík v Profilech startuje jako fallback `imdb.com/find` a async se
-  přepne na přímý odkaz na film (`naplnImdbBox` → `imdbId`), přes IMDb vlastní
+  přepne na přímý odkaz na film (`naplnImdbAStremio` → `imdbId`), přes IMDb vlastní
   **suggest endpoint** `v2.sg.media-imdb.com/suggestion/<písmeno>/<slug>.json`
   (CORS povolený — používá ho jejich vlastní našeptávač, bez klíče). Matchuje se
   podle roku (`film.rok`), tolerance ±1 rok, bez shody zůstane fallback link.
+  Stejné ID recykluje i **Stremio boxík** v „Kde to vidět" (start jako fallback
+  `strem.io` homepage) — Stremio adresuje obsah přes IMDb ID (Cinemeta addon),
+  deep link je `stremio:///detail/movie/<tt>/<tt>` (bez `?autoPlay=true`, ať
+  uživatel dostane výběr zdrojů, ne riziko prázdné obrazovky bez nastavených
+  addonů). Žádný nový fetch — obě boxíky sdílí jeden `imdbId()` lookup.
 - **ČSFD, Rotten Tomatoes, Metacritic nemají veřejné CORS API** (ověřeno), zůstávají
   jako site-scoped Google odkazy (`site:csfd.cz/film`, `site:rottentomatoes.com/m`,
   `site:metacritic.com/movie` + název + rok) — spolehlivější než fuzzy search

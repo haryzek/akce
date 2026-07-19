@@ -298,6 +298,24 @@ nezareaguje. Řeší `onload` kontrola `naturalWidth<=120` → přepnutí na `hq
   `site:metacritic.com/movie` + název + rok) — spolehlivější než fuzzy search
   jednotlivých webů u běžných názvů (Solaris, Stalker apod.).
 
+**Stejný dashboard otevírají i karty typu Filmy** (aktuálně hrané v kinech, ne jen
+filmotéka) — funkce jsou typ-aware přes parametr `typ` (`"filmy_doma"` nebo `"filmy"`),
+sdílené `akceId({typAkce: typ, data: film})` nahrazuje dřívější filmotékové `domaId`.
+Rozdíly oproti filmotéce: meta řádek vynechá rok, když ho film nemá (`filmy.json`
+ho na rozdíl od filmotéky vůbec nemá); žlutý řádek pod skóre ukazuje plné RT/MC/IMDb/
+ČSFD misto films101; texty se skládají jako popis → duvodSkore (jen když se liší) →
+vlastniRecenze (stejné pořadí jako karta); přibývá sekce **„Kde a kdy"** se skutečnými
+projekcemi (`film.projekce`, přes `vykresliRadekProjekce`) — filmotéka projekce nikdy
+nemá, blok se tam prostě nevykreslí. `dashPribuzne(film, typ)` hledá příbuzné filmy
+primárně ve **stejném datasetu** (filmotéka→filmotéka, kina→kina), u kina navíc
+zkusí filmotéku jako bonus, POKUD je už načtená (žádný vynucený fetch); shoda je
+na přesnou rovnost `rezie`, takže mezi datasety typicky nezabere (`filmy.json` má
+českou transkripci jména typu „Andrej Tarkovskij", filmotéka anglickou „Andrei
+Tarkovsky") — vědomé omezení, ne bug. IMDb lookup (`imdbId`) bez `rok` (karty Filmy)
+bere nejprominentnějšího kandidáta podle IMDb `rank` místo prvního nabídnutého —
+řeší třeba „Anatomie pádu", kde vedle filmu existuje i dokument o jeho natáčení se
+stejným názvem.
+
 ## JSON kontrakt — výstavy
 
 Soubor `data/vystavy.json`. Výstava je jinej tvar než film — nemá veřejná hodnocení,

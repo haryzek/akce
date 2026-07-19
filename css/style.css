@@ -425,7 +425,8 @@ body.rezim-doma .rychle-volby button[data-rozsah] {
 }
 
 /* karta filmotéky je celá klikací (otevírá dashboard) */
-.karta-doma {
+.karta-doma,
+.karta[data-typ-akce="filmy"] {
   cursor: pointer;
 }
 
@@ -708,6 +709,15 @@ body.dashboard-otevreny {
    levého sloupce — novinová sazba (plakát plave vpravo v textu), vysoký scroll */
 .dash-wiki {
   margin-top: 1.8rem;
+}
+
+/* "Kde a kdy" — jen u karet typu Filmy (skutečné projekce v kinech) */
+.dash-projekce {
+  margin-top: 1.8rem;
+}
+
+.dash-projekce .stitek-special {
+  margin-bottom: 0.6rem;
 }
 
 .dash-wiki-obsah {

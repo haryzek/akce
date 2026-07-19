@@ -9,6 +9,7 @@
   --text-jemny: #6b6f7a;
   --akcent: #d9a441; /* teplá, tlumená zlatá — na skóre a odkazy */
   --akcent-slaby: rgba(217, 164, 65, 0.15);
+  --videno: #5fa877; /* tlumená zelená — kolečko skóre u viděných filmů (filmotéka) */
   --special: #7c9ed9;
   --radius: 10px;
 }
@@ -45,13 +46,15 @@ html, body {
 }
 
 .ovladaci-panel {
-  max-width: 1100px;
+  /* 1200px + těsnější mezery: po přidání přepínače filmotéky (pás) se lišta při
+     1100px přelévala na druhý řádek — tohle ji drží v jedné řadě na běžném desktopu */
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem 1.5rem;
+  padding: 0 1.2rem 1.5rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1.5rem;
+  gap: 1.2rem;
   font-family: system-ui, -apple-system, sans-serif;
 }
 
@@ -89,10 +92,12 @@ html, body {
 .rychle-volby {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.3rem; /* těsněji — po přidání pásu se lišta nesmí přelévat na druhý řádek */
 }
 
-.rychle-volby button:not(.srdce-filtr):not(.hvezda-filtr) {
+/* boxové stylování jen pro datové zkratky (D, Z, T…) — ikonové přepínače
+   (srdce, hvězda, pás) mají vlastní holý vzhled */
+.rychle-volby button[data-rozsah] {
   background: var(--bg-karta);
   color: var(--text);
   border: 1px solid var(--border);
@@ -106,7 +111,7 @@ html, body {
   transition: border-color 0.15s ease;
 }
 
-.rychle-volby button:not(.srdce-filtr):not(.hvezda-filtr):hover {
+.rychle-volby button[data-rozsah]:hover {
   border-color: var(--akcent);
 }
 
@@ -281,6 +286,545 @@ html, body {
 .hvezda.aktivni svg {
   fill: currentColor;
   stroke: currentColor;
+}
+
+/* přepínač "filmy na doma" (filmový pás): stejný princip jako hvězda — v klidu šedá
+   obrysovka (stroke), aktivní žlutě vyplněný (okénka zůstanou vyříznutá přes evenodd) */
+.pas {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0 0 0 0.15rem; /* stejný odstup jako hvězda od srdíčka */
+  cursor: pointer;
+  line-height: 0;
+  color: var(--text-jemny);
+}
+
+.pas svg {
+  width: 1.9rem;
+  height: 1.9rem;
+  transition: color 0.15s ease, transform 0.1s ease;
+}
+
+/* klidový stav: jen čárová obrysovka (pas-obrys), plná verze schovaná */
+.pas svg .pas-obrys {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.3; /* jemnější než hvězda (1.6) — ikona má víc detailů */
+}
+
+.pas svg .pas-vypln {
+  display: none;
+}
+
+.pas:hover svg {
+  color: var(--text-tlumeny);
+  transform: scale(1.12);
+}
+
+/* aktivní stav: prohodit cesty — plný žlutý pás s vyříznutými okénky */
+.pas.aktivni {
+  color: var(--akcent);
+}
+
+.pas.aktivni svg .pas-obrys {
+  display: none;
+}
+
+.pas.aktivni svg .pas-vypln {
+  display: block;
+  fill: currentColor;
+}
+
+/* ---- režim "filmy na doma" ---- */
+/* Filmotéka je mimo běžné filtry: typ, řazení, datumy i datumové zkratky zmizí,
+   místo nich se ukáže fulltextové hledání. Srdíčko, hvězda a pás zůstávají. */
+.skupina-hledani {
+  display: none;
+}
+
+body.rezim-doma .skupina-hledani {
+  display: flex;
+}
+
+body.rezim-doma .skupina-typ,
+body.rezim-doma .skupina-razeni,
+body.rezim-doma .ovladaci-datum,
+body.rezim-doma .rychle-volby button[data-rozsah] {
+  display: none;
+}
+
+#hledani-doma {
+  min-width: 16rem;
+}
+
+/* neviditelná zarážka infinite scrollu na konci gridu (viz DOMA_OBSERVER v app.js) */
+#doma-zarazka {
+  grid-column: 1 / -1;
+  height: 1px;
+}
+
+/* karta filmotéky je celá klikací (otevírá dashboard) */
+.karta-doma {
+  cursor: pointer;
+}
+
+/* kolečko skóre ve filmotéce je přepínač "viděno": klik → zelené, drží v localStorage */
+.skore-klik {
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+}
+
+.skore-klik:hover {
+  transform: scale(1.08);
+}
+
+.skore-klik.videno {
+  border-color: var(--videno);
+  color: var(--videno);
+}
+
+/* ---- dashboard filmu (fullscreen popup filmotéky) ---- */
+
+.dash-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: var(--bg);
+  overflow-y: auto;
+  animation: dash-fade 0.18s ease;
+}
+
+@keyframes dash-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+body.dashboard-otevreny {
+  overflow: hidden; /* pozadí pod dashboardem nescrolluje */
+}
+
+.dash-obsah {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem 3rem;
+  position: relative;
+}
+
+.dash-zavrit {
+  position: fixed;
+  top: 1.2rem;
+  right: 1.6rem;
+  z-index: 61;
+  background: var(--bg-karta);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  width: 2.6rem;
+  height: 2.6rem;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.dash-zavrit:hover {
+  border-color: var(--akcent);
+  color: var(--akcent);
+}
+
+/* hlavička: titulky vlevo, skóre blok vpravo */
+.dash-hlavicka {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  padding-right: 3rem; /* ať se nepere s křížkem */
+}
+
+.dash-titulky h2 {
+  font-size: 2.2rem;
+  margin: 0;
+  line-height: 1.15;
+}
+
+.dash-orig {
+  color: var(--text-tlumeny);
+  font-style: italic;
+  margin: 0.3rem 0 0;
+  font-size: 1.05rem;
+}
+
+.dash-meta {
+  color: var(--text-tlumeny);
+  font-family: system-ui, -apple-system, sans-serif;
+  margin: 0.7rem 0 0;
+  font-size: 0.95rem;
+}
+
+.dash-zanry {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.7rem;
+}
+
+.dash-zanr {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.75rem;
+  color: var(--text-tlumeny);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+}
+
+.dash-skore-blok {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  flex-shrink: 0;
+}
+
+.dash-skore-hlavni {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.skore.dash-skore {
+  width: 4.4rem;
+  height: 4.4rem;
+  font-size: 1.5rem;
+}
+
+.dash-skore-popisek {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-tlumeny);
+}
+
+.dash-skore-vedlejsi {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.85rem;
+  color: var(--akcent);
+}
+
+.dash-skore-vedlejsi span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.dash-skore-vedlejsi .ikona-prumer {
+  width: 0.9em;
+  height: 0.9em;
+}
+
+.dash-skore-blok .srdce svg {
+  width: 2.2rem;
+  height: 2.2rem;
+}
+
+/* tělo: velký trailer + texty vlevo (2/3), boxíky vpravo (1/3) */
+.dash-telo {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
+  gap: 2rem;
+  align-items: start;
+}
+
+.dash-trailer {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 10px;
+}
+
+.dash-trailer-chybi {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  border: 1px dashed var(--border);
+  color: var(--text-tlumeny);
+  font-style: italic;
+}
+
+.dash-trailer-chybi a {
+  color: var(--akcent);
+  text-decoration: none;
+  font-style: normal;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.9rem;
+}
+
+.dash-hlavni .trailer-embed {
+  aspect-ratio: 16 / 9;
+  border-radius: 10px;
+}
+
+.dash-popis {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  margin: 1.5rem 0 0;
+  color: var(--text);
+}
+
+.dash-duvod {
+  font-size: 0.95rem;
+  color: var(--text-tlumeny);
+  font-style: italic;
+  margin: 0.9rem 0 0;
+  padding-left: 1rem;
+  border-left: 2px solid var(--akcent);
+}
+
+/* pravý sloupec: sekce boxíků-rozcestníků */
+.dash-boxy {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.dash-sekce h3,
+.dash-pas h3 {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-tlumeny);
+  margin: 0 0 0.6rem;
+}
+
+.dash-linky {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.dash-box {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--bg-karta);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.55rem 0.7rem;
+  color: var(--text);
+  text-decoration: none;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.82rem;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.dash-box:hover {
+  border-color: var(--akcent);
+  background: var(--bg-karta-hover);
+}
+
+.dash-box-emoji {
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+/* boxík roztažený přes obě mřížkové buňky (celá šířka sloupce) */
+.dash-box-cely {
+  grid-column: 1 / -1;
+}
+
+/* wiki box: nalitý obsah z Wikipedie pod trailerem a popisem, přes celou šířku
+   levého sloupce — novinová sazba (plakát plave vpravo v textu), vysoký scroll */
+.dash-wiki {
+  margin-top: 1.8rem;
+}
+
+.dash-wiki-obsah {
+  background: var(--bg-karta);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.dash-wiki-obrazek {
+  float: right;
+  width: 230px;
+  max-width: 45%;
+  margin: 0 0 0.8rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.dash-wiki-text {
+  /* bez vlastního scrollu — celý článek nalitý, scrolluje stránka dashboardu.
+     Odstavce staví wikiTextNaHtml do <p>, rozestupy řídí CSS (ne pre-line —
+     extract má mezi sekcemi nepravidelné počty prázdných řádků). */
+  padding: 1rem 1.1rem;
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--text);
+}
+
+.dash-wiki-text p {
+  margin: 0 0 0.8rem;
+}
+
+.dash-wiki-text p:last-child {
+  margin-bottom: 0;
+}
+
+/* nadpisy sekcí uvnitř wiki textu (z "== Plot ==" plaintextu) — pevné rozestupy:
+   vzduch nad nadpisem, těsně k textu pod ním */
+.dash-wiki-nadpis {
+  display: block;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--akcent);
+  margin: 1.3rem 0 0.5rem;
+}
+
+.dash-wiki-nadpis:first-child {
+  margin-top: 0;
+}
+
+.dash-wiki-podnadpis {
+  color: var(--text-tlumeny);
+  font-size: 0.72rem;
+  margin-top: 1rem;
+}
+
+.dash-wiki-odkaz {
+  display: block;
+  padding: 0.6rem 1rem;
+  border-top: 1px solid var(--border);
+  color: var(--akcent);
+  text-decoration: none;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.8rem;
+}
+
+.dash-wiki-odkaz:hover {
+  text-decoration: underline;
+}
+
+.dash-wiki-nacitani,
+.dash-wiki-nenalezeno {
+  margin: 0;
+  padding: 1rem;
+  color: var(--text-tlumeny);
+  font-style: italic;
+  font-size: 0.88rem;
+}
+
+/* pás příbuzných filmů — sekce v pravém sloupci pod profily, svislý seznam */
+.dash-pas {
+  border-top: 1px solid var(--border);
+  padding-top: 1.2rem;
+}
+
+.dash-hledat-rezisera {
+  background: none;
+  border: none;
+  color: var(--akcent);
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.75rem;
+  text-transform: none;
+  letter-spacing: normal;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 0.6rem;
+}
+
+.dash-hledat-rezisera:hover {
+  text-decoration: underline;
+}
+
+.dash-tiles {
+  display: grid;
+  grid-template-columns: 1fr; /* svislý sloupec na šířku pravého panelu */
+  gap: 0.5rem;
+}
+
+.dash-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  text-align: left;
+  background: var(--bg-karta);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.8rem 0.9rem;
+  cursor: pointer;
+  color: var(--text);
+  font-family: inherit;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.dash-tile:hover {
+  border-color: var(--akcent);
+  background: var(--bg-karta-hover);
+}
+
+.dash-tile-nazev {
+  font-size: 0.92rem;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.dash-tile-meta {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.78rem;
+  color: var(--text-tlumeny);
+}
+
+.dash-tile-meta strong {
+  color: var(--akcent);
+}
+
+.dash-pas-prazdny {
+  color: var(--text-tlumeny);
+  font-style: italic;
+}
+
+/* dashboard na mobilu: všechno pod sebe */
+@media (max-width: 800px) {
+  .dash-obsah { padding: 1.5rem 1.2rem 2rem; }
+  .dash-hlavicka { flex-direction: column; gap: 1.2rem; padding-right: 2.5rem; }
+  .dash-telo { grid-template-columns: 1fr; }
+  .dash-titulky h2 { font-size: 1.6rem; }
+}
+
+/* Karta filmotéky nemá blok projekcí (ten v běžné filmové kartě dělá odstup nad
+   trailerem přes margin-top: auto), takže trailer doplní stejný odstup, jaký má
+   popis od žlutého řádku hodnocení: card gap 0.9rem + 0.6rem = 1.5rem. */
+.karta-doma .trailer {
+  margin-top: 0.6rem;
+}
+
+/* číslo hodnocení films101 ve žlutém řádku — tučně jako vážený průměr */
+.hodnoceni-radek .zdroj-cislo {
+  font-weight: 700;
+}
+
+/* mezistav při prvním stahování 3+ MB JSONu filmotéky */
+.nacitani {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--text-tlumeny);
+  font-style: italic;
+  padding: 3rem 1rem;
 }
 
 /* Tři řádky pod názvem: režie / žánr / hodnocení. Každý přesně jeden řádek (nezalamuje,
@@ -469,6 +1013,10 @@ html, body {
   --akcent: #ee7a1c; /* sytě oranžová — klubový večer, výrazný akcent */
 }
 
+.karta-psychoterapie {
+  --akcent: #3fb8af; /* klidný teal — konzultovna, mezi modrou koncertů a zelenou výstav */
+}
+
 /* cena koncertu: decentní přívěsek za názvem klubu v dolním bloku kdy/kde */
 .koncert-cena {
   color: var(--text-tlumeny);
@@ -544,9 +1092,18 @@ a.vystava-thumb:hover .vystava-obrazek {
   cursor: pointer;
   border: 1px solid var(--border);
   background-color: var(--bg-karta-hover);
-  background-size: cover;
-  background-position: center;
+  overflow: hidden; /* ať lazy thumbnail respektuje zaoblené rohy */
   transition: filter 0.15s ease;
+}
+
+/* thumbnail uvnitř facade — <img loading="lazy">, stahuje se až u viewportu */
+.trailer-thumb {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .trailer-facade:hover {

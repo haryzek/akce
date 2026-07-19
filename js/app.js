@@ -15,15 +15,30 @@ const ZDROJE_DAT = [
   "data/divadlo.json",
   "data/party.json",
   "data/prednasky.json",
+  "data/odborne_psychoterapie.json",
 ];
 
 // Termínové typy sdílí stejný datový tvar i kartu (koncerty klasika/jazz&blues, divadlo…):
 // mají jeden nebo víc termínů, místo, thumbnail a žádná veřejná hodnocení — liší se jen
 // zdrojem a barvou akcentu. Ať se nemusí vyjmenovávat na deseti místech, drží se tady.
-const TERMINOVE_TYPY = new Set(["koncerty_klasika", "koncerty_jazzblues", "divadlo", "party"]);
+const TERMINOVE_TYPY = new Set([
+  "koncerty_klasika", "koncerty_jazzblues", "divadlo", "party", "odborne_psychoterapie",
+]);
 const jeTerminovy = (typ) => TERMINOVE_TYPY.has(typ);
 
 let VSECHNY_AKCE = []; // sloučená, normalizovaná data ze všech zdrojů
+
+// ---- režim "filmy na doma" (filmotéka) ----
+// Samostatný pohled mimo běžné filtry: referenční žebříček filmů na doma
+// (data/filmy_doma.json, ~3000 položek). Zapíná se ikonkou filmového pásu.
+// Soubor má 3+ MB, proto se NENAČÍTÁ při startu, ale až při prvním zapnutí režimu.
+let REZIM_DOMA = false;
+let FILMY_DOMA = null; // null = soubor se ještě nestahoval; pak [{data, hledaci}]
+let HLEDANI_DOMA = ""; // aktuální text ve vyhledávání
+let DOMA_OBSERVER = null; // IntersectionObserver pro infinite scroll (vytváří init)
+let DOMA_MAPA = new Map(); // domaId -> film (lookup pro dashboard po kliku na kartu)
+const DOMA_DAVKA = 100; // karet na jednu dávku renderu (3000 karet naráz by DOM zabilo)
+let DOMA_LIMIT = DOMA_DAVKA; // kolik karet je právě zobrazeno (infinite scroll zvyšuje)
 
 // ---- oblíbené (localStorage, generické napříč typy akcí) ----
 
@@ -62,6 +77,40 @@ function ulozOblibene() {
   }
 }
 
+// ---- viděné filmy (filmotéka) — klik na kolečko skóre, drží se v localStorage ----
+
+const VIDENO_KLIC = "akce-videno";
+
+function nactiVideno() {
+  try {
+    return new Set(JSON.parse(localStorage.getItem(VIDENO_KLIC) || "[]"));
+  } catch {
+    return new Set();
+  }
+}
+
+let VIDENO = nactiVideno();
+
+function ulozVideno() {
+  try {
+    localStorage.setItem(VIDENO_KLIC, JSON.stringify([...VIDENO]));
+  } catch {
+    /* stejné jako u oblíbených — tiše přejít */
+  }
+}
+
+// Přepne "viděno" a synchronizuje všechna kolečka téhož filmu (karta + dashboard)
+function prepniVideno(id) {
+  const nove = !VIDENO.has(id);
+  if (nove) VIDENO.add(id);
+  else VIDENO.delete(id);
+  ulozVideno();
+  document.querySelectorAll(".skore[data-id]").forEach((s) => {
+    if (decodeURIComponent(s.dataset.id) !== id) return;
+    s.classList.toggle("videno", nove);
+  });
+}
+
 // srdíčko na kartě (dva stavy). Sdílený helper, ať ho každý typ karty jen zavolá.
 const IKONA_SRDCE =
   '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.7l-1.55-1.4C6 15 2.75 12.1 2.75 8.5 2.75 5.9 4.8 3.9 7.4 3.9c1.5 0 2.9.7 3.8 1.8.9-1.1 2.3-1.8 3.8-1.8 2.6 0 4.65 2 4.65 4.6 0 3.6-3.25 6.5-7.7 10.8L12 20.7z"/></svg>';
@@ -69,6 +118,25 @@ const IKONA_SRDCE =
 // hvězda pro horní přepínač "jen špička" (stejný styl a dva stavy jako srdce)
 const IKONA_HVEZDA =
   '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.85 6.02 6.6.62-4.98 4.38 1.48 6.48L12 16.9l-5.95 3.2 1.48-6.48L2.55 9.24l6.6-.62z"/></svg>';
+
+// filmový pás pro přepínač režimu "filmy na doma". Dvě cesty, mezi kterými přepíná
+// CSS podle stavu (jako obrys→výplň u srdce/hvězdy): v klidu čárová obrysovka
+// (samé linky — stroke na drobných uzavřených tvarech by se při 1.9rem slil do
+// plochy), aktivní stav plný tvar s vyříznutými perforacemi a okénky (evenodd).
+const IKONA_PAS =
+  '<svg viewBox="0 0 24 24" aria-hidden="true">' +
+  '<path class="pas-obrys" d="' +
+  'M3.5 4.5h17v15h-17z ' + // obrys těla
+  'M7.5 4.5v15 M16.5 4.5v15 ' + // sloupce perforace
+  'M7.5 12h9 ' + // předěl okének
+  'M3.5 9.5h4 M3.5 14.5h4 M16.5 9.5h4 M16.5 14.5h4' + // příčky perforace
+  '"/>' +
+  '<path class="pas-vypln" fill-rule="evenodd" d="' +
+  'M3.5 4.5h17v15h-17z ' + // tělo pásu
+  'M4.7 6h1.6v2H4.7z M4.7 11h1.6v2H4.7z M4.7 16h1.6v2H4.7z ' + // perforace vlevo
+  'M17.7 6h1.6v2h-1.6z M17.7 11h1.6v2h-1.6z M17.7 16h1.6v2h-1.6z ' + // perforace vpravo
+  'M8.8 5.8h6.4v4.9H8.8z M8.8 13.3h6.4v4.9H8.8z' + // dvě okénka
+  '"/></svg>';
 
 function vykresliSrdce(id, jeOblibene) {
   const stav = jeOblibene ? " je-oblibene" : "";
@@ -118,13 +186,23 @@ function hodnotaNebo(hodnota, nahrada = "—") {
   return hodnota === null || hodnota === undefined || hodnota === "" ? nahrada : hodnota;
 }
 
+// text bez diakritiky a malými písmeny — pro vyhledávání ("tarkov" najde Tarkovského)
+function bezDiakritiky(text) {
+  return String(text || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+}
+
 // ---- načtení dat ----
 
 async function nactiVsechnaData() {
   const vysledky = await Promise.all(
     ZDROJE_DAT.map(async (cesta) => {
       try {
-        const odpoved = await fetch(cesta);
+        // no-cache = vždy ověřit u serveru, jestli se soubor nezměnil (data se mění
+        // často a prohlížeč jinak umí držet starý JSON i přes obyčejný refresh)
+        const odpoved = await fetch(cesta, { cache: "no-cache" });
         // soubor pro tenhle typ zatím neexistuje (404) — ticho přeskoč, není to chyba
         if (!odpoved.ok) return null;
         return await odpoved.json();
@@ -152,6 +230,508 @@ async function nactiVsechnaData() {
     }
   }
   return akce;
+}
+
+// ---- filmy na doma: načtení a render ----
+
+// Lazy načtení data/filmy_doma.json (až při prvním zapnutí režimu — soubor má 3+ MB).
+// Každý film dostane předpočítaný "hledaci" řetězec (název + režie + rok + žánr bez
+// diakritiky), ať fulltext při psaní nefiltruje přes normalize() tři tisíce položek pořád dokola.
+async function nactiFilmyDoma() {
+  if (FILMY_DOMA) return FILMY_DOMA;
+  try {
+    // no-cache je tu zásadní: fetch běží až při kliknutí na pás, takže ho nekryje
+    // ani Ctrl+F5 — bez něj umí prohlížeč podstrčit starý JSON z diskové cache
+    const odpoved = await fetch("data/filmy_doma.json", { cache: "no-cache" });
+    if (!odpoved.ok) throw new Error(`HTTP ${odpoved.status}`);
+    const soubor = await odpoved.json();
+    FILMY_DOMA = (soubor.filmy || []).map((f) => ({
+      data: f,
+      hledaci: bezDiakritiky(
+        [f.nazevCz, f.nazevOrig, f.rezie, f.rok, f.zanr].filter(Boolean).join(" ")
+      ),
+    }));
+    // žebříček se řadí jednou tady (podle estetického skóre), režim nemá volbu řazení
+    FILMY_DOMA.sort((a, b) => (b.data.estetickeSkore ?? -1) - (a.data.estetickeSkore ?? -1));
+    DOMA_MAPA = new Map(FILMY_DOMA.map((f) => [domaId(f.data), f.data]));
+  } catch (chyba) {
+    console.warn("Chyba při čtení data/filmy_doma.json:", chyba);
+    FILMY_DOMA = []; // ať se to nezkouší stahovat pořád dokola a appka žije dál
+  }
+  return FILMY_DOMA;
+}
+
+// ID pro srdíčka ve filmotéce — vlastní prefix, ať se watchlist "na doma" nemíchá
+// s oblíbenými u filmů v kinech (jiný seznam, jiný význam srdíčka)
+function domaId(film) {
+  return akceId({ typAkce: "filmy_doma", data: film });
+}
+
+// Karta filmu "na doma" — klon filmové karty s prohozenými metrikami: v kolečku je
+// vážený průměr (zaokrouhlený, ať se vejde), ve žlutém řádku estetické skóre + films101.
+// Bez projekcí (žádné nejsou), popis se dočasně bere z duvodSkore (viz JSON kontrakt).
+function vykresliKartuFilmuDoma(film, id) {
+  const prumer = film.hodnoceni?.vazenePrumer;
+  const skore = prumer === null || prumer === undefined ? "—" : Math.round(prumer);
+  const rezieRok = [film.rezie, film.rok].filter(Boolean).join(" · ");
+
+  // žlutý řádek: vpředu estetické skóre s ikonkou (role váženého průměru), za ním films101
+  const est =
+    film.estetickeSkore !== null && film.estetickeSkore !== undefined
+      ? `<span class="prumer">${IKONA_PRUMER}${escapeHtml(film.estetickeSkore)}</span>`
+      : "";
+  const f101 =
+    film.hodnoceni?.films101 !== null && film.hodnoceni?.films101 !== undefined
+      ? `<span class="zdroj"><strong>f101</strong> <span class="zdroj-cislo">${escapeHtml(film.hodnoceni.films101)}</span></span>`
+      : "";
+  const radekHodnoceni = `<div class="hodnoceni-radek">${est + f101 || '<span class="bez-hodnoceni">Bez hodnocení</span>'}</div>`;
+
+  return `
+    <article class="karta karta-doma" data-film-id="${encodeURIComponent(id)}">
+      <div class="karta-vrch">
+        <div class="karta-vrch-text">
+          <div class="karta-titulky">
+            <h2>${escapeHtml(film.nazevCz)}</h2>
+            ${film.nazevOrig && film.nazevOrig !== film.nazevCz ? `<p class="nazev-orig">${escapeHtml(film.nazevOrig)}</p>` : ""}
+          </div>
+
+          <div class="meta-blok">
+            <div class="meta-radek">${escapeHtml(hodnotaNebo(rezieRok))}</div>
+            <div class="meta-radek">${escapeHtml(hodnotaNebo(film.zanr))}</div>
+            ${radekHodnoceni}
+          </div>
+        </div>
+
+        <div class="karta-vpravo">
+          <div class="skore skore-klik${VIDENO.has(id) ? " videno" : ""}" data-id="${encodeURIComponent(id)}"
+               title="Vážený průměr · kliknutím označíš jako viděno">${escapeHtml(skore)}</div>
+          ${vykresliSrdce(id, OBLIBENE.has(id))}
+        </div>
+      </div>
+
+      <p class="popis">${escapeHtml(hodnotaNebo(film.duvodSkore ?? film.popis))}</p>
+
+      ${vykresliTrailer(film.trailerUrl)}
+    </article>
+  `;
+}
+
+// ---- dashboard filmu (fullscreen popup ve filmotéce) ----
+
+// Klik na kartu filmotéky otevře přes celé okno dashboard: velký trailer, plné texty,
+// skóre, a boxíky-rozcestníky = předpřipravené vyhledávací odkazy (appka nic nestahuje,
+// jen chytře zkonstruuje dotaz a otevře ho v novém tabu — viz tvrdé pravidlo bez API).
+
+function ytSearch(dotaz) {
+  return `https://www.youtube.com/results?search_query=${encodeURIComponent(dotaz)}`;
+}
+
+function googleSearch(dotaz) {
+  return `https://www.google.com/search?q=${encodeURIComponent(dotaz)}`;
+}
+
+// Boxíky-rozcestníky po sekcích. Dotazy staví na originálním názvu + roku (+ režii),
+// to vyhledávače trefují nejlíp. Každá položka: [emoji, popisek, url].
+function dashBoxy(film) {
+  const nazev = film.nazevOrig || film.nazevCz || "";
+  const rok = film.rok || "";
+  const rezie = film.rezie || "";
+  const zaklad = `${nazev} ${rok}`.trim();
+  // čtvrtý prvek položky: true = boxík přes celou šířku sloupce
+  return [
+    ["Kde to vidět", [
+      ["🔍", "Google", googleSearch(`${zaklad} film`), true],
+    ]],
+    ["Hlubší ponor", [
+      ["🎙️", "Rozhovory s režisérem", ytSearch(`${rezie} interview ${nazev}`)],
+      ["🎬", "Making-of a dokumenty", ytSearch(`${zaklad} making of documentary`)],
+      ["🧠", "Video eseje a rozbory", ytSearch(`${zaklad} video essay analysis`)],
+      ["🎵", "Soundtrack", ytSearch(`${zaklad} soundtrack`)],
+    ]],
+    ["Kritika", [
+      ["✍️", "Roger Ebert", googleSearch(`site:rogerebert.com ${nazev}`)],
+      ["🏛️", "Criterion eseje", googleSearch(`site:criterion.com ${nazev} essay`)],
+      ["🟢", "Letterboxd recenze", `https://letterboxd.com/search/${encodeURIComponent(nazev)}/`],
+    ]],
+    // Profily: ani ČSFD, ani RT/Metacritic nemají veřejné CORS API pro přímý lookup
+    // (jen IMDb má — viz imdbId níže), takže jedou přes site-scoped Google s rokem —
+    // u běžných názvů (Solaris, Stalker) je to spolehlivější než fuzzy search webu
+    // samotného, protože rok v dotazu prakticky vždy vytáhne správný film jako první.
+    ["Profily", [
+      // IMDb start jako fallback hledání; naplnImdbBox po vyhodnocení nahradí přímým odkazem
+      ["🎞️", "IMDb", `https://www.imdb.com/find/?q=${encodeURIComponent(zaklad)}`, false, "dash-imdb-box"],
+      ["🇨🇿", "ČSFD", googleSearch(`site:csfd.cz/film ${zaklad}`)],
+      ["🍅", "Rotten Tomatoes", googleSearch(`site:rottentomatoes.com/m ${zaklad}`)],
+      ["Ⓜ️", "Metacritic", googleSearch(`site:metacritic.com/movie ${zaklad}`)],
+    ]],
+  ];
+}
+
+// Pás příbuzných filmů dole: primárně další filmy téhož režiséra, když žádné nejsou,
+// spadne na "podobný vibe" = stejný hlavní žánr a éra (±15 let). Vše z vlastních dat.
+function dashPribuzne(film) {
+  const id = domaId(film);
+  const odRezisera = FILMY_DOMA
+    .filter((f) => f.data.rezie && f.data.rezie === film.rezie && domaId(f.data) !== id)
+    .map((f) => f.data);
+  if (odRezisera.length) {
+    // bez limitu — pás je svislý sloupec s prostorem do nekonečna
+    return { titulek: `Další od: ${film.rezie}`, filmy: odRezisera, rezie: true };
+  }
+  const hlavniZanr = (film.zanr || "").split(",")[0].trim().toLowerCase();
+  const rok = Number(film.rok) || null;
+  const vibe = FILMY_DOMA
+    .filter((f) => {
+      if (domaId(f.data) === id) return false;
+      if (!hlavniZanr || !(f.data.zanr || "").toLowerCase().includes(hlavniZanr)) return false;
+      const r = Number(f.data.rok);
+      return !rok || (r && Math.abs(r - rok) <= 15);
+    })
+    .map((f) => f.data);
+  return { titulek: "Podobný vibe (žánr a éra)", filmy: vibe.slice(0, 12), rezie: false };
+}
+
+// Trailer pro dashboard: velká facade s maxres thumbnailem (fallback na hqdefault,
+// maxres u starých filmů často chybí). Bez traileru nabídne aspoň vyhledání na YT.
+function vykresliDashTrailer(film) {
+  const id = youtubeId(film.trailerUrl);
+  if (id) {
+    return `
+      <button type="button" class="trailer-facade dash-trailer" data-yt-id="${id}" aria-label="Přehrát trailer">
+        <img class="trailer-thumb" src="https://i.ytimg.com/vi/${id}/maxresdefault.jpg" alt=""
+             onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/${id}/hqdefault.jpg'">
+        <span class="trailer-play" aria-hidden="true"></span>
+      </button>`;
+  }
+  const dotaz = `${film.nazevOrig || film.nazevCz || ""} ${film.rok || ""} trailer`.trim();
+  return `
+    <div class="dash-trailer dash-trailer-chybi">
+      <p>Trailer se nepodařilo dohledat.</p>
+      <a href="${ytSearch(dotaz)}" target="_blank" rel="noopener">Zkusit najít na YouTube →</a>
+    </div>`;
+}
+
+// ---- Wikipedia box (jediná povolená API výjimka — otevřené API, bez klíče, CORS) ----
+// Jeden dotaz: fulltext search + intro extract + hlavní obrázek + kanonická URL.
+// Primárně anglická Wikipedia (filmová pokrytost), fallback česká. Cache per film.
+
+const WIKI_CACHE = new Map(); // domaId -> {titul, text, obrazek, url} | null
+
+async function hledejWiki(host, dotaz) {
+  const url =
+    `https://${host}/w/api.php?action=query&generator=search` +
+    `&gsrsearch=${encodeURIComponent(dotaz)}&gsrlimit=1` +
+    `&prop=extracts|pageimages|info&explaintext=1&exsectionformat=wiki` + // celý článek, nadpisy jako "== Plot =="
+    `&piprop=original&pilicense=any&inprop=url&format=json&origin=*`; // pilicense=any: plakáty jsou non-free
+  try {
+    const r = await fetch(url);
+    if (!r.ok) return null;
+    const j = await r.json();
+    const pages = j.query?.pages;
+    if (!pages) return null;
+    const p = Object.values(pages)[0];
+    if (!p || !p.extract) return null;
+    return {
+      titul: p.title,
+      text: p.extract,
+      obrazek: p.original?.source || null,
+      url: p.fullurl || `https://${host}/wiki/${encodeURIComponent(p.title)}`,
+    };
+  } catch {
+    return null;
+  }
+}
+
+async function nactiWiki(film) {
+  const id = domaId(film);
+  if (WIKI_CACHE.has(id)) return WIKI_CACHE.get(id);
+  const nazev = film.nazevOrig || film.nazevCz || "";
+  const dotaz = `${nazev} ${film.rok || ""} film`.trim();
+  const vysledek =
+    (await hledejWiki("en.wikipedia.org", dotaz)) ||
+    (await hledejWiki("cs.wikipedia.org", dotaz));
+  WIKI_CACHE.set(id, vysledek);
+  return vysledek;
+}
+
+// Za tímhle nadpisem už v plaintextu nic čitelného není (seznamy odkazů, citace) —
+// článek se usekne před první z těchto sekcí (EN i CZ varianty)
+const WIKI_STOP_SEKCE = new Set([
+  "references", "external links", "see also", "further reading", "notes",
+  "bibliography", "sources", "footnotes",
+  "reference", "externí odkazy", "odkazy", "literatura", "poznámky", "související články",
+]);
+
+// Plaintext extract (nadpisy jako "== Plot ==") -> HTML s pořádnými odstavci.
+// Extract má mezi sekcemi nepravidelný počet prázdných řádků — proto se NErenderuje
+// přes white-space: pre-line, ale poskládá do <p> bloků s pevnými rozestupy v CSS:
+// prázdný řádek = předěl odstavce, souvislé řádky (seznamy, např. Cast) drží <br>.
+function wikiTextNaHtml(text) {
+  const vystup = [];
+  let blok = [];
+  const flush = () => {
+    if (blok.length) vystup.push(`<p>${blok.join("<br>")}</p>`);
+    blok = [];
+  };
+  for (const radek of String(text).split("\n")) {
+    const nadpis = radek.match(/^(={2,})\s*(.+?)\s*={2,}$/);
+    if (nadpis) {
+      if (WIKI_STOP_SEKCE.has(nadpis[2].trim().toLowerCase())) break;
+      flush();
+      // úroveň podle počtu "=" (== hlavní, === podsekce)
+      const trida = nadpis[1].length > 2 ? "dash-wiki-nadpis dash-wiki-podnadpis" : "dash-wiki-nadpis";
+      vystup.push(`<span class="${trida}">${escapeHtml(nadpis[2])}</span>`);
+      continue;
+    }
+    if (!radek.trim()) {
+      flush(); // prázdný řádek = konec odstavce (kolik jich je za sebou, je jedno)
+      continue;
+    }
+    blok.push(escapeHtml(radek));
+  }
+  flush();
+  return vystup.join("");
+}
+
+// Doplní wiki box v otevřeném dashboardu (volá se async po vykreslení skeletonu).
+// Guard: mezitím mohl uživatel přejít na jiný film — pak výsledek zahodit.
+async function naplnWikiBox(film) {
+  const overlay = document.getElementById("dashboard-film");
+  const id = domaId(film);
+  const wiki = await nactiWiki(film);
+  if (overlay.hidden || decodeURIComponent(overlay.dataset.filmId || "") !== id) return;
+  const box = overlay.querySelector(".dash-wiki-obsah");
+  if (!box) return;
+  if (!wiki) {
+    box.innerHTML =
+      '<p class="dash-wiki-nenalezeno">Na Wikipedii se nepodařilo nic dohledat.</p>';
+    return;
+  }
+  // plakát plave vpravo uvnitř scrollovatelného textu — novinová sazba
+  box.innerHTML = `
+    <div class="dash-wiki-text">${wiki.obrazek ? `<img class="dash-wiki-obrazek" src="${escapeHtml(wiki.obrazek)}" alt="" loading="lazy">` : ""}${wikiTextNaHtml(wiki.text)}</div>
+    <a class="dash-wiki-odkaz" href="${escapeHtml(wiki.url)}" target="_blank" rel="noopener">číst celé na Wikipedii (${escapeHtml(wiki.titul)}) →</a>`;
+}
+
+// ---- IMDb přímý odkaz (druhá povolená API výjimka — veřejný, CORS-povolený
+// suggest endpoint, který IMDb sám používá pro našeptávač; bez klíče, bez AI) ----
+// RT a Metacritic obdobný endpoint nemají (ověřeno — CORS blokuje), proto tam
+// zůstává jen site-scoped Google z dashBoxy výše.
+
+const IMDB_CACHE = new Map(); // domaId -> "tt1234567" | null
+
+async function imdbId(film) {
+  const id = domaId(film);
+  if (IMDB_CACHE.has(id)) return IMDB_CACHE.get(id);
+  const nazev = (film.nazevOrig || film.nazevCz || "").trim();
+  const slug = nazev.toLowerCase().replace(/[^a-z0-9]+/g, "");
+  let vysledek = null;
+  if (slug) {
+    try {
+      const r = await fetch(
+        `https://v2.sg.media-imdb.com/suggestion/${slug[0]}/${encodeURIComponent(slug)}.json`
+      );
+      if (r.ok) {
+        const j = await r.json();
+        const kandidati = (j.d || []).filter((x) => x.qid === "movie" || x.q === "feature");
+        const rok = Number(film.rok) || null;
+        // přesná shoda roku vyhrává (řeší remaky/stejnojmenné filmy); bez roku první nabídnutý
+        const presny = rok ? kandidati.find((k) => k.y === rok) : null;
+        const nejblizsi =
+          presny ||
+          (rok
+            ? kandidati.slice().sort((a, b) => Math.abs(a.y - rok) - Math.abs(b.y - rok))[0]
+            : kandidati[0]);
+        // bez roku v datech radši nehádat naslepo — jen když je shoda jistá (jediný kandidát)
+        if (presny || (nejblizsi && !rok && kandidati.length === 1)) {
+          vysledek = nejblizsi.id;
+        } else if (nejblizsi && rok && Math.abs(nejblizsi.y - rok) <= 1) {
+          vysledek = nejblizsi.id; // tolerance 1 rok (premiéra vs. certifikace apod.)
+        }
+      }
+    } catch {
+      /* selhání = zůstane null, box spadne na fallback vyhledávání */
+    }
+  }
+  IMDB_CACHE.set(id, vysledek);
+  return vysledek;
+}
+
+// Doplní přímý odkaz do IMDb boxu v otevřeném dashboardu (guard jako u wiki boxu).
+async function naplnImdbBox(film) {
+  const overlay = document.getElementById("dashboard-film");
+  const id = domaId(film);
+  const tt = await imdbId(film);
+  if (!tt || overlay.hidden || decodeURIComponent(overlay.dataset.filmId || "") !== id) return;
+  const box = document.getElementById("dash-imdb-box");
+  if (box) box.href = `https://www.imdb.com/title/${tt}/`;
+}
+
+function vykresliDashboard(film) {
+  const id = domaId(film);
+  const zanry = (film.zanr || "")
+    .split(",").map((z) => z.trim()).filter(Boolean)
+    .map((z) => `<span class="dash-zanr">${escapeHtml(z)}</span>`).join("");
+
+  const prumer = film.hodnoceni?.vazenePrumer;
+  const f101 = film.hodnoceni?.films101;
+
+  // hlavní text = duvodSkore (viz kontrakt filmotéky), popis ukázat jen když se liší
+  const hlavniText = film.duvodSkore ?? film.popis;
+  const vedlejsiText = film.popis && film.popis !== hlavniText ? film.popis : null;
+
+  const pribuzne = dashPribuzne(film);
+  const tiles = pribuzne.filmy
+    .map((p) => `
+      <button type="button" class="dash-tile" data-film-id="${encodeURIComponent(domaId(p))}">
+        <span class="dash-tile-nazev">${escapeHtml(p.nazevCz)}</span>
+        <span class="dash-tile-meta">${escapeHtml(p.rok || "—")} · <strong>${escapeHtml(hodnotaNebo(p.estetickeSkore))}</strong></span>
+      </button>`)
+    .join("");
+  const hledatRezisera = pribuzne.rezie
+    ? `<button type="button" class="dash-hledat-rezisera" data-rezie="${escapeHtml(film.rezie)}">vyhledat ve filmotéce →</button>`
+    : "";
+
+  const boxy = dashBoxy(film)
+    .map(([sekce, polozky]) => `
+      <div class="dash-sekce">
+        <h3>${escapeHtml(sekce)}</h3>
+        <div class="dash-linky">
+          ${polozky.map(([emoji, popisek, url, cely, znacka]) => `
+            <a class="dash-box${cely ? " dash-box-cely" : ""}"${znacka ? ` id="${znacka}"` : ""}
+               href="${escapeHtml(url)}" target="_blank" rel="noopener">
+              <span class="dash-box-emoji" aria-hidden="true">${emoji}</span>${escapeHtml(popisek)}
+            </a>`).join("")}
+        </div>
+      </div>`)
+    .join("");
+
+  return `
+    <div class="dash-obsah">
+      <button type="button" class="dash-zavrit" aria-label="Zavřít">×</button>
+
+      <header class="dash-hlavicka">
+        <div class="dash-titulky">
+          <h2>${escapeHtml(film.nazevCz)}</h2>
+          ${film.nazevOrig && film.nazevOrig !== film.nazevCz ? `<p class="dash-orig">${escapeHtml(film.nazevOrig)}</p>` : ""}
+          <p class="dash-meta">${escapeHtml(hodnotaNebo(film.rezie))} · ${escapeHtml(hodnotaNebo(film.rok))}</p>
+          <div class="dash-zanry">${zanry}</div>
+        </div>
+        <div class="dash-skore-blok">
+          <div class="dash-skore-hlavni">
+            <div class="skore dash-skore skore-klik${VIDENO.has(id) ? " videno" : ""}" data-id="${encodeURIComponent(id)}"
+                 title="Estetické skóre · kliknutím označíš jako viděno">${escapeHtml(hodnotaNebo(film.estetickeSkore))}</div>
+            <span class="dash-skore-popisek">estetické skóre</span>
+          </div>
+          <div class="dash-skore-vedlejsi">
+            ${prumer !== null && prumer !== undefined ? `<span>${IKONA_PRUMER}${escapeHtml(Math.round(prumer))} vážený průměr</span>` : ""}
+            ${f101 !== null && f101 !== undefined ? `<span><strong>f101</strong> ${escapeHtml(f101)}/5</span>` : ""}
+          </div>
+          ${vykresliSrdce(id, OBLIBENE.has(id))}
+        </div>
+      </header>
+
+      <div class="dash-telo">
+        <div class="dash-hlavni">
+          ${vykresliDashTrailer(film)}
+          <p class="dash-popis">${escapeHtml(hodnotaNebo(hlavniText))}</p>
+          ${vedlejsiText ? `<p class="dash-duvod">${escapeHtml(vedlejsiText)}</p>` : ""}
+          <div class="dash-sekce dash-wiki">
+            <h3>Wikipedia</h3>
+            <div class="dash-wiki-obsah">
+              <p class="dash-wiki-nacitani">Načítám z Wikipedie…</p>
+            </div>
+          </div>
+        </div>
+        <aside class="dash-boxy">
+          ${boxy}
+          <div class="dash-sekce dash-pas">
+            <h3>${escapeHtml(pribuzne.titulek)} ${hledatRezisera}</h3>
+            ${tiles ? `<div class="dash-tiles">${tiles}</div>` : `<p class="dash-pas-prazdny">V žebříčku není nic dalšího podobného — tenhle je prostě unikát.</p>`}
+          </div>
+        </aside>
+      </div>
+    </div>`;
+}
+
+// Facade traileru -> skutečný YT přehrávač (sdílí karta v seznamu i dashboard)
+function prehrajFacade(facade) {
+  const id = facade.dataset.ytId;
+  facade.parentElement.innerHTML =
+    `<iframe class="trailer-embed" src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0" ` +
+    `title="Trailer" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" ` +
+    `allowfullscreen></iframe>`;
+}
+
+// Přepne oblíbenost + synchronizuje VŠECHNA srdíčka téhož filmu na stránce
+// (karta v seznamu a dashboard můžou být vidět zároveň)
+function prepniSrdce(srdce) {
+  const id = decodeURIComponent(srdce.dataset.id);
+  const noveOblibene = !OBLIBENE.has(id);
+  if (noveOblibene) OBLIBENE.add(id);
+  else OBLIBENE.delete(id);
+  ulozOblibene();
+  document.querySelectorAll(".srdce").forEach((s) => {
+    if (decodeURIComponent(s.dataset.id || "") !== id) return;
+    s.classList.toggle("je-oblibene", noveOblibene);
+    s.setAttribute("aria-pressed", noveOblibene);
+  });
+  // když je zapnutý filtr oblíbených, odznačená karta musí zmizet → překreslit
+  if (JEN_OBLIBENE) prekresli();
+}
+
+function otevriDashboardFilmu(film) {
+  const overlay = document.getElementById("dashboard-film");
+  overlay.dataset.filmId = encodeURIComponent(domaId(film)); // pro guard async doplnění
+  overlay.innerHTML = vykresliDashboard(film);
+  overlay.hidden = false;
+  overlay.scrollTop = 0; // při brouzdání tile → tile začínat vždy nahoře
+  document.body.classList.add("dashboard-otevreny"); // zamkne scroll pozadí
+  naplnWikiBox(film); // wiki box se dolije async, skeleton už stojí
+  naplnImdbBox(film); // IMDb odkaz se přepne na přímý, jakmile se dohledá ID
+}
+
+function zavriDashboard() {
+  const overlay = document.getElementById("dashboard-film");
+  overlay.hidden = true;
+  overlay.innerHTML = ""; // uklidit případný hrající YT iframe
+  document.body.classList.remove("dashboard-otevreny");
+}
+
+// Render filmotéky: fulltext filtr + srdíčka/špička + dávkování po DOMA_DAVKA kartách.
+// "Zobrazit další" je poslední prvek gridu a jen zvedne DOMA_LIMIT.
+function prekresliDoma() {
+  const kontejner = document.getElementById("seznam-akci");
+  const prazdnyStav = document.getElementById("prazdny-stav");
+  const dotaz = bezDiakritiky(HLEDANI_DOMA.trim());
+
+  const filmy = (FILMY_DOMA || []).filter((f) => {
+    if (dotaz && !f.hledaci.includes(dotaz)) return false;
+    if (JEN_OBLIBENE && !OBLIBENE.has(domaId(f.data))) return false;
+    if (JEN_TOP && (f.data.estetickeSkore ?? -1) < TOP_PRAH) return false;
+    return true;
+  });
+
+  if (filmy.length === 0) {
+    kontejner.innerHTML = "";
+    prazdnyStav.hidden = false;
+    return;
+  }
+
+  prazdnyStav.hidden = true;
+  const videt = filmy.slice(0, DOMA_LIMIT);
+  let html = videt.map((f) => vykresliKartuFilmuDoma(f.data, domaId(f.data))).join("");
+  if (filmy.length > DOMA_LIMIT) {
+    // neviditelná zarážka pro infinite scroll — když se přiblíží do viewportu,
+    // IntersectionObserver (viz init) zvedne DOMA_LIMIT a překreslí
+    html += '<div id="doma-zarazka" aria-hidden="true"></div>';
+  }
+  kontejner.innerHTML = html;
+  const zarazka = document.getElementById("doma-zarazka");
+  if (DOMA_OBSERVER) {
+    DOMA_OBSERVER.disconnect(); // stará zarážka je po innerHTML pryč, nedržet ji
+    if (zarazka) DOMA_OBSERVER.observe(zarazka);
+  }
 }
 
 // ---- filtrování a řazení ----
@@ -307,15 +887,19 @@ function youtubeId(url) {
 // iframů najednou. Když trailer chybí, vrátí "". Ne-YT odkaz spadne na prostý proklik.
 function vykresliTrailer(trailerUrl) {
   if (!trailerUrl) return "";
+  // ochrana proti AI datům: string "null" (i s poznámkou "null (nenalezen…)") = žádný trailer
+  if (/^null\b/.test(String(trailerUrl).trim())) return "";
   const id = youtubeId(trailerUrl);
   if (!id) {
     return `<a class="trailer-odkaz" href="${escapeHtml(trailerUrl)}" target="_blank" rel="noopener">▶ Přehrát trailer</a>`;
   }
+  // thumbnail jako <img loading="lazy"> (ne background-image) — stáhne se až když se
+  // karta blíží do viewportu. Zásadní pro filmotéku (tisíce karet), potěší i akce.
   const thumb = `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
   return `
     <div class="trailer">
-      <button type="button" class="trailer-facade" data-yt-id="${id}"
-              style="background-image:url('${thumb}')" aria-label="Přehrát trailer">
+      <button type="button" class="trailer-facade" data-yt-id="${id}" aria-label="Přehrát trailer">
+        <img class="trailer-thumb" src="${thumb}" alt="" loading="lazy">
         <span class="trailer-play" aria-hidden="true"></span>
       </button>
     </div>`;
@@ -465,6 +1049,7 @@ const TERMINOVA_CSS_TRIDA = {
   koncerty_jazzblues: "karta-jazzblues",
   divadlo: "karta-divadlo",
   party: "karta-party",
+  odborne_psychoterapie: "karta-psychoterapie",
 };
 
 // Karta termínového typu (koncert/divadlo) = klon výstavní (stejný skeleton), akcent podle typu
@@ -540,6 +1125,7 @@ function vykresliKartu(polozka, rozsah) {
     case "koncerty_jazzblues":
     case "divadlo":
     case "party":
+    case "odborne_psychoterapie":
       return vykresliKartuTerminu(polozka.data, id, rozsah, polozka.typAkce);
     default:
       return "";
@@ -547,6 +1133,12 @@ function vykresliKartu(polozka, rozsah) {
 }
 
 function prekresli() {
+  // režim "filmy na doma" má vlastní render (jiná data, fulltext, dávkování)
+  if (REZIM_DOMA) {
+    prekresliDoma();
+    return;
+  }
+
   const kontejner = document.getElementById("seznam-akci");
   const prazdnyStav = document.getElementById("prazdny-stav");
   const akce = ziskejFiltrovaneARazene();
@@ -569,6 +1161,7 @@ const POPISKY_TYPU = {
   koncerty_jazzblues: "Jazz&Blues",
   divadlo: "Divadlo",
   party: "Party",
+  odborne_psychoterapie: "Psychoterapie",
 };
 
 // naplní select "Typ akce" podle toho, jaké typy skutečně přišly v datech
@@ -653,14 +1246,22 @@ async function init() {
 
   // Delegovaný klik na kontejner karet (karty se překreslují přes innerHTML, tak posloucháme
   // na rodiči): buď spustit trailer, nebo otevřít modal se všemi projekcemi.
+  // infinite scroll filmotéky: když se zarážka na konci seznamu přiblíží k viewportu
+  // (s předstihem 1200px, ať to uživatel nepostřehne), přidá se další dávka karet
+  DOMA_OBSERVER = new IntersectionObserver(
+    (zaznamy) => {
+      if (zaznamy.some((z) => z.isIntersecting)) {
+        DOMA_LIMIT += DOMA_DAVKA;
+        prekresli();
+      }
+    },
+    { rootMargin: "1200px 0px" }
+  );
+
   document.getElementById("seznam-akci").addEventListener("click", (e) => {
     const facade = e.target.closest(".trailer-facade");
     if (facade) {
-      const id = facade.dataset.ytId;
-      facade.parentElement.innerHTML =
-        `<iframe class="trailer-embed" src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0" ` +
-        `title="Trailer" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" ` +
-        `allowfullscreen></iframe>`;
+      prehrajFacade(facade);
       return;
     }
     const vic = e.target.closest(".vic-projekci");
@@ -673,15 +1274,20 @@ async function init() {
     }
     const srdce = e.target.closest(".srdce");
     if (srdce) {
-      const id = decodeURIComponent(srdce.dataset.id);
-      const noveOblibene = !OBLIBENE.has(id);
-      if (noveOblibene) OBLIBENE.add(id);
-      else OBLIBENE.delete(id);
-      ulozOblibene();
-      srdce.classList.toggle("je-oblibene", noveOblibene);
-      srdce.setAttribute("aria-pressed", noveOblibene);
-      // když je zapnutý filtr oblíbených, odznačená karta musí zmizet → překreslit
-      if (JEN_OBLIBENE) prekresli();
+      prepniSrdce(srdce);
+      return;
+    }
+    // kolečko skóre ve filmotéce = přepínač "viděno" (nesmí otevřít dashboard)
+    const kolecko = e.target.closest(".skore-klik");
+    if (kolecko) {
+      prepniVideno(decodeURIComponent(kolecko.dataset.id));
+      return;
+    }
+    // klik kamkoli jinam na kartu filmotéky (mimo odkazy) otevře dashboard filmu
+    const kartaDoma = e.target.closest(".karta-doma");
+    if (kartaDoma && !e.target.closest("a")) {
+      const film = DOMA_MAPA.get(decodeURIComponent(kartaDoma.dataset.filmId || ""));
+      if (film) otevriDashboardFilmu(film);
     }
   });
 
@@ -705,7 +1311,88 @@ async function init() {
     prekresli();
   });
 
+  // přepínač režimu "filmy na doma" (filmový pás): přepne pohled, schová běžné filtry
+  // (CSS přes body.rezim-doma) a při prvním zapnutí líně stáhne 3+ MB JSON
+  const prepinacDoma = document.getElementById("rezim-doma");
+  prepinacDoma.innerHTML = IKONA_PAS;
+  prepinacDoma.addEventListener("click", async () => {
+    REZIM_DOMA = !REZIM_DOMA;
+    prepinacDoma.classList.toggle("aktivni", REZIM_DOMA);
+    prepinacDoma.setAttribute("aria-pressed", REZIM_DOMA);
+    document.body.classList.toggle("rezim-doma", REZIM_DOMA);
+    if (REZIM_DOMA && !FILMY_DOMA) {
+      document.getElementById("seznam-akci").innerHTML =
+        '<p class="nacitani">Načítám filmotéku…</p>';
+      await nactiFilmyDoma();
+    }
+    DOMA_LIMIT = DOMA_DAVKA; // každé zapnutí začíná od první dávky
+    window.scrollTo(0, 0);
+    prekresli();
+  });
+
+  // fulltext ve filmotéce — filtruje při psaní, každá změna resetuje dávkování
+  const hledani = document.getElementById("hledani-doma");
+  hledani.addEventListener("input", () => {
+    HLEDANI_DOMA = hledani.value;
+    DOMA_LIMIT = DOMA_DAVKA;
+    if (REZIM_DOMA) prekresli();
+  });
+
   nastavModal();
+  nastavDashboard();
+}
+
+// vytvoří fullscreen overlay dashboardu a nadrátuje interakce (delegovaně, obsah se
+// generuje při každém otevření znovu): zavření, trailer, srdíčko, brouzdání po tiles
+function nastavDashboard() {
+  const overlay = document.createElement("div");
+  overlay.id = "dashboard-film";
+  overlay.className = "dash-overlay";
+  overlay.hidden = true;
+  document.body.appendChild(overlay);
+
+  overlay.addEventListener("click", (e) => {
+    if (e.target.closest(".dash-zavrit")) {
+      zavriDashboard();
+      return;
+    }
+    const facade = e.target.closest(".trailer-facade");
+    if (facade) {
+      prehrajFacade(facade);
+      return;
+    }
+    const srdce = e.target.closest(".srdce");
+    if (srdce) {
+      prepniSrdce(srdce);
+      return;
+    }
+    // kolečko skóre v dashboardu = přepínač "viděno" (synchronizuje se s kartou)
+    const kolecko = e.target.closest(".skore-klik");
+    if (kolecko) {
+      prepniVideno(decodeURIComponent(kolecko.dataset.id));
+      return;
+    }
+    // tile příbuzného filmu → otevřít jeho dashboard (brouzdání filmotékou)
+    const tile = e.target.closest(".dash-tile");
+    if (tile) {
+      const film = DOMA_MAPA.get(decodeURIComponent(tile.dataset.filmId || ""));
+      if (film) otevriDashboardFilmu(film);
+      return;
+    }
+    // „vyhledat ve filmotéce" → zavřít dashboard a nalít režiséra do fulltextu
+    const hledat = e.target.closest(".dash-hledat-rezisera");
+    if (hledat) {
+      zavriDashboard();
+      const vstup = document.getElementById("hledani-doma");
+      vstup.value = hledat.dataset.rezie || "";
+      vstup.dispatchEvent(new Event("input"));
+      window.scrollTo(0, 0);
+    }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !overlay.hidden) zavriDashboard();
+  });
 }
 
 // ---- modal se všemi projekcemi ----

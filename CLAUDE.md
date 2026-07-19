@@ -31,6 +31,7 @@ akce/
 │   └── esteticky-profil.md  # Bobův profil pro AI výběr (čte ho Cowork)
 ├── cowork_prompt_kina.md    # prompt pro výběr/skórování filmů (ChatGPT)
 ├── cowork_prompt_vystavy.md # prompt pro výběr/skórování výstav (Cowork)
+├── cowork_prompt_psychoterapie.md # prompt pro odborné akce pro terapeuty (Cowork)
 └── CLAUDE.md
 ```
 
@@ -66,9 +67,10 @@ Python, výběr a skórování dělá AI krok podle promptů (`cowork_prompt_kin
 strukturu, kterou generují (viz níže).
 
 **Stav (2026-07):** kompletně běží filmy, výstavy, klasika (vážná hudba), Jazz&Blues (klubová
-scéna), divadlo i party end-to-end. Filmy plní Bobův vychytaný ChatGPT prompt (ručně), zbytek
-Cowork prompty nad RAW ze scraperu. Dva zdroje mají **party** (ra.co + goout.net) i **výstavy**
-(prague.eu + goout.net). Další typy
+scéna), divadlo, party i odborné akce pro psychoterapeuty end-to-end. Filmy plní Bobův vychytaný
+ChatGPT prompt (ručně), zbytek Cowork prompty nad RAW ze scraperu. Dva zdroje mají **party**
+(ra.co + goout.net) i **výstavy** (prague.eu + goout.net), **psychoterapie** jich má sedm
+(profesní organizace + vzdělavatelé, viz níže). Další typy
 akcí = nový scraper + nový prompt (postup viz existující scrapery — prague.eu klony, goout jako
 vzor JSON-API zdroje, ra.co jako vzor GraphQL zdroje).
 
@@ -159,6 +161,28 @@ agregátoru (goout.net). Každý zdroj = jeden modul, mechaniku si řeší po sv
   poznat, zbytek zahodí a nechá doplnit dedupem z goout; (2) popisy jsou **anglicky** a mívají
   na konci provozní přílepky (set-times, ceníky, safe-space kodexy) → řeší Cowork prompt,
   který je překládá do češtiny a přílepky vyhazuje.
+- Typ **odborne_psychoterapie** (odborné akce pro terapeuty — semináře, webináře, supervize,
+  konference; NE výcviky, výuka ani členské schůze): **sedm zdrojů, sedm mechanik**, sdílená
+  logika (parsování českých datumů z volného textu, okno, filtry výcviků/dlouhodobých akcí,
+  odhad žánru) žije v `scrapers/psychoterapie_common.py`. Zdroje:
+  `czap_psychoterapie.py` (ČAP — Wild Apricot, server-side HTML se sémantickými třídami
+  `eventInfo*`; filtruje „setkání" = členské schůze), `cspap_psychoterapie.py` (ČSPP —
+  WordPress plugin The Events Calendar má **veřejné REST API** `/wp-json/tribe/events/v1/events`
+  se serverovým datumovým filtrem; filtruje „UZAVŘENÁ AKCE"), `csp_psychoterapie.py`
+  (ČSP psychoanalyza.cz — TEC klon ČSPP, půjčuje si z něj `stahni_tec`/`preved_event`;
+  agresivně filtruje „Výuka PI" a „KURZ IKP" = výuka institutu), `pvsps_psychoterapie.py`
+  (PVŠPS víkendovky — e-shop výpis `div.item` + stránkování `?productlist_page=N` + detail
+  pro místo/cenu/popis; past: obsazené semináře na konci výpisu nemají datum → bez termínu
+  i na detailu se zahazují, jinak by lezly do každého okna), `cps_psychoterapie.py`
+  (ČPS ČLS JEP psychoterapeuti.cz — Joomla blog, VOLNÝ text; datumy/čas/místo/cena se loví
+  regexy, jednotky akcí), `akp_psychoterapie.py` (AKP — Google Sites, jedna akce = jeden
+  `<section>` s `<h2>`; past: datumy rozlámané přes `<span>`y „2 . 12 .20 26" → `najdi_datumy`
+  toleruje mezery uvnitř), `ipvz_psychoterapie.py` (IPVZ — React SPA, ale program jede z
+  veřejného JSON API `portal.ipvz.cz/api/v1/portal/educationEventTerms/list?studyDepartmentId=58`
+  = katedra klinické psychologie, vrací vše naráz; termíny téže akce se grupují podle názvu
+  do `terminy`, URL detailu se skládá `{id}-{slug}`; filtruje zkoušky/testy).
+  Scraper filtruje jen tvrdé jistoty, jemné rozhodování (povinná specializační výuka, akce
+  pro laiky, KBT vs. psychodynamika) dělá `cowork_prompt_psychoterapie.md`.
 - ČSFD je za antibotem, program filmů se bere jinudy (Bobův ChatGPT prompt z ČSFD XLS).
 
 ## JSON kontrakt — filmy
@@ -207,6 +231,59 @@ Pozn.: **jeden film = jedna karta**, ale může mít **více projekcí** (pole `
 různá kina, různé časy. Nezobrazovat stejný film víckrát. Pole `odkaz` u projekce (odkaz na
 program kina) appka renderuje jako proklik z názvu kina, když je vyplněné.
 
+## Filmotéka — „filmy na doma" (`data/filmy_doma.json`)
+
+Samostatný pohled **mimo běžné filtry a typy akcí**: referenční žebříček ~3100 filmů
+z films101.com oskórovaných podle Bobova profilu (jednorázový AI výstup, ne scraper).
+Zapíná se ikonkou filmového pásu v rychlých volbách (přepínač jako srdíčko/hvězda,
+třída `.pas`, stav `REZIM_DOMA` + `body.rezim-doma`). V režimu se schovají typ, řazení,
+datumy i datumové zkratky; srdíčko, hvězda a pás zůstávají.
+
+JSON má tvar filmového kontraktu s odchylkami: navíc `rok` a `hodnoceni.films101`
+(škála 0–5), veřejná hodnocení jsou null, `projekce` prázdné, text je (dočasně) jen
+v `duvodSkore` — appka ho renderuje jako popis (fallback na `popis`). Karta
+(`vykresliKartuFilmuDoma`, třída `karta-doma`) prohazuje metriky: **kolečko =
+`vazenePrumer`** (zaokrouhlený), **žlutý řádek = `estetickeSkore` + f101** (číslo bold);
+meta řádek je „režie · rok".
+
+Zásadní pro výkon: soubor má **3+ MB**, proto **není v `ZDROJE_DAT`** a stahuje se
+líně až při prvním zapnutí režimu (`nactiFilmyDoma`); renderuje se po dávkách 100 karet
+přes **infinite scroll** (zarážka `#doma-zarazka` + `DOMA_OBSERVER`, předstih 1200px).
+Thumbnaily trailerů jsou `<img loading="lazy">` (ne background-image), takže se stahují
+až u viewportu. Fulltext (`#hledani-doma`) hledá substring bez diakritiky
+v předpočítaném řetězci název+režie+rok+žánr — schválně bez rozlišování polí.
+Srdíčka mají prefix `filmy_doma::`, takže watchlist se nemíchá s oblíbenými z kin.
+
+Klik na **kolečko skóre** karty (i v dashboardu) přepíná **„viděno"** — kolečko zezelená
+(`--videno`), drží se v localStorage (`akce-videno`, stejná ID jako srdíčka) a synchronizuje
+se mezi kartou a dashboardem (`prepniVideno`, třída `.skore-klik`).
+
+Klik na kartu otevře **fullscreen dashboard filmu** (`otevriDashboardFilmu`, overlay
+`#dashboard-film`, zavírá křížek/Esc): velký trailer (maxres thumbnail s fallbackem),
+plné texty, skóre blok, srdíčko (synchronizované se seznamem přes `prepniSrdce`),
+**wiki box s nalitým obsahem** (viz níže) a **boxíky-rozcestníky** — ty nic nestahují,
+jen staví vyhledávací URL (YouTube/Google/JustWatch/ČSFD/IMDb/Letterboxd/Wikipedia)
+z `nazevOrig + rok + rezie` a otevírají je v novém tabu. Dole pás příbuzných: další filmy
+režiséra, fallback „podobný vibe" (stejný hlavní žánr, ±15 let); tiles otevírají další
+dashboardy. Trailery mají ověřené URL (skript přes YouTube oEmbed; ~99,5 % pokrytí).
+
+**Wiki box a IMDb odkaz = jediné dvě povolené API výjimky v appce** (viz Tvrdá pravidla):
+
+- **Wiki box**: dashboard po otevření dotáhne z Wikipedie intro extract + hlavní
+  obrázek (plakát) + URL článku. Jeden dotaz na action API (`generator=search` +
+  `extracts|pageimages|info`, **nutné `pilicense=any`** — filmové plakáty jsou non-free
+  a bez toho nechodí), EN primárně, CS fallback, cache per film (`WIKI_CACHE`), async
+  dolití s guardem na přepnutí filmu (`naplnWikiBox`). Selhání = decentní hláška.
+- **IMDb**: boxík v Profilech startuje jako fallback `imdb.com/find` a async se
+  přepne na přímý odkaz na film (`naplnImdbBox` → `imdbId`), přes IMDb vlastní
+  **suggest endpoint** `v2.sg.media-imdb.com/suggestion/<písmeno>/<slug>.json`
+  (CORS povolený — používá ho jejich vlastní našeptávač, bez klíče). Matchuje se
+  podle roku (`film.rok`), tolerance ±1 rok, bez shody zůstane fallback link.
+- **ČSFD, Rotten Tomatoes, Metacritic nemají veřejné CORS API** (ověřeno), zůstávají
+  jako site-scoped Google odkazy (`site:csfd.cz/film`, `site:rottentomatoes.com/m`,
+  `site:metacritic.com/movie` + název + rok) — spolehlivější než fuzzy search
+  jednotlivých webů u běžných názvů (Solaris, Stalker apod.).
+
 ## JSON kontrakt — výstavy
 
 Soubor `data/vystavy.json`. Výstava je jinej tvar než film — nemá veřejná hodnocení,
@@ -246,11 +323,12 @@ popis + jednověté doporučení, dole datum rozmezí + galerie (odkaz) a klikac
 
 ## JSON kontrakt — termínové typy (koncerty i divadlo)
 
-**Termínové typy** (koncerty klasika/Jazz&Blues, divadlo, party) sdílí **jeden tvar i jednu kartu** —
-mají termín(y), místo, thumbnail, `autor` a žádná veřejná hodnocení; liší se jen slugem/souborem,
-zdrojem a barvou akcentu. Klasika = `data/koncerty_klasika.json` (akcent modrá), Jazz&Blues =
-`data/koncerty_jazzblues.json` (fialová), divadlo = `data/divadlo.json` (červená), party =
-`data/party.json` (oranžová). Pole se jmenuje podle slugu (`koncerty`/`divadlo`/`party`). Struktura
+**Termínové typy** (koncerty klasika/Jazz&Blues, divadlo, party, psychoterapie) sdílí **jeden tvar
+i jednu kartu** — mají termín(y), místo, thumbnail, `autor` a žádná veřejná hodnocení; liší se jen
+slugem/souborem, zdrojem a barvou akcentu. Klasika = `data/koncerty_klasika.json` (akcent modrá),
+Jazz&Blues = `data/koncerty_jazzblues.json` (fialová), divadlo = `data/divadlo.json` (červená),
+party = `data/party.json` (oranžová), psychoterapie = `data/odborne_psychoterapie.json` (teal).
+Pole se jmenuje podle slugu (`koncerty`/`divadlo`/`party`/`odborne_psychoterapie`). Struktura
 je jako výstava, ale bez `nazevOrig`, s `autor`/`cas` a volitelným polem `terminy`:
 
 ```json
@@ -344,7 +422,10 @@ je společný vstup pro AI výběr; drží se odděleně, protože se cizeluje d
 
 - Vanilla HTML/CSS/JS. **Žádný React, žádný build step, žádné npm závislosti**, ať to na
   GitHub Pages běží jako prostý statický web.
-- Appka **nikdy nevolá žádné AI ani API.** Jen čte lokální JSON.
+- Appka **nikdy nevolá žádné AI ani API.** Jen čte lokální JSON. **Dvě výjimky:**
+  dashboard filmotéky smí dotáhnout obsah z Wikipedie a přímé ID z IMDb suggest
+  endpointu (obojí otevřené API bez klíče, CORS, deterministické, bez AI) — nic
+  dalšího, žádné další služby.
 - Když nějaké pole v JSONu chybí nebo je `null`, appka to musí elegantně přežít (zobrazit
   „—" nebo pole skrýt), ne spadnout.
 - Kód drž čitelný a komentovaný, ať se v tom Bob (vibe-coder) vyzná a umí si drobnost upravit sám.

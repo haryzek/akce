@@ -1300,7 +1300,23 @@ a.vystava-thumb:hover .vystava-obrazek {
     grid-auto-rows: auto;
   }
   .rychle-volby { justify-content: center; } /* po zalomení ať visí uprostřed, ne u levého okraje */
-  .ovladaci-datum { flex-wrap: wrap; } /* Od/Do data vedle sebe je na nejužších telefonech těsné */
+  /* Od data / Do data zarovnané stejně jako Typ akce / Řadit podle nad tím —
+     stejný recept (flex:1 sloupce + width:100% na inputu), ať dropy lícují. */
+  .ovladaci-datum {
+    width: 100%;
+    max-width: 20rem;
+    gap: 0.8rem; /* stejný odstup jako .typ-razeni-radek nad tím (base pravidlo má 0.4rem) */
+  }
+
+  .ovladaci-datum .ovladaci-skupina {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .ovladaci-datum input[type="date"] {
+    width: 100%;
+    min-width: 0;
+  }
   #hledani-doma { min-width: 0; width: 100%; } /* fixní min-width by na úzkém displeji přetekl */
 
   /* Celý blok filtrů (typ/řazení/datum/rychlá volba) je dlouhý — na mobilu by

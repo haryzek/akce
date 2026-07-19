@@ -23,6 +23,10 @@ html, body {
   color: var(--text);
   font-family: "Georgia", "Iowan Old Style", "Charter", serif;
   line-height: 1.5;
+  /* pojistka na mobil: kdyby se cokoliv (i omylem) roztáhlo přes šířku okna,
+     ať to jen zmizí za okraj, ne aby si celá stránka nechala prohlížečem
+     "zazoomovat" pryč kvůli jednomu přetékajícímu prvku (viz .rychle-volby) */
+  overflow-x: hidden;
 }
 
 .hlavicka {
@@ -56,6 +60,18 @@ html, body {
   justify-content: center;
   gap: 1.2rem;
   font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Na desktopu je .ovladaci-obsah jen neviditelný obal — display:contents ho
+   z krabicového modelu úplně vyjme, takže jeho potomci (typ/řazení/datum/rychlá
+   volba) jedou jako přímé položky .ovladaci-panel přesně jako předtím, než
+   sbalování na mobilu vůbec přibylo. Hamburger se ukáže až v mobilní media query. */
+.ovladaci-obsah {
+  display: contents;
+}
+
+.menu-tlacitko {
+  display: none;
 }
 
 .ovladaci-skupina {
@@ -121,6 +137,8 @@ html, body {
 .rychle-volby {
   display: flex;
   align-items: center;
+  flex-wrap: wrap; /* na mobilu se 10 tlačítek/ikon do jednoho řádku nevejde — ať se zalomí,
+                       ne aby roztáhla celou stránku do strany (desktop se nezalamuje, viz níž) */
   gap: 0.3rem; /* těsněji — po přidání pásu se lišta nesmí přelévat na druhý řádek */
 }
 
@@ -162,6 +180,9 @@ html, body {
   display: flex;
   flex-direction: column;
   gap: 0.9rem;
+  min-width: 0; /* grid položky mají defaultně min-width:auto = nesmrsknou se pod
+                   obsah (dlouhý nezalomitelný text uvnitř) — na mobilu to bez
+                   tohohle roztáhne celou kartu (a s ní stránku) do strany */
   transition: background 0.15s ease, border-color 0.15s ease;
 }
 
@@ -1259,4 +1280,64 @@ a.vystava-thumb:hover .vystava-obrazek {
   .hlavicka { padding: 2rem 1.2rem 1rem; }
   .ovladaci-panel, .seznam-akci { padding-left: 1.2rem; padding-right: 1.2rem; }
   .seznam-akci { grid-template-columns: 1fr; }
+  .rychle-volby { justify-content: center; } /* po zalomení ať visí uprostřed, ne u levého okraje */
+  .ovladaci-datum { flex-wrap: wrap; } /* Od/Do data vedle sebe je na nejužších telefonech těsné */
+  #hledani-doma { min-width: 0; width: 100%; } /* fixní min-width by na úzkém displeji přetekl */
+
+  /* Celý blok filtrů (typ/řazení/datum/rychlá volba) je dlouhý — na mobilu by
+     zabral skoro celou obrazovku ještě před první kartou. Schová se za hamburger,
+     hledací pole filmotéky (mimo tenhle obal, viz HTML) zůstává vidět pořád. */
+  .ovladaci-panel {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .menu-tlacitko {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    max-width: 20rem;
+    justify-content: center;
+    background: var(--bg-karta);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.65rem 1.2rem;
+    color: var(--text);
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+
+  .menu-tlacitko svg {
+    width: 1.1rem;
+    height: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .menu-tlacitko.aktivni {
+    border-color: var(--akcent);
+    color: var(--akcent);
+  }
+
+  .ovladaci-obsah {
+    display: none; /* přepíná JS přidáním/odebráním .otevreno (viz init) */
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .ovladaci-obsah.otevreno {
+    display: flex;
+  }
+
+  /* .zaloha-skupina má na desktopu align-self:flex-end (zarovnání DOLŮ na úroveň
+     selectů v řádku) — ve sloupcovém mobilním layoutu by tohle znamenalo zarovnání
+     DOPRAVA (flex-end je v column flow na příčné ose vodorovné). Chceme na střed
+     jako ostatní skupiny. */
+  .zaloha-skupina {
+    align-self: center;
+  }
 }

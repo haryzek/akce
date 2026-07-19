@@ -1376,6 +1376,18 @@ async function init() {
   naplnFiltrTypu();
   prekresli();
 
+  // Hamburger na mobilu (schovaný na desktopu přes CSS): sbaluje/rozbaluje blok
+  // typ/řazení/datum/rychlá volba. Hledací pole filmotéky je schválně mimo tenhle
+  // obal (viz HTML) — zůstává vidět i po sbalení.
+  const menuTlacitko = document.getElementById("menu-prepinac");
+  const ovladaciObsah = document.getElementById("ovladaci-obsah");
+  menuTlacitko.addEventListener("click", () => {
+    const otevreno = ovladaciObsah.classList.toggle("otevreno");
+    menuTlacitko.classList.toggle("aktivni", otevreno);
+    menuTlacitko.setAttribute("aria-expanded", otevreno);
+    menuTlacitko.querySelector(".menu-text").textContent = otevreno ? "Zavřít filtry" : "Filtry a řazení";
+  });
+
   // Export/import zálohy: primárně tiché čtení/zápis do vybrané složky (viz výše),
   // se spadnutím na klasické stažení/nahrání, když API chybí NEBO cokoliv selže
   // (zrušený výběr složky bereme jako "AbortError" a nic nehlásíme — to je normální

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Artovky</title>
-<link rel="stylesheet" href="css/style.css?v=14">
+<link rel="stylesheet" href="css/style.css?v=18">
 </head>
 <body>
 
@@ -13,83 +13,100 @@
   </header>
 
   <section class="ovladaci-panel">
-    <!-- vyhledávání pro režim "filmy na doma" — v běžném režimu skryté (CSS přes body.rezim-doma) -->
+    <!-- vyhledávání pro režim "filmy na doma" — v běžném režimu skryté (CSS přes body.rezim-doma).
+         Schválně MIMO sbalitelný .ovladaci-obsah: je to hlavní ovládací prvek filmotéky,
+         na mobilu musí zůstat vidět i po sbalení zbytku filtrů do hamburgeru. -->
     <div class="ovladaci-skupina skupina-hledani">
       <label for="hledani-doma">Hledat</label>
       <input type="search" id="hledani-doma" placeholder="Film, režisér, rok, žánr…" autocomplete="off">
     </div>
 
-    <!-- zálohování localStorage (oblíbené + viděné filmy) — dvojice ikon, pro případ smazání -->
-    <div class="zaloha-skupina">
-      <button type="button" id="export-zaloha" class="export-tlacitko"
-              title="Uložit zálohu (poprvé vybereš složku, pak už jen klik; Chrome/Edge)"
-              aria-label="Uložit zálohu">
-        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor"
-             stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 3v12"/>
-          <path d="M7 11l5 5 5-5"/>
-          <path d="M4 19h16"/>
-        </svg>
-      </button>
-      <!-- nahraje zálohu zpět (sloučí s aktuálním stavem, nic nemaže) -->
-      <button type="button" id="import-zaloha" class="export-tlacitko"
-              title="Načíst zálohu (ze stejné vybrané složky; Chrome/Edge)"
-              aria-label="Načíst zálohu">
-        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor"
-             stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 15V3"/>
-          <path d="M7 7l5-5 5 5"/>
-          <path d="M4 19h16"/>
-        </svg>
-      </button>
-      <input type="file" id="import-soubor" accept="application/json,.json" hidden>
-    </div>
+    <!-- hamburger: jen na mobilu (CSS), sbaluje/rozbaluje .ovladaci-obsah níže -->
+    <button type="button" id="menu-prepinac" class="menu-tlacitko" aria-expanded="false" aria-controls="ovladaci-obsah">
+      <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor"
+           stroke-width="1.8" stroke-linecap="round">
+        <path d="M4 6h16"/>
+        <path d="M4 12h16"/>
+        <path d="M4 18h16"/>
+      </svg>
+      <span class="menu-text">Filtry a řazení</span>
+    </button>
 
-    <div class="ovladaci-skupina skupina-typ">
-      <label for="filtr-typ">Typ akce</label>
-      <select id="filtr-typ">
-        <option value="vse">Vše</option>
-        <!-- další typy (kvízy, koncerty...) se doplní automaticky podle dat -->
-      </select>
-    </div>
+    <!-- zbytek ovládání: na desktopu vždy vidět (display:contents — chová se jako by tu
+         obal ani nebyl), na mobilu skryté, dokud se neotevře hamburger nahoře -->
+    <div class="ovladaci-obsah" id="ovladaci-obsah">
+      <!-- zálohování localStorage (oblíbené + viděné filmy) — dvojice ikon, pro případ smazání -->
+      <div class="zaloha-skupina">
+        <button type="button" id="export-zaloha" class="export-tlacitko"
+                title="Uložit zálohu (poprvé vybereš složku, pak už jen klik; Chrome/Edge)"
+                aria-label="Uložit zálohu">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor"
+               stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3v12"/>
+            <path d="M7 11l5 5 5-5"/>
+            <path d="M4 19h16"/>
+          </svg>
+        </button>
+        <!-- nahraje zálohu zpět (sloučí s aktuálním stavem, nic nemaže) -->
+        <button type="button" id="import-zaloha" class="export-tlacitko"
+                title="Načíst zálohu (ze stejné vybrané složky; Chrome/Edge)"
+                aria-label="Načíst zálohu">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor"
+               stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 15V3"/>
+            <path d="M7 7l5-5 5 5"/>
+            <path d="M4 19h16"/>
+          </svg>
+        </button>
+        <input type="file" id="import-soubor" accept="application/json,.json" hidden>
+      </div>
 
-    <div class="ovladaci-skupina skupina-razeni">
-      <label for="razeni">Řadit podle</label>
-      <select id="razeni">
-        <option value="estetickeSkore">Estet. skóre</option>
-        <option value="vazenePrumer">Vážené skóre</option>
-        <option value="datum">Datum nejblíž</option>
-      </select>
-    </div>
+      <div class="ovladaci-skupina skupina-typ">
+        <label for="filtr-typ">Typ akce</label>
+        <select id="filtr-typ">
+          <option value="vse">Vše</option>
+          <!-- další typy (kvízy, koncerty...) se doplní automaticky podle dat -->
+        </select>
+      </div>
 
-    <div class="ovladaci-datum">
-      <div class="ovladaci-skupina">
-        <label for="filtr-od">Od data</label>
-        <input type="date" id="filtr-od">
+      <div class="ovladaci-skupina skupina-razeni">
+        <label for="razeni">Řadit podle</label>
+        <select id="razeni">
+          <option value="estetickeSkore">Estet. skóre</option>
+          <option value="vazenePrumer">Vážené skóre</option>
+          <option value="datum">Datum nejblíž</option>
+        </select>
+      </div>
+
+      <div class="ovladaci-datum">
+        <div class="ovladaci-skupina">
+          <label for="filtr-od">Od data</label>
+          <input type="date" id="filtr-od">
+        </div>
+
+        <div class="ovladaci-skupina">
+          <label for="filtr-do">Do data</label>
+          <input type="date" id="filtr-do">
+        </div>
       </div>
 
       <div class="ovladaci-skupina">
-        <label for="filtr-do">Do data</label>
-        <input type="date" id="filtr-do">
-      </div>
-    </div>
-
-    <div class="ovladaci-skupina">
-      <label>Rychlá volba</label>
-      <div class="rychle-volby">
-        <button type="button" data-rozsah="dnes" title="Dnes">D</button>
-        <button type="button" data-rozsah="zitra" title="Zítra">Z</button>
-        <button type="button" data-rozsah="tyden" title="Tento týden">T</button>
-        <button type="button" data-rozsah="pristi-tyden" title="Příští týden">&gt;T</button>
-        <button type="button" data-rozsah="mesic" title="Tento měsíc">M</button>
-        <button type="button" data-rozsah="pristi-mesic" title="Příští měsíc">&gt;M</button>
-        <button type="button" data-rozsah="vse" title="Vše">Vše</button>
-        <!-- přepínač: aktivní (žlutý) = zobrazí jen akce označené srdíčkem -->
-        <button type="button" id="filtr-oblibene" class="srdce srdce-filtr" aria-label="Zobrazit jen oblíbené" aria-pressed="false"></button>
-        <!-- přepínač: aktivní (žlutý) = zobrazí jen akce s estetickým skóre 80 a výš -->
-        <button type="button" id="filtr-top" class="hvezda hvezda-filtr" aria-label="Zobrazit jen skóre 80 a výš" aria-pressed="false"></button>
-        <!-- přepínač: aktivní (žlutý) = režim "filmy na doma" (filmotéka mimo běžné filtry) -->
-        <button type="button" id="rezim-doma" class="pas pas-filtr" aria-label="Filmy na doma" aria-pressed="false" title="Filmy na doma"></button>
+        <label>Rychlá volba</label>
+        <div class="rychle-volby">
+          <button type="button" data-rozsah="dnes" title="Dnes">D</button>
+          <button type="button" data-rozsah="zitra" title="Zítra">Z</button>
+          <button type="button" data-rozsah="tyden" title="Tento týden">T</button>
+          <button type="button" data-rozsah="pristi-tyden" title="Příští týden">&gt;T</button>
+          <button type="button" data-rozsah="mesic" title="Tento měsíc">M</button>
+          <button type="button" data-rozsah="pristi-mesic" title="Příští měsíc">&gt;M</button>
+          <button type="button" data-rozsah="vse" title="Vše">Vše</button>
+          <!-- přepínač: aktivní (žlutý) = zobrazí jen akce označené srdíčkem -->
+          <button type="button" id="filtr-oblibene" class="srdce srdce-filtr" aria-label="Zobrazit jen oblíbené" aria-pressed="false"></button>
+          <!-- přepínač: aktivní (žlutý) = zobrazí jen akce s estetickým skóre 80 a výš -->
+          <button type="button" id="filtr-top" class="hvezda hvezda-filtr" aria-label="Zobrazit jen skóre 80 a výš" aria-pressed="false"></button>
+          <!-- přepínač: aktivní (žlutý) = režim "filmy na doma" (filmotéka mimo běžné filtry) -->
+          <button type="button" id="rezim-doma" class="pas pas-filtr" aria-label="Filmy na doma" aria-pressed="false" title="Filmy na doma"></button>
+        </div>
       </div>
     </div>
   </section>
@@ -104,6 +121,6 @@
     <p>Data generuje Cowork, appka je jen tupý renderer.</p>
   </footer>
 
-<script src="js/app.js?v=25"></script>
+<script src="js/app.js?v=26"></script>
 </body>
 </html>

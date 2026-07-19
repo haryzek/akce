@@ -419,8 +419,12 @@ cena, a „(N)" popup na další termíny jako u filmů.
 - Klid, žádný křik, žádné gradientové cirkusy. Elegance přes zdrženlivost.
 - Estetické skóre ať je vizuálně čitelné na první pohled (to je hlavní řadicí a rozhodovací
   metrika).
-- Desktop first (hlavní použití domácí komp), ale ať to není rozbité na mobilu (responsivní
-  aspoň basic).
+- Desktop first (hlavní použití domácí komp), ale ať to není rozbité na mobilu — pod 600px
+  (`@media` na konci `style.css`) se filtry sbalí za hamburger (`menu-prepinac` →
+  `#ovladaci-obsah.otevreno`), hledací pole filmotéky zůstává vidět i po sbalení
+  (mimo sbalitelný obal, je to hlavní ovládací prvek toho režimu). Past, na kterou
+  narazit znovu: grid/flex položky mají default `min-width:auto`, takže se nesmrsknou
+  pod svůj obsah — `.karta` proto má `min-width: 0` explicitně.
 - Dobrá čitelnost > efekty.
 
 ## Jak plnit data (provozní postup)

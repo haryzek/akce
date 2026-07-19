@@ -4,7 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Artovky</title>
-<link rel="stylesheet" href="css/style.css?v=18">
+
+<!-- ikonky appky (žlutý filmový pás na tmavém pozadí — viz favicon.svg, generováno
+     přes scratchpad/vykresli_ikonu.py z geometrie IKONA_PAS v app.js). SVG pro
+     ostré zobrazení v tabu, PNG fallbacky pro Apple/Android "přidat na plochu". -->
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#14151a">
+
+<link rel="stylesheet" href="css/style.css?v=20">
 </head>
 <body>
 
@@ -21,21 +31,26 @@
       <input type="search" id="hledani-doma" placeholder="Film, režisér, rok, žánr…" autocomplete="off">
     </div>
 
-    <!-- hamburger: jen na mobilu (CSS), sbaluje/rozbaluje .ovladaci-obsah níže -->
-    <button type="button" id="menu-prepinac" class="menu-tlacitko" aria-expanded="false" aria-controls="ovladaci-obsah">
-      <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor"
-           stroke-width="1.8" stroke-linecap="round">
-        <path d="M4 6h16"/>
-        <path d="M4 12h16"/>
-        <path d="M4 18h16"/>
-      </svg>
-      <span class="menu-text">Filtry a řazení</span>
-    </button>
+    <!-- hamburger + (jen na mobilu) sem JS přesune hvězdu a pás z rychlé volby níže,
+         ať jsou vidět bez otevírání menu — .menu-radek je na desktopu display:contents,
+         takže ho tam vůbec "necítit" (oba potomci tam stejně display:none). -->
+    <div class="menu-radek">
+      <button type="button" id="menu-prepinac" class="menu-tlacitko" aria-expanded="false" aria-controls="ovladaci-obsah">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor"
+             stroke-width="1.8" stroke-linecap="round">
+          <path d="M4 6h16"/>
+          <path d="M4 12h16"/>
+          <path d="M4 18h16"/>
+        </svg>
+        <span class="menu-text">Filtry a řazení</span>
+      </button>
+      <div class="mobilni-prepinace" id="mobilni-prepinace"></div>
+    </div>
 
     <!-- zbytek ovládání: na desktopu vždy vidět (display:contents — chová se jako by tu
          obal ani nebyl), na mobilu skryté, dokud se neotevře hamburger nahoře -->
     <div class="ovladaci-obsah" id="ovladaci-obsah">
-      <!-- zálohování localStorage (oblíbené + viděné filmy) — dvojice ikon, pro případ smazání -->
+      <!-- zálohování localStorage — na mobilu schované (viz media query), na desktopu beze změny -->
       <div class="zaloha-skupina">
         <button type="button" id="export-zaloha" class="export-tlacitko"
                 title="Uložit zálohu (poprvé vybereš složku, pak už jen klik; Chrome/Edge)"
@@ -61,21 +76,24 @@
         <input type="file" id="import-soubor" accept="application/json,.json" hidden>
       </div>
 
-      <div class="ovladaci-skupina skupina-typ">
-        <label for="filtr-typ">Typ akce</label>
-        <select id="filtr-typ">
-          <option value="vse">Vše</option>
-          <!-- další typy (kvízy, koncerty...) se doplní automaticky podle dat -->
-        </select>
-      </div>
+      <!-- na mobilu vedle sebe (viz media query), na desktopu display:contents = beze změny -->
+      <div class="typ-razeni-radek">
+        <div class="ovladaci-skupina skupina-typ">
+          <label for="filtr-typ">Typ akce</label>
+          <select id="filtr-typ">
+            <option value="vse">Vše</option>
+            <!-- další typy (kvízy, koncerty...) se doplní automaticky podle dat -->
+          </select>
+        </div>
 
-      <div class="ovladaci-skupina skupina-razeni">
-        <label for="razeni">Řadit podle</label>
-        <select id="razeni">
-          <option value="estetickeSkore">Estet. skóre</option>
-          <option value="vazenePrumer">Vážené skóre</option>
-          <option value="datum">Datum nejblíž</option>
-        </select>
+        <div class="ovladaci-skupina skupina-razeni">
+          <label for="razeni">Řadit podle</label>
+          <select id="razeni">
+            <option value="estetickeSkore">Estet. skóre</option>
+            <option value="vazenePrumer">Vážené skóre</option>
+            <option value="datum">Datum nejblíž</option>
+          </select>
+        </div>
       </div>
 
       <div class="ovladaci-datum">
@@ -121,6 +139,6 @@
     <p>Data generuje Cowork, appka je jen tupý renderer.</p>
   </footer>
 
-<script src="js/app.js?v=26"></script>
+<script src="js/app.js?v=27"></script>
 </body>
 </html>

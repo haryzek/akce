@@ -16,6 +16,10 @@ akce/
 ├── index.html               # jediná stránka, vanilla, žádný build
 ├── css/style.css            # styly
 ├── js/app.js                # renderer + filtry + řazení
+├── favicon.svg, favicon-32.png, apple-touch-icon.png, manifest.json,
+│   icons/icon-192.png, icon-512.png  # ikonky appky (žlutý pás na tmavém
+│   pozadí — tvar 1:1 podle IKONA_PAS v app.js); PNG vygenerované jednorázově
+│   přes Pillow ze samých obdélníků (žádné křivky), ne ručně kreslené
 ├── data/                    # HOTOVÉ JSONy pro appku (jde na GitHub Pages)
 │   ├── filmy.json           # plní Cowork/ChatGPT (viz kontrakt níže)
 │   ├── vystavy.json         # plní Cowork (viz kontrakt níže)
@@ -425,6 +429,11 @@ cena, a „(N)" popup na další termíny jako u filmů.
   (mimo sbalitelný obal, je to hlavní ovládací prvek toho režimu). Past, na kterou
   narazit znovu: grid/flex položky mají default `min-width:auto`, takže se nesmrsknou
   pod svůj obsah — `.karta` proto má `min-width: 0` explicitně.
+  Na mobilu navíc: hvězda a pás (časté přepínače režimu) se JS přesouvají vedle
+  hamburgeru (`aktualizujUmisteniPrepinacu`, přes `matchMedia("(max-width:600px)")`
+  — přesouvá stejný DOM uzel, ne kopii, žádné duplicitní ID/stav), export/import
+  zálohy jsou na mobilu schované (`display:none`, dostupné jen na desktopu), typ
+  akce a řazení jdou vedle sebe (`.typ-razeni-radek`).
 - Dobrá čitelnost > efekty.
 
 ## Jak plnit data (provozní postup)

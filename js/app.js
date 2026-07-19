@@ -1388,6 +1388,29 @@ async function init() {
     menuTlacitko.querySelector(".menu-text").textContent = otevreno ? "Zavřít filtry" : "Filtry a řazení";
   });
 
+  // Na mobilu (≤600px) se hvězda ("jen špička") a pás (filmotéka) přesunou vedle
+  // hamburgeru, ať jsou vidět bez otevírání menu — jsou to přepínače režimu, na
+  // rozdíl od typu/řazení/data se sahá často. Přesouvá se ten samý DOM uzel (ne
+  // kopie), takže si nese aktivní stav i navěšený listener s sebou — žádná
+  // duplicitní ID, žádné ruční syncování dvou tlačítek.
+  const hvezdaTlacitko = document.getElementById("filtr-top");
+  const pasTlacitko = document.getElementById("rezim-doma");
+  const srdceTlacitko = document.getElementById("filtr-oblibene"); // kotva pro návrat na desktopu
+  const mobilniPrepinace = document.getElementById("mobilni-prepinace");
+  const jeMobil = window.matchMedia("(max-width: 600px)");
+
+  function aktualizujUmisteniPrepinacu() {
+    if (jeMobil.matches) {
+      mobilniPrepinace.append(hvezdaTlacitko, pasTlacitko);
+    } else if (srdceTlacitko.nextElementSibling !== hvezdaTlacitko) {
+      // vrátit zpět do rychlé volby, za srdíčko, v původním pořadí
+      srdceTlacitko.after(hvezdaTlacitko, pasTlacitko);
+    }
+  }
+
+  aktualizujUmisteniPrepinacu();
+  jeMobil.addEventListener("change", aktualizujUmisteniPrepinacu);
+
   // Export/import zálohy: primárně tiché čtení/zápis do vybrané složky (viz výše),
   // se spadnutím na klasické stažení/nahrání, když API chybí NEBO cokoliv selže
   // (zrušený výběr složky bereme jako "AbortError" a nic nehlásíme — to je normální

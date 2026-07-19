@@ -74,6 +74,16 @@ html, body {
   display: none;
 }
 
+/* obaly nové jen kvůli mobilnímu rozložení — na desktopu se nesmí nijak projevit */
+.menu-radek,
+.typ-razeni-radek {
+  display: contents;
+}
+
+.mobilni-prepinace {
+  display: none;
+}
+
 .ovladaci-skupina {
   display: flex;
   flex-direction: column;
@@ -1279,7 +1289,16 @@ a.vystava-thumb:hover .vystava-obrazek {
 @media (max-width: 600px) {
   .hlavicka { padding: 2rem 1.2rem 1rem; }
   .ovladaci-panel, .seznam-akci { padding-left: 1.2rem; padding-right: 1.2rem; }
-  .seznam-akci { grid-template-columns: 1fr; }
+  .seznam-akci {
+    grid-template-columns: 1fr;
+    /* Past: grid-auto-rows:1fr (desktop, viz výše) v jednosloupcovém gridu
+       nesrovnává výšku jen v rámci řádku (tam je vždycky jen jedna karta), ale
+       všechny karty na nejvyšší z CELÉHO datasetu — proto u kratších popisů
+       zela obří mezera před trailerem (margin-top:auto na .projekce-blok ji
+       natáhl). Na mobilu chceme přesný opak desktopu: každá karta ať má
+       výšku podle vlastního obsahu. */
+    grid-auto-rows: auto;
+  }
   .rychle-volby { justify-content: center; } /* po zalomení ať visí uprostřed, ne u levého okraje */
   .ovladaci-datum { flex-wrap: wrap; } /* Od/Do data vedle sebe je na nejužších telefonech těsné */
   #hledani-doma { min-width: 0; width: 100%; } /* fixní min-width by na úzkém displeji přetekl */
@@ -1333,11 +1352,57 @@ a.vystava-thumb:hover .vystava-obrazek {
     display: flex;
   }
 
-  /* .zaloha-skupina má na desktopu align-self:flex-end (zarovnání DOLŮ na úroveň
-     selectů v řádku) — ve sloupcovém mobilním layoutu by tohle znamenalo zarovnání
-     DOPRAVA (flex-end je v column flow na příčné ose vodorovné). Chceme na střed
-     jako ostatní skupiny. */
+  /* .zaloha-skupina by na desktopu měla align-self:flex-end — na mobilu je ale
+     celá schovaná (viz display:none níže), takže na tom nezáleží. */
   .zaloha-skupina {
-    align-self: center;
+    display: none; /* export/import na mobilu pryč — dostupné jen na desktopu */
+  }
+
+  /* Řádek s hamburgerem: na mobilu do jedné řady s hvězdou a pásem (JS je sem
+     přesune z rychlé volby, viz aktualizujUmisteniPrepinacu v app.js) — hamburger
+     zabere zbylý prostor, ikony vedle něj si drží svou přirozenou velikost. */
+  .menu-radek {
+    display: flex;
+    align-items: stretch;
+    gap: 0.5rem;
+    width: 100%;
+    max-width: 20rem;
+  }
+
+  .menu-tlacitko {
+    max-width: none;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .mobilni-prepinace {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    flex-shrink: 0;
+    background: var(--bg-karta);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0 0.6rem;
+  }
+
+  /* Typ akce + Řadit podle vedle sebe (dvě menší skupiny, ať nezaberou o řádek
+     navíc); selecty min-width:0 + 100% ať se poctivě smrsknou na svou polovinu
+     prostoru, ne aby přetekly (stejná past jako u karet — viz .karta výše). */
+  .typ-razeni-radek {
+    display: flex;
+    gap: 0.8rem;
+    width: 100%;
+    max-width: 20rem;
+  }
+
+  .typ-razeni-radek .ovladaci-skupina {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .typ-razeni-radek select {
+    width: 100%;
+    min-width: 0;
   }
 }

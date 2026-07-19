@@ -143,6 +143,140 @@ function vykresliSrdce(id, jeOblibene) {
   return `<button type="button" class="srdce${stav}" data-id="${encodeURIComponent(id)}" aria-label="Oblíbené" aria-pressed="${jeOblibene}">${IKONA_SRDCE}</button>`;
 }
 
+// ---- automatická záloha do místní složky (File System Access API) ----
+// Jen Chrome/Edge (žádný server, appka je statická — tohle je nejblíž "appka si
+// sama čte/píše na disk", co bezpečnostní model prohlížeče vůbec dovolí). První
+// klik ukáže systémový výběr složky (Bob v něm ručně najde a vybere `local/` —
+// API neumí dialog na cestu navést), handle se uloží do IndexedDB a příště se
+// znovu použije bez ptaní. Kde API není (Firefox/Safari/mobil), spadne se potichu
+// na klasické stažení/nahrání (exportujZalohu/naimportujZalohu níže).
+const ZALOHA_SOUBOR = "akce-zaloha.json"; // pevné jméno = v local/ vždy jen "poslední verze"
+const PODPORA_FS_API = "showDirectoryPicker" in window;
+
+function otevriZalohaDb() {
+  return new Promise((resolve, reject) => {
+    const pozadavek = indexedDB.open("akce-zaloha-db", 1);
+    pozadavek.onupgradeneeded = () => pozadavek.result.createObjectStore("handles");
+    pozadavek.onsuccess = () => resolve(pozadavek.result);
+    pozadavek.onerror = () => reject(pozadavek.error);
+  });
+}
+
+async function nactiUlozenouSlozku() {
+  try {
+    const db = await otevriZalohaDb();
+    return await new Promise((resolve, reject) => {
+      const tx = db.transaction("handles", "readonly");
+      const ziskej = tx.objectStore("handles").get("slozka");
+      ziskej.onsuccess = () => resolve(ziskej.result || null);
+      ziskej.onerror = () => reject(ziskej.error);
+    });
+  } catch {
+    return null; // IndexedDB nedostupné (privátní režim apod.) — příště se prostě zase zeptá
+  }
+}
+
+async function ulozSlozku(handle) {
+  try {
+    const db = await otevriZalohaDb();
+    await new Promise((resolve, reject) => {
+      const tx = db.transaction("handles", "readwrite");
+      tx.objectStore("handles").put(handle, "slozka");
+      tx.oncomplete = resolve;
+      tx.onerror = () => reject(tx.error);
+    });
+  } catch {
+    /* nevadí, jen se handle nezapamatuje a příští klik znovu ukáže výběr složky */
+  }
+}
+
+// Vrátí handle na složku se zápisovým oprávněním — z paměti (IndexedDB), nebo
+// (poprvé/po odvolání oprávnění) čerstvě přes systémový dialog.
+async function ziskejSlozkuZalohy() {
+  const ulozeny = await nactiUlozenouSlozku();
+  if (ulozeny) {
+    let opravneni = await ulozeny.queryPermission({ mode: "readwrite" });
+    if (opravneni !== "granted") opravneni = await ulozeny.requestPermission({ mode: "readwrite" });
+    if (opravneni === "granted") return ulozeny;
+  }
+  const vybrany = await window.showDirectoryPicker({ mode: "readwrite" });
+  await ulozSlozku(vybrany);
+  return vybrany;
+}
+
+async function exportujZalohuAutomaticky() {
+  const slozka = await ziskejSlozkuZalohy();
+  const zaloha = { exportovanoAt: new Date().toISOString(), oblibene: [...OBLIBENE], videno: [...VIDENO] };
+  const soubor = await slozka.getFileHandle(ZALOHA_SOUBOR, { create: true });
+  const zapis = await soubor.createWritable();
+  await zapis.write(JSON.stringify(zaloha, null, 2));
+  await zapis.close();
+}
+
+async function naimportujZalohuAutomaticky() {
+  const slozka = await ziskejSlozkuZalohy();
+  let handle;
+  try {
+    handle = await slozka.getFileHandle(ZALOHA_SOUBOR);
+  } catch {
+    alert(`Ve vybrané složce zatím není ${ZALOHA_SOUBOR} — nejdřív jednou ulož zálohu (šipka dolů).`);
+    return;
+  }
+  const data = JSON.parse(await (await handle.getFile()).text());
+  const noveOblibene = Array.isArray(data.oblibene) ? data.oblibene : [];
+  const noveVideno = Array.isArray(data.videno) ? data.videno : [];
+  noveOblibene.forEach((id) => OBLIBENE.add(id));
+  noveVideno.forEach((id) => VIDENO.add(id));
+  ulozOblibene();
+  ulozVideno();
+  prekresli();
+}
+
+// Stáhne zálohu localStorage (oblíbené + viděné filmy) jako JSON — pro případ
+// nechtěného smazání. Čte živé Sety (držené synchronně s localStorage při každé
+// změně), ne přímo localStorage, ať export vždy sedí s aktuálním stavem appky.
+// Fallback pro prohlížeče bez File System Access API (viz výše).
+function exportujZalohu() {
+  const zaloha = {
+    exportovanoAt: new Date().toISOString(),
+    oblibene: [...OBLIBENE],
+    videno: [...VIDENO],
+  };
+  const blob = new Blob([JSON.stringify(zaloha, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const odkaz = document.createElement("a");
+  odkaz.href = url;
+  odkaz.download = `akce-zaloha-${new Date().toISOString().slice(0, 10)}.json`;
+  document.body.appendChild(odkaz);
+  odkaz.click();
+  odkaz.remove();
+  URL.revokeObjectURL(url);
+}
+
+// Nahraje zálohu zpět — SLUČUJE s aktuálním stavem (union), nic nemaže. Bezpečné
+// i při omylem druhém nahrání stejného souboru (Set ignoruje duplicity).
+function naimportujZalohu(soubor) {
+  const cteni = new FileReader();
+  cteni.onload = () => {
+    let data;
+    try {
+      data = JSON.parse(cteni.result);
+    } catch {
+      alert("Soubor se nepodařilo přečíst — není to platná záloha appky Akce.");
+      return;
+    }
+    const noveOblibene = Array.isArray(data.oblibene) ? data.oblibene : [];
+    const noveVideno = Array.isArray(data.videno) ? data.videno : [];
+    noveOblibene.forEach((id) => OBLIBENE.add(id));
+    noveVideno.forEach((id) => VIDENO.add(id));
+    ulozOblibene();
+    ulozVideno();
+    prekresli(); // ať se srdíčka/kolečka na obrazovce hned zobrazí správně
+    alert(`Záloha nahrána: ${noveOblibene.length} oblíbených, ${noveVideno.length} viděných (sloučeno s aktuálním stavem).`);
+  };
+  cteni.readAsText(soubor);
+}
+
 // ---- pomocné funkce ----
 
 // "10.07.2026" -> Date objekt, ať se dá řadit/filtrovat
@@ -406,7 +540,8 @@ function vykresliDashTrailer(film) {
       <div class="dash-trailer-slot">
         <button type="button" class="trailer-facade dash-trailer" data-yt-id="${id}" aria-label="Přehrát trailer">
           <img class="trailer-thumb" src="https://i.ytimg.com/vi/${id}/maxresdefault.jpg" alt=""
-               onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/${id}/hqdefault.jpg'">
+               onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/${id}/hqdefault.jpg'"
+               onload="if(this.naturalWidth<=120){this.onload=null;this.src='https://i.ytimg.com/vi/${id}/hqdefault.jpg';}">
           <span class="trailer-play" aria-hidden="true"></span>
         </button>
       </div>`;
@@ -1240,6 +1375,40 @@ async function init() {
   VSECHNY_AKCE = await nactiVsechnaData();
   naplnFiltrTypu();
   prekresli();
+
+  // Export/import zálohy: primárně tiché čtení/zápis do vybrané složky (viz výše),
+  // se spadnutím na klasické stažení/nahrání, když API chybí NEBO cokoliv selže
+  // (zrušený výběr složky bereme jako "AbortError" a nic nehlásíme — to je normální
+  // uživatelovo rozmyšlení, ne chyba).
+  document.getElementById("export-zaloha").addEventListener("click", async () => {
+    if (!PODPORA_FS_API) return exportujZalohu();
+    try {
+      await exportujZalohuAutomaticky();
+    } catch (chyba) {
+      if (chyba.name !== "AbortError") {
+        console.warn("Automatický zápis zálohy selhal, padám na stažení:", chyba);
+        exportujZalohu();
+      }
+    }
+  });
+
+  const importSoubor = document.getElementById("import-soubor");
+  document.getElementById("import-zaloha").addEventListener("click", async () => {
+    if (!PODPORA_FS_API) return importSoubor.click();
+    try {
+      await naimportujZalohuAutomaticky();
+    } catch (chyba) {
+      if (chyba.name !== "AbortError") {
+        console.warn("Automatické čtení zálohy selhalo, padám na výběr souboru:", chyba);
+        importSoubor.click();
+      }
+    }
+  });
+  importSoubor.addEventListener("change", (e) => {
+    const soubor = e.target.files[0];
+    if (soubor) naimportujZalohu(soubor);
+    e.target.value = ""; // reset, ať jde nahrát i ten samý soubor znovu
+  });
 
   document.getElementById("filtr-typ").addEventListener("change", prekresli);
   document.getElementById("razeni").addEventListener("change", prekresli);

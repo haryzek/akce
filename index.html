@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Artovky</title>
-<link rel="stylesheet" href="css/style.css?v=12">
+<link rel="stylesheet" href="css/style.css?v=14">
 </head>
 <body>
 
@@ -17,6 +17,32 @@
     <div class="ovladaci-skupina skupina-hledani">
       <label for="hledani-doma">Hledat</label>
       <input type="search" id="hledani-doma" placeholder="Film, režisér, rok, žánr…" autocomplete="off">
+    </div>
+
+    <!-- zálohování localStorage (oblíbené + viděné filmy) — dvojice ikon, pro případ smazání -->
+    <div class="zaloha-skupina">
+      <button type="button" id="export-zaloha" class="export-tlacitko"
+              title="Uložit zálohu (poprvé vybereš složku, pak už jen klik; Chrome/Edge)"
+              aria-label="Uložit zálohu">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor"
+             stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3v12"/>
+          <path d="M7 11l5 5 5-5"/>
+          <path d="M4 19h16"/>
+        </svg>
+      </button>
+      <!-- nahraje zálohu zpět (sloučí s aktuálním stavem, nic nemaže) -->
+      <button type="button" id="import-zaloha" class="export-tlacitko"
+              title="Načíst zálohu (ze stejné vybrané složky; Chrome/Edge)"
+              aria-label="Načíst zálohu">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor"
+             stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 15V3"/>
+          <path d="M7 7l5-5 5 5"/>
+          <path d="M4 19h16"/>
+        </svg>
+      </button>
+      <input type="file" id="import-soubor" accept="application/json,.json" hidden>
     </div>
 
     <div class="ovladaci-skupina skupina-typ">
@@ -78,6 +104,6 @@
     <p>Data generuje Cowork, appka je jen tupý renderer.</p>
   </footer>
 
-<script src="js/app.js?v=22"></script>
+<script src="js/app.js?v=25"></script>
 </body>
 </html>

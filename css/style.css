@@ -64,6 +64,35 @@ html, body {
   gap: 0.3rem;
 }
 
+/* dvojice ikon export/import zálohy: bez labelu, zarovnaná dolů na úroveň
+   selectů vedle (ostatní skupiny mají nad sebou label, tahle ne), těsně u sebe */
+.zaloha-skupina {
+  display: flex;
+  align-self: flex-end;
+  gap: 0.1rem;
+}
+
+.export-tlacitko {
+  background: none;
+  border: none;
+  padding: 0.4rem;
+  margin-bottom: 0.1rem;
+  cursor: pointer;
+  color: var(--text-jemny);
+  line-height: 0;
+  transition: color 0.15s ease, transform 0.1s ease;
+}
+
+.export-tlacitko svg {
+  width: 1.3rem;
+  height: 1.3rem;
+}
+
+.export-tlacitko:hover {
+  color: var(--text-tlumeny);
+  transform: scale(1.1);
+}
+
 /* Od data + Do data jako jedna jednotka: dropy těsně u sebe (stejný odstup jako
    mezi tlačítky rychlých voleb, 0.4rem), ať menu neroztahují na dvě široké skupiny. */
 .ovladaci-datum {

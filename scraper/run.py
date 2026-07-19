@@ -35,6 +35,15 @@ SUBSCRAPERY = [
     "goout_divadlo",
     "ra_party",     # RA je pro elektroniku bohatší zdroj → jde první, je základ merge
     "goout_party",  # doplní, co RA nemá (a české popisy u akcí, které RA nezná)
+    # odborné akce pro terapeuty — 7 zdrojů, každý jiná mechanika (viz moduly),
+    # sdílené filtry a parsování datumů v scrapers/psychoterapie_common.py
+    "czap_psychoterapie",   # ČAP (Wild Apricot HTML)
+    "cspap_psychoterapie",  # ČSPP (WordPress The Events Calendar API)
+    "csp_psychoterapie",    # ČSP psychoanalýza (TEC API, klon ČSPP)
+    "pvsps_psychoterapie",  # PVŠPS víkendové semináře (e-shop HTML + detaily)
+    "cps_psychoterapie",    # ČPS ČLS JEP (Joomla blog, volný text)
+    "akp_psychoterapie",    # AKP (Google Sites)
+    "ipvz_psychoterapie",   # IPVZ katedra klinické psychologie (JSON API)
 ]
 
 # Agresivní dedup profil per typ akce (viz dedup.py). Typy, které tu nejsou,
@@ -53,6 +62,7 @@ POPISKY_TYPU = {
     "koncerty_jazzblues": "Jazz & Blues (klubová scéna)",
     "divadlo": "Divadlo",
     "party": "Party",
+    "odborne_psychoterapie": "Psychoterapie (odborné akce)",
 }
 
 OUTPUT_DIR = os.path.join(os.path.dirname(__file__), "output")

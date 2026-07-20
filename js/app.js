@@ -902,12 +902,30 @@ function zavriDashboard() {
 
 // Render filmotéky: fulltext filtr + srdíčka/špička + dávkování po DOMA_DAVKA kartách.
 // "Zobrazit další" je poslední prvek gridu a jen zvedne DOMA_LIMIT.
+// Rozebere fulltextový dotaz filmotéky: rozmezí let ("1950-1960", i s pomlčkou/en-dash
+// a mezerami okolo) se vyloupne jako číselný filtr roku, zbytek jede dál substringem.
+// Díky tomu funguje i kombinace "bergman 1950-1960". Prohozené meze se srovnají.
+function rozeberDotazDoma(text) {
+  let rozsahLet = null;
+  const zbytek = text.replace(/(\d{4})\s*[-–]\s*(\d{4})/, (_, od, do_) => {
+    od = Number(od);
+    do_ = Number(do_);
+    rozsahLet = od <= do_ ? [od, do_] : [do_, od];
+    return " ";
+  });
+  return { rozsahLet, dotaz: bezDiakritiky(zbytek.replace(/\s+/g, " ").trim()) };
+}
+
 function prekresliDoma() {
   const kontejner = document.getElementById("seznam-akci");
   const prazdnyStav = document.getElementById("prazdny-stav");
-  const dotaz = bezDiakritiky(HLEDANI_DOMA.trim());
+  const { rozsahLet, dotaz } = rozeberDotazDoma(HLEDANI_DOMA);
 
   const filmy = (FILMY_DOMA || []).filter((f) => {
+    if (rozsahLet) {
+      const rok = Number(f.data.rok);
+      if (!rok || rok < rozsahLet[0] || rok > rozsahLet[1]) return false;
+    }
     if (dotaz && !f.hledaci.includes(dotaz)) return false;
     if (JEN_OBLIBENE && !OBLIBENE.has(domaId(f.data))) return false;
     if (JEN_TOP && (f.data.estetickeSkore ?? -1) < TOP_PRAH) return false;

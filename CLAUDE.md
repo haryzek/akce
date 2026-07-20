@@ -256,6 +256,9 @@ přes **infinite scroll** (zarážka `#doma-zarazka` + `DOMA_OBSERVER`, předsti
 Thumbnaily trailerů jsou `<img loading="lazy">` (ne background-image), takže se stahují
 až u viewportu. Fulltext (`#hledani-doma`) hledá substring bez diakritiky
 v předpočítaném řetězci název+režie+rok+žánr — schválně bez rozlišování polí.
+Jediná výjimka: rozmezí let „1950-1960" (i s en-dash/mezerami, prohozené meze se
+srovnají) se z dotazu vyloupne jako číselný filtr roku (`rozeberDotazDoma`),
+zbytek jede dál substringem → funguje i „bergman 1950-1960".
 Srdíčka mají prefix `filmy_doma::`, takže watchlist se nemíchá s oblíbenými z kin.
 
 Klik na **kolečko skóre** karty (i v dashboardu) přepíná **„viděno"** — kolečko zezelená

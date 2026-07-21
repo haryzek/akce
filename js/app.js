@@ -16,6 +16,7 @@ const ZDROJE_DAT = [
   "data/party.json",
   "data/prednasky.json",
   "data/odborne_psychoterapie.json",
+  "data/picovinky.json",
 ];
 
 // Termínové typy sdílí stejný datový tvar i kartu (koncerty klasika/jazz&blues, divadlo…):
@@ -23,6 +24,7 @@ const ZDROJE_DAT = [
 // zdrojem a barvou akcentu. Ať se nemusí vyjmenovávat na deseti místech, drží se tady.
 const TERMINOVE_TYPY = new Set([
   "koncerty_klasika", "koncerty_jazzblues", "divadlo", "party", "odborne_psychoterapie",
+  "picovinky",
 ]);
 const jeTerminovy = (typ) => TERMINOVE_TYPY.has(typ);
 
@@ -330,6 +332,31 @@ function bezDiakritiky(text) {
 
 // ---- načtení dat ----
 
+// Píčovinky nemají AI krok, kterej by jim dal skóre a popis — druh akce se pozná
+// z názvu a obojí je Bobovo, natvrdo. Název se před porovnáním zbaví diakritiky
+// a všeho kromě písmen a číslic, takže "open mic" / "openmic" / "open-mic" chytne
+// jeden klíč "openmic". První řádek, jehož některý klíč je v názvu, vyhrává.
+// Nový druh píčovinky = přidat řádek sem. Co se nenajde, zůstane bez skóre
+// ("—" v kolečku, mimo špičku) a bez popisu.
+const DRUHY_PICOVINEK = [
+  {
+    klice: ["openmic"],
+    skore: 90,
+    popis: "Čapni kytaru, oslíku, a hurá na věc! Nezapomeň texty a efekťák. A neposer se z toho.",
+  },
+  {
+    klice: ["quiz", "kviz"], // anglicky i česky psaný pub kvíz
+    skore: 70,
+    popis: "Mozek do hrsti, oslíku, a hurá na věc! Možná bys mohl dát dohromady tým, hm?;)",
+  },
+  // { klice: ["deskohrani", "deskovky"], skore: 80, popis: "…" },
+];
+
+function druhPicovinky(nazev) {
+  const n = bezDiakritiky(nazev).replace(/[^a-z0-9]/g, "");
+  return DRUHY_PICOVINEK.find((d) => d.klice.some((k) => n.includes(k))) || null;
+}
+
 async function nactiVsechnaData() {
   const vysledky = await Promise.all(
     ZDROJE_DAT.map(async (cesta) => {
@@ -360,6 +387,16 @@ async function nactiVsechnaData() {
       polozky = klic ? soubor[klic] : [];
     }
     for (const polozka of polozky) {
+      // píčovinky jdou do data/ rovnou ze scraperu (bez AI kroku), takže skóre
+      // a popis se doplňují až tady podle druhu akce v názvu (viz DRUHY_PICOVINEK).
+      // Doplňuje se jen co chybí — popis vyloupnutý scraperem z názvu má přednost.
+      if (typ === "picovinky") {
+        const druh = druhPicovinky(polozka.nazevCz);
+        if (druh) {
+          if (polozka.estetickeSkore == null) polozka.estetickeSkore = druh.skore;
+          if (polozka.popis == null) polozka.popis = druh.popis;
+        }
+      }
       akce.push({ typAkce: typ, data: polozka });
     }
   }
@@ -1270,6 +1307,7 @@ const TERMINOVA_CSS_TRIDA = {
   divadlo: "karta-divadlo",
   party: "karta-party",
   odborne_psychoterapie: "karta-psychoterapie",
+  picovinky: "karta-picovinky",
 };
 
 // Karta termínového typu (koncert/divadlo) = klon výstavní (stejný skeleton), akcent podle typu
@@ -1346,6 +1384,7 @@ function vykresliKartu(polozka, rozsah) {
     case "divadlo":
     case "party":
     case "odborne_psychoterapie":
+    case "picovinky":
       return vykresliKartuTerminu(polozka.data, id, rozsah, polozka.typAkce);
     default:
       return "";
@@ -1382,6 +1421,7 @@ const POPISKY_TYPU = {
   divadlo: "Divadlo",
   party: "Party",
   odborne_psychoterapie: "Psychoterapie",
+  picovinky: "Píčovinky",
 };
 
 // naplní select "Typ akce" podle toho, jaké typy skutečně přišly v datech

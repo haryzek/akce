@@ -1092,6 +1092,10 @@ body.dashboard-otevreny {
   --akcent: #3fb8af; /* klidný teal — konzultovna, mezi modrou koncertů a zelenou výstav */
 }
 
+.karta-picovinky {
+  --akcent: #d8709a; /* tlumená růžová — hravé malé akcičky, sytost jako fialová jazzu */
+}
+
 /* cena koncertu: decentní přívěsek za názvem klubu v dolním bloku kdy/kde */
 .koncert-cena {
   color: var(--text-tlumeny);

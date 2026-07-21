@@ -1,0 +1,184 @@
+{
+  "typAkce": "picovinky",
+  "scrapedAt": "2026-07-21T20:06:03",
+  "obdobiOd": "21.07.2026",
+  "obdobiDo": "21.08.2026",
+  "polozky": [
+    {
+      "nazevCz": "Improv Comedy Workshop & Show",
+      "nazevOrig": null,
+      "autor": null,
+      "zanr": null,
+      "datumOd": "22.07.2026",
+      "datumDo": "22.07.2026",
+      "cas": "19:30",
+      "misto": "Cože?",
+      "adresa": "Malířská 227/14, Praha 7 — Letná",
+      "url": "https://www.cozebar.cz/#eventy",
+      "cena": null,
+      "thumbnail": "https://www.cozebar.cz/assets/hero.jpg",
+      "popis": null,
+      "zdroje": [
+        "cozebar.cz"
+      ]
+    },
+    {
+      "nazevCz": "Open mic/Jam",
+      "nazevOrig": null,
+      "autor": null,
+      "zanr": null,
+      "datumOd": "24.07.2026",
+      "datumDo": "31.07.2026",
+      "cas": "20:00",
+      "misto": "Cože?",
+      "adresa": "Malířská 227/14, Praha 7 — Letná",
+      "url": "https://www.cozebar.cz/#eventy",
+      "cena": null,
+      "thumbnail": "https://www.cozebar.cz/assets/hero.jpg",
+      "popis": null,
+      "terminy": [
+        {
+          "datum": "24.07.2026",
+          "cas": "20:00"
+        },
+        {
+          "datum": "31.07.2026",
+          "cas": "20:00"
+        }
+      ],
+      "zdroje": [
+        "cozebar.cz"
+      ]
+    },
+    {
+      "nazevCz": "Slowdating",
+      "nazevOrig": null,
+      "autor": null,
+      "zanr": null,
+      "datumOd": "29.07.2026",
+      "datumDo": "29.07.2026",
+      "cas": "18:30",
+      "misto": "Cože?",
+      "adresa": "Malířská 227/14, Praha 7 — Letná",
+      "url": "https://www.cozebar.cz/#eventy",
+      "cena": null,
+      "thumbnail": "https://www.cozebar.cz/assets/hero.jpg",
+      "popis": "Tinder ani speed dating Ti nefungují? Přihlaš se na Slowdating!  30-45 let (česky hovořící)",
+      "zdroje": [
+        "cozebar.cz"
+      ]
+    },
+    {
+      "nazevCz": "Tvoření při učení češtiny",
+      "nazevOrig": null,
+      "autor": null,
+      "zanr": null,
+      "datumOd": "11.08.2026",
+      "datumDo": "11.08.2026",
+      "cas": "18:30",
+      "misto": "Cože?",
+      "adresa": "Malířská 227/14, Praha 7 — Letná",
+      "url": "https://www.cozebar.cz/#eventy",
+      "cena": null,
+      "thumbnail": "https://www.cozebar.cz/assets/hero.jpg",
+      "popis": null,
+      "zdroje": [
+        "cozebar.cz"
+      ]
+    },
+    {
+      "nazevCz": "Under the Sauce Pub Quiz",
+      "nazevOrig": null,
+      "autor": null,
+      "zanr": null,
+      "datumOd": "22.07.2026",
+      "datumDo": "19.08.2026",
+      "cas": "19:00",
+      "misto": "Third Coast Pizza",
+      "adresa": "Chvalova 1, Praha 3 — Žižkov",
+      "url": "https://www.thirdcoastpizza.cz/en/events/under-the-sauce-pub-quiz",
+      "cena": "100 Kč",
+      "thumbnail": "https://flexitill-smokehouse-prod.s3.eu-central-1.amazonaws.com/events/cmn9ddqcj000i406t3iaqv68b/featureImageLandscape/7a6a50a4-1392-447a-9dac-9f60b82564d1.jpg",
+      "popis": null,
+      "terminy": [
+        {
+          "datum": "22.07.2026",
+          "cas": "19:00"
+        },
+        {
+          "datum": "29.07.2026",
+          "cas": "19:00"
+        },
+        {
+          "datum": "12.08.2026",
+          "cas": "19:00"
+        },
+        {
+          "datum": "19.08.2026",
+          "cas": "19:00"
+        }
+      ],
+      "zdroje": [
+        "thirdcoastpizza.cz"
+      ]
+    },
+    {
+      "nazevCz": "Under the 🏳️‍🌈Rainbow🏳️‍🌈 Pub Quiz",
+      "nazevOrig": null,
+      "autor": null,
+      "zanr": null,
+      "datumOd": "05.08.2026",
+      "datumDo": "05.08.2026",
+      "cas": "19:00",
+      "misto": "Third Coast Pizza",
+      "adresa": "Chvalova 1, Praha 3 — Žižkov",
+      "url": "https://www.thirdcoastpizza.cz/en/events/under-the-sauce-pub-quiz",
+      "cena": "100 Kč",
+      "thumbnail": "https://flexitill-smokehouse-prod.s3.eu-central-1.amazonaws.com/events/cmn9ddqcj000i406t3iaqv68b/featureImageLandscape/7a6a50a4-1392-447a-9dac-9f60b82564d1.jpg",
+      "popis": null,
+      "zdroje": [
+        "thirdcoastpizza.cz"
+      ]
+    },
+    {
+      "nazevCz": "Open Mic Tuesday",
+      "nazevOrig": null,
+      "autor": null,
+      "zanr": null,
+      "datumOd": "21.07.2026",
+      "datumDo": "18.08.2026",
+      "cas": "20:00",
+      "misto": "Žižkovšiška",
+      "adresa": "Husitská 888/11, Praha 3 — Žižkov",
+      "url": "https://www.zizkovsiska.cz/open-mic-tuesday-jam-session-prague",
+      "cena": null,
+      "thumbnail": "https://static.wixstatic.com/media/546a55_8ecc0e0933f04e5db696c9e8590c9b1d%7Emv2.jpg/v1/fit/w_2500,h_1330,al_c/546a55_8ecc0e0933f04e5db696c9e8590c9b1d%7Emv2.jpg",
+      "popis": null,
+      "terminy": [
+        {
+          "datum": "21.07.2026",
+          "cas": "20:00"
+        },
+        {
+          "datum": "28.07.2026",
+          "cas": "20:00"
+        },
+        {
+          "datum": "04.08.2026",
+          "cas": "20:00"
+        },
+        {
+          "datum": "11.08.2026",
+          "cas": "20:00"
+        },
+        {
+          "datum": "18.08.2026",
+          "cas": "20:00"
+        }
+      ],
+      "zdroje": [
+        "zizkovsiska.cz"
+      ]
+    }
+  ]
+}

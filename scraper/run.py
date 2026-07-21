@@ -14,6 +14,7 @@ Přidání nového zdroje = přidat modul do scrapers/ a dopsat ho do SUBSCRAPER
 
 import importlib
 import os
+import shutil
 import sys
 
 # Windows konzole bývá cp1250 — přepneme výstup na UTF-8, ať čeština v logu neshoří.
@@ -44,6 +45,13 @@ SUBSCRAPERY = [
     "cps_psychoterapie",    # ČPS ČLS JEP (Joomla blog, volný text)
     "akp_psychoterapie",    # AKP (Google Sites)
     "ipvz_psychoterapie",   # IPVZ katedra klinické psychologie (JSON API)
+    # píčovinky (menší komunitní akcičky — open mic, kvízy, workshopy).
+    # POZOR: typ nemá AI krok, RAW jde rovnou do data/ (viz docstring modulu).
+    # Zdroje jsou jednotlivé hospody — akce se nepřekrývají, dedup profil netřeba.
+    "cozebar_picovinky",      # bar Cože? na Letné (server-side HTML, jedna stránka)
+    "thirdcoast_picovinky",   # pub quiz v Third Coast Pizza, Žižkov (Next.js SSR)
+    "greendoors_picovinky",   # hlídač open miců v Café Na půl cesty (0 akcí = OK)
+    "zizkovsiska_picovinky",  # open mic v Žižkovšišce — generátor úterků, dokud stránka žije
 ]
 
 # Agresivní dedup profil per typ akce (viz dedup.py). Typy, které tu nejsou,
@@ -63,9 +71,16 @@ POPISKY_TYPU = {
     "divadlo": "Divadlo",
     "party": "Party",
     "odborne_psychoterapie": "Psychoterapie (odborné akce)",
+    "picovinky": "Píčovinky (malé akcičky)",
 }
 
 OUTPUT_DIR = os.path.join(os.path.dirname(__file__), "output")
+
+# Typy BEZ AI kroku: jejich RAW je rovnou finální formát pro appku, takže se
+# po zápisu do output/ automaticky překopíruje (přemaže) i do data/<typ>.json.
+# Typy s Cowork promptem sem NEpatří — jejich RAW musí nejdřív projít AI krokem.
+PRIMO_DO_DATA = {"picovinky"}
+DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "data")
 
 # nad kolik řádků RAW souboru varovat (AI krok v Coworku čte ~2000 řádků najednou)
 LIMIT_RADKU = 1800
@@ -137,6 +152,11 @@ def spust(od, do, typy=None, log=print):
         cesta = zapis_raw(typ, od, do, cistych, OUTPUT_DIR)
         log(f"[uloženo] {cesta}  ({len(polozky)} -> {len(cistych)} po dedup)")
         _guardrail(cesta, cistych, log)
+        # typ bez AI kroku → rovnou přemazat i JSON v data/, appka ho čte přímo
+        if typ in PRIMO_DO_DATA:
+            cil = os.path.join(DATA_DIR, f"{typ}.json")
+            shutil.copyfile(cesta, cil)
+            log(f"[data]    {os.path.normpath(cil)}  (typ bez AI kroku — rovnou pro appku)")
         log("")
 
 

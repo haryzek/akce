@@ -23,6 +23,7 @@ akce/
 ├── data/                    # HOTOVÉ JSONy pro appku (jde na GitHub Pages)
 │   ├── filmy.json           # plní Cowork/ChatGPT (viz kontrakt níže)
 │   ├── vystavy.json         # plní Cowork (viz kontrakt níže)
+│   ├── picovinky.json       # RAW přímo ze scraperu (jediný typ BEZ AI kroku)
 │   └── …                    # časem kvizy.json, koncerty.json atd.
 ├── scraper/                 # Python nástroj: web → RAW JSON (NEjde na Pages)
 │   ├── scrapni.bat          # spouštění na dvojklik (zeptá se od–do)
@@ -74,7 +75,12 @@ strukturu, kterou generují (viz níže).
 scéna), divadlo, party i odborné akce pro psychoterapeuty end-to-end. Filmy plní Bobův vychytaný
 ChatGPT prompt (ručně), zbytek Cowork prompty nad RAW ze scraperu. Dva zdroje mají **party**
 (ra.co + goout.net) i **výstavy** (prague.eu + goout.net), **psychoterapie** jich má sedm
-(profesní organizace + vzdělavatelé, viz níže). Další typy
+(profesní organizace + vzdělavatelé, viz níže). Navíc běží **píčovinky** (malé komunitní
+akcičky — open mic, kvízy, workshopy; zdroje cozebar.cz + thirdcoastpizza.cz + greendoors.cz
++ zizkovsiska.cz, každý zdroj = jednotlivá hospoda, akce se nepřekrývají) — jediný typ
+**bez AI kroku**: RAW ze scraperu jde rovnou do `data/picovinky.json` a runner ho tam po
+scrapu **kopíruje automaticky** (`PRIMO_DO_DATA` v `run.py`; viz odchylky u
+`cozebar_picovinky.py` níže). Další typy
 akcí = nový scraper + nový prompt (postup viz existující scrapery — prague.eu klony, goout jako
 vzor JSON-API zdroje, ra.co jako vzor GraphQL zdroje).
 
@@ -187,6 +193,46 @@ agregátoru (goout.net). Každý zdroj = jeden modul, mechaniku si řeší po sv
   do `terminy`, URL detailu se skládá `{id}-{slug}`; filtruje zkoušky/testy).
   Scraper filtruje jen tvrdé jistoty, jemné rozhodování (povinná specializační výuka, akce
   pro laiky, KBT vs. psychodynamika) dělá `cowork_prompt_psychoterapie.md`.
+- Typ **picovinky** (`cozebar_picovinky.py` — bar Cože? na Letné, malé komunitní akcičky:
+  open mic, kvízy, workshopy, slowdating). Nejjednodušší mechanika v repu: server-side HTML,
+  jedna stránka (`article.event`), žádné stránkování ani detaily. **Zásadní odchylka: typ nemá
+  AI krok** — žádný Cowork prompt, RAW jde rovnou do `data/picovinky.json`, appka je přímý
+  konzument. Z toho plynou dvě věci: (1) **datumy se píšou tečkově `DD.MM.YYYY`** (appkový
+  formát, ne pomlčky RAW kontraktu — `parsujDatum()` v appce umí jen tečky); (2) **opakované
+  akce se grupují podle názvu do `terminy` už v subscraperu** — nejde jen o hezčí kartu:
+  všechny akce baru sdílí stejné místo, takže generický dedup by stejnojmenné večery
+  („Open mic/Jam" každý pátek) slil do jednoho a termíny navíc zahodil. Pasti zdroje: datum
+  bez roku (dopočítá se tak, aby padlo do okna — okno je zároveň filtr), rozbité formáty času
+  („27. 6.00:00", čas 00:00 = neuvedeno), popis neexistuje — delší názvy ho mají nacpaný
+  v sobě za pomlčkou → heuristický odsek do `popis` (práh 30 znaků), „ZAVŘENO: Privátní akce"
+  se filtruje. Vlastní obrázky akce nemají → všechny dostávají hero fotku baru
+  (`assets/hero.jpg`; je na výšku, 16:9 box karty si ji ořízne). V appce je typ normální
+  termínový (akcent růžová) + skóre a fix popis natvrdo podle druhu akce (viz kontrakt níže).
+- Druhý zdroj píčovinek **`thirdcoast_picovinky.py`** (thirdcoastpizza.cz — týdenní „Under
+  the Sauce Pub Quiz" v Third Coast Pizza na Žižkově). Jedna akce pořád dokola (každou
+  středu), ale Bob ji chce vidět kvůli pauzám/prázdninám; občasná speciální edice („Under
+  the Rainbow Pub Quiz") se grupováním podle názvu oddělí do vlastní karty. Next.js SSR →
+  čitelné HTML: sekce „Upcoming Dates", termín = `<a>` s `<h3>` názvem a anglickým datem
+  s rokem („Wednesday, 22 July 2026"). Pasti: og:image vede na S3 s **podepsanou URL**
+  (X-Amz-Signature expiruje!) — bucket je ale veřejný, podpisový query string se uřízne;
+  cena se loví regexem `\d+ Kč` z textu stránky; popis se schválně nescrapuje (jen anglický
+  marketing) → null doplní appka fix textem podle druhu.
+- Třetí zdroj píčovinek **`greendoors_picovinky.py`** — ATYP, „hlídač open miců" v Café
+  Na půl cesty (Green Doors, Centrální park Pankrác). Kavárna má v programu koncerty všeho
+  druhu, ale scraper vysává JEN open mic: filtr na klíčová slova (`KLICE_OPEN_MIC`:
+  openmic/openstage/otevřený mikrofon, porovnává se bez diakritiky a bez mezer/pomlček)
+  a **jen v NÁZVU akce, nikdy v popisu** — v popisech účinkujících se běžně píše „znát
+  z našich open miců" a match přes popis by vysával obyčejné koncerty. **0 akcí = normální
+  stav** (open mic zrovna nepořádají), ne chyba. WordPress server-side HTML, `section#program`,
+  český měsíc bez roku (rok se dopočítá z okna), popis se ořezává o sponzorský boilerplate,
+  cena regexem („vstupné dobrovolné" / `\d+ Kč`), fix fotka kavárny z galerie landing page.
+  Parsování je otestované injektovanou fake akcí (v živém programu open mic nebyl).
+- Čtvrtý zdroj píčovinek **`zizkovsiska_picovinky.py`** — druhý ATYP: open mic KAŽDÉ úterý
+  20:00 v Žižkovšišce, ale stránka je statická Wix vizitka bez termínů. Scraper termíny
+  **generuje** (všechna úterý v okně → `terminy`) a dělá jen **existenční kontrolu**: stránka
+  vrací 200 a v textu se pořád mluví o open micu v úterý (guard proti přepnutí URL na jiný
+  obsah). Kontrola neprošla / síť spadla → 0 akcí a akce z appky sama zmizí („každé úterý,
+  dokud stránka žije"). Popis null → fix text appky, thumbnail živě z og:image (wixstatic).
 - ČSFD je za antibotem, program filmů se bere jinudy (Bobův ChatGPT prompt z ČSFD XLS).
 
 ## JSON kontrakt — filmy
@@ -358,13 +404,22 @@ popis + jednověté doporučení, dole datum rozmezí + galerie (odkaz) a klikac
 
 ## JSON kontrakt — termínové typy (koncerty i divadlo)
 
-**Termínové typy** (koncerty klasika/Jazz&Blues, divadlo, party, psychoterapie) sdílí **jeden tvar
-i jednu kartu** — mají termín(y), místo, thumbnail, `autor` a žádná veřejná hodnocení; liší se jen
-slugem/souborem, zdrojem a barvou akcentu. Klasika = `data/koncerty_klasika.json` (akcent modrá),
-Jazz&Blues = `data/koncerty_jazzblues.json` (fialová), divadlo = `data/divadlo.json` (červená),
-party = `data/party.json` (oranžová), psychoterapie = `data/odborne_psychoterapie.json` (teal).
+**Termínové typy** (koncerty klasika/Jazz&Blues, divadlo, party, psychoterapie, píčovinky) sdílí
+**jeden tvar i jednu kartu** — mají termín(y), místo, thumbnail, `autor` a žádná veřejná hodnocení;
+liší se jen slugem/souborem, zdrojem a barvou akcentu. Klasika = `data/koncerty_klasika.json`
+(akcent modrá), Jazz&Blues = `data/koncerty_jazzblues.json` (fialová), divadlo = `data/divadlo.json`
+(červená), party = `data/party.json` (oranžová), psychoterapie = `data/odborne_psychoterapie.json`
+(teal), píčovinky = `data/picovinky.json` (růžová).
 Pole se jmenuje podle slugu (`koncerty`/`divadlo`/`party`/`odborne_psychoterapie`). Struktura
 je jako výstava, ale bez `nazevOrig`, s `autor`/`cas` a volitelným polem `terminy`:
+
+Výjimka **píčovinky**: soubor je 1:1 RAW výstup scraperu (typ nemá AI krok), takže pole s akcemi
+se jmenuje `polozky` (appka má fallback na první nalezené pole v objektu) a chybí `estetickeSkore`
+i `duvodSkore`. Skóre se doplňuje **až v appce při načtení** — mapa `SKORE_PICOVINKY` v `app.js`
+přiřazuje natvrdo skóre podle druhu akce poznaného z názvu (substring bez diakritiky: „open mic"
+→ 90, „quiz"/„kvíz" → 70; nový druh = řádek do mapy). Druh, který v mapě není, zůstane bez skóre
+(„—" v kolečku, při řazení podle skóre na konci, mimo „špičku"). Není to porušení „tupého
+rendereru" — je to deterministická tabulka Bobova gusta, žádné AI/API.
 
 ```json
 {
@@ -469,6 +524,9 @@ cena, a „(N)" popup na další termíny jako u filmů.
 **Filmy (zatím bez scraperu):** Bob má vlastní vychytaný ChatGPT prompt
 (`cowork_prompt_kina.md`) — vloží měsíční program kin z ČSFD (XLS) + profil, ChatGPT
 dohledá hodnocení/trailery/odkazy a vyplivne `data/filmy.json`.
+
+**Píčovinky (bez AI kroku):** stačí spustit scraper — runner po scrapu sám přemaže
+`data/picovinky.json` (`PRIMO_DO_DATA` v `run.py`), žádný Cowork mezikrok. Zbývá jen commit.
 
 Prompty jsou verzované v repu a jsou **kontrakt** — když se mění struktura JSONu nebo karty,
 musí se změnit i příslušný prompt (a naopak). Estetický profil (`support/esteticky-profil.md`)

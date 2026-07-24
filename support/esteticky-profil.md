@@ -50,6 +50,7 @@ THX 1138, Network, Dark Side of the Moon, Donnie Darko, Stalker, Lost in Transla
 Jesus Christ Superstar, Muž na Měsíci.
 Oblíbení režiséři: Miloš Forman, Stanley Kubrick, Wes Anderson, Quentin Tarantino, Von Trier,
 Ridley Scott, Martin Scorsese, Villeneuve, Sergio Leone.
+Mé preferované žánry (v závorce preference 1-10, 10 = max): Drama (10), Sci-fi (10), Crime (9), Thriller (9), Psychologický (8), Akční (7), Adventure (7), Western (7), War (6), Biography (6), Fantasy (6), Musical (6), Comedy (5), Documentary (5), Romance (4), Family (4), Horror (3).
 Nesnáším: sitcomy (ten umělý smích).
 
 ## Estetický profil – hudba (rock, soul, folk, psychedelie)

@@ -254,11 +254,10 @@ Soubor `data/filmy.json`. Struktura (appka na ni musí sedět 1:1):
       "popis": "string (1-2 věty, bez spoilerů)",
       "trailerUrl": "string (odkaz na YouTube trailer, libovolná podoba) nebo null",
       "hodnoceni": {
-        "rottenTomatoesAudience": 85,
-        "metacriticUser": 7.8,
         "imdb": 7.2,
-        "csfd": 78,
-        "vazenePrumer": 81.4,
+        "metacritic": 78,
+        "rottenTomatoes": 85,
+        "vazenePrumer": 74.5,
         "poznamkaHodnoceni": "string nebo null"
       },
       "estetickeSkore": 8,
@@ -274,8 +273,20 @@ Soubor `data/filmy.json`. Struktura (appka na ni musí sedět 1:1):
 }
 ```
 
-Vážené skóre `vazenePrumer` počítá Cowork z vah: RT audience 40 %, Metacritic user 30 %,
-IMDb 20 %, ČSFD 10 %. Appka ho jen zobrazuje, nepočítá.
+Veřejná hodnocení chodí **výhradně z OMDb API** (`omdbapi.com/?i=<imdbId>`, klíč zdarma).
+Z toho plyne, co v polích reálně je: `rottenTomatoes` je **Tomatometer** (kritici, 0–100),
+`metacritic` je **Metascore** (kritici, 0–100), `imdb` je běžný rating (0–10). Uživatelské
+varianty (RT Audience, MC User) OMDb nevrací a scrapovat je nechceme — proto v kontraktu
+nejsou. ČSFD taky ne (je za antibotem), pole `csfd` bylo zrušené.
+
+Cesta k číslům: AI krok najde **IMDb ID** přes suggest endpoint
+`v2.sg.media-imdb.com/suggestion/…` (bez klíče, CORS, ověřeno; ID se matchuje na rok
+i typ) a tím ID se OMDb zeptá. Past: `imdb.com/title/…` vrací **403 na datacentrové IP**,
+takže rating se odtamtud tahat nedá — proto OMDb, ne scrape.
+
+Vážené skóre `vazenePrumer` počítá AI krok z vah: **IMDb 70 %, Metacritic 20 %,
+Rotten Tomatoes 10 %** (IMDb se převede na 0–100 ×10; chybějící zdroj = váhy se normalizují
+jen podle dostupných; žádný zdroj = null). Appka ho jen zobrazuje, nepočítá.
 
 Pozn.: **jeden film = jedna karta**, ale může mít **více projekcí** (pole `projekce`) —
 různá kina, různé časy. Nezobrazovat stejný film víckrát. Pole `odkaz` u projekce (odkaz na

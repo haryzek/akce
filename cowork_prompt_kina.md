@@ -1,12 +1,13 @@
 # Vytvoření TOP 50 filmů z programu pražských artových kin
 
-Karolínko, přikládám:
-- měsíční program kin z ČSFD (XLS),
-- můj estetický profil (DOCX).
+Ve složce akce/support najdeš:
+- měsíční program kin z ČSFD (csfd_program.xlsx)
+- můj estetický profil (esteticky-profil.md)
 
 Tvým úkolem je vytvořit spolehlivý JSON, který bude sloužit jako zdroj dat pro moji filmovou aplikaci. Nepoužívej žádný starší JSON ani žádná data z předchozích konverzací.
 
 ## KROK 1 – ZPRACUJ PROGRAM KIN
+Období vezmi z rozsahu datumů v programu (nejstarší→nejnovější projekce).
 Program je strukturován:
 Praha – název kina
 ↓
@@ -73,6 +74,7 @@ Nevymýšlej si URL. Nepoužívej odkaz na ČSFD, agregátory ani obecné vyhled
 Pokud se spolehlivý odkaz na dané kino nepodaří dohledat, ponech `odkaz` null. Nikdy odkaz nevymýšlej.
 
 ## KROK 6 – BOB-FIT
+Bob-fit počítej až po ověření identity — český název může být zavádějící (žánr, režisér).
 Na základě mého estetického profilu spočítej pro VŠECHNY filmy hodnotu:
 estetickeSkore 0–100
 Vyšší skóre znamená vyšší pravděpodobnost, že se mi film bude líbit.
@@ -105,24 +107,28 @@ Poté seřaď všechny filmy podle Bob-fit.
 Následně vyber kandidáty pro dohledávání veřejných hodnocení.
 Pokud je filmů s vysokým Bob-fit méně než 50, postupně přidávej další filmy podle pořadí Bob-fit, dokud nebudeš mít alespoň 50 kandidátů.
 
-## KROK 8 – DOHLEDÁNÍ VEŘEJNÝCH HODNOCENÍ
-Pouze u těchto kandidátů dohledávej:
-- Rotten Tomatoes – Použij výhradně Audience Score (ne Tomatometer).
-- Metacritic – Použij výhradně User Score (ne Metascore kritiků).
-- IMDb – Použij běžný IMDb rating.
-- ČSFD – Použij procentuální hodnocení.
+## KROK 8 – DOHLEDÁNÍ VEŘEJNÝCH HODNOCENÍ (přes OMDb API)
 
-Pokud některé hodnocení není dostupné, ponech hodnotu null. Nikdy hodnoty nevymýšlej.
+U každého kandidáta nejdřív zjisti IMDb ID přes suggest endpoint:
+https://v2.sg.media-imdb.com/suggestion/<první písmeno názvu>/<název-slug>.json
+Ze seznamu vyber záznam, který sedí na rok i typ (Feature Film), tolerance ±1 rok. Když shoda není jistá, film vynech z hodnocení a nech všechna čísla null. IMDb ID si nikdy nevymýšlej.
+
+Pak jedním dotazem na OMDb:
+https://www.omdbapi.com/?i=<imdbId>&apikey=<KLÍČ>
+Pokud OMDb vrátí {"Response":"False"} s hláškou o vyčerpaném limitu nebo neplatném klíči, nepokračuj a nahlas to — nevyplňuj hodnocení jako null, byla by to chyba k nerozeznání od filmu bez hodnocení.
+
+Z odpovědi vyplň:
+imdb ← imdbRating (škála 0–10)
+metacritic ← Metascore (0–100, kritické skóre)
+rottenTomatoes ← hodnota ze Ratings[], kde Source == "Rotten Tomatoes" (0–100, Tomatometer)
+Pole, které OMDb nevrátí ("N/A" nebo chybí), nech null. Nikdy nedopočítávej ani neodhaduj. Jiné zdroje hodnocení nepoužívej — ČSFD, Letterboxd ani ruční dohledávání na webu.
 
 ## KROK 9 – VÁŽENÉ SKÓRE
-Spočítej:
-- Rotten Tomatoes Audience 40 %
-- Metacritic User 30 %
-- IMDb 20 %
-- ČSFD 10 %
 
-IMDb i Metacritic nejdříve převeď na škálu 0–100.
-Pokud některý zdroj chybí, normalizuj váhy pouze podle dostupných zdrojů.
+IMDb 70 %,  Metacritic 20 % Rotten Tomatoes 10 %. 
+IMDb převeď na 0–100 (×10).
+Chybějící zdroj: normalizuj váhy jen podle dostupných
+Žádný zdroj dostupný → vazenePrumer null
 
 ## KROK 10 – FINÁLNÍ VÝBĚR
 Po výpočtu veřejných hodnocení spočítej interně:
@@ -236,6 +242,7 @@ Před vytvořením souboru proveď kontrolu:
 - jsou použita pouze povolená kina,
 - nejsou v názvech filmů suffixy sálů,
 - žádný film není duplicitně,
+- odkaz na program kina vyplněn u ≥ 12 ze 14 použitých kin,
 - všechny projekce jsou správně sloučené,
 - Rotten Tomatoes používá pouze Audience Score,
 - Metacritic používá pouze User Score,
@@ -248,4 +255,4 @@ Před vytvořením souboru proveď kontrolu:
 - odkaz u projekce vede na stránku kina (film / program / hlavní web), ne na ČSFD, agregátor ani vyhledávání, nebo je null,
 - odkaz u projekce není vymyšlený.
 
-Výsledek ulož jako filmy.json.
+Výsledek ulož do složky akce/data jako filmy.json (přemázni existující).

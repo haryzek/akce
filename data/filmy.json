@@ -1,100 +1,35 @@
 {
   "typAkce": "filmy",
-  "vygenerovanoAt": "2026-07-17T09:50:54",
-  "obdobiOd": "17.07.2026",
-  "obdobiDo": "17.08.2026",
+  "vygenerovanoAt": "2026-07-24T19:35:01",
+  "obdobiOd": "05.07.2026",
+  "obdobiDo": "05.08.2026",
   "poznamka": "Výběr TOP 50 filmů z programu 14 pražských artových kin, seřazený podle kombinace estetického profilu a dostupných veřejných hodnocení.",
   "filmy": [
     {
-      "nazevCz": "Stalker",
-      "nazevOrig": "Stalker",
-      "rezie": "Andrej Tarkovskij",
-      "zanr": "sci-fi, drama, mysteriózní",
-      "popis": "Průvodce vede dva muže do zakázané Zóny, kde se údajně plní nejhlubší přání.",
-      "trailerUrl": "https://www.youtube.com/watch?v=YuOnfQd-aTw",
+      "nazevCz": "Dokonalé dny",
+      "nazevOrig": "Perfect Days",
+      "rezie": "Wim Wenders",
+      "zanr": "Drama",
+      "popis": "Wenders sleduje tokijského uklízeče toalet, jehož den se opakuje v drobných rituálech — kazety, stromy, světlo mezi listím.",
+      "trailerUrl": "https://www.youtube.com/watch?v=Iv8YO5BXCAQ",
       "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
-        "imdb": null,
-        "csfd": null,
-        "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
+        "imdb": 7.9,
+        "metacritic": 80,
+        "rottenTomatoes": 96,
+        "vazenePrumer": 80.9,
+        "poznamkaHodnoceni": null
       },
-      "estetickeSkore": 100,
-      "duvodSkore": "Mimořádně silná shoda: autorský rukopis, psychologická a existenciální hloubka, výrazný obraz i morální nejednoznačnost.",
-      "vlastniRecenze": "Tohle je pro tebe téměř povinná projekce: film pracuje obrazem, tichem a vnitřním napětím přesně způsobem, který u filmu hledáš.",
+      "estetickeSkore": 90,
+      "duvodSkore": "Wenders — meditativní, tichý film o kráse všednosti a samotě; přesně Bobova melancholie a kontemplace.",
+      "vlastniRecenze": "Wenders sleduje tokijského uklízeče toalet, jehož den se opakuje v drobných rituálech — kazety, stromy, světlo mezi listím. Film o kráse všednosti a smířené samotě, beze spěchu a bez patosu. Přesně ta melancholická kontemplace, kterou máš rád; nech se unášet tempem.",
       "specialniProjekce": false,
       "specialniPopis": null,
       "projekce": [
         {
-          "datum": "07.08.2026",
-          "cas": "20:00",
-          "misto": "Kino Aero",
-          "odkaz": "https://www.kinoaero.cz/"
-        }
-      ]
-    },
-    {
-      "nazevCz": "Stvořeni pro lásku",
-      "nazevOrig": "Fa yeung nin wah",
-      "rezie": "Wong Kar-wai",
-      "zanr": "drama, romantický",
-      "popis": "Dva sousedé v Hongkongu zjišťují, že jejich partneři spolu mají poměr.",
-      "trailerUrl": "https://www.youtube.com/watch?v=m8GuedsQnWQ",
-      "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
-        "imdb": null,
-        "csfd": null,
-        "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
-      },
-      "estetickeSkore": 99,
-      "duvodSkore": "Mimořádně silná shoda: autorský rukopis, psychologická a existenciální hloubka, výrazný obraz i morální nejednoznačnost.",
-      "vlastniRecenze": "Tohle je pro tebe téměř povinná projekce: film pracuje obrazem, tichem a vnitřním napětím přesně způsobem, který u filmu hledáš.",
-      "specialniProjekce": false,
-      "specialniPopis": null,
-      "projekce": [
-        {
-          "datum": "18.07.2026",
-          "cas": "21:30",
+          "datum": "06.07.2026",
+          "cas": "15:50",
           "misto": "Kino Pilotů",
-          "odkaz": "https://www.kinopilotu.cz/"
-        },
-        {
-          "datum": "22.07.2026",
-          "cas": "18:50",
-          "misto": "Kino Pilotů",
-          "odkaz": "https://www.kinopilotu.cz/"
-        }
-      ]
-    },
-    {
-      "nazevCz": "Modrý samet",
-      "nazevOrig": "Blue Velvet",
-      "rezie": "David Lynch",
-      "zanr": "mysteriózní, thriller, drama",
-      "popis": "Nález uříznutého ucha otevře mladíkovi cestu do temného podsvětí zdánlivě idylického města.",
-      "trailerUrl": "https://www.youtube.com/watch?v=k_BybDB_phY",
-      "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
-        "imdb": null,
-        "csfd": null,
-        "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
-      },
-      "estetickeSkore": 97,
-      "duvodSkore": "Mimořádně silná shoda: autorský rukopis, psychologická a existenciální hloubka, výrazný obraz i morální nejednoznačnost.",
-      "vlastniRecenze": "Tohle je pro tebe téměř povinná projekce: film pracuje obrazem, tichem a vnitřním napětím přesně způsobem, který u filmu hledáš.",
-      "specialniProjekce": false,
-      "specialniPopis": null,
-      "projekce": [
-        {
-          "datum": "27.07.2026",
-          "cas": "20:30",
-          "misto": "Kino Aero",
-          "odkaz": "https://www.kinoaero.cz/"
+          "odkaz": "https://www.kinopilotu.cz/program/"
         }
       ]
     },
@@ -102,119 +37,205 @@
       "nazevCz": "Citová hodnota",
       "nazevOrig": "Sentimental Value",
       "rezie": "Joachim Trier",
-      "zanr": "drama",
-      "popis": "Rodinné vztahy, paměť a umění se střetnou při návratu odcizeného otce-režiséra.",
-      "trailerUrl": "https://www.youtube.com/watch?v=lKbcKQN5Yrw",
+      "zanr": "Drama",
+      "popis": "Trier vypráví o dceři, herečce, a jejím odcizeném otci-režisérovi, který jí nabídne roli jako gesto smíření.",
+      "trailerUrl": "https://www.youtube.com/watch?v=4_CimD_p-4k",
       "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
-        "imdb": null,
-        "csfd": null,
-        "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
+        "imdb": 7.7,
+        "metacritic": 86,
+        "rottenTomatoes": 95,
+        "vazenePrumer": 80.6,
+        "poznamkaHodnoceni": null
       },
-      "estetickeSkore": 97,
-      "duvodSkore": "Mimořádně silná shoda: autorský rukopis, psychologická a existenciální hloubka, výrazný obraz i morální nejednoznačnost.",
-      "vlastniRecenze": "Tohle je pro tebe téměř povinná projekce: film pracuje obrazem, tichem a vnitřním napětím přesně způsobem, který u filmu hledáš.",
+      "estetickeSkore": 90,
+      "duvodSkore": "Trier — jemné, hluboce psychologické drama o rodině, umění a smíření; vrchol Bobova vkusu.",
+      "vlastniRecenze": "Trier vypráví o dceři, herečce, a jejím odcizeném otci-režisérovi, který jí nabídne roli jako gesto smíření. Jemné, psychologicky přesné drama o rodině, tvorbě a tom, co se dá odpustit skrze umění. Renate Reinsve a Stellan Skarsgård v životních formách — must-see.",
       "specialniProjekce": false,
       "specialniPopis": null,
       "projekce": [
         {
-          "datum": "17.07.2026",
-          "cas": "15:50",
+          "datum": "05.07.2026",
+          "cas": "18:35",
           "misto": "Kino Pilotů",
-          "odkaz": "https://www.kinopilotu.cz/"
-        },
-        {
-          "datum": "19.07.2026",
-          "cas": "14:00",
-          "misto": "Kino Pilotů",
-          "odkaz": "https://www.kinopilotu.cz/"
+          "odkaz": "https://www.kinopilotu.cz/program/"
         }
       ]
     },
     {
       "nazevCz": "Chungking Express",
-      "nazevOrig": "Chung Hing sam lam",
+      "nazevOrig": "重慶森林 / Chungking Express",
       "rezie": "Wong Kar-wai",
-      "zanr": "drama, romantický, komedie",
-      "popis": "Dvě volně propojené povídky o osamělých hongkongských policistech a míjení lásky.",
+      "zanr": "Drama / Romance",
+      "popis": "Dvě propletené historky o hongkongských policistech a ženách, které jim proklouznou životem.",
       "trailerUrl": "https://www.youtube.com/watch?v=OPCug9jyG9k",
       "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
-        "imdb": null,
-        "csfd": null,
-        "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
+        "imdb": 7.9,
+        "metacritic": 78,
+        "rottenTomatoes": 89,
+        "vazenePrumer": 79.8,
+        "poznamkaHodnoceni": null
       },
-      "estetickeSkore": 96,
-      "duvodSkore": "Mimořádně silná shoda: autorský rukopis, psychologická a existenciální hloubka, výrazný obraz i morální nejednoznačnost.",
-      "vlastniRecenze": "Tohle je pro tebe téměř povinná projekce: film pracuje obrazem, tichem a vnitřním napětím přesně způsobem, který u filmu hledáš.",
+      "estetickeSkore": 88,
+      "duvodSkore": "Wong Kar-wai — vizuálně opojné, melancholické velkoměstské drama o samotě a touze; přesně Bobův vkus.",
+      "vlastniRecenze": "Dvě propletené historky o hongkongských policistech a ženách, které jim proklouznou životem. Wong Kar-wai točí lásku a samotu velkoměsta jako opojný, rozmazaný sen plný neonu a hudby. Vizuálně hypnotické, emočně křehké — klasika, co ti sedne do vkusu.",
       "specialniProjekce": false,
       "specialniPopis": null,
       "projekce": [
         {
-          "datum": "17.07.2026",
-          "cas": "18:30",
-          "misto": "Kino Pilotů",
-          "odkaz": "https://www.kinopilotu.cz/"
+          "datum": "08.07.2026",
+          "cas": "18:00",
+          "misto": "Kino Aero",
+          "odkaz": "https://www.kinoaero.cz/program/"
         },
         {
-          "datum": "20.07.2026",
-          "cas": "18:00",
-          "misto": "Kino Pilotů",
-          "odkaz": "https://www.kinopilotu.cz/"
+          "datum": "09.07.2026",
+          "cas": "21:30",
+          "misto": "Kino Atlas",
+          "odkaz": "https://www.kinoatlas.cz/program"
         }
       ]
     },
     {
-      "nazevCz": "Anatomie pádu",
-      "nazevOrig": "Anatomie d'une chute",
-      "rezie": "Justine Triet",
-      "zanr": "drama, krimi",
-      "popis": "Spisovatelka je souzena za smrt manžela a soud rozebírá intimní anatomii jejich vztahu.",
-      "trailerUrl": "https://www.youtube.com/watch?v=FUXawkH-ONM",
+      "nazevCz": "Tichá přítelkyně",
+      "nazevOrig": "Sound of Falling / Tichá přítelkyně",
+      "rezie": "Mascha Schilinski",
+      "zanr": "Drama",
+      "popis": "Čtyři ženy napříč generacemi na jednom severoněmeckém statku, spojené traumatem a časem.",
+      "trailerUrl": "https://www.youtube.com/watch?v=OYANIcQUDMc",
       "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
         "imdb": null,
-        "csfd": null,
-        "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
+        "metacritic": 91,
+        "rottenTomatoes": 95,
+        "vazenePrumer": 92.3,
+        "poznamkaHodnoceni": null
       },
-      "estetickeSkore": 96,
-      "duvodSkore": "Mimořádně silná shoda: autorský rukopis, psychologická a existenciální hloubka, výrazný obraz i morální nejednoznačnost.",
-      "vlastniRecenze": "Tohle je pro tebe téměř povinná projekce: film pracuje obrazem, tichem a vnitřním napětím přesně způsobem, který u filmu hledáš.",
+      "estetickeSkore": 82,
+      "duvodSkore": "Ceněné německé mnohovrstevnaté drama o generacích žen — melancholie, čas, autorská vize.",
+      "vlastniRecenze": "Čtyři ženy napříč generacemi na jednom severoněmeckém statku, spojené traumatem a časem. Mascha Schilinski staví mnohovrstevnaté, snové drama, kde minulost prosakuje do přítomnosti. Náročné, dlouhé, ale mimořádně silné — odměna pro trpělivého diváka.",
       "specialniProjekce": false,
       "specialniPopis": null,
       "projekce": [
         {
-          "datum": "12.08.2026",
-          "cas": "20:30",
+          "datum": "31.07.2026",
+          "cas": "20:15",
+          "misto": "Kino Aero",
+          "odkaz": "https://www.kinoaero.cz/program/"
+        },
+        {
+          "datum": "15.07.2026",
+          "cas": "20:15",
+          "misto": "Kino Světozor",
+          "odkaz": "https://www.kinosvetozor.cz/program/"
+        },
+        {
+          "datum": "18.07.2026",
+          "cas": "20:15",
+          "misto": "Kino Světozor",
+          "odkaz": "https://www.kinosvetozor.cz/program/"
+        }
+      ]
+    },
+    {
+      "nazevCz": "Nespoutaný Django",
+      "nazevOrig": "Django Unchained",
+      "rezie": "Quentin Tarantino",
+      "zanr": "Western / Drama",
+      "popis": "Osvobozený otrok se s německým lovcem lidí vydává vysvobodit svou ženu z plantáže.",
+      "trailerUrl": "https://www.youtube.com/watch?v=0fUCuvNlOCg",
+      "hodnoceni": {
+        "imdb": 8.5,
+        "metacritic": 81,
+        "rottenTomatoes": 87,
+        "vazenePrumer": 84.4,
+        "poznamkaHodnoceni": null
+      },
+      "estetickeSkore": 84,
+      "duvodSkore": "Tarantino — stylově opulentní western o pomstě a otroctví; Bobův oblíbený režisér, western žánr 7.",
+      "vlastniRecenze": "Osvobozený otrok se s německým lovcem lidí vydává vysvobodit svou ženu z plantáže. Tarantino žánrově opulentní western o pomstě a otroctví, stylizovaný a brutální, s Waltzem a DiCapriem. Tvůj oblíbený režisér v plné síle.",
+      "specialniProjekce": false,
+      "specialniPopis": null,
+      "projekce": [
+        {
+          "datum": "05.07.2026",
+          "cas": "19:30",
+          "misto": "Kino MAT",
+          "odkaz": "https://www.mat.cz/kino/"
+        }
+      ]
+    },
+    {
+      "nazevCz": "Nenávist",
+      "nazevOrig": "La Haine",
+      "rezie": "Mathieu Kassovitz",
+      "zanr": "Drama",
+      "popis": "Jeden den v životě tří kluků z pařížského předměstí po nočních nepokojích.",
+      "trailerUrl": "https://www.youtube.com/watch?v=viwmlW6ENiY",
+      "hodnoceni": {
+        "imdb": 8.1,
+        "metacritic": null,
+        "rottenTomatoes": 96,
+        "vazenePrumer": 82.9,
+        "poznamkaHodnoceni": null
+      },
+      "estetickeSkore": 84,
+      "duvodSkore": "Kassovitz — syrové černobílé drama o vzteku a bezvýchodnosti předměstí; kultovní, silné.",
+      "vlastniRecenze": "Jeden den v životě tří kluků z pařížského předměstí po nočních nepokojích. Kassovitzovo černobílé drama pulzuje vztekem, bezvýchodností a nervním humorem. Formálně bravurní, dodnes palčivé — jedno z klíčových evropských dramat devadesátek.",
+      "specialniProjekce": false,
+      "specialniPopis": null,
+      "projekce": [
+        {
+          "datum": "22.07.2026",
+          "cas": "21:30",
           "misto": "MeetFactory",
-          "odkaz": "https://www.meetfactory.cz/"
+          "odkaz": "https://www.meetfactory.cz/cs/program"
+        }
+      ]
+    },
+    {
+      "nazevCz": "Šťastni spolu",
+      "nazevOrig": "春光乍洩 / Happy Together",
+      "rezie": "Wong Kar-wai",
+      "zanr": "Drama / Romance",
+      "popis": "Dvojice mužů z Hongkongu se rozpadá a slepuje během pobytu v Buenos Aires.",
+      "trailerUrl": "https://www.youtube.com/watch?v=5VPvFaAWX9U",
+      "hodnoceni": {
+        "imdb": 7.7,
+        "metacritic": 70,
+        "rottenTomatoes": 85,
+        "vazenePrumer": 76.4,
+        "poznamkaHodnoceni": null
+      },
+      "estetickeSkore": 86,
+      "duvodSkore": "Wong Kar-wai — bolestné, vizuálně nádherné drama o lásce a odcizení; přesně Bobův typ.",
+      "vlastniRecenze": "Dvojice mužů z Hongkongu se rozpadá a slepuje během pobytu v Buenos Aires. Wong Kar-wai maluje lásku jako nádhernou, vyčerpávající závislost. Bolestné, intimní, vizuálně opojné.",
+      "specialniProjekce": false,
+      "specialniPopis": null,
+      "projekce": [
+        {
+          "datum": "24.07.2026",
+          "cas": "15:00",
+          "misto": "Kino Aero",
+          "odkaz": "https://www.kinoaero.cz/program/"
         }
       ]
     },
     {
       "nazevCz": "Bez střechy a bez zákona",
-      "nazevOrig": "Sans toit ni loi",
+      "nazevOrig": "Sans toit ni loi / Vagabond",
       "rezie": "Agnès Varda",
-      "zanr": "drama",
-      "popis": "Fragmentární portrét mladé tuláčky, jejíž svoboda i osamělost se skládají ze svědectví druhých.",
-      "trailerUrl": "https://www.youtube.com/watch?v=GvBQ596Zsqk",
+      "zanr": "Drama",
+      "popis": "Mrtvou tulačku najdou zmrzlou v příkopu; film se vrací k jejím posledním týdnům svobody a pádu.",
+      "trailerUrl": "https://www.youtube.com/watch?v=niPLWtg2G0g",
       "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
-        "imdb": null,
-        "csfd": null,
-        "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
+        "imdb": 7.6,
+        "metacritic": null,
+        "rottenTomatoes": 100,
+        "vazenePrumer": 79.0,
+        "poznamkaHodnoceni": null
       },
-      "estetickeSkore": 96,
-      "duvodSkore": "Mimořádně silná shoda: autorský rukopis, psychologická a existenciální hloubka, výrazný obraz i morální nejednoznačnost.",
-      "vlastniRecenze": "Tohle je pro tebe téměř povinná projekce: film pracuje obrazem, tichem a vnitřním napětím přesně způsobem, který u filmu hledáš.",
+      "estetickeSkore": 84,
+      "duvodSkore": "Varda — mrazivý portrét tulačky a svobody bez sentimentu; autorský klenot.",
+      "vlastniRecenze": "Mrtvou tulačku najdou zmrzlou v příkopu; film se vrací k jejím posledním týdnům svobody a pádu. Varda vypráví bez sentimentu, skoro dokumentárně, a přesto mrazivě. Portrét radikální svobody a její ceny.",
       "specialniProjekce": false,
       "specialniPopis": null,
       "projekce": [
@@ -222,612 +243,91 @@
           "datum": "05.08.2026",
           "cas": "20:30",
           "misto": "MeetFactory",
-          "odkaz": "https://www.meetfactory.cz/"
+          "odkaz": "https://www.meetfactory.cz/cs/program"
         }
       ]
     },
     {
-      "nazevCz": "Ze života loutek",
-      "nazevOrig": "Aus dem Leben der Marionetten",
-      "rezie": "Ingmar Bergman",
-      "zanr": "drama",
-      "popis": "Bergman rozebírá psychické a vztahové vrstvy muže, který spáchal vraždu.",
-      "trailerUrl": "https://www.youtube.com/watch?v=B5lWRQQ8TAE",
+      "nazevCz": "Modrý samet",
+      "nazevOrig": "Blue Velvet",
+      "rezie": "David Lynch",
+      "zanr": "Thriller / Drama",
+      "popis": "Nález uříznutého ucha vtáhne mladíka do temného podsvětí zdánlivě poklidného maloměsta.",
+      "trailerUrl": "https://www.youtube.com/watch?v=RjbcJLwM9Io",
       "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
-        "imdb": null,
-        "csfd": null,
-        "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
+        "imdb": 7.7,
+        "metacritic": 75,
+        "rottenTomatoes": 91,
+        "vazenePrumer": 78.0,
+        "poznamkaHodnoceni": null
       },
-      "estetickeSkore": 96,
-      "duvodSkore": "Mimořádně silná shoda: autorský rukopis, psychologická a existenciální hloubka, výrazný obraz i morální nejednoznačnost.",
-      "vlastniRecenze": "Tohle je pro tebe téměř povinná projekce: film pracuje obrazem, tichem a vnitřním napětím přesně způsobem, který u filmu hledáš.",
+      "estetickeSkore": 84,
+      "duvodSkore": "Lynchova temná studie o zvrácenosti pod povrchem maloměsta — psychologicky hutné, autorské.",
+      "vlastniRecenze": "Nález uříznutého ucha vtáhne mladíka do temného podsvětí zdánlivě poklidného maloměsta. Lynch obnažuje zvrácenost pod povrchem americké idyly, s Dennisem Hopperem jako noční můrou. Hypnotické, znepokojivé, autorské.",
       "specialniProjekce": false,
       "specialniPopis": null,
       "projekce": [
-        {
-          "datum": "19.07.2026",
-          "cas": "12:00",
-          "misto": "Edison Filmhub",
-          "odkaz": "https://www.edisonfilmhub.cz/"
-        }
-      ]
-    },
-    {
-      "nazevCz": "Andělské vejce",
-      "nazevOrig": "Tenshi no tamago",
-      "rezie": "Mamoru Oshii",
-      "zanr": "animovaný, fantasy, mysteriózní",
-      "popis": "Dívka opatruje tajemné vejce v pustém, snovém světě a potkává záhadného poutníka.",
-      "trailerUrl": "https://www.youtube.com/watch?v=SqyVGzaQFpQ",
-      "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
-        "imdb": null,
-        "csfd": null,
-        "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
-      },
-      "estetickeSkore": 95,
-      "duvodSkore": "Mimořádně silná shoda: autorský rukopis, psychologická a existenciální hloubka, výrazný obraz i morální nejednoznačnost.",
-      "vlastniRecenze": "Tohle je pro tebe téměř povinná projekce: film pracuje obrazem, tichem a vnitřním napětím přesně způsobem, který u filmu hledáš.",
-      "specialniProjekce": false,
-      "specialniPopis": null,
-      "projekce": [
-        {
-          "datum": "23.07.2026",
-          "cas": "18:00",
-          "misto": "Kino Aero",
-          "odkaz": "https://www.kinoaero.cz/"
-        }
-      ]
-    },
-    {
-      "nazevCz": "Padlí andělé",
-      "nazevOrig": "Do lok tin si",
-      "rezie": "Wong Kar-wai",
-      "zanr": "drama, krimi, romantický",
-      "popis": "Noční Hongkong propojí zabijáka, jeho agentku a několik osamělých vyvrhelů.",
-      "trailerUrl": "https://www.youtube.com/watch?v=uxaT19BlH0M",
-      "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
-        "imdb": null,
-        "csfd": null,
-        "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
-      },
-      "estetickeSkore": 95,
-      "duvodSkore": "Mimořádně silná shoda: autorský rukopis, psychologická a existenciální hloubka, výrazný obraz i morální nejednoznačnost.",
-      "vlastniRecenze": "Tohle je pro tebe téměř povinná projekce: film pracuje obrazem, tichem a vnitřním napětím přesně způsobem, který u filmu hledáš.",
-      "specialniProjekce": false,
-      "specialniPopis": null,
-      "projekce": [
-        {
-          "datum": "22.07.2026",
-          "cas": "18:00",
-          "misto": "Kino Aero",
-          "odkaz": "https://www.kinoaero.cz/"
-        }
-      ]
-    },
-    {
-      "nazevCz": "Cesta do fantazie",
-      "nazevOrig": "Sen to Chihiro no kamikakushi",
-      "rezie": "Hayao Miyazaki",
-      "zanr": "animovaný, fantasy, dobrodružný",
-      "popis": "Dívka uvázne ve světě duchů a musí dospět, aby zachránila rodiče i sebe.",
-      "trailerUrl": "https://www.youtube.com/watch?v=ByXuk9QqQkk",
-      "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
-        "imdb": null,
-        "csfd": null,
-        "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
-      },
-      "estetickeSkore": 95,
-      "duvodSkore": "Mimořádně silná shoda: autorský rukopis, psychologická a existenciální hloubka, výrazný obraz i morální nejednoznačnost.",
-      "vlastniRecenze": "Tohle je pro tebe téměř povinná projekce: film pracuje obrazem, tichem a vnitřním napětím přesně způsobem, který u filmu hledáš.",
-      "specialniProjekce": false,
-      "specialniPopis": null,
-      "projekce": [
-        {
-          "datum": "23.07.2026",
-          "cas": "17:50",
-          "misto": "Bio Oko",
-          "odkaz": "https://www.biooko.net/"
-        },
-        {
-          "datum": "25.07.2026",
-          "cas": "14:45",
-          "misto": "Kino Atlas",
-          "odkaz": "https://www.kinoatlaspraha.cz/"
-        }
-      ]
-    },
-    {
-      "nazevCz": "Nenávist",
-      "nazevOrig": "La haine",
-      "rezie": "Mathieu Kassovitz",
-      "zanr": "drama, krimi",
-      "popis": "Jeden den v životě tří mladíků z pařížského předměstí po násilných nepokojích.",
-      "trailerUrl": "https://www.youtube.com/watch?v=Qib273Jl2k0",
-      "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
-        "imdb": null,
-        "csfd": null,
-        "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
-      },
-      "estetickeSkore": 95,
-      "duvodSkore": "Mimořádně silná shoda: autorský rukopis, psychologická a existenciální hloubka, výrazný obraz i morální nejednoznačnost.",
-      "vlastniRecenze": "Tohle je pro tebe téměř povinná projekce: film pracuje obrazem, tichem a vnitřním napětím přesně způsobem, který u filmu hledáš.",
-      "specialniProjekce": false,
-      "specialniPopis": null,
-      "projekce": [
-        {
-          "datum": "17.07.2026",
-          "cas": "14:00",
-          "misto": "Edison Filmhub",
-          "odkaz": "https://www.edisonfilmhub.cz/"
-        },
-        {
-          "datum": "22.07.2026",
-          "cas": "21:30",
-          "misto": "MeetFactory",
-          "odkaz": "https://www.meetfactory.cz/"
-        }
-      ]
-    },
-    {
-      "nazevCz": "Není jiná možnost",
-      "nazevOrig": "Eojjeol suga eopda",
-      "rezie": "Park Chan-wook",
-      "zanr": "drama, thriller, černá komedie",
-      "popis": "Propuštěný muž začne v satirickém thrilleru radikálně odstraňovat konkurenty na trhu práce.",
-      "trailerUrl": "https://www.youtube.com/watch?v=HKZpuG_ezvY",
-      "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
-        "imdb": null,
-        "csfd": null,
-        "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
-      },
-      "estetickeSkore": 95,
-      "duvodSkore": "Mimořádně silná shoda: autorský rukopis, psychologická a existenciální hloubka, výrazný obraz i morální nejednoznačnost.",
-      "vlastniRecenze": "Tohle je pro tebe téměř povinná projekce: film pracuje obrazem, tichem a vnitřním napětím přesně způsobem, který u filmu hledáš.",
-      "specialniProjekce": false,
-      "specialniPopis": null,
-      "projekce": [
-        {
-          "datum": "17.07.2026",
-          "cas": "20:45",
-          "misto": "Kino Pilotů",
-          "odkaz": "https://www.kinopilotu.cz/"
-        }
-      ]
-    },
-    {
-      "nazevCz": "Tajný agent",
-      "nazevOrig": "O Agente Secreto",
-      "rezie": "Kleber Mendonça Filho",
-      "zanr": "drama, thriller",
-      "popis": "Muž na útěku se během brazilské diktatury vrací do Recife a naráží na síť násilí a dohledu.",
-      "trailerUrl": "https://www.youtube.com/watch?v=9UfrzDKrhEc",
-      "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
-        "imdb": null,
-        "csfd": null,
-        "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
-      },
-      "estetickeSkore": 95,
-      "duvodSkore": "Mimořádně silná shoda: autorský rukopis, psychologická a existenciální hloubka, výrazný obraz i morální nejednoznačnost.",
-      "vlastniRecenze": "Tohle je pro tebe téměř povinná projekce: film pracuje obrazem, tichem a vnitřním napětím přesně způsobem, který u filmu hledáš.",
-      "specialniProjekce": false,
-      "specialniPopis": null,
-      "projekce": [
-        {
-          "datum": "22.07.2026",
-          "cas": "18:30",
-          "misto": "Kino Atlas",
-          "odkaz": "https://www.kinoatlaspraha.cz/"
-        }
-      ]
-    },
-    {
-      "nazevCz": "Ohnivě červená obloha",
-      "nazevOrig": "Roter Himmel",
-      "rezie": "Christian Petzold",
-      "zanr": "drama, romantický",
-      "popis": "Čtyři lidé tráví léto u Baltu, zatímco se blíží lesní požár a roste napětí mezi nimi.",
-      "trailerUrl": "https://www.youtube.com/watch?v=BqpFCfauKpo",
-      "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
-        "imdb": null,
-        "csfd": null,
-        "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
-      },
-      "estetickeSkore": 95,
-      "duvodSkore": "Mimořádně silná shoda: autorský rukopis, psychologická a existenciální hloubka, výrazný obraz i morální nejednoznačnost.",
-      "vlastniRecenze": "Tohle je pro tebe téměř povinná projekce: film pracuje obrazem, tichem a vnitřním napětím přesně způsobem, který u filmu hledáš.",
-      "specialniProjekce": false,
-      "specialniPopis": null,
-      "projekce": [
-        {
-          "datum": "24.07.2026",
-          "cas": "21:30",
-          "misto": "Kino Atlas",
-          "odkaz": "https://www.kinoatlaspraha.cz/"
-        }
-      ]
-    },
-    {
-      "nazevCz": "Pramen",
-      "nazevOrig": "Prameň",
-      "rezie": "Ivan Ostrochovský",
-      "zanr": "drama, historický",
-      "popis": "Lékařka v socialistickém Československu čelí morálnímu konfliktu kolem nucených sterilizací romských žen.",
-      "trailerUrl": "https://www.youtube.com/watch?v=s5t0fGkkxL8",
-      "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
-        "imdb": null,
-        "csfd": null,
-        "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
-      },
-      "estetickeSkore": 95,
-      "duvodSkore": "Mimořádně silná shoda: autorský rukopis, psychologická a existenciální hloubka, výrazný obraz i morální nejednoznačnost.",
-      "vlastniRecenze": "Tohle je pro tebe téměř povinná projekce: film pracuje obrazem, tichem a vnitřním napětím přesně způsobem, který u filmu hledáš.",
-      "specialniProjekce": false,
-      "specialniPopis": null,
-      "projekce": [
-        {
-          "datum": "17.07.2026",
-          "cas": "14:30",
-          "misto": "Kino Světozor",
-          "odkaz": "https://www.kinosvetozor.cz/"
-        },
-        {
-          "datum": "17.07.2026",
-          "cas": "18:00",
-          "misto": "Kino Lucerna",
-          "odkaz": "https://www.kinolucerna.cz/"
-        },
-        {
-          "datum": "17.07.2026",
-          "cas": "18:45",
-          "misto": "Kino Atlas",
-          "odkaz": "https://www.kinoatlaspraha.cz/"
-        },
-        {
-          "datum": "17.07.2026",
-          "cas": "19:00",
-          "misto": "Kino Aero",
-          "odkaz": "https://www.kinoaero.cz/"
-        },
-        {
-          "datum": "17.07.2026",
-          "cas": "19:30",
-          "misto": "Komorní kino Evald",
-          "odkaz": "https://www.evald.cz/"
-        },
-        {
-          "datum": "18.07.2026",
-          "cas": "12:00",
-          "misto": "Kino Pilotů",
-          "odkaz": "https://www.kinopilotu.cz/"
-        },
-        {
-          "datum": "18.07.2026",
-          "cas": "14:30",
-          "misto": "Kino Světozor",
-          "odkaz": "https://www.kinosvetozor.cz/"
-        },
-        {
-          "datum": "18.07.2026",
-          "cas": "17:45",
-          "misto": "Kino MAT",
-          "odkaz": "https://www.kinomat.cz/"
-        },
-        {
-          "datum": "18.07.2026",
-          "cas": "17:45",
-          "misto": "Modřanský biograf",
-          "odkaz": "https://www.modranskybiograf.cz/"
-        },
-        {
-          "datum": "18.07.2026",
-          "cas": "18:00",
-          "misto": "Kino Lucerna",
-          "odkaz": "https://www.kinolucerna.cz/"
-        },
-        {
-          "datum": "18.07.2026",
-          "cas": "20:30",
-          "misto": "Přítomnost Boutique Cinema",
-          "odkaz": "https://www.pritomnost.cz/"
-        },
-        {
-          "datum": "19.07.2026",
-          "cas": "14:30",
-          "misto": "Kino Světozor",
-          "odkaz": "https://www.kinosvetozor.cz/"
-        },
-        {
-          "datum": "19.07.2026",
-          "cas": "18:00",
-          "misto": "Kino Lucerna",
-          "odkaz": "https://www.kinolucerna.cz/"
-        },
-        {
-          "datum": "19.07.2026",
-          "cas": "19:00",
-          "misto": "Edison Filmhub",
-          "odkaz": "https://www.edisonfilmhub.cz/"
-        },
-        {
-          "datum": "19.07.2026",
-          "cas": "21:00",
-          "misto": "Kino Atlas",
-          "odkaz": "https://www.kinoatlaspraha.cz/"
-        },
-        {
-          "datum": "20.07.2026",
-          "cas": "14:30",
-          "misto": "Kino Světozor",
-          "odkaz": "https://www.kinosvetozor.cz/"
-        },
-        {
-          "datum": "20.07.2026",
-          "cas": "16:30",
-          "misto": "Kino Pilotů",
-          "odkaz": "https://www.kinopilotu.cz/"
-        },
-        {
-          "datum": "20.07.2026",
-          "cas": "17:15",
-          "misto": "Přítomnost Boutique Cinema",
-          "odkaz": "https://www.pritomnost.cz/"
-        },
-        {
-          "datum": "20.07.2026",
-          "cas": "17:30",
-          "misto": "Kino Lucerna",
-          "odkaz": "https://www.kinolucerna.cz/"
-        },
-        {
-          "datum": "20.07.2026",
-          "cas": "19:00",
-          "misto": "Kino Atlas",
-          "odkaz": "https://www.kinoatlaspraha.cz/"
-        },
-        {
-          "datum": "20.07.2026",
-          "cas": "20:30",
-          "misto": "Kino Světozor",
-          "odkaz": "https://www.kinosvetozor.cz/"
-        },
-        {
-          "datum": "21.07.2026",
-          "cas": "15:00",
-          "misto": "Kino Lucerna",
-          "odkaz": "https://www.kinolucerna.cz/"
-        },
-        {
-          "datum": "21.07.2026",
-          "cas": "15:30",
-          "misto": "Bio Oko",
-          "odkaz": "https://www.biooko.net/"
-        },
-        {
-          "datum": "21.07.2026",
-          "cas": "17:30",
-          "misto": "Kino Světozor",
-          "odkaz": "https://www.kinosvetozor.cz/"
-        },
-        {
-          "datum": "21.07.2026",
-          "cas": "18:00",
-          "misto": "Kino Aero",
-          "odkaz": "https://www.kinoaero.cz/"
-        },
-        {
-          "datum": "21.07.2026",
-          "cas": "18:00",
-          "misto": "Modřanský biograf",
-          "odkaz": "https://www.modranskybiograf.cz/"
-        },
-        {
-          "datum": "21.07.2026",
-          "cas": "20:30",
-          "misto": "Kino Lucerna",
-          "odkaz": "https://www.kinolucerna.cz/"
-        },
-        {
-          "datum": "22.07.2026",
-          "cas": "17:45",
-          "misto": "Kino Lucerna",
-          "odkaz": "https://www.kinolucerna.cz/"
-        },
-        {
-          "datum": "22.07.2026",
-          "cas": "20:30",
-          "misto": "Kino Světozor",
-          "odkaz": "https://www.kinosvetozor.cz/"
-        },
-        {
-          "datum": "24.07.2026",
-          "cas": "17:00",
-          "misto": "Kino Atlas",
-          "odkaz": "https://www.kinoatlaspraha.cz/"
-        },
-        {
-          "datum": "25.07.2026",
-          "cas": "17:15",
-          "misto": "Komorní kino Evald",
-          "odkaz": "https://www.evald.cz/"
-        },
         {
           "datum": "27.07.2026",
-          "cas": "17:30",
-          "misto": "Přítomnost Boutique Cinema",
-          "odkaz": "https://www.pritomnost.cz/"
-        },
-        {
-          "datum": "27.07.2026",
-          "cas": "21:30",
-          "misto": "Kino Atlas",
-          "odkaz": "https://www.kinoatlaspraha.cz/"
-        },
-        {
-          "datum": "29.07.2026",
-          "cas": "17:15",
-          "misto": "Kino Atlas",
-          "odkaz": "https://www.kinoatlaspraha.cz/"
-        },
-        {
-          "datum": "29.07.2026",
-          "cas": "17:30",
-          "misto": "Přítomnost Boutique Cinema",
-          "odkaz": "https://www.pritomnost.cz/"
-        },
-        {
-          "datum": "14.08.2026",
-          "cas": "20:30",
-          "misto": "Bio Oko",
-          "odkaz": "https://www.biooko.net/"
-        },
-        {
-          "datum": "17.08.2026",
-          "cas": "15:00",
-          "misto": "Modřanský biograf",
-          "odkaz": "https://www.modranskybiograf.cz/"
-        }
-      ]
-    },
-    {
-      "nazevCz": "Bitva o Alžír",
-      "nazevOrig": "La battaglia di Algeri",
-      "rezie": "Gillo Pontecorvo",
-      "zanr": "drama, historický, válečný",
-      "popis": "Syrová rekonstrukce městského povstání proti francouzské koloniální moci.",
-      "trailerUrl": "https://www.youtube.com/watch?v=vhhoS3zOskE",
-      "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
-        "imdb": null,
-        "csfd": null,
-        "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
-      },
-      "estetickeSkore": 94,
-      "duvodSkore": "Velmi vysoká shoda díky autorské režii, atmosféře, komplexním postavám a existenciálnímu či společenskému přesahu.",
-      "vlastniRecenze": "Velmi pravděpodobně tě zasáhne atmosférou a tématem; doporučila bych ho upřednostnit před běžnou novinkovou nabídkou.",
-      "specialniProjekce": false,
-      "specialniPopis": null,
-      "projekce": [
-        {
-          "datum": "06.08.2026",
-          "cas": "18:00",
-          "misto": "Kino Aero",
-          "odkaz": "https://www.kinoaero.cz/"
-        }
-      ]
-    },
-    {
-      "nazevCz": "Přežijí jen milenci",
-      "nazevOrig": "Only Lovers Left Alive",
-      "rezie": "Jim Jarmusch",
-      "zanr": "drama, fantasy, romantický",
-      "popis": "Staletí upíří milenci přežívají moderní svět skrze hudbu, kulturu a melancholický odstup.",
-      "trailerUrl": "https://www.youtube.com/watch?v=ycOKvWrwYFo",
-      "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
-        "imdb": null,
-        "csfd": null,
-        "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
-      },
-      "estetickeSkore": 94,
-      "duvodSkore": "Velmi vysoká shoda díky autorské režii, atmosféře, komplexním postavám a existenciálnímu či společenskému přesahu.",
-      "vlastniRecenze": "Velmi pravděpodobně tě zasáhne atmosférou a tématem; doporučila bych ho upřednostnit před běžnou novinkovou nabídkou.",
-      "specialniProjekce": false,
-      "specialniPopis": null,
-      "projekce": [
-        {
-          "datum": "17.08.2026",
           "cas": "20:30",
           "misto": "Kino Aero",
-          "odkaz": "https://www.kinoaero.cz/"
+          "odkaz": "https://www.kinoaero.cz/program/"
         }
       ]
     },
     {
-      "nazevCz": "Die My Love",
-      "nazevOrig": "Die My Love",
-      "rezie": "Lynne Ramsay",
-      "zanr": "drama, thriller",
-      "popis": "Mladá matka na venkově se propadá do psychické krize, touhy a vzteku.",
-      "trailerUrl": "https://www.youtube.com/watch?v=2jzXHW6Qe70",
+      "nazevCz": "Kes",
+      "nazevOrig": "Kes",
+      "rezie": "Ken Loach",
+      "zanr": "Drama",
+      "popis": "Chlapec z hornického městečka najde smysl v cvičení poštolky.",
+      "trailerUrl": "https://www.youtube.com/watch?v=BGcllKvfnYs",
       "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
-        "imdb": null,
-        "csfd": null,
-        "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
+        "imdb": 7.9,
+        "metacritic": null,
+        "rottenTomatoes": 100,
+        "vazenePrumer": 81.6,
+        "poznamkaHodnoceni": null
       },
-      "estetickeSkore": 94,
-      "duvodSkore": "Velmi vysoká shoda díky autorské režii, atmosféře, komplexním postavám a existenciálnímu či společenskému přesahu.",
-      "vlastniRecenze": "Velmi pravděpodobně tě zasáhne atmosférou a tématem; doporučila bych ho upřednostnit před běžnou novinkovou nabídkou.",
+      "estetickeSkore": 82,
+      "duvodSkore": "Loachovo syrové sociální drama o chlapci a ptáku — empatie, realismus, melancholie; klenot.",
+      "vlastniRecenze": "Chlapec z hornického městečka najde smysl v cvičení poštolky. Loach točí syrově, empaticky a bez příkras o dětství bez perspektivy. Prostý příběh s obrovskou emocionální silou — melancholický klenot britského realismu.",
       "specialniProjekce": false,
       "specialniPopis": null,
       "projekce": [
         {
-          "datum": "19.07.2026",
-          "cas": "21:00",
-          "misto": "Kino Pilotů",
-          "odkaz": "https://www.kinopilotu.cz/"
+          "datum": "13.07.2026",
+          "cas": "20:30",
+          "misto": "Kino Aero",
+          "odkaz": "https://www.kinoaero.cz/program/"
         }
       ]
     },
     {
-      "nazevCz": "Sirat",
-      "nazevOrig": "Sirāt",
-      "rezie": "Oliver Laxe",
-      "zanr": "drama, dobrodružný",
-      "popis": "Otec se synem hledají ztracenou dceru mezi ravery v marocké poušti.",
-      "trailerUrl": "https://www.youtube.com/watch?v=MB6SL4gsldc",
+      "nazevCz": "Forrest Gump",
+      "nazevOrig": "Forrest Gump",
+      "rezie": "Robert Zemeckis",
+      "zanr": "Drama",
+      "popis": "Prostoduchý muž z Alabamy nechtěně prochází klíčovými okamžiky americké historie, veden láskou k jediné ženě.",
+      "trailerUrl": "https://www.youtube.com/watch?v=bLvqoHBptjg",
       "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
-        "imdb": null,
-        "csfd": null,
-        "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
+        "imdb": 8.8,
+        "metacritic": 82,
+        "rottenTomatoes": 75,
+        "vazenePrumer": 85.5,
+        "poznamkaHodnoceni": null
       },
-      "estetickeSkore": 94,
-      "duvodSkore": "Velmi vysoká shoda díky autorské režii, atmosféře, komplexním postavám a existenciálnímu či společenskému přesahu.",
-      "vlastniRecenze": "Velmi pravděpodobně tě zasáhne atmosférou a tématem; doporučila bych ho upřednostnit před běžnou novinkovou nabídkou.",
+      "estetickeSkore": 80,
+      "duvodSkore": "Bobův oblíbený film — humánní, emočně silné vyprávění napříč epochou.",
+      "vlastniRecenze": "Prostoduchý muž z Alabamy nechtěně prochází klíčovými okamžiky americké historie, veden láskou k jediné ženě. Humánní, emočně velkorysé vyprávění o náhodě a vytrvalosti. Tvůj starý oblíbenec — pořád funguje.",
       "specialniProjekce": false,
       "specialniPopis": null,
       "projekce": [
         {
-          "datum": "22.07.2026",
-          "cas": "16:30",
-          "misto": "Kino Pilotů",
-          "odkaz": "https://www.kinopilotu.cz/"
+          "datum": "09.07.2026",
+          "cas": "20:00",
+          "misto": "Přítomnost Boutique Cinema",
+          "odkaz": "https://www.pritomnost.cz/program/"
         }
       ]
     },
@@ -835,20 +335,19 @@
       "nazevCz": "Hamnet",
       "nazevOrig": "Hamnet",
       "rezie": "Chloé Zhao",
-      "zanr": "drama, historický",
-      "popis": "Intimní příběh ztráty v rodině Williama Shakespeara a zrození jeho nejslavnější tragédie.",
-      "trailerUrl": "https://www.youtube.com/watch?v=xYcgQMxQwmk",
+      "zanr": "Drama",
+      "popis": "Za smrtí Shakespearova syna hledá Chloé Zhao příběh manželky Agnes a zrodu Hamleta z žalu.",
+      "trailerUrl": "https://www.youtube.com/watch?v=LHazXqhzQL4",
       "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
-        "imdb": null,
-        "csfd": null,
-        "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
+        "imdb": 7.8,
+        "metacritic": 84,
+        "rottenTomatoes": 87,
+        "vazenePrumer": 80.1,
+        "poznamkaHodnoceni": null
       },
-      "estetickeSkore": 94,
-      "duvodSkore": "Velmi vysoká shoda díky autorské režii, atmosféře, komplexním postavám a existenciálnímu či společenskému přesahu.",
-      "vlastniRecenze": "Velmi pravděpodobně tě zasáhne atmosférou a tématem; doporučila bych ho upřednostnit před běžnou novinkovou nabídkou.",
+      "estetickeSkore": 82,
+      "duvodSkore": "Zhao — lyrické drama o ztrátě a tvorbě; vizuálně citlivé, emočně pravdivé.",
+      "vlastniRecenze": "Za smrtí Shakespearova syna hledá Chloé Zhao příběh manželky Agnes a zrodu Hamleta z žalu. Lyrické, citlivé drama o ztrátě a tom, jak se bolest proměňuje v umění. Buckley a Mescal drží film v dlaních.",
       "specialniProjekce": false,
       "specialniPopis": null,
       "projekce": [
@@ -856,36 +355,63 @@
           "datum": "22.07.2026",
           "cas": "15:00",
           "misto": "Komorní kino Evald",
-          "odkaz": "https://www.evald.cz/"
+          "odkaz": "https://www.kinoevald.cz/program"
         }
       ]
     },
     {
-      "nazevCz": "Otec Matka Sestra Bratr",
-      "nazevOrig": "Father Mother Sister Brother",
-      "rezie": "Jim Jarmusch",
-      "zanr": "drama, komedie",
-      "popis": "Tři povídky o dospělých dětech, rodičích a odcizení v různých zemích.",
-      "trailerUrl": "https://www.youtube.com/watch?v=PA07EmbZ0b0",
+      "nazevCz": "Cesta do fantazie",
+      "nazevOrig": "千と千尋の神隠し / Spirited Away",
+      "rezie": "Hajao Mijazaki",
+      "zanr": "Animovaný / Fantasy",
+      "popis": "Desetiletá dívka uvízne v lázních duchů a bohů, kde musí zachránit rodiče proměněné ve prasata.",
+      "trailerUrl": "https://www.youtube.com/watch?v=1fkHzj9a2XE",
       "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
-        "imdb": null,
-        "csfd": null,
-        "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
+        "imdb": 8.6,
+        "metacritic": 96,
+        "rottenTomatoes": 96,
+        "vazenePrumer": 89.0,
+        "poznamkaHodnoceni": null
       },
-      "estetickeSkore": 94,
-      "duvodSkore": "Velmi vysoká shoda díky autorské režii, atmosféře, komplexním postavám a existenciálnímu či společenskému přesahu.",
-      "vlastniRecenze": "Velmi pravděpodobně tě zasáhne atmosférou a tématem; doporučila bych ho upřednostnit před běžnou novinkovou nabídkou.",
+      "estetickeSkore": 78,
+      "duvodSkore": "Mijazakiho vrcholné poetické anime — vizuálně bohaté, s hloubkou; Bob má rád Japonsko a vizuálno.",
+      "vlastniRecenze": "Desetiletá dívka uvízne v lázních duchů a bohů, kde musí zachránit rodiče proměněné ve prasata. Miyazakiho vrcholné anime — vizuálně bezedné, s hloubkou pod pohádkovým povrchem. Japonsko a vizuálno v jednom.",
       "specialniProjekce": false,
       "specialniPopis": null,
       "projekce": [
         {
-          "datum": "31.07.2026",
-          "cas": "19:15",
-          "misto": "Kino Atlas",
-          "odkaz": "https://www.kinoatlaspraha.cz/"
+          "datum": "23.07.2026",
+          "cas": "17:50",
+          "misto": "Bio Oko",
+          "odkaz": "https://www.biooko.net/program/"
+        }
+      ]
+    },
+    {
+      "nazevCz": "Není jiná možnost",
+      "nazevOrig": "No Other Choice",
+      "rezie": "Park Chan-wook",
+      "zanr": "Drama / Thriller",
+      "popis": "Propuštěný muž se rozhodne zajistit si práci tím, že odstraní konkurenci.",
+      "trailerUrl": "https://www.youtube.com/watch?v=BeNlzVfFHFs",
+      "hodnoceni": {
+        "imdb": 7.5,
+        "metacritic": 86,
+        "rottenTomatoes": 97,
+        "vazenePrumer": 79.4,
+        "poznamkaHodnoceni": null
+      },
+      "estetickeSkore": 82,
+      "duvodSkore": "Park Chan-wook — precizní, morálně dvojznačné drama; stylově zásadní autor.",
+      "vlastniRecenze": "Propuštěný muž se rozhodne zajistit si práci tím, že odstraní konkurenci. Park Chan-wook točí morálně dvojznačnou černou komedii s ledovou precizností a černým humorem. Stylově zásadní autor v ráži.",
+      "specialniProjekce": false,
+      "specialniPopis": null,
+      "projekce": [
+        {
+          "datum": "06.07.2026",
+          "cas": "20:30",
+          "misto": "Kino Pilotů",
+          "odkaz": "https://www.kinopilotu.cz/program/"
         }
       ]
     },
@@ -893,20 +419,19 @@
       "nazevCz": "Mé soukromé Idaho",
       "nazevOrig": "My Own Private Idaho",
       "rezie": "Gus Van Sant",
-      "zanr": "drama",
-      "popis": "Dva mladíci na okraji společnosti putují Amerikou a hledají domov, lásku i vlastní identitu.",
-      "trailerUrl": "https://www.youtube.com/watch?v=2WoJ4GN5MaQ",
+      "zanr": "Drama",
+      "popis": "Dva mladí prostituti z Portlandu putují za domovem a identitou, jeden narkoleptik snící o matce.",
+      "trailerUrl": "https://www.youtube.com/watch?v=t2Xnv2nV0lI",
       "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
-        "imdb": null,
-        "csfd": null,
-        "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
+        "imdb": 7.0,
+        "metacritic": 77,
+        "rottenTomatoes": 79,
+        "vazenePrumer": 72.3,
+        "poznamkaHodnoceni": null
       },
-      "estetickeSkore": 93,
-      "duvodSkore": "Velmi vysoká shoda díky autorské režii, atmosféře, komplexním postavám a existenciálnímu či společenskému přesahu.",
-      "vlastniRecenze": "Velmi pravděpodobně tě zasáhne atmosférou a tématem; doporučila bych ho upřednostnit před běžnou novinkovou nabídkou.",
+      "estetickeSkore": 84,
+      "duvodSkore": "Van Sant — melancholické, odcizené drama o hledání domova a identity; autorský klenot.",
+      "vlastniRecenze": "Dva mladí prostituti z Portlandu putují za domovem a identitou, jeden narkoleptik snící o matce. Van Sant míchá špínu ulice s poezií a Shakespearem. Melancholické, křehké drama o hledání místa ve světě.",
       "specialniProjekce": false,
       "specialniPopis": null,
       "projekce": [
@@ -914,123 +439,177 @@
           "datum": "04.08.2026",
           "cas": "20:30",
           "misto": "Bio Oko",
-          "odkaz": "https://www.biooko.net/"
+          "odkaz": "https://www.biooko.net/program/"
         }
       ]
     },
     {
-      "nazevCz": "Matrix",
-      "nazevOrig": "The Matrix",
-      "rezie": "Lana Wachowski, Lilly Wachowski",
-      "zanr": "sci-fi, akční",
-      "popis": "Programátor odhalí, že realita je umělá konstrukce udržující lidstvo v nevědomosti.",
-      "trailerUrl": "https://www.youtube.com/watch?v=vKQi3bBA1y8",
+      "nazevCz": "Romería",
+      "nazevOrig": "Romería",
+      "rezie": "Carla Simón",
+      "zanr": "Drama",
+      "popis": "Dívka s deníkem mrtvé matky hledá na atlantském pobřeží svou biologickou rodinu a s ní i vlastní minulost.",
+      "trailerUrl": "https://www.youtube.com/watch?v=da3CAnPA_EM",
       "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
-        "imdb": null,
-        "csfd": null,
-        "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
+        "imdb": 7.0,
+        "metacritic": 75,
+        "rottenTomatoes": null,
+        "vazenePrumer": 71.1,
+        "poznamkaHodnoceni": null
       },
-      "estetickeSkore": 93,
-      "duvodSkore": "Velmi vysoká shoda díky autorské režii, atmosféře, komplexním postavám a existenciálnímu či společenskému přesahu.",
-      "vlastniRecenze": "Velmi pravděpodobně tě zasáhne atmosférou a tématem; doporučila bych ho upřednostnit před běžnou novinkovou nabídkou.",
+      "estetickeSkore": 84,
+      "duvodSkore": "Carla Simón — autorka jemných, paměťově a emočně hlubokých dramat; přesně Bobův typ evropského filmu.",
+      "vlastniRecenze": "Dívka s deníkem mrtvé matky hledá na atlantském pobřeží svou biologickou rodinu a s ní i vlastní minulost. Carla Simón vypráví jemně, s citem pro paměť a rodinné tajemství. Tichý, emočně pravdivý evropský film.",
       "specialniProjekce": false,
       "specialniPopis": null,
       "projekce": [
         {
-          "datum": "11.08.2026",
-          "cas": "20:30",
+          "datum": "07.07.2026",
+          "cas": "13:00",
           "misto": "Bio Oko",
-          "odkaz": "https://www.biooko.net/"
+          "odkaz": "https://www.biooko.net/program/"
+        },
+        {
+          "datum": "11.07.2026",
+          "cas": "19:15",
+          "misto": "Kino Atlas",
+          "odkaz": "https://www.kinoatlas.cz/program"
+        },
+        {
+          "datum": "17.07.2026",
+          "cas": "13:00",
+          "misto": "Kino Lucerna",
+          "odkaz": "https://www.kinolucerna.cz/program/"
+        },
+        {
+          "datum": "09.07.2026",
+          "cas": "15:00",
+          "misto": "Kino Světozor",
+          "odkaz": "https://www.kinosvetozor.cz/program/"
         }
       ]
     },
     {
-      "nazevCz": "Mé 20. století",
-      "nazevOrig": "Az én XX. századom",
-      "rezie": "Ildikó Enyedi",
-      "zanr": "drama, komedie, fantasy",
-      "popis": "Dvojčata oddělená v dětství prožívají na prahu 20. století protikladné osudy.",
-      "trailerUrl": "https://www.youtube.com/watch?v=VUlI1JtBorc",
+      "nazevCz": "Otec Matka Sestra Bratr",
+      "nazevOrig": "Father Mother Sister Brother",
+      "rezie": "Jim Jarmusch",
+      "zanr": "Drama",
+      "popis": "Tři povídky o dospělých sourozencích a jejich odtažitých rodičích, každá v jiné zemi.",
+      "trailerUrl": "https://www.youtube.com/watch?v=4QQPBo-MaKM",
       "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
-        "imdb": null,
-        "csfd": null,
-        "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
+        "imdb": 6.8,
+        "metacritic": 76,
+        "rottenTomatoes": 83,
+        "vazenePrumer": 71.1,
+        "poznamkaHodnoceni": null
       },
-      "estetickeSkore": 93,
-      "duvodSkore": "Velmi vysoká shoda díky autorské režii, atmosféře, komplexním postavám a existenciálnímu či společenskému přesahu.",
-      "vlastniRecenze": "Velmi pravděpodobně tě zasáhne atmosférou a tématem; doporučila bych ho upřednostnit před běžnou novinkovou nabídkou.",
+      "estetickeSkore": 84,
+      "duvodSkore": "Jarmusch — minimalistické, melancholicky vtipné drama o rodinných vazbách; přesně Bobův autor.",
+      "vlastniRecenze": "Tři povídky o dospělých sourozencích a jejich odtažitých rodičích, každá v jiné zemi. Jarmusch v minimalistické, suše vtipné poloze o rodinných vazbách a tom, co zůstává nevyřčené. Tvůj autor.",
       "specialniProjekce": false,
       "specialniPopis": null,
       "projekce": [
         {
-          "datum": "31.07.2026",
-          "cas": "18:00",
-          "misto": "Kino Aero",
-          "odkaz": "https://www.kinoaero.cz/"
-        }
-      ]
-    },
-    {
-      "nazevCz": "Jedna bitva za druhou",
-      "nazevOrig": "One Battle After Another",
-      "rezie": "Paul Thomas Anderson",
-      "zanr": "drama, akční, černá komedie",
-      "popis": "Bývalý revolucionář čelí návratu starého nepřítele a minulosti, která ohrožuje jeho rodinu.",
-      "trailerUrl": "https://www.youtube.com/watch?v=feOQFKv2Lw4",
-      "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
-        "imdb": null,
-        "csfd": null,
-        "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
-      },
-      "estetickeSkore": 93,
-      "duvodSkore": "Velmi vysoká shoda díky autorské režii, atmosféře, komplexním postavám a existenciálnímu či společenskému přesahu.",
-      "vlastniRecenze": "Velmi pravděpodobně tě zasáhne atmosférou a tématem; doporučila bych ho upřednostnit před běžnou novinkovou nabídkou.",
-      "specialniProjekce": false,
-      "specialniPopis": null,
-      "projekce": [
-        {
-          "datum": "06.08.2026",
-          "cas": "20:30",
-          "misto": "Kino Aero",
-          "odkaz": "https://www.kinoaero.cz/"
-        }
-      ]
-    },
-    {
-      "nazevCz": "Ty jsi vesmír",
-      "nazevOrig": "U Are the Universe",
-      "rezie": "Pavlo Ostrikov",
-      "zanr": "sci-fi, drama",
-      "popis": "Ukrajinský kosmický řidič po zničení Země zjistí, že ve vesmíru možná není sám.",
-      "trailerUrl": "https://www.youtube.com/watch?v=tQlW3AjhRFQ",
-      "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
-        "imdb": null,
-        "csfd": null,
-        "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
-      },
-      "estetickeSkore": 93,
-      "duvodSkore": "Velmi vysoká shoda díky autorské režii, atmosféře, komplexním postavám a existenciálnímu či společenskému přesahu.",
-      "vlastniRecenze": "Velmi pravděpodobně tě zasáhne atmosférou a tématem; doporučila bych ho upřednostnit před běžnou novinkovou nabídkou.",
-      "specialniProjekce": false,
-      "specialniPopis": null,
-      "projekce": [
-        {
-          "datum": "01.08.2026",
+          "datum": "10.07.2026",
           "cas": "21:30",
           "misto": "Kino Atlas",
-          "odkaz": "https://www.kinoatlaspraha.cz/"
+          "odkaz": "https://www.kinoatlas.cz/program"
+        }
+      ]
+    },
+    {
+      "nazevCz": "Domovina",
+      "nazevOrig": "Fatherland",
+      "rezie": "Paweł Pawlikowski",
+      "zanr": "Drama / Historie",
+      "popis": "Pawlikowski vypráví o Thomasi Mannovi a dceři Erice na cestě poválečným Německem.",
+      "trailerUrl": null,
+      "hodnoceni": {
+        "imdb": null,
+        "metacritic": null,
+        "rottenTomatoes": null,
+        "vazenePrumer": null,
+        "poznamkaHodnoceni": "Trailer se nepodařilo dohledat ani po opakovaném hledání."
+      },
+      "estetickeSkore": 80,
+      "duvodSkore": "Pawlikowského černobílá road movie o Thomasi Mannovi (Cannes 2026 nejlepší režie) — autorská vize, historická melancholie, vizuální preciznost.",
+      "vlastniRecenze": "Pawlikowski vypráví o Thomasi Mannovi a dceři Erice na cestě poválečným Německem. Velkolepá černobílá road movie o exilu, paměti a domově. Cannes 2026 za nejlepší režii — autorská vize a historická melancholie.",
+      "specialniProjekce": false,
+      "specialniPopis": null,
+      "projekce": [
+        {
+          "datum": "18.07.2026",
+          "cas": "19:00",
+          "misto": "Kino Aero",
+          "odkaz": "https://www.kinoaero.cz/program/"
+        },
+        {
+          "datum": "14.07.2026",
+          "cas": "20:15",
+          "misto": "Kino Světozor",
+          "odkaz": "https://www.kinosvetozor.cz/program/"
+        },
+        {
+          "datum": "19.07.2026",
+          "cas": "17:15",
+          "misto": "Přítomnost Boutique Cinema",
+          "odkaz": "https://www.pritomnost.cz/program/"
+        }
+      ]
+    },
+    {
+      "nazevCz": "Andělské vejce",
+      "nazevOrig": "天使のたまご / Angel's Egg",
+      "rezie": "Mamoru Oshii",
+      "zanr": "Animovaný / Experimentální",
+      "popis": "Dívka putuje pustou, přízračnou krajinou a střeží velké vejce.",
+      "trailerUrl": "https://www.youtube.com/watch?v=4X9LM3aTiyY",
+      "hodnoceni": {
+        "imdb": null,
+        "metacritic": null,
+        "rottenTomatoes": null,
+        "vazenePrumer": null,
+        "poznamkaHodnoceni": null
+      },
+      "estetickeSkore": 80,
+      "duvodSkore": "Oshiiho hypnotické, mlčenlivé anime plné symbolů a melancholie — vizuální a existenciální meditace.",
+      "vlastniRecenze": "Dívka putuje pustou, přízračnou krajinou a střeží velké vejce. Oshii točí mlčenlivé, symbolické anime plné melancholie a existenciálních otázek. Vizuální a duchovní meditace bez jednoznačných odpovědí.",
+      "specialniProjekce": false,
+      "specialniPopis": null,
+      "projekce": [
+        {
+          "datum": "23.07.2026",
+          "cas": "18:00",
+          "misto": "Kino Aero",
+          "odkaz": "https://www.kinoaero.cz/program/"
+        }
+      ]
+    },
+    {
+      "nazevCz": "Sirat",
+      "nazevOrig": "Sirât",
+      "rezie": "Oliver Laxe",
+      "zanr": "Drama",
+      "popis": "Otec se synem hledají zmizelou dceru mezi ravery v marockých horách a cesta se mění v mystickou pouť pouští.",
+      "trailerUrl": "https://www.youtube.com/watch?v=K6RQya2mfsQ",
+      "hodnoceni": {
+        "imdb": 7.0,
+        "metacritic": 84,
+        "rottenTomatoes": 90,
+        "vazenePrumer": 74.8,
+        "poznamkaHodnoceni": null
+      },
+      "estetickeSkore": 82,
+      "duvodSkore": "Laxe — hypnotické, drsné existenciální road drama pouští; vizuální, mystické, Bobův typ.",
+      "vlastniRecenze": "Otec se synem hledají zmizelou dceru mezi ravery v marockých horách a cesta se mění v mystickou pouť pouští. Oliver Laxe točí hypnoticky, drsně a vizuálně opojně. Vyprahlý prostor a existenciální náboj — přímo tvoje krajina.",
+      "specialniProjekce": false,
+      "specialniPopis": null,
+      "projekce": [
+        {
+          "datum": "08.07.2026",
+          "cas": "19:00",
+          "misto": "Kino Atlas",
+          "odkaz": "https://www.kinoatlas.cz/program"
         }
       ]
     },
@@ -1038,20 +617,19 @@
       "nazevCz": "Jednej správně",
       "nazevOrig": "Do the Right Thing",
       "rezie": "Spike Lee",
-      "zanr": "drama, komedie",
-      "popis": "Během nejteplejšího dne v Brooklynu narůstá rasové a sociální napětí až k výbuchu.",
-      "trailerUrl": "https://www.youtube.com/watch?v=yVAD4fYRcvA",
+      "zanr": "Drama",
+      "popis": "Nejparnější den v brooklynské čtvrti nažhaví letité napětí, až přeteče v násilí.",
+      "trailerUrl": "https://www.youtube.com/watch?v=BT2al2t2jnU",
       "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
-        "imdb": null,
-        "csfd": null,
-        "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
+        "imdb": 7.9,
+        "metacritic": 93,
+        "rottenTomatoes": 92,
+        "vazenePrumer": 83.1,
+        "poznamkaHodnoceni": null
       },
-      "estetickeSkore": 92,
-      "duvodSkore": "Velmi vysoká shoda díky autorské režii, atmosféře, komplexním postavám a existenciálnímu či společenskému přesahu.",
-      "vlastniRecenze": "Velmi pravděpodobně tě zasáhne atmosférou a tématem; doporučila bych ho upřednostnit před běžnou novinkovou nabídkou.",
+      "estetickeSkore": 78,
+      "duvodSkore": "Leeho horké sociální drama o napětí a morálce — silné, autorské.",
+      "vlastniRecenze": "Nejparnější den v brooklynské čtvrti nažhaví letité napětí, až přeteče v násilí. Spike Lee točí barevně, energicky a morálně nejednoznačně o rase a spravedlnosti. Palčivé, formálně smělé.",
       "specialniProjekce": false,
       "specialniPopis": null,
       "projekce": [
@@ -1059,1243 +637,221 @@
           "datum": "03.08.2026",
           "cas": "20:30",
           "misto": "Kino Aero",
-          "odkaz": "https://www.kinoaero.cz/"
+          "odkaz": "https://www.kinoaero.cz/program/"
         }
       ]
     },
     {
-      "nazevCz": "Frontline - 2000 metrů do Andrijivky",
-      "nazevOrig": "2000 Meters to Andriivka",
-      "rezie": "Mstyslav Černov",
-      "zanr": "dokumentární, válečný",
-      "popis": "Frontový dokument sleduje ukrajinskou jednotku při osvobozování malé vesnice metr po metru.",
-      "trailerUrl": "https://www.youtube.com/watch?v=CirdrDSrjSQ",
+      "nazevCz": "Nebezpečné známosti",
+      "nazevOrig": "Les Liaisons dangereuses",
+      "rezie": "Stephen Frears",
+      "zanr": "Drama",
+      "popis": "Aristokratická dvojice se v předrevoluční Francii vsadí o svedení a zkázu nevinné ženy.",
+      "trailerUrl": "https://www.youtube.com/watch?v=dO3U2dBwuWA",
       "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
-        "imdb": null,
-        "csfd": null,
-        "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
+        "imdb": 7.5,
+        "metacritic": 74,
+        "rottenTomatoes": 91,
+        "vazenePrumer": 76.4,
+        "poznamkaHodnoceni": null
       },
-      "estetickeSkore": 92,
-      "duvodSkore": "Velmi vysoká shoda díky autorské režii, atmosféře, komplexním postavám a existenciálnímu či společenskému přesahu.",
-      "vlastniRecenze": "Velmi pravděpodobně tě zasáhne atmosférou a tématem; doporučila bych ho upřednostnit před běžnou novinkovou nabídkou.",
+      "estetickeSkore": 78,
+      "duvodSkore": "Frearsovo elegantní kostýmní drama o manipulaci a morální ambivalenci — vysoká psychologická hra.",
+      "vlastniRecenze": "Aristokratická dvojice se v předrevoluční Francii vsadí o svedení a zkázu nevinné ženy. Frears točí elegantní, jedovaté drama o manipulaci a morálním pádu, s Close a Malkovichem. Chytrá hra o krutosti.",
       "specialniProjekce": false,
       "specialniPopis": null,
       "projekce": [
         {
-          "datum": "01.08.2026",
-          "cas": "17:00",
-          "misto": "Kino Atlas",
-          "odkaz": "https://www.kinoatlaspraha.cz/"
-        }
-      ]
-    },
-    {
-      "nazevCz": "Raději zešílet v divočině",
-      "nazevOrig": "Raději zešílet v divočině",
-      "rezie": "Miro Remo",
-      "zanr": "dokumentární",
-      "popis": "Portrét dvojčat žijících stranou společnosti v šumavské divočině.",
-      "trailerUrl": "https://www.youtube.com/watch?v=MbtJ4hTQxxU",
-      "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
-        "imdb": null,
-        "csfd": null,
-        "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
-      },
-      "estetickeSkore": 92,
-      "duvodSkore": "Velmi vysoká shoda díky autorské režii, atmosféře, komplexním postavám a existenciálnímu či společenskému přesahu.",
-      "vlastniRecenze": "Velmi pravděpodobně tě zasáhne atmosférou a tématem; doporučila bych ho upřednostnit před běžnou novinkovou nabídkou.",
-      "specialniProjekce": false,
-      "specialniPopis": null,
-      "projekce": [
-        {
-          "datum": "04.08.2026",
-          "cas": "18:15",
-          "misto": "Kino Světozor",
-          "odkaz": "https://www.kinosvetozor.cz/"
-        }
-      ]
-    },
-    {
-      "nazevCz": "Král rybář",
-      "nazevOrig": "The Fisher King",
-      "rezie": "Terry Gilliam",
-      "zanr": "drama, komedie, fantasy",
-      "popis": "Zlomený rozhlasový moderátor hledá vykoupení ve vztahu s traumatizovaným bezdomovcem.",
-      "trailerUrl": "https://www.youtube.com/watch?v=E65wgbFGGeM",
-      "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
-        "imdb": null,
-        "csfd": null,
-        "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
-      },
-      "estetickeSkore": 91,
-      "duvodSkore": "Silná shoda: film nabízí psychologickou nebo vizuální osobitost, i když je místy žánrovější či přístupnější.",
-      "vlastniRecenze": "Silná volba, zvlášť pokud máš chuť na osobitý film s emocionální nebo vizuální vrstvou, ne jen na děj.",
-      "specialniProjekce": false,
-      "specialniPopis": null,
-      "projekce": [
-        {
-          "datum": "10.08.2026",
-          "cas": "20:30",
-          "misto": "Kino Aero",
-          "odkaz": "https://www.kinoaero.cz/"
-        }
-      ]
-    },
-    {
-      "nazevCz": "Tvoje jméno.",
-      "nazevOrig": "Kimi no na wa.",
-      "rezie": "Makoto Shinkai",
-      "zanr": "animovaný, romantický, fantasy",
-      "popis": "Dva dospívající si nevysvětlitelně vyměňují těla a vytvářejí vztah napříč časem.",
-      "trailerUrl": "https://www.youtube.com/watch?v=o4-URMnBOPU",
-      "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
-        "imdb": null,
-        "csfd": null,
-        "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
-      },
-      "estetickeSkore": 91,
-      "duvodSkore": "Silná shoda: film nabízí psychologickou nebo vizuální osobitost, i když je místy žánrovější či přístupnější.",
-      "vlastniRecenze": "Silná volba, zvlášť pokud máš chuť na osobitý film s emocionální nebo vizuální vrstvou, ne jen na děj.",
-      "specialniProjekce": false,
-      "specialniPopis": null,
-      "projekce": [
-        {
-          "datum": "16.08.2026",
-          "cas": "17:15",
-          "misto": "Kino Aero",
-          "odkaz": "https://www.kinoaero.cz/"
-        }
-      ]
-    },
-    {
-      "nazevCz": "Až přijde kocour",
-      "nazevOrig": "Až přijde kocour",
-      "rezie": "Vojtěch Jasný",
-      "zanr": "komedie, fantasy, podobenství",
-      "popis": "Kouzelné brýle odhalují skutečné povahy obyvatel maloměsta.",
-      "trailerUrl": "https://www.youtube.com/watch?v=6NSoSFWf_U4",
-      "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
-        "imdb": null,
-        "csfd": null,
-        "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
-      },
-      "estetickeSkore": 91,
-      "duvodSkore": "Silná shoda: film nabízí psychologickou nebo vizuální osobitost, i když je místy žánrovější či přístupnější.",
-      "vlastniRecenze": "Silná volba, zvlášť pokud máš chuť na osobitý film s emocionální nebo vizuální vrstvou, ne jen na děj.",
-      "specialniProjekce": false,
-      "specialniPopis": null,
-      "projekce": [
-        {
-          "datum": "17.07.2026",
-          "cas": "21:30",
-          "misto": "Kino Atlas",
-          "odkaz": "https://www.kinoatlaspraha.cz/"
-        }
-      ]
-    },
-    {
-      "nazevCz": "EOS: Hopper – americká love story",
-      "nazevOrig": "Hopper: An American Love Story",
-      "rezie": "Phil Grabsky",
-      "zanr": "dokumentární",
-      "popis": "Výstavní dokument zkoumá Hopperův život, obrazy samoty a jeho vliv na moderní vizualitu.",
-      "trailerUrl": "https://www.youtube.com/watch?v=BpDE2Ka1JuY",
-      "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
-        "imdb": null,
-        "csfd": null,
-        "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
-      },
-      "estetickeSkore": 91,
-      "duvodSkore": "Silná shoda: film nabízí psychologickou nebo vizuální osobitost, i když je místy žánrovější či přístupnější.",
-      "vlastniRecenze": "Silná volba, zvlášť pokud máš chuť na osobitý film s emocionální nebo vizuální vrstvou, ne jen na děj.",
-      "specialniProjekce": true,
-      "specialniPopis": "Dokumentární projekce cyklu Exhibition on Screen.",
-      "projekce": [
-        {
-          "datum": "20.07.2026",
-          "cas": "18:30",
-          "misto": "Kino MAT",
-          "odkaz": "https://www.kinomat.cz/"
-        }
-      ]
-    },
-    {
-      "nazevCz": "Odyssea",
-      "nazevOrig": "The Odyssey",
-      "rezie": "Christopher Nolan",
-      "zanr": "dobrodružný, drama, fantasy",
-      "popis": "Velkolepá adaptace Homérova eposu sleduje Odysseův nebezpečný návrat z trojské války.",
-      "trailerUrl": "https://www.youtube.com/watch?v=AyIZ9tiiN8I",
-      "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
-        "imdb": null,
-        "csfd": null,
-        "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
-      },
-      "estetickeSkore": 91,
-      "duvodSkore": "Silná shoda: film nabízí psychologickou nebo vizuální osobitost, i když je místy žánrovější či přístupnější.",
-      "vlastniRecenze": "Silná volba, zvlášť pokud máš chuť na osobitý film s emocionální nebo vizuální vrstvou, ne jen na děj.",
-      "specialniProjekce": false,
-      "specialniPopis": null,
-      "projekce": [
-        {
-          "datum": "17.07.2026",
-          "cas": "13:50",
-          "misto": "Kino Pilotů",
-          "odkaz": "https://www.kinopilotu.cz/"
-        },
-        {
-          "datum": "17.07.2026",
-          "cas": "16:00",
-          "misto": "Kino Lucerna",
-          "odkaz": "https://www.kinolucerna.cz/"
-        },
-        {
-          "datum": "17.07.2026",
-          "cas": "16:30",
-          "misto": "Kino Světozor",
-          "odkaz": "https://www.kinosvetozor.cz/"
-        },
-        {
-          "datum": "17.07.2026",
-          "cas": "17:00",
-          "misto": "Bio Oko",
-          "odkaz": "https://www.biooko.net/"
-        },
-        {
-          "datum": "17.07.2026",
-          "cas": "17:10",
-          "misto": "Kino Pilotů",
-          "odkaz": "https://www.kinopilotu.cz/"
-        },
-        {
-          "datum": "17.07.2026",
-          "cas": "17:15",
-          "misto": "Kino MAT",
-          "odkaz": "https://www.kinomat.cz/"
-        },
-        {
-          "datum": "17.07.2026",
-          "cas": "18:00",
-          "misto": "Edison Filmhub",
-          "odkaz": "https://www.edisonfilmhub.cz/"
-        },
-        {
-          "datum": "17.07.2026",
-          "cas": "19:30",
-          "misto": "Modřanský biograf",
-          "odkaz": "https://www.modranskybiograf.cz/"
-        },
-        {
-          "datum": "17.07.2026",
-          "cas": "20:00",
-          "misto": "Kino Lucerna",
-          "odkaz": "https://www.kinolucerna.cz/"
-        },
-        {
-          "datum": "17.07.2026",
-          "cas": "20:00",
-          "misto": "Kino Světozor",
-          "odkaz": "https://www.kinosvetozor.cz/"
-        },
-        {
-          "datum": "17.07.2026",
+          "datum": "28.07.2026",
           "cas": "20:30",
           "misto": "Bio Oko",
-          "odkaz": "https://www.biooko.net/"
-        },
-        {
-          "datum": "17.07.2026",
-          "cas": "20:30",
-          "misto": "Kino Pilotů",
-          "odkaz": "https://www.kinopilotu.cz/"
-        },
-        {
-          "datum": "17.07.2026",
-          "cas": "20:45",
-          "misto": "Kino Atlas",
-          "odkaz": "https://www.kinoatlaspraha.cz/"
-        },
-        {
-          "datum": "18.07.2026",
-          "cas": "11:00",
-          "misto": "Kino Světozor",
-          "odkaz": "https://www.kinosvetozor.cz/"
-        },
-        {
-          "datum": "18.07.2026",
-          "cas": "12:30",
-          "misto": "Kino Lucerna",
-          "odkaz": "https://www.kinolucerna.cz/"
-        },
-        {
-          "datum": "18.07.2026",
-          "cas": "13:15",
-          "misto": "Přítomnost Boutique Cinema",
-          "odkaz": "https://www.pritomnost.cz/"
-        },
-        {
-          "datum": "18.07.2026",
-          "cas": "13:50",
-          "misto": "Kino Pilotů",
-          "odkaz": "https://www.kinopilotu.cz/"
-        },
-        {
-          "datum": "18.07.2026",
-          "cas": "16:00",
-          "misto": "Edison Filmhub",
-          "odkaz": "https://www.edisonfilmhub.cz/"
-        },
-        {
-          "datum": "18.07.2026",
-          "cas": "16:00",
-          "misto": "Kino Lucerna",
-          "odkaz": "https://www.kinolucerna.cz/"
-        },
-        {
-          "datum": "18.07.2026",
-          "cas": "16:30",
-          "misto": "Kino Světozor",
-          "odkaz": "https://www.kinosvetozor.cz/"
-        },
-        {
-          "datum": "18.07.2026",
-          "cas": "17:10",
-          "misto": "Kino Pilotů",
-          "odkaz": "https://www.kinopilotu.cz/"
-        },
-        {
-          "datum": "18.07.2026",
-          "cas": "19:00",
-          "misto": "Komorní kino Evald",
-          "odkaz": "https://www.evald.cz/"
-        },
-        {
-          "datum": "18.07.2026",
-          "cas": "19:30",
-          "misto": "Kino Lucerna",
-          "odkaz": "https://www.kinolucerna.cz/"
-        },
-        {
-          "datum": "18.07.2026",
-          "cas": "19:30",
-          "misto": "Kino MAT",
-          "odkaz": "https://www.kinomat.cz/"
-        },
-        {
-          "datum": "18.07.2026",
-          "cas": "19:30",
-          "misto": "Modřanský biograf",
-          "odkaz": "https://www.modranskybiograf.cz/"
-        },
-        {
-          "datum": "18.07.2026",
-          "cas": "20:00",
-          "misto": "Kino Světozor",
-          "odkaz": "https://www.kinosvetozor.cz/"
-        },
-        {
-          "datum": "18.07.2026",
-          "cas": "20:30",
-          "misto": "Kino Atlas",
-          "odkaz": "https://www.kinoatlaspraha.cz/"
-        },
-        {
-          "datum": "18.07.2026",
-          "cas": "20:30",
-          "misto": "Kino Pilotů",
-          "odkaz": "https://www.kinopilotu.cz/"
-        },
-        {
-          "datum": "19.07.2026",
-          "cas": "11:00",
-          "misto": "Kino Světozor",
-          "odkaz": "https://www.kinosvetozor.cz/"
-        },
-        {
-          "datum": "19.07.2026",
-          "cas": "12:30",
-          "misto": "Kino Lucerna",
-          "odkaz": "https://www.kinolucerna.cz/"
-        },
-        {
-          "datum": "19.07.2026",
-          "cas": "13:00",
-          "misto": "Přítomnost Boutique Cinema",
-          "odkaz": "https://www.pritomnost.cz/"
-        },
-        {
-          "datum": "19.07.2026",
-          "cas": "13:50",
-          "misto": "Kino Pilotů",
-          "odkaz": "https://www.kinopilotu.cz/"
-        },
-        {
-          "datum": "19.07.2026",
-          "cas": "16:00",
-          "misto": "Kino Lucerna",
-          "odkaz": "https://www.kinolucerna.cz/"
-        },
-        {
-          "datum": "19.07.2026",
-          "cas": "16:15",
-          "misto": "Kino MAT",
-          "odkaz": "https://www.kinomat.cz/"
-        },
-        {
-          "datum": "19.07.2026",
-          "cas": "16:30",
-          "misto": "Bio Oko",
-          "odkaz": "https://www.biooko.net/"
-        },
-        {
-          "datum": "19.07.2026",
-          "cas": "16:30",
-          "misto": "Kino Světozor",
-          "odkaz": "https://www.kinosvetozor.cz/"
-        },
-        {
-          "datum": "19.07.2026",
-          "cas": "17:10",
-          "misto": "Kino Pilotů",
-          "odkaz": "https://www.kinopilotu.cz/"
-        },
-        {
-          "datum": "19.07.2026",
-          "cas": "19:30",
-          "misto": "Kino Lucerna",
-          "odkaz": "https://www.kinolucerna.cz/"
-        },
-        {
-          "datum": "19.07.2026",
-          "cas": "19:30",
-          "misto": "Modřanský biograf",
-          "odkaz": "https://www.modranskybiograf.cz/"
-        },
-        {
-          "datum": "19.07.2026",
-          "cas": "20:00",
-          "misto": "Kino Aero",
-          "odkaz": "https://www.kinoaero.cz/"
-        },
-        {
-          "datum": "19.07.2026",
-          "cas": "20:00",
-          "misto": "Kino Světozor",
-          "odkaz": "https://www.kinosvetozor.cz/"
-        },
-        {
-          "datum": "19.07.2026",
-          "cas": "20:30",
-          "misto": "Kino Pilotů",
-          "odkaz": "https://www.kinopilotu.cz/"
-        },
-        {
-          "datum": "20.07.2026",
-          "cas": "16:30",
-          "misto": "Kino Světozor",
-          "odkaz": "https://www.kinosvetozor.cz/"
-        },
-        {
-          "datum": "20.07.2026",
-          "cas": "17:10",
-          "misto": "Kino Pilotů",
-          "odkaz": "https://www.kinopilotu.cz/"
-        },
-        {
-          "datum": "20.07.2026",
-          "cas": "18:30",
-          "misto": "Edison Filmhub",
-          "odkaz": "https://www.edisonfilmhub.cz/"
-        },
-        {
-          "datum": "20.07.2026",
-          "cas": "19:45",
-          "misto": "Modřanský biograf",
-          "odkaz": "https://www.modranskybiograf.cz/"
-        },
-        {
-          "datum": "20.07.2026",
-          "cas": "20:00",
-          "misto": "Kino Lucerna",
-          "odkaz": "https://www.kinolucerna.cz/"
-        },
-        {
-          "datum": "20.07.2026",
-          "cas": "20:00",
-          "misto": "Kino Světozor",
-          "odkaz": "https://www.kinosvetozor.cz/"
-        },
-        {
-          "datum": "20.07.2026",
-          "cas": "20:00",
-          "misto": "Přítomnost Boutique Cinema",
-          "odkaz": "https://www.pritomnost.cz/"
-        },
-        {
-          "datum": "20.07.2026",
-          "cas": "20:15",
-          "misto": "Bio Oko",
-          "odkaz": "https://www.biooko.net/"
-        },
-        {
-          "datum": "20.07.2026",
-          "cas": "20:30",
-          "misto": "Kino Pilotů",
-          "odkaz": "https://www.kinopilotu.cz/"
-        },
-        {
-          "datum": "21.07.2026",
-          "cas": "17:00",
-          "misto": "Kino MAT",
-          "odkaz": "https://www.kinomat.cz/"
-        },
-        {
-          "datum": "21.07.2026",
-          "cas": "17:00",
-          "misto": "Kino Světozor",
-          "odkaz": "https://www.kinosvetozor.cz/"
-        },
-        {
-          "datum": "21.07.2026",
-          "cas": "17:10",
-          "misto": "Kino Pilotů",
-          "odkaz": "https://www.kinopilotu.cz/"
-        },
-        {
-          "datum": "21.07.2026",
-          "cas": "19:45",
-          "misto": "Modřanský biograf",
-          "odkaz": "https://www.modranskybiograf.cz/"
-        },
-        {
-          "datum": "21.07.2026",
-          "cas": "20:00",
-          "misto": "Kino Aero",
-          "odkaz": "https://www.kinoaero.cz/"
-        },
-        {
-          "datum": "21.07.2026",
-          "cas": "20:00",
-          "misto": "Kino Lucerna",
-          "odkaz": "https://www.kinolucerna.cz/"
-        },
-        {
-          "datum": "21.07.2026",
-          "cas": "20:00",
-          "misto": "Kino Světozor",
-          "odkaz": "https://www.kinosvetozor.cz/"
-        },
-        {
-          "datum": "21.07.2026",
-          "cas": "20:30",
-          "misto": "Kino Atlas",
-          "odkaz": "https://www.kinoatlaspraha.cz/"
-        },
-        {
-          "datum": "21.07.2026",
-          "cas": "20:30",
-          "misto": "Kino Pilotů",
-          "odkaz": "https://www.kinopilotu.cz/"
-        },
-        {
-          "datum": "21.07.2026",
-          "cas": "20:30",
-          "misto": "Přítomnost Boutique Cinema",
-          "odkaz": "https://www.pritomnost.cz/"
-        },
-        {
-          "datum": "22.07.2026",
-          "cas": "17:00",
-          "misto": "Kino Světozor",
-          "odkaz": "https://www.kinosvetozor.cz/"
-        },
-        {
-          "datum": "22.07.2026",
-          "cas": "17:10",
-          "misto": "Kino Pilotů",
-          "odkaz": "https://www.kinopilotu.cz/"
-        },
-        {
-          "datum": "22.07.2026",
-          "cas": "19:00",
-          "misto": "Kino MAT",
-          "odkaz": "https://www.kinomat.cz/"
-        },
-        {
-          "datum": "22.07.2026",
-          "cas": "19:15",
-          "misto": "Modřanský biograf",
-          "odkaz": "https://www.modranskybiograf.cz/"
-        },
-        {
-          "datum": "22.07.2026",
-          "cas": "20:00",
-          "misto": "Kino Lucerna",
-          "odkaz": "https://www.kinolucerna.cz/"
-        },
-        {
-          "datum": "22.07.2026",
-          "cas": "20:00",
-          "misto": "Kino Světozor",
-          "odkaz": "https://www.kinosvetozor.cz/"
-        },
-        {
-          "datum": "22.07.2026",
-          "cas": "20:30",
-          "misto": "Kino Pilotů",
-          "odkaz": "https://www.kinopilotu.cz/"
-        },
-        {
-          "datum": "23.07.2026",
-          "cas": "18:45",
-          "misto": "Komorní kino Evald",
-          "odkaz": "https://www.evald.cz/"
-        },
-        {
-          "datum": "23.07.2026",
-          "cas": "20:00",
-          "misto": "Kino Aero",
-          "odkaz": "https://www.kinoaero.cz/"
-        },
-        {
-          "datum": "23.07.2026",
-          "cas": "20:30",
-          "misto": "Kino Atlas",
-          "odkaz": "https://www.kinoatlaspraha.cz/"
-        },
-        {
-          "datum": "24.07.2026",
-          "cas": "20:15",
-          "misto": "Kino Aero",
-          "odkaz": "https://www.kinoaero.cz/"
-        },
-        {
-          "datum": "24.07.2026",
-          "cas": "20:30",
-          "misto": "Přítomnost Boutique Cinema",
-          "odkaz": "https://www.pritomnost.cz/"
-        },
-        {
-          "datum": "24.07.2026",
-          "cas": "20:45",
-          "misto": "Kino Atlas",
-          "odkaz": "https://www.kinoatlaspraha.cz/"
-        },
-        {
-          "datum": "25.07.2026",
-          "cas": "19:15",
-          "misto": "Komorní kino Evald",
-          "odkaz": "https://www.evald.cz/"
-        },
-        {
-          "datum": "25.07.2026",
-          "cas": "20:30",
-          "misto": "Přítomnost Boutique Cinema",
-          "odkaz": "https://www.pritomnost.cz/"
-        },
-        {
-          "datum": "25.07.2026",
-          "cas": "20:45",
-          "misto": "Kino Atlas",
-          "odkaz": "https://www.kinoatlaspraha.cz/"
-        },
-        {
-          "datum": "26.07.2026",
-          "cas": "16:30",
-          "misto": "Přítomnost Boutique Cinema",
-          "odkaz": "https://www.pritomnost.cz/"
-        },
-        {
-          "datum": "27.07.2026",
-          "cas": "20:30",
-          "misto": "Přítomnost Boutique Cinema",
-          "odkaz": "https://www.pritomnost.cz/"
+          "odkaz": "https://www.biooko.net/program/"
         },
         {
           "datum": "28.07.2026",
-          "cas": "17:30",
-          "misto": "Kino Atlas",
-          "odkaz": "https://www.kinoatlaspraha.cz/"
-        },
+          "cas": "20:00",
+          "misto": "Kino Aero",
+          "odkaz": "https://www.kinoaero.cz/program/"
+        }
+      ]
+    },
+    {
+      "nazevCz": "Vejdi do prázdna",
+      "nazevOrig": "Enter the Void",
+      "rezie": "Gaspar Noé",
+      "zanr": "Drama / Experimentální",
+      "popis": "Zastřelený dealer z Tokia sleduje dozvuky své smrti jako bloudící vědomí.",
+      "trailerUrl": "https://www.youtube.com/watch?v=oRNpSKsBKw8",
+      "hodnoceni": {
+        "imdb": 7.2,
+        "metacritic": 69,
+        "rottenTomatoes": 73,
+        "vazenePrumer": 71.5,
+        "poznamkaHodnoceni": null
+      },
+      "estetickeSkore": 80,
+      "duvodSkore": "Noého halucinogenní existenciální trip o smrti a vědomí — vizuálně radikální, tématem přímo Bobovým.",
+      "vlastniRecenze": "Zastřelený dealer z Tokia sleduje dozvuky své smrti jako bloudící vědomí. Noé staví halucinační, formálně radikální trip o smrti, vědomí a znovuzrození. Náročné, ale tématem přesně tvoje.",
+      "specialniProjekce": false,
+      "specialniPopis": null,
+      "projekce": [
         {
-          "datum": "29.07.2026",
-          "cas": "20:30",
-          "misto": "Přítomnost Boutique Cinema",
-          "odkaz": "https://www.pritomnost.cz/"
-        },
+          "datum": "07.07.2026",
+          "cas": "20:45",
+          "misto": "Edison Filmhub",
+          "odkaz": "https://www.edisonfilmhub.cz/program"
+        }
+      ]
+    },
+    {
+      "nazevCz": "Mé 20. století",
+      "nazevOrig": "Az én XX. századom / My Twentieth Century",
+      "rezie": "Ildikó Enyedi",
+      "zanr": "Drama / Fantasy",
+      "popis": "Rozdělená dvojčata se na přelomu století protnou v luxusním Orient expressu, mezi vědou a osudem.",
+      "trailerUrl": "https://www.youtube.com/watch?v=BFPt_iTvKc8",
+      "hodnoceni": {
+        "imdb": 7.1,
+        "metacritic": 81,
+        "rottenTomatoes": 100,
+        "vazenePrumer": 75.9,
+        "poznamkaHodnoceni": null
+      },
+      "estetickeSkore": 78,
+      "duvodSkore": "Enyedi — poetické černobílé filozofické drama o vědě a osudu; vizuálně okouzlující.",
+      "vlastniRecenze": "Rozdělená dvojčata se na přelomu století protnou v luxusním Orient expressu, mezi vědou a osudem. Enyedi točí poetické černobílé filozofické drama okouzlené technikou i tajemstvím. Vizuálně nádherné.",
+      "specialniProjekce": false,
+      "specialniPopis": null,
+      "projekce": [
         {
           "datum": "31.07.2026",
+          "cas": "18:00",
+          "misto": "Kino Aero",
+          "odkaz": "https://www.kinoaero.cz/program/"
+        }
+      ]
+    },
+    {
+      "nazevCz": "Frankenstein",
+      "nazevOrig": "Frankenstein",
+      "rezie": "Guillermo del Toro",
+      "zanr": "Drama / Horor",
+      "popis": "Del Toro vypráví Shelleyové mýtus o stvořiteli a jeho opuštěném výtvoru jako gotické drama o samotě a odpovědnosti.",
+      "trailerUrl": "https://www.youtube.com/watch?v=r5Iygg1COyA",
+      "hodnoceni": {
+        "imdb": 7.4,
+        "metacritic": 78,
+        "rottenTomatoes": 84,
+        "vazenePrumer": 75.8,
+        "poznamkaHodnoceni": null
+      },
+      "estetickeSkore": 78,
+      "duvodSkore": "Del Toro — vizuálně bohatá gotická adaptace o stvoření a samotě; morální a existenciální hloubka.",
+      "vlastniRecenze": "Del Toro vypráví Shelleyové mýtus o stvořiteli a jeho opuštěném výtvoru jako gotické drama o samotě a odpovědnosti. Vizuálně bohaté, emočně vážné, s Oscarem Isaacem a Jacobem Elordim. Morální hloubka pod hororovým hávem.",
+      "specialniProjekce": false,
+      "specialniPopis": null,
+      "projekce": [
+        {
+          "datum": "08.07.2026",
           "cas": "20:30",
-          "misto": "Kino Atlas",
-          "odkaz": "https://www.kinoatlaspraha.cz/"
-        },
-        {
-          "datum": "01.08.2026",
-          "cas": "20:00",
-          "misto": "Kino Atlas",
-          "odkaz": "https://www.kinoatlaspraha.cz/"
-        },
-        {
-          "datum": "04.08.2026",
-          "cas": "20:00",
-          "misto": "Kino Světozor",
-          "odkaz": "https://www.kinosvetozor.cz/"
-        },
-        {
-          "datum": "05.08.2026",
-          "cas": "20:00",
-          "misto": "Kino Světozor",
-          "odkaz": "https://www.kinosvetozor.cz/"
-        }
-      ]
-    },
-    {
-      "nazevCz": "Dealer",
-      "nazevOrig": "Pusher",
-      "rezie": "Nicolas Winding Refn",
-      "zanr": "krimi, thriller, drama",
-      "popis": "Kodaňský dealer se po zpackaném obchodu propadá do dluhů, paranoie a násilí.",
-      "trailerUrl": "https://www.youtube.com/watch?v=dLEaPB9UBWM",
-      "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
-        "imdb": null,
-        "csfd": null,
-        "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
-      },
-      "estetickeSkore": 90,
-      "duvodSkore": "Silná shoda: film nabízí psychologickou nebo vizuální osobitost, i když je místy žánrovější či přístupnější.",
-      "vlastniRecenze": "Silná volba, zvlášť pokud máš chuť na osobitý film s emocionální nebo vizuální vrstvou, ne jen na děj.",
-      "specialniProjekce": false,
-      "specialniPopis": null,
-      "projekce": [
-        {
-          "datum": "08.08.2026",
-          "cas": "17:00",
           "misto": "Kino Aero",
-          "odkaz": "https://www.kinoaero.cz/"
+          "odkaz": "https://www.kinoaero.cz/program/"
         }
       ]
     },
     {
-      "nazevCz": "Život ženy",
-      "nazevOrig": "Une vie",
-      "rezie": "Stéphane Brizé",
-      "zanr": "drama",
-      "popis": "Život ženy v 19. století se postupně uzavírá v manželství, zradách a společenských očekáváních.",
-      "trailerUrl": "https://www.youtube.com/watch?v=qWQwA_cRH9M",
+      "nazevCz": "Zmizení Josefa Mengeleho",
+      "nazevOrig": "The Disappearance of Josef Mengele",
+      "rezie": "Kirill Serebrennikov",
+      "zanr": "Drama / Historie",
+      "popis": "Serebrennikov sleduje nacistického doktora v letech na útěku Jižní Amerikou.",
+      "trailerUrl": "https://www.youtube.com/watch?v=FFVFBwoyrZg",
       "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
-        "imdb": null,
-        "csfd": null,
-        "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
+        "imdb": 7.1,
+        "metacritic": null,
+        "rottenTomatoes": null,
+        "vazenePrumer": 71.0,
+        "poznamkaHodnoceni": null
       },
-      "estetickeSkore": 90,
-      "duvodSkore": "Silná shoda: film nabízí psychologickou nebo vizuální osobitost, i když je místy žánrovější či přístupnější.",
-      "vlastniRecenze": "Silná volba, zvlášť pokud máš chuť na osobitý film s emocionální nebo vizuální vrstvou, ne jen na děj.",
+      "estetickeSkore": 80,
+      "duvodSkore": "Serebrennikov — vizuálně silné, morálně temné historické drama; autorská vize.",
+      "vlastniRecenze": "Serebrennikov sleduje nacistického doktora v letech na útěku Jižní Amerikou. Vizuálně silné, morálně temné historické drama o zlu, které se skrývá a nekaje. August Diehl v mrazivé roli.",
       "specialniProjekce": false,
       "specialniPopis": null,
       "projekce": [
         {
-          "datum": "18.07.2026",
-          "cas": "15:15",
-          "misto": "Kino Světozor",
-          "odkaz": "https://www.kinosvetozor.cz/"
-        },
-        {
-          "datum": "19.07.2026",
-          "cas": "13:20",
-          "misto": "Kino Aero",
-          "odkaz": "https://www.kinoaero.cz/"
+          "datum": "05.07.2026",
+          "cas": "19:00",
+          "misto": "Edison Filmhub",
+          "odkaz": "https://www.edisonfilmhub.cz/program"
         }
       ]
     },
     {
-      "nazevCz": "Malý velký muž",
-      "nazevOrig": "Little Big Man",
-      "rezie": "Arthur Penn",
-      "zanr": "western, drama, komedie",
-      "popis": "Stařec vypráví svůj absurdní a tragický život mezi bělochy a původními Američany.",
-      "trailerUrl": "https://www.youtube.com/watch?v=7K4l5ZZe4-k",
+      "nazevCz": "Butch Cassidy a Sundance Kid",
+      "nazevOrig": "Butch Cassidy and the Sundance Kid",
+      "rezie": "George Roy Hill",
+      "zanr": "Western / Drama",
+      "popis": "Dva psanci na útěku před dobou i zákonem prchají až do Bolívie.",
+      "trailerUrl": "https://www.youtube.com/watch?v=wC_thZp7N8M",
       "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
-        "imdb": null,
-        "csfd": null,
-        "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
+        "imdb": 8.0,
+        "metacritic": 66,
+        "rottenTomatoes": 89,
+        "vazenePrumer": 78.1,
+        "poznamkaHodnoceni": null
       },
-      "estetickeSkore": 90,
-      "duvodSkore": "Silná shoda: film nabízí psychologickou nebo vizuální osobitost, i když je místy žánrovější či přístupnější.",
-      "vlastniRecenze": "Silná volba, zvlášť pokud máš chuť na osobitý film s emocionální nebo vizuální vrstvou, ne jen na děj.",
+      "estetickeSkore": 76,
+      "duvodSkore": "Elegický, ironický western o konci éry — melancholie a přátelství; klasika.",
+      "vlastniRecenze": "Dva psanci na útěku před dobou i zákonem prchají až do Bolívie. Elegický, ironický western o konci éry a mužském přátelství, s Newmanem a Redfordem. Melancholie pod humorem — klasika.",
       "specialniProjekce": false,
       "specialniPopis": null,
       "projekce": [
         {
-          "datum": "19.07.2026",
-          "cas": "19:30",
+          "datum": "07.07.2026",
+          "cas": "20:15",
           "misto": "Kino MAT",
-          "odkaz": "https://www.kinomat.cz/"
+          "odkaz": "https://www.mat.cz/kino/"
         }
       ]
     },
     {
-      "nazevCz": "Obecná škola",
-      "nazevOrig": "Obecná škola",
-      "rezie": "Jan Svěrák",
-      "zanr": "drama, komedie",
-      "popis": "Poválečné dětství v pražské škole promění příchod charismatického, ale rozporuplného učitele.",
-      "trailerUrl": "https://www.youtube.com/watch?v=VrrcHgABlKE",
+      "nazevCz": "Rodinný film",
+      "nazevOrig": null,
+      "rezie": "Olmo Omerzu",
+      "zanr": "Drama",
+      "popis": "Rodiče odjedou na plavbu a nechají dospívající děti a psa doma; klid se pomalu rozpadá.",
+      "trailerUrl": "https://www.youtube.com/watch?v=n368_CU9umc",
       "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
         "imdb": null,
-        "csfd": null,
+        "metacritic": null,
+        "rottenTomatoes": null,
         "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
+        "poznamkaHodnoceni": null
       },
-      "estetickeSkore": 90,
-      "duvodSkore": "Silná shoda: film nabízí psychologickou nebo vizuální osobitost, i když je místy žánrovější či přístupnější.",
-      "vlastniRecenze": "Silná volba, zvlášť pokud máš chuť na osobitý film s emocionální nebo vizuální vrstvou, ne jen na děj.",
+      "estetickeSkore": 76,
+      "duvodSkore": "Omerzu — komorní psychologické drama o rozpadu rodiny, autorský středoevropský film.",
+      "vlastniRecenze": "Rodiče odjedou na plavbu a nechají dospívající děti a psa doma; klid se pomalu rozpadá. Omerzu točí komorní psychologické drama o odcizení a odpovědnosti. Ceněný středoevropský autorský film.",
       "specialniProjekce": false,
       "specialniPopis": null,
       "projekce": [
         {
-          "datum": "30.07.2026",
-          "cas": "21:30",
-          "misto": "Kino Atlas",
-          "odkaz": "https://www.kinoatlaspraha.cz/"
-        }
-      ]
-    },
-    {
-      "nazevCz": "Ženy na pokraji nervového zhroucení",
-      "nazevOrig": "Mujeres al borde de un ataque de nervios",
-      "rezie": "Pedro Almodóvar",
-      "zanr": "komedie, drama",
-      "popis": "Žena po rozchodu se snaží dopátrat pravdy, zatímco kolem ní narůstá absurdní chaos.",
-      "trailerUrl": "https://www.youtube.com/watch?v=1cVBr894wHs",
-      "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
-        "imdb": null,
-        "csfd": null,
-        "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
-      },
-      "estetickeSkore": 89,
-      "duvodSkore": "Silná shoda: film nabízí psychologickou nebo vizuální osobitost, i když je místy žánrovější či přístupnější.",
-      "vlastniRecenze": "Silná volba, zvlášť pokud máš chuť na osobitý film s emocionální nebo vizuální vrstvou, ne jen na děj.",
-      "specialniProjekce": false,
-      "specialniPopis": null,
-      "projekce": [
-        {
-          "datum": "30.07.2026",
+          "datum": "17.07.2026",
           "cas": "18:00",
-          "misto": "Bio Oko",
-          "odkaz": "https://www.biooko.net/"
-        }
-      ]
-    },
-    {
-      "nazevCz": "Suspiria",
-      "nazevOrig": "Suspiria",
-      "rezie": "Dario Argento",
-      "zanr": "horor, mysteriózní",
-      "popis": "Americká tanečnice nastoupí na německou akademii, v níž se skrývá iracionální zlo.",
-      "trailerUrl": "https://www.youtube.com/watch?v=hPs2ExUL_bc",
-      "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
-        "imdb": null,
-        "csfd": null,
-        "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
-      },
-      "estetickeSkore": 89,
-      "duvodSkore": "Silná shoda: film nabízí psychologickou nebo vizuální osobitost, i když je místy žánrovější či přístupnější.",
-      "vlastniRecenze": "Silná volba, zvlášť pokud máš chuť na osobitý film s emocionální nebo vizuální vrstvou, ne jen na děj.",
-      "specialniProjekce": false,
-      "specialniPopis": null,
-      "projekce": [
-        {
-          "datum": "24.07.2026",
-          "cas": "21:15",
-          "misto": "Edison Filmhub",
-          "odkaz": "https://www.edisonfilmhub.cz/"
-        }
-      ]
-    },
-    {
-      "nazevCz": "Pillion",
-      "nazevOrig": "Pillion",
-      "rezie": "Harry Lighton",
-      "zanr": "drama, romantický",
-      "popis": "Plachý muž vstoupí do intenzivního vztahu s dominantním motorkářem a zkoumá vlastní hranice.",
-      "trailerUrl": "https://www.youtube.com/watch?v=Gl8n5I-IIHU",
-      "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
-        "imdb": null,
-        "csfd": null,
-        "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
-      },
-      "estetickeSkore": 89,
-      "duvodSkore": "Silná shoda: film nabízí psychologickou nebo vizuální osobitost, i když je místy žánrovější či přístupnější.",
-      "vlastniRecenze": "Silná volba, zvlášť pokud máš chuť na osobitý film s emocionální nebo vizuální vrstvou, ne jen na děj.",
-      "specialniProjekce": false,
-      "specialniPopis": null,
-      "projekce": [
-        {
-          "datum": "02.08.2026",
-          "cas": "21:30",
-          "misto": "Kino Atlas",
-          "odkaz": "https://www.kinoatlaspraha.cz/"
-        }
-      ]
-    },
-    {
-      "nazevCz": "Mouchy",
-      "nazevOrig": "Moscas",
-      "rezie": "Fernando Eimbcke",
-      "zanr": "drama",
-      "popis": "Komorní, psychologicky laděný příběh postav, jejichž obranná tvrdost skrývá křehkost.",
-      "trailerUrl": "https://www.youtube.com/watch?v=9O5DrhaJ2t4",
-      "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
-        "imdb": null,
-        "csfd": null,
-        "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
-      },
-      "estetickeSkore": 88,
-      "duvodSkore": "Silná shoda: film nabízí psychologickou nebo vizuální osobitost, i když je místy žánrovější či přístupnější.",
-      "vlastniRecenze": "Silná volba, zvlášť pokud máš chuť na osobitý film s emocionální nebo vizuální vrstvou, ne jen na děj.",
-      "specialniProjekce": false,
-      "specialniPopis": null,
-      "projekce": [
-        {
-          "datum": "17.07.2026",
-          "cas": "15:30",
           "misto": "Kino Světozor",
-          "odkaz": "https://www.kinosvetozor.cz/"
-        },
-        {
-          "datum": "17.07.2026",
-          "cas": "17:40",
-          "misto": "Modřanský biograf",
-          "odkaz": "https://www.modranskybiograf.cz/"
-        },
-        {
-          "datum": "17.07.2026",
-          "cas": "20:30",
-          "misto": "Kino MAT",
-          "odkaz": "https://www.kinomat.cz/"
-        },
-        {
-          "datum": "18.07.2026",
-          "cas": "11:15",
-          "misto": "Kino Světozor",
-          "odkaz": "https://www.kinosvetozor.cz/"
+          "odkaz": "https://www.kinosvetozor.cz/program/"
         },
         {
           "datum": "19.07.2026",
-          "cas": "13:30",
-          "misto": "Kino Světozor",
-          "odkaz": "https://www.kinosvetozor.cz/"
-        },
-        {
-          "datum": "20.07.2026",
-          "cas": "18:00",
-          "misto": "Kino Světozor",
-          "odkaz": "https://www.kinosvetozor.cz/"
-        },
-        {
-          "datum": "20.07.2026",
-          "cas": "20:45",
-          "misto": "Kino Pilotů",
-          "odkaz": "https://www.kinopilotu.cz/"
-        },
-        {
-          "datum": "21.07.2026",
-          "cas": "15:30",
-          "misto": "Kino Světozor",
-          "odkaz": "https://www.kinosvetozor.cz/"
-        },
-        {
-          "datum": "21.07.2026",
-          "cas": "15:50",
-          "misto": "Kino Pilotů",
-          "odkaz": "https://www.kinopilotu.cz/"
-        },
-        {
-          "datum": "21.07.2026",
-          "cas": "19:30",
-          "misto": "Komorní kino Evald",
-          "odkaz": "https://www.evald.cz/"
-        },
-        {
-          "datum": "22.07.2026",
-          "cas": "15:15",
-          "misto": "Kino Světozor",
-          "odkaz": "https://www.kinosvetozor.cz/"
-        },
-        {
-          "datum": "22.07.2026",
-          "cas": "21:30",
-          "misto": "Edison Filmhub",
-          "odkaz": "https://www.edisonfilmhub.cz/"
-        },
-        {
-          "datum": "28.07.2026",
-          "cas": "17:30",
-          "misto": "Komorní kino Evald",
-          "odkaz": "https://www.evald.cz/"
-        }
-      ]
-    },
-    {
-      "nazevCz": "Pozvání",
-      "nazevOrig": "The Invite",
-      "rezie": "Olivia Wilde",
-      "zanr": "komedie, drama",
-      "popis": "Večeře dvou párů otevře skrytá přání, závist a trhliny v jejich vztazích.",
-      "trailerUrl": "https://www.youtube.com/watch?v=OJ19I9q_hOQ",
-      "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
-        "imdb": null,
-        "csfd": null,
-        "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
-      },
-      "estetickeSkore": 88,
-      "duvodSkore": "Silná shoda: film nabízí psychologickou nebo vizuální osobitost, i když je místy žánrovější či přístupnější.",
-      "vlastniRecenze": "Silná volba, zvlášť pokud máš chuť na osobitý film s emocionální nebo vizuální vrstvou, ne jen na děj.",
-      "specialniProjekce": false,
-      "specialniPopis": null,
-      "projekce": [
-        {
-          "datum": "17.07.2026",
-          "cas": "21:30",
-          "misto": "Edison Filmhub",
-          "odkaz": "https://www.edisonfilmhub.cz/"
-        },
-        {
-          "datum": "17.07.2026",
-          "cas": "21:30",
-          "misto": "Kino Pilotů",
-          "odkaz": "https://www.kinopilotu.cz/"
-        },
-        {
-          "datum": "18.07.2026",
-          "cas": "12:00",
-          "misto": "Kino Světozor",
-          "odkaz": "https://www.kinosvetozor.cz/"
-        },
-        {
-          "datum": "18.07.2026",
-          "cas": "20:00",
-          "misto": "Bio Oko",
-          "odkaz": "https://www.biooko.net/"
-        },
-        {
-          "datum": "18.07.2026",
-          "cas": "21:00",
-          "misto": "Kino Pilotů",
-          "odkaz": "https://www.kinopilotu.cz/"
-        },
-        {
-          "datum": "18.07.2026",
-          "cas": "21:30",
-          "misto": "Edison Filmhub",
-          "odkaz": "https://www.edisonfilmhub.cz/"
-        },
-        {
-          "datum": "19.07.2026",
-          "cas": "12:00",
-          "misto": "Kino Světozor",
-          "odkaz": "https://www.kinosvetozor.cz/"
-        },
-        {
-          "datum": "19.07.2026",
-          "cas": "18:30",
-          "misto": "Kino Pilotů",
-          "odkaz": "https://www.kinopilotu.cz/"
-        },
-        {
-          "datum": "20.07.2026",
-          "cas": "16:15",
-          "misto": "Edison Filmhub",
-          "odkaz": "https://www.edisonfilmhub.cz/"
-        },
-        {
-          "datum": "20.07.2026",
-          "cas": "18:00",
-          "misto": "Bio Oko",
-          "odkaz": "https://www.biooko.net/"
-        },
-        {
-          "datum": "20.07.2026",
-          "cas": "18:00",
-          "misto": "Kino Aero",
-          "odkaz": "https://www.kinoaero.cz/"
-        },
-        {
-          "datum": "20.07.2026",
-          "cas": "18:00",
-          "misto": "Kino Světozor",
-          "odkaz": "https://www.kinosvetozor.cz/"
-        },
-        {
-          "datum": "20.07.2026",
-          "cas": "18:30",
-          "misto": "Kino Pilotů",
-          "odkaz": "https://www.kinopilotu.cz/"
-        },
-        {
-          "datum": "21.07.2026",
-          "cas": "17:30",
-          "misto": "Přítomnost Boutique Cinema",
-          "odkaz": "https://www.pritomnost.cz/"
-        },
-        {
-          "datum": "21.07.2026",
           "cas": "20:30",
           "misto": "Kino Světozor",
-          "odkaz": "https://www.kinosvetozor.cz/"
+          "odkaz": "https://www.kinosvetozor.cz/program/"
         },
         {
-          "datum": "21.07.2026",
-          "cas": "20:50",
-          "misto": "Kino Pilotů",
-          "odkaz": "https://www.kinopilotu.cz/"
-        },
-        {
-          "datum": "22.07.2026",
-          "cas": "14:45",
-          "misto": "Kino Světozor",
-          "odkaz": "https://www.kinosvetozor.cz/"
-        },
-        {
-          "datum": "22.07.2026",
-          "cas": "19:45",
-          "misto": "Komorní kino Evald",
-          "odkaz": "https://www.evald.cz/"
-        },
-        {
-          "datum": "22.07.2026",
-          "cas": "20:45",
-          "misto": "Kino Pilotů",
-          "odkaz": "https://www.kinopilotu.cz/"
-        },
-        {
-          "datum": "25.07.2026",
-          "cas": "17:30",
+          "datum": "15.07.2026",
+          "cas": "20:30",
           "misto": "Přítomnost Boutique Cinema",
-          "odkaz": "https://www.pritomnost.cz/"
-        },
-        {
-          "datum": "28.07.2026",
-          "cas": "10:00",
-          "misto": "Bio Oko",
-          "odkaz": "https://www.biooko.net/"
-        }
-      ]
-    },
-    {
-      "nazevCz": "Nene",
-      "nazevOrig": "Nope",
-      "rezie": "Jordan Peele",
-      "zanr": "sci-fi, horor, mysteriózní",
-      "popis": "Sourozenci na odlehlém ranči se pokoušejí zachytit nevysvětlitelný jev na obloze.",
-      "trailerUrl": "https://www.youtube.com/watch?v=In8fuzj3gck",
-      "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
-        "imdb": null,
-        "csfd": null,
-        "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
-      },
-      "estetickeSkore": 87,
-      "duvodSkore": "Dobrá shoda hlavně díky výraznému stylu a režijní energii; psychologická hloubka nemusí být vždy dominantní.",
-      "vlastniRecenze": "Doporučuju hlavně kvůli režijnímu rukopisu a energii; může být méně kontemplativní, ale rozhodně není generický.",
-      "specialniProjekce": false,
-      "specialniPopis": null,
-      "projekce": [
-        {
-          "datum": "24.07.2026",
-          "cas": "16:15",
-          "misto": "Edison Filmhub",
-          "odkaz": "https://www.edisonfilmhub.cz/"
-        }
-      ]
-    },
-    {
-      "nazevCz": "EOS: Frida Kahlo",
-      "nazevOrig": "Frida Kahlo",
-      "rezie": "Ali Ray",
-      "zanr": "dokumentární",
-      "popis": "Dokumentární portrét Fridy Kahlo skrze její obrazy, dopisy a osobní zkušenost.",
-      "trailerUrl": "https://www.youtube.com/watch?v=D76y2YhjV8A",
-      "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
-        "imdb": null,
-        "csfd": null,
-        "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
-      },
-      "estetickeSkore": 87,
-      "duvodSkore": "Dobrá shoda hlavně díky výraznému stylu a režijní energii; psychologická hloubka nemusí být vždy dominantní.",
-      "vlastniRecenze": "Doporučuju hlavně kvůli režijnímu rukopisu a energii; může být méně kontemplativní, ale rozhodně není generický.",
-      "specialniProjekce": true,
-      "specialniPopis": "Dokumentární projekce cyklu Exhibition on Screen.",
-      "projekce": [
-        {
-          "datum": "19.07.2026",
-          "cas": "15:30",
-          "misto": "Kino Lucerna",
-          "odkaz": "https://www.kinolucerna.cz/"
-        },
-        {
-          "datum": "22.07.2026",
-          "cas": "17:45",
-          "misto": "Kino Světozor",
-          "odkaz": "https://www.kinosvetozor.cz/"
-        },
-        {
-          "datum": "24.07.2026",
-          "cas": "17:00",
-          "misto": "Komorní kino Evald",
-          "odkaz": "https://www.evald.cz/"
+          "odkaz": "https://www.pritomnost.cz/program/"
         }
       ]
     },
@@ -2303,61 +859,709 @@
       "nazevCz": "The Apprentice: Příběh Trumpa",
       "nazevOrig": "The Apprentice",
       "rezie": "Ali Abbasi",
-      "zanr": "drama, životopisný",
-      "popis": "Portrét mladého Donalda Trumpa a jeho formování pod vlivem právníka Roye Cohna.",
-      "trailerUrl": "https://www.youtube.com/watch?v=0tXEN0WNJUg",
+      "zanr": "Drama / Biografie",
+      "popis": "Mladý developer se v New Yorku 70.",
+      "trailerUrl": "https://www.youtube.com/watch?v=j9mwhIYpSQQ",
       "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
-        "imdb": null,
-        "csfd": null,
-        "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
+        "imdb": 7.1,
+        "metacritic": 64,
+        "rottenTomatoes": 83,
+        "vazenePrumer": 70.8,
+        "poznamkaHodnoceni": null
       },
-      "estetickeSkore": 85,
-      "duvodSkore": "Dobrá shoda hlavně díky výraznému stylu a režijní energii; psychologická hloubka nemusí být vždy dominantní.",
-      "vlastniRecenze": "Doporučuju hlavně kvůli režijnímu rukopisu a energii; může být méně kontemplativní, ale rozhodně není generický.",
+      "estetickeSkore": 76,
+      "duvodSkore": "Abbasiho ostrý portrét moci a morálního úpadku — psychologicky nabité, autorské.",
+      "vlastniRecenze": "Mladý developer se v New Yorku 70. let učí bezohlednosti od právníka Roye Cohna. Abbasi točí ostrý portrét zrodu moci a morálního úpadku. Psychologicky nabité, nepříjemně aktuální.",
       "specialniProjekce": false,
       "specialniPopis": null,
       "projekce": [
         {
-          "datum": "27.07.2026",
-          "cas": "20:30",
+          "datum": "07.07.2026",
+          "cas": "20:00",
           "misto": "Kino Atlas",
-          "odkaz": "https://www.kinoatlaspraha.cz/"
+          "odkaz": "https://www.kinoatlas.cz/program"
         },
         {
-          "datum": "30.07.2026",
+          "datum": "08.07.2026",
           "cas": "21:00",
           "misto": "Kino Atlas",
-          "odkaz": "https://www.kinoatlaspraha.cz/"
+          "odkaz": "https://www.kinoatlas.cz/program"
+        }
+      ]
+    },
+    {
+      "nazevCz": "Parthenope",
+      "nazevOrig": "Parthenope",
+      "rezie": "Paolo Sorrentino",
+      "zanr": "Drama",
+      "popis": "Sorrentino sleduje krásnou ženu od zrození v neapolském moři přes dlouhá léta touhy a ztrát.",
+      "trailerUrl": "https://www.youtube.com/watch?v=uT5PGHBugic",
+      "hodnoceni": {
+        "imdb": 6.6,
+        "metacritic": 52,
+        "rottenTomatoes": 47,
+        "vazenePrumer": 61.3,
+        "poznamkaHodnoceni": null
+      },
+      "estetickeSkore": 80,
+      "duvodSkore": "Sorrentino — vizuálně opojné melancholické drama o kráse, čase a touze; autorský film.",
+      "vlastniRecenze": "Sorrentino sleduje krásnou ženu od zrození v neapolském moři přes dlouhá léta touhy a ztrát. Vizuálně opojné, melancholické drama o kráse a plynutí času. Nesourodé, ale hypnotické — pro milovníky obrazu.",
+      "specialniProjekce": false,
+      "specialniPopis": null,
+      "projekce": [
+        {
+          "datum": "07.07.2026",
+          "cas": "16:00",
+          "misto": "Kino Pilotů",
+          "odkaz": "https://www.kinopilotu.cz/program/"
+        }
+      ]
+    },
+    {
+      "nazevCz": "Soukromý život",
+      "nazevOrig": "La vie privée",
+      "rezie": "Rebecca Zlotowski",
+      "zanr": "Drama",
+      "popis": "Psychiatrička (Jodie Foster) se zaplete do vyšetřování smrti své pacientky.",
+      "trailerUrl": "https://www.youtube.com/watch?v=yWZKV-DWAE0",
+      "hodnoceni": {
+        "imdb": null,
+        "metacritic": null,
+        "rottenTomatoes": null,
+        "vazenePrumer": null,
+        "poznamkaHodnoceni": null
+      },
+      "estetickeSkore": 74,
+      "duvodSkore": "Zlotowski, francouzské psychologické drama s Jodie Foster — autorský evropský film.",
+      "vlastniRecenze": "Psychiatrička (Jodie Foster) se zaplete do vyšetřování smrti své pacientky. Zlotowski točí elegantní francouzské drama-thriller s psychologickým přesahem. Chytré, herecky bohaté.",
+      "specialniProjekce": false,
+      "specialniPopis": null,
+      "projekce": [
+        {
+          "datum": "09.07.2026",
+          "cas": "13:30",
+          "misto": "Kino Aero",
+          "odkaz": "https://www.kinoaero.cz/program/"
         },
         {
-          "datum": "01.08.2026",
+          "datum": "16.07.2026",
+          "cas": "15:00",
+          "misto": "Kino Světozor",
+          "odkaz": "https://www.kinosvetozor.cz/program/"
+        },
+        {
+          "datum": "24.07.2026",
+          "cas": "15:00",
+          "misto": "Komorní kino Evald",
+          "odkaz": "https://www.kinoevald.cz/program"
+        }
+      ]
+    },
+    {
+      "nazevCz": "V Lurdech",
+      "nazevOrig": "Lourdes",
+      "rezie": "Jessica Hausner",
+      "zanr": "Drama",
+      "popis": "Žena na vozíku se na pouti do Lurd stane svědkem možného zázraku.",
+      "trailerUrl": "https://www.youtube.com/watch?v=cOmMrEBAW-0",
+      "hodnoceni": {
+        "imdb": null,
+        "metacritic": null,
+        "rottenTomatoes": null,
+        "vazenePrumer": null,
+        "poznamkaHodnoceni": null
+      },
+      "estetickeSkore": 74,
+      "duvodSkore": "Hausner — chladné, přesné existenciální drama o zázraku a víře; kontemplativní autorský film.",
+      "vlastniRecenze": "Žena na vozíku se na pouti do Lurd stane svědkem možného zázraku. Hausner točí chladné, přesné existenciální drama o víře, náhodě a naději bez laciných odpovědí. Kontemplativní autorský film.",
+      "specialniProjekce": false,
+      "specialniPopis": null,
+      "projekce": [
+        {
+          "datum": "29.07.2026",
+          "cas": "15:00",
+          "misto": "Kino Lucerna",
+          "odkaz": "https://www.kinolucerna.cz/program/"
+        },
+        {
+          "datum": "23.07.2026",
+          "cas": "15:00",
+          "misto": "Komorní kino Evald",
+          "odkaz": "https://www.kinoevald.cz/program"
+        }
+      ]
+    },
+    {
+      "nazevCz": "Odyssea",
+      "nazevOrig": "The Odyssey",
+      "rezie": "Christopher Nolan",
+      "zanr": "Dobrodružný / Epické drama",
+      "popis": "Nolan adaptuje Homéra jako mytický akční epos o Odysseově návratu domů.",
+      "trailerUrl": "https://www.youtube.com/watch?v=MKbYbhQfqdY",
+      "hodnoceni": {
+        "imdb": null,
+        "metacritic": null,
+        "rottenTomatoes": null,
+        "vazenePrumer": null,
+        "poznamkaHodnoceni": null
+      },
+      "estetickeSkore": 72,
+      "duvodSkore": "Nolanova autorská velkofilmová adaptace Homéra — vizuálně ambiciózní, ale blockbusterový rozměr sráží ryze introspektivní hloubku.",
+      "vlastniRecenze": "Nolan adaptuje Homéra jako mytický akční epos o Odysseově návratu domů. Vizuálně ambiciózní velkofilm natočený novou IMAX technologií. Blockbuster s autorským rukopisem — spíš podívaná než introspekce.",
+      "specialniProjekce": false,
+      "specialniPopis": null,
+      "projekce": [
+        {
+          "datum": "16.07.2026",
+          "cas": "20:00",
+          "misto": "Bio Oko",
+          "odkaz": "https://www.biooko.net/program/"
+        },
+        {
+          "datum": "17.07.2026",
+          "cas": "17:00",
+          "misto": "Bio Oko",
+          "odkaz": "https://www.biooko.net/program/"
+        },
+        {
+          "datum": "17.07.2026",
+          "cas": "20:30",
+          "misto": "Bio Oko",
+          "odkaz": "https://www.biooko.net/program/"
+        },
+        {
+          "datum": "19.07.2026",
+          "cas": "20:00",
+          "misto": "Kino Aero",
+          "odkaz": "https://www.kinoaero.cz/program/"
+        },
+        {
+          "datum": "21.07.2026",
+          "cas": "20:00",
+          "misto": "Kino Aero",
+          "odkaz": "https://www.kinoaero.cz/program/"
+        },
+        {
+          "datum": "23.07.2026",
+          "cas": "20:00",
+          "misto": "Kino Aero",
+          "odkaz": "https://www.kinoaero.cz/program/"
+        },
+        {
+          "datum": "24.07.2026",
           "cas": "20:15",
+          "misto": "Kino Aero",
+          "odkaz": "https://www.kinoaero.cz/program/"
+        },
+        {
+          "datum": "16.07.2026",
+          "cas": "16:30",
+          "misto": "Kino Lucerna",
+          "odkaz": "https://www.kinolucerna.cz/program/"
+        },
+        {
+          "datum": "16.07.2026",
+          "cas": "20:00",
+          "misto": "Kino Lucerna",
+          "odkaz": "https://www.kinolucerna.cz/program/"
+        },
+        {
+          "datum": "17.07.2026",
+          "cas": "16:00",
+          "misto": "Kino Lucerna",
+          "odkaz": "https://www.kinolucerna.cz/program/"
+        },
+        {
+          "datum": "17.07.2026",
+          "cas": "20:00",
+          "misto": "Kino Lucerna",
+          "odkaz": "https://www.kinolucerna.cz/program/"
+        },
+        {
+          "datum": "18.07.2026",
+          "cas": "12:30",
+          "misto": "Kino Lucerna",
+          "odkaz": "https://www.kinolucerna.cz/program/"
+        },
+        {
+          "datum": "18.07.2026",
+          "cas": "16:00",
+          "misto": "Kino Lucerna",
+          "odkaz": "https://www.kinolucerna.cz/program/"
+        },
+        {
+          "datum": "18.07.2026",
+          "cas": "19:30",
+          "misto": "Kino Lucerna",
+          "odkaz": "https://www.kinolucerna.cz/program/"
+        },
+        {
+          "datum": "19.07.2026",
+          "cas": "12:30",
+          "misto": "Kino Lucerna",
+          "odkaz": "https://www.kinolucerna.cz/program/"
+        },
+        {
+          "datum": "19.07.2026",
+          "cas": "16:00",
+          "misto": "Kino Lucerna",
+          "odkaz": "https://www.kinolucerna.cz/program/"
+        },
+        {
+          "datum": "19.07.2026",
+          "cas": "19:30",
+          "misto": "Kino Lucerna",
+          "odkaz": "https://www.kinolucerna.cz/program/"
+        },
+        {
+          "datum": "20.07.2026",
+          "cas": "20:00",
+          "misto": "Kino Lucerna",
+          "odkaz": "https://www.kinolucerna.cz/program/"
+        },
+        {
+          "datum": "21.07.2026",
+          "cas": "20:00",
+          "misto": "Kino Lucerna",
+          "odkaz": "https://www.kinolucerna.cz/program/"
+        },
+        {
+          "datum": "22.07.2026",
+          "cas": "20:00",
+          "misto": "Kino Lucerna",
+          "odkaz": "https://www.kinolucerna.cz/program/"
+        },
+        {
+          "datum": "16.07.2026",
+          "cas": "10:00",
+          "misto": "Kino Pilotů",
+          "odkaz": "https://www.kinopilotu.cz/program/"
+        },
+        {
+          "datum": "16.07.2026",
+          "cas": "17:10",
+          "misto": "Kino Pilotů",
+          "odkaz": "https://www.kinopilotu.cz/program/"
+        },
+        {
+          "datum": "16.07.2026",
+          "cas": "20:30",
+          "misto": "Kino Pilotů",
+          "odkaz": "https://www.kinopilotu.cz/program/"
+        },
+        {
+          "datum": "17.07.2026",
+          "cas": "17:10",
+          "misto": "Kino Pilotů",
+          "odkaz": "https://www.kinopilotu.cz/program/"
+        },
+        {
+          "datum": "17.07.2026",
+          "cas": "20:30",
+          "misto": "Kino Pilotů",
+          "odkaz": "https://www.kinopilotu.cz/program/"
+        },
+        {
+          "datum": "18.07.2026",
+          "cas": "17:10",
+          "misto": "Kino Pilotů",
+          "odkaz": "https://www.kinopilotu.cz/program/"
+        },
+        {
+          "datum": "18.07.2026",
+          "cas": "20:30",
+          "misto": "Kino Pilotů",
+          "odkaz": "https://www.kinopilotu.cz/program/"
+        },
+        {
+          "datum": "19.07.2026",
+          "cas": "17:10",
+          "misto": "Kino Pilotů",
+          "odkaz": "https://www.kinopilotu.cz/program/"
+        },
+        {
+          "datum": "19.07.2026",
+          "cas": "20:30",
+          "misto": "Kino Pilotů",
+          "odkaz": "https://www.kinopilotu.cz/program/"
+        },
+        {
+          "datum": "20.07.2026",
+          "cas": "17:10",
+          "misto": "Kino Pilotů",
+          "odkaz": "https://www.kinopilotu.cz/program/"
+        },
+        {
+          "datum": "20.07.2026",
+          "cas": "20:30",
+          "misto": "Kino Pilotů",
+          "odkaz": "https://www.kinopilotu.cz/program/"
+        },
+        {
+          "datum": "21.07.2026",
+          "cas": "17:10",
+          "misto": "Kino Pilotů",
+          "odkaz": "https://www.kinopilotu.cz/program/"
+        },
+        {
+          "datum": "21.07.2026",
+          "cas": "20:30",
+          "misto": "Kino Pilotů",
+          "odkaz": "https://www.kinopilotu.cz/program/"
+        },
+        {
+          "datum": "22.07.2026",
+          "cas": "17:10",
+          "misto": "Kino Pilotů",
+          "odkaz": "https://www.kinopilotu.cz/program/"
+        },
+        {
+          "datum": "22.07.2026",
+          "cas": "20:30",
+          "misto": "Kino Pilotů",
+          "odkaz": "https://www.kinopilotu.cz/program/"
+        },
+        {
+          "datum": "16.07.2026",
+          "cas": "16:30",
+          "misto": "Kino Světozor",
+          "odkaz": "https://www.kinosvetozor.cz/program/"
+        },
+        {
+          "datum": "16.07.2026",
+          "cas": "20:00",
+          "misto": "Kino Světozor",
+          "odkaz": "https://www.kinosvetozor.cz/program/"
+        },
+        {
+          "datum": "17.07.2026",
+          "cas": "16:30",
+          "misto": "Kino Světozor",
+          "odkaz": "https://www.kinosvetozor.cz/program/"
+        },
+        {
+          "datum": "17.07.2026",
+          "cas": "20:00",
+          "misto": "Kino Světozor",
+          "odkaz": "https://www.kinosvetozor.cz/program/"
+        },
+        {
+          "datum": "18.07.2026",
+          "cas": "11:00",
+          "misto": "Kino Světozor",
+          "odkaz": "https://www.kinosvetozor.cz/program/"
+        },
+        {
+          "datum": "18.07.2026",
+          "cas": "16:30",
+          "misto": "Kino Světozor",
+          "odkaz": "https://www.kinosvetozor.cz/program/"
+        },
+        {
+          "datum": "18.07.2026",
+          "cas": "20:00",
+          "misto": "Kino Světozor",
+          "odkaz": "https://www.kinosvetozor.cz/program/"
+        },
+        {
+          "datum": "19.07.2026",
+          "cas": "11:00",
+          "misto": "Kino Světozor",
+          "odkaz": "https://www.kinosvetozor.cz/program/"
+        },
+        {
+          "datum": "19.07.2026",
+          "cas": "16:30",
+          "misto": "Kino Světozor",
+          "odkaz": "https://www.kinosvetozor.cz/program/"
+        },
+        {
+          "datum": "19.07.2026",
+          "cas": "20:00",
+          "misto": "Kino Světozor",
+          "odkaz": "https://www.kinosvetozor.cz/program/"
+        },
+        {
+          "datum": "20.07.2026",
+          "cas": "16:30",
+          "misto": "Kino Světozor",
+          "odkaz": "https://www.kinosvetozor.cz/program/"
+        },
+        {
+          "datum": "20.07.2026",
+          "cas": "20:00",
+          "misto": "Kino Světozor",
+          "odkaz": "https://www.kinosvetozor.cz/program/"
+        },
+        {
+          "datum": "21.07.2026",
+          "cas": "20:00",
+          "misto": "Kino Světozor",
+          "odkaz": "https://www.kinosvetozor.cz/program/"
+        },
+        {
+          "datum": "18.07.2026",
+          "cas": "19:00",
+          "misto": "Komorní kino Evald",
+          "odkaz": "https://www.kinoevald.cz/program"
+        },
+        {
+          "datum": "23.07.2026",
+          "cas": "18:45",
+          "misto": "Komorní kino Evald",
+          "odkaz": "https://www.kinoevald.cz/program"
+        },
+        {
+          "datum": "25.07.2026",
+          "cas": "19:15",
+          "misto": "Komorní kino Evald",
+          "odkaz": "https://www.kinoevald.cz/program"
+        },
+        {
+          "datum": "18.07.2026",
+          "cas": "13:15",
+          "misto": "Přítomnost Boutique Cinema",
+          "odkaz": "https://www.pritomnost.cz/program/"
+        },
+        {
+          "datum": "19.07.2026",
+          "cas": "13:00",
+          "misto": "Přítomnost Boutique Cinema",
+          "odkaz": "https://www.pritomnost.cz/program/"
+        }
+      ]
+    },
+    {
+      "nazevCz": "Orwell: 2+2=5",
+      "nazevOrig": "Orwell: 2+2=5",
+      "rezie": "Raoul Peck",
+      "zanr": "Dokument",
+      "popis": "Raoul Peck skládá esejistický dokument o Orwellovi a tom, jak je '1984' stále aktuální v době autoritářství.",
+      "trailerUrl": "https://www.youtube.com/watch?v=6-CzlmquC80",
+      "hodnoceni": {
+        "imdb": null,
+        "metacritic": null,
+        "rottenTomatoes": null,
+        "vazenePrumer": null,
+        "poznamkaHodnoceni": null
+      },
+      "estetickeSkore": 72,
+      "duvodSkore": "Peckův esejistický dokument o Orwellovi a pravdě — intelektuální, Bobovu myšlení blízký.",
+      "vlastniRecenze": "Raoul Peck skládá esejistický dokument o Orwellovi a tom, jak je '1984' stále aktuální v době autoritářství. Intelektuálně nabité, formálně smělé. Tvému uvažování blízké.",
+      "specialniProjekce": false,
+      "specialniPopis": null,
+      "projekce": [
+        {
+          "datum": "09.07.2026",
+          "cas": "16:30",
+          "misto": "Edison Filmhub",
+          "odkaz": "https://www.edisonfilmhub.cz/program"
+        }
+      ]
+    },
+    {
+      "nazevCz": "Amélie z Montmartru",
+      "nazevOrig": "Le Fabuleux Destin d'Amélie Poulain",
+      "rezie": "Jean-Pierre Jeunet",
+      "zanr": "Komedie / Romance",
+      "popis": "Plachá pařížská servírka se rozhodne nenápadně zlepšovat životy druhých a přitom najít vlastní lásku.",
+      "trailerUrl": "https://www.youtube.com/watch?v=HUECWi5pX7o",
+      "hodnoceni": {
+        "imdb": 8.3,
+        "metacritic": 70,
+        "rottenTomatoes": 90,
+        "vazenePrumer": 81.1,
+        "poznamkaHodnoceni": null
+      },
+      "estetickeSkore": 68,
+      "duvodSkore": "Jeunetova vizuálně bohatá romance — hravá, ale s poetikou samoty.",
+      "vlastniRecenze": "Plachá pařížská servírka se rozhodne nenápadně zlepšovat životy druhých a přitom najít vlastní lásku. Jeunet točí vizuálně bohatou, hravou romanci prostoupenou poetikou samoty. Něžné a okouzlující.",
+      "specialniProjekce": false,
+      "specialniPopis": null,
+      "projekce": [
+        {
+          "datum": "11.07.2026",
+          "cas": "21:30",
           "misto": "Kino Atlas",
-          "odkaz": "https://www.kinoatlaspraha.cz/"
+          "odkaz": "https://www.kinoatlas.cz/program"
+        }
+      ]
+    },
+    {
+      "nazevCz": "Pillion",
+      "nazevOrig": "Pillion",
+      "rezie": "Harry Lighton",
+      "zanr": "Drama",
+      "popis": "Bezcílný muž propadne podřízenému vztahu s charismatickým vůdcem motorkářského gangu.",
+      "trailerUrl": "https://www.youtube.com/watch?v=C4zX2ixsqG0",
+      "hodnoceni": {
+        "imdb": 6.9,
+        "metacritic": 85,
+        "rottenTomatoes": 99,
+        "vazenePrumer": 75.2,
+        "poznamkaHodnoceni": null
+      },
+      "estetickeSkore": 70,
+      "duvodSkore": "Ceněné komorní queer drama o touze a podřízení — psychologicky ostré, autorské.",
+      "vlastniRecenze": "Bezcílný muž propadne podřízenému vztahu s charismatickým vůdcem motorkářského gangu. Lighton točí odvážné, psychologicky ostré drama o touze a odevzdání. Ceněný debut, nečekaně něžný pod drsným povrchem.",
+      "specialniProjekce": false,
+      "specialniPopis": null,
+      "projekce": [
+        {
+          "datum": "09.07.2026",
+          "cas": "19:30",
+          "misto": "Kino Atlas",
+          "odkaz": "https://www.kinoatlas.cz/program"
+        }
+      ]
+    },
+    {
+      "nazevCz": "Suspiria",
+      "nazevOrig": "Suspiria",
+      "rezie": "Dario Argento",
+      "zanr": "Horor",
+      "popis": "Americká tanečnice odhalí, že prestižní německá baletní škola skrývá cosi zlověstného.",
+      "trailerUrl": "https://www.youtube.com/watch?v=1_4hRivoFI0",
+      "hodnoceni": {
+        "imdb": 7.3,
+        "metacritic": 79,
+        "rottenTomatoes": 94,
+        "vazenePrumer": 76.3,
+        "poznamkaHodnoceni": null
+      },
+      "estetickeSkore": 68,
+      "duvodSkore": "Argentův kultovní vizuální horor — styl a barva nad dějem; Bob horor moc nemá, ale tenhle je vizuálně zásadní.",
+      "vlastniRecenze": "Americká tanečnice odhalí, že prestižní německá baletní škola skrývá cosi zlověstného. Argento točí horor jako opojný sen z barev, zvuku a architektury — děj ustupuje stylu. Vizuálně zásadní, i když žánr není tvoje.",
+      "specialniProjekce": false,
+      "specialniPopis": null,
+      "projekce": [
+        {
+          "datum": "24.07.2026",
+          "cas": "21:15",
+          "misto": "Edison Filmhub",
+          "odkaz": "https://www.edisonfilmhub.cz/program"
+        }
+      ]
+    },
+    {
+      "nazevCz": "Sentimentální cesta po Paradžanovově planetě",
+      "nazevOrig": "Paradjanov doc",
+      "rezie": null,
+      "zanr": "Dokument / Umění",
+      "popis": "Ukrajinský dokument-pocta Paradžanovovi, mísící archivy s loutkovými surreálnými scénami.",
+      "trailerUrl": "https://www.youtube.com/watch?v=eTE0QZ6YFTU",
+      "hodnoceni": {
+        "imdb": null,
+        "metacritic": null,
+        "rottenTomatoes": null,
+        "vazenePrumer": null,
+        "poznamkaHodnoceni": null
+      },
+      "estetickeSkore": 70,
+      "duvodSkore": "Portrét Paradžanova — vizuálně-poetický autor kina, silný umělecký přesah.",
+      "vlastniRecenze": "Ukrajinský dokument-pocta Paradžanovovi, mísící archivy s loutkovými surreálnými scénami. Vizuálně poetický portrét umělce, jehož tvorba překračuje čas. Pro milovníky svébytného kina.",
+      "specialniProjekce": false,
+      "specialniPopis": null,
+      "projekce": [
+        {
+          "datum": "07.07.2026",
+          "cas": "16:30",
+          "misto": "Edison Filmhub",
+          "odkaz": "https://www.edisonfilmhub.cz/program"
+        },
+        {
+          "datum": "05.07.2026",
+          "cas": "19:00",
+          "misto": "Kino Atlas",
+          "odkaz": "https://www.kinoatlas.cz/program"
+        },
+        {
+          "datum": "07.07.2026",
+          "cas": "19:45",
+          "misto": "Kino Atlas",
+          "odkaz": "https://www.kinoatlas.cz/program"
+        }
+      ]
+    },
+    {
+      "nazevCz": "Všichni moji synové",
+      "nazevOrig": "All My Sons",
+      "rezie": "Arthur Miller (divadlo/film)",
+      "zanr": "Drama",
+      "popis": "Millerovo drama o továrníkovi, jehož vadné díly za války stály životy pilotů, a o vině, která dostihne rodinu.",
+      "trailerUrl": "https://www.youtube.com/watch?v=V-ZybD65lUQ",
+      "hodnoceni": {
+        "imdb": null,
+        "metacritic": null,
+        "rottenTomatoes": null,
+        "vazenePrumer": null,
+        "poznamkaHodnoceni": null
+      },
+      "estetickeSkore": 68,
+      "duvodSkore": "Millerovo morální drama viny a odpovědnosti — silné téma, forma nejistá.",
+      "vlastniRecenze": "Millerovo drama o továrníkovi, jehož vadné díly za války stály životy pilotů, a o vině, která dostihne rodinu. Silný text o morální odpovědnosti. Klasika, tady jako divadelní záznam.",
+      "specialniProjekce": false,
+      "specialniPopis": null,
+      "projekce": [
+        {
+          "datum": "19.07.2026",
+          "cas": "16:00",
+          "misto": "Edison Filmhub",
+          "odkaz": "https://www.edisonfilmhub.cz/program"
+        },
+        {
+          "datum": "12.07.2026",
+          "cas": "15:00",
+          "misto": "Kino Světozor",
+          "odkaz": "https://www.kinosvetozor.cz/program/"
+        }
+      ]
+    },
+    {
+      "nazevCz": "Raději zešílet v divočině",
+      "nazevOrig": "Raději zešílet v divočině",
+      "rezie": "Miroslav Janek",
+      "zanr": "Dokument",
+      "popis": "Poetický dokument o výstředních dvojčatech žijících po svém v divočině, mimo normy společnosti.",
+      "trailerUrl": "https://www.youtube.com/watch?v=MbtJ4hTQxxU",
+      "hodnoceni": {
+        "imdb": null,
+        "metacritic": null,
+        "rottenTomatoes": null,
+        "vazenePrumer": null,
+        "poznamkaHodnoceni": null
+      },
+      "estetickeSkore": 68,
+      "duvodSkore": "Poetický český dokument o samotářích v přírodě — Bobovi tématem i tónem blízký.",
+      "vlastniRecenze": "Poetický dokument o výstředních dvojčatech žijících po svém v divočině, mimo normy společnosti. Tématem samoty, svobody a přírody přesně tvoje. Křišťálový glóbus z Varů 2025.",
+      "specialniProjekce": false,
+      "specialniPopis": null,
+      "projekce": [
+        {
+          "datum": "04.08.2026",
+          "cas": "18:15",
+          "misto": "Kino Světozor",
+          "odkaz": "https://www.kinosvetozor.cz/program/"
         }
       ]
     },
     {
       "nazevCz": "Hard Boiled",
-      "nazevOrig": "Lat sau san taam",
+      "nazevOrig": "辣手神探 / Hard Boiled",
       "rezie": "John Woo",
-      "zanr": "akční, krimi, thriller",
-      "popis": "Policista a agent v utajení čelí gangsterskému impériu v operaticky stylizované akci.",
-      "trailerUrl": "https://www.youtube.com/watch?v=lVQ-diI9PTs",
+      "zanr": "Akční / Thriller",
+      "popis": "Tvrdý polda a agent v utajení jdou po zbrojařském bossovi v Hongkongu.",
+      "trailerUrl": "https://www.youtube.com/watch?v=aV8BlSr31Ak",
       "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
-        "imdb": null,
-        "csfd": null,
-        "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
+        "imdb": 7.7,
+        "metacritic": null,
+        "rottenTomatoes": 92,
+        "vazenePrumer": 78.9,
+        "poznamkaHodnoceni": null
       },
-      "estetickeSkore": 84,
-      "duvodSkore": "Dobrá shoda hlavně díky výraznému stylu a režijní energii; psychologická hloubka nemusí být vždy dominantní.",
-      "vlastniRecenze": "Doporučuju hlavně kvůli režijnímu rukopisu a energii; může být méně kontemplativní, ale rozhodně není generický.",
+      "estetickeSkore": 58,
+      "duvodSkore": "Wooova baletní akční klasika — stylově zásadní, ale efektová.",
+      "vlastniRecenze": "Tvrdý polda a agent v utajení jdou po zbrojařském bossovi v Hongkongu. Woo točí akci jako baletní choreografii násilí, s Chow Yun-Fatem. Stylově kultovní — efektní, ale s duší.",
       "specialniProjekce": false,
       "specialniPopis": null,
       "projekce": [
@@ -2365,65 +1569,265 @@
           "datum": "20.07.2026",
           "cas": "20:30",
           "misto": "Kino Aero",
-          "odkaz": "https://www.kinoaero.cz/"
+          "odkaz": "https://www.kinoaero.cz/program/"
         }
       ]
     },
     {
-      "nazevCz": "Daaaaaalí!",
-      "nazevOrig": "Daaaaaalí!",
-      "rezie": "Quentin Dupieux",
-      "zanr": "komedie, fantasy",
-      "popis": "Novinářka se opakovaně pokouší natočit rozhovor se Salvador Dalím v surrealistické smyčce.",
-      "trailerUrl": "https://www.youtube.com/watch?v=tKmpCVMxrYc",
+      "nazevCz": "Ďáblův advokát",
+      "nazevOrig": "The Devil's Advocate",
+      "rezie": "Taylor Hackford",
+      "zanr": "Thriller / Drama",
+      "popis": "Nadaný právník přijme místo u newyorské firmy, jejíž šéf je sám ďábel.",
+      "trailerUrl": "https://www.youtube.com/watch?v=EmWyuJCOfDY",
       "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
-        "imdb": null,
-        "csfd": null,
-        "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
+        "imdb": 7.5,
+        "metacritic": 60,
+        "rottenTomatoes": 65,
+        "vazenePrumer": 71.0,
+        "poznamkaHodnoceni": null
       },
-      "estetickeSkore": 84,
-      "duvodSkore": "Dobrá shoda hlavně díky výraznému stylu a režijní energii; psychologická hloubka nemusí být vždy dominantní.",
-      "vlastniRecenze": "Doporučuju hlavně kvůli režijnímu rukopisu a energii; může být méně kontemplativní, ale rozhodně není generický.",
+      "estetickeSkore": 60,
+      "duvodSkore": "Morální thriller s existenciálním podtónem, ale žánrově efektní.",
+      "vlastniRecenze": "Nadaný právník přijme místo u newyorské firmy, jejíž šéf je sám ďábel. Morální thriller s existenciálním podtónem a Pacinem v roli Lucifera. Efektní, ukecané, ale chytlavé podobenství o pýše.",
       "specialniProjekce": false,
       "specialniPopis": null,
       "projekce": [
         {
-          "datum": "18.07.2026",
+          "datum": "07.07.2026",
+          "cas": "20:30",
+          "misto": "Bio Oko",
+          "odkaz": "https://www.biooko.net/program/"
+        }
+      ]
+    },
+    {
+      "nazevCz": "Ty jsi vesmír",
+      "nazevOrig": "Tu es l'univers",
+      "rezie": null,
+      "zanr": "Drama / Sci-fi",
+      "popis": "Ukrajinské komorní sci-fi: poslední přeživší člověk veze jaderný odpad k Jupiteru a naváže kontakt s další samotou.",
+      "trailerUrl": "https://www.youtube.com/watch?v=aQsVI0MoHlg",
+      "hodnoceni": {
+        "imdb": null,
+        "metacritic": null,
+        "rottenTomatoes": null,
+        "vazenePrumer": null,
+        "poznamkaHodnoceni": null
+      },
+      "estetickeSkore": 60,
+      "duvodSkore": "Existenciální komorní sci-fi drama — téma vesmíru/vědomí Boba láká.",
+      "vlastniRecenze": "Ukrajinské komorní sci-fi: poslední přeživší člověk veze jaderný odpad k Jupiteru a naváže kontakt s další samotou. Existenciální, melancholické, s velkým srdcem. Téma vesmíru a vědomí přímo pro tebe.",
+      "specialniProjekce": false,
+      "specialniPopis": null,
+      "projekce": [
+        {
+          "datum": "06.07.2026",
+          "cas": "19:15",
+          "misto": "Kino Atlas",
+          "odkaz": "https://www.kinoatlas.cz/program"
+        }
+      ]
+    },
+    {
+      "nazevCz": "Palm Springs",
+      "nazevOrig": "Palm Springs",
+      "rezie": null,
+      "zanr": "Komedie / Sci-fi",
+      "popis": "Dva cizí lidé uvíznou na svatbě v nekonečné časové smyčce.",
+      "trailerUrl": "https://www.youtube.com/watch?v=G3twjhCOE2A",
+      "hodnoceni": {
+        "imdb": 7.4,
+        "metacritic": 83,
+        "rottenTomatoes": 95,
+        "vazenePrumer": 77.9,
+        "poznamkaHodnoceni": null
+      },
+      "estetickeSkore": 52,
+      "duvodSkore": "Chytřejší časosmyčková komedie, lehčí ale s nápadem.",
+      "vlastniRecenze": "Dva cizí lidé uvíznou na svatbě v nekonečné časové smyčce. Chytřejší, existenciálně laděná romantická komedie o tom, jak žít, když nic nemá následky. Lehčí kalibr, ale s nápadem a srdcem.",
+      "specialniProjekce": false,
+      "specialniPopis": null,
+      "projekce": [
+        {
+          "datum": "07.07.2026",
+          "cas": "21:30",
+          "misto": "Kino Atlas",
+          "odkaz": "https://www.kinoatlas.cz/program"
+        }
+      ]
+    },
+    {
+      "nazevCz": "Exit 8",
+      "nazevOrig": "8番出口 / Exit 8",
+      "rezie": null,
+      "zanr": "Thriller / Mysteriózní",
+      "popis": "Muž uvízne v nekonečné smyčce metra a musí najít východ číslo 8.",
+      "trailerUrl": "https://www.youtube.com/watch?v=-_DJMdiQ7lg",
+      "hodnoceni": {
+        "imdb": 6.4,
+        "metacritic": 69,
+        "rottenTomatoes": null,
+        "vazenePrumer": 65.1,
+        "poznamkaHodnoceni": null
+      },
+      "estetickeSkore": 55,
+      "duvodSkore": "Japonský minimalistický psycho-thriller z videohry — atmosféra, ale žánr.",
+      "vlastniRecenze": "Muž uvízne v nekonečné smyčce metra a musí najít východ číslo 8. Japonský minimalistický psycho-thriller z videohry — atmosférický, klaustrofobní. Nápaditý, byť žánrový.",
+      "specialniProjekce": false,
+      "specialniPopis": null,
+      "projekce": [
+        {
+          "datum": "25.07.2026",
           "cas": "14:00",
           "misto": "Edison Filmhub",
-          "odkaz": "https://www.edisonfilmhub.cz/"
+          "odkaz": "https://www.edisonfilmhub.cz/program"
         }
       ]
     },
     {
-      "nazevCz": "Ptačí klec",
-      "nazevOrig": "The Birdcage",
-      "rezie": "Mike Nichols",
-      "zanr": "komedie",
-      "popis": "Gay pár se pokusí před konzervativní rodinou budoucího zetě sehrát konvenční domácnost.",
-      "trailerUrl": "https://www.youtube.com/watch?v=P7FcPlt8hHc",
+      "nazevCz": "Pohár",
+      "nazevOrig": "Phörpa / The Cup",
+      "rezie": "Khjence Norbu",
+      "zanr": "Komedie / Drama",
+      "popis": "Dva mladí tibetští mniši v exilu touží sehnat televizi, aby viděli finále MS ve fotbale.",
+      "trailerUrl": "https://www.youtube.com/watch?v=hgErhy2TLUw",
       "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
         "imdb": null,
-        "csfd": null,
+        "metacritic": null,
+        "rottenTomatoes": null,
         "vazenePrumer": null,
-        "poznamkaHodnoceni": "Veřejná uživatelská hodnocení nebyla v době zpracování ve všech čtyřech požadovaných zdrojích spolehlivě a jednotně dostupná; hodnoty proto nejsou domýšlené."
+        "poznamkaHodnoceni": null
       },
-      "estetickeSkore": 82,
-      "duvodSkore": "Spíše doplňková volba: kvalitní a inteligentní film, ale méně přesně míří na melancholickou a existenciální část profilu.",
-      "vlastniRecenze": "Dobrá odlehčenější položka v rámci výběru, i když není tak přesně bobovská jako filmy výše.",
+      "estetickeSkore": 58,
+      "duvodSkore": "Tibetské jemné drama o mniších a fotbalu — laskavé, ale lehčí.",
+      "vlastniRecenze": "Dva mladí tibetští mniši v exilu touží sehnat televizi, aby viděli finále MS ve fotbale. Laskavé, jemné buddhistické drama-komedie o touze a komunitě. Lehčí, ale hřejivé.",
       "specialniProjekce": false,
       "specialniPopis": null,
       "projekce": [
         {
-          "datum": "21.07.2026",
-          "cas": "20:15",
-          "misto": "Kino MAT",
-          "odkaz": "https://www.kinomat.cz/"
+          "datum": "08.07.2026",
+          "cas": "21:30",
+          "misto": "MeetFactory",
+          "odkaz": "https://www.meetfactory.cz/cs/program"
+        }
+      ]
+    },
+    {
+      "nazevCz": "Dogma",
+      "nazevOrig": "Dogma",
+      "rezie": "Kevin Smith",
+      "zanr": "Komedie / Fantasy",
+      "popis": "Dva padlí andělé chtějí využít teologickou skulinu a vrátit se do nebe, což by zničilo existenci.",
+      "trailerUrl": "https://www.youtube.com/watch?v=wzKWii2-fcA",
+      "hodnoceni": {
+        "imdb": 7.3,
+        "metacritic": 62,
+        "rottenTomatoes": 72,
+        "vazenePrumer": 70.7,
+        "poznamkaHodnoceni": null
+      },
+      "estetickeSkore": 50,
+      "duvodSkore": "Ukecaná náboženská satira, spíš mainstream.",
+      "vlastniRecenze": "Dva padlí andělé chtějí využít teologickou skulinu a vrátit se do nebe, což by zničilo existenci. Kevin Smith točí ukecanou, rouhavou náboženskou satiru. Chytré a drzé, spíš mainstream.",
+      "specialniProjekce": false,
+      "specialniPopis": null,
+      "projekce": [
+        {
+          "datum": "06.07.2026",
+          "cas": "21:00",
+          "misto": "Edison Filmhub",
+          "odkaz": "https://www.edisonfilmhub.cz/program"
+        }
+      ]
+    },
+    {
+      "nazevCz": "EOS: Frida Kahlo",
+      "nazevOrig": null,
+      "rezie": null,
+      "zanr": "Umění / Dokument",
+      "popis": "Dokument z řady Exhibition on Screen o životě a díle Fridy Kahlo, s novým materiálem k velké výstavě.",
+      "trailerUrl": "https://www.youtube.com/watch?v=N5KDOpFI4d4",
+      "hodnoceni": {
+        "imdb": null,
+        "metacritic": null,
+        "rottenTomatoes": null,
+        "vazenePrumer": null,
+        "poznamkaHodnoceni": null
+      },
+      "estetickeSkore": 55,
+      "duvodSkore": "Umělecký dokument o Kahlo — vizuální umění Boba zajímá.",
+      "vlastniRecenze": "Dokument z řady Exhibition on Screen o životě a díle Fridy Kahlo, s novým materiálem k velké výstavě. Pro zájemce o vizuální umění příjemné kino o malířce bolesti a barvy.",
+      "specialniProjekce": false,
+      "specialniPopis": null,
+      "projekce": [
+        {
+          "datum": "16.07.2026",
+          "cas": "17:00",
+          "misto": "Komorní kino Evald",
+          "odkaz": "https://www.kinoevald.cz/program"
+        },
+        {
+          "datum": "24.07.2026",
+          "cas": "17:00",
+          "misto": "Komorní kino Evald",
+          "odkaz": "https://www.kinoevald.cz/program"
+        }
+      ]
+    },
+    {
+      "nazevCz": "Audience",
+      "nazevOrig": "Audience",
+      "rezie": "(Havel/divadlo)",
+      "zanr": "Drama",
+      "popis": "Havlova jednoaktovka o disidentovi Vaňkovi a opilém sládkovi v pivovaru — absurdní podobenství o normalizační společnosti.",
+      "trailerUrl": null,
+      "hodnoceni": {
+        "imdb": null,
+        "metacritic": null,
+        "rottenTomatoes": null,
+        "vazenePrumer": null,
+        "poznamkaHodnoceni": "Trailer se nepodařilo dohledat ani po opakovaném hledání."
+      },
+      "estetickeSkore": 55,
+      "duvodSkore": "Havlova jednoaktovka — silný text, forma nejistá.",
+      "vlastniRecenze": "Havlova poloautobiografická jednoaktovka: zakázaný spisovatel Vaněk čelí v pivovaru ukecanému, opilému sládkovi. Ostrá, hořce vtipná studie absurdity a morální ohebnosti za normalizace. Silný text; tady spíš komorní záznam než celovečerní film.",
+      "specialniProjekce": false,
+      "specialniPopis": null,
+      "projekce": [
+        {
+          "datum": "26.07.2026",
+          "cas": "20:30",
+          "misto": "Přítomnost Boutique Cinema",
+          "odkaz": "https://www.pritomnost.cz/program/"
+        }
+      ]
+    },
+    {
+      "nazevCz": "Sbormistr",
+      "nazevOrig": "Broken Voices",
+      "rezie": "Ondřej Provazník",
+      "zanr": "Drama / Psychologické",
+      "popis": "Nadaná dívka se dostane do věhlasného dívčího sboru, kde talent přitáhne nezdravou pozornost sbormistra.",
+      "trailerUrl": "https://www.youtube.com/watch?v=EZ9gkgCXhg0",
+      "hodnoceni": {
+        "imdb": null,
+        "metacritic": null,
+        "rottenTomatoes": null,
+        "vazenePrumer": null,
+        "poznamkaHodnoceni": null
+      },
+      "estetickeSkore": 80,
+      "duvodSkore": "Psychodrama 90. let o nadané zpěvačce a zneužívající autoritě sbormistra, podle skutečného skandálu — psychologická hloubka, morální tíseň, ceněné ve Varech; přesně tvoje poloha.",
+      "vlastniRecenze": "Nadaná dívka se dostane do věhlasného dívčího sboru, kde talent přitáhne nezdravou pozornost sbormistra. Provazník staví komorní, psychologicky přesné drama o zneužití moci a mlčení kolem něj, inspirované skutečným případem. Nepříjemně silné, herecky i atmosférou — jeden z vrcholů české sezóny.",
+      "specialniProjekce": false,
+      "specialniPopis": null,
+      "projekce": [
+        {
+          "datum": "12.07.2026",
+          "cas": "19:00",
+          "misto": "Kino Atlas",
+          "odkaz": "https://www.kinoatlas.cz/program"
         }
       ]
     }

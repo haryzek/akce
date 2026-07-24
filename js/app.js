@@ -788,7 +788,7 @@ function vykresliDashboard(film, typ) {
     textBloky.push(`<p class="dash-duvod">${escapeHtml(film.vlastniRecenze)}</p>`);
   }
 
-  // žlutý řádek pod skóre: filmotéka má films101, běžné filmy plné RT/MC/IMDb/ČSFD
+  // žlutý řádek pod skóre: filmotéka má films101, běžné filmy RT/MC/IMDb z OMDb
   // (stejná pole jako karta, jen kompaktněji) — obojí sdílí vážený průměr na začátku.
   let skoreVedlejsi = prumer != null
     ? `<span>${IKONA_PRUMER}${escapeHtml(typ === "filmy_doma" ? Math.round(prumer) : prumer)} vážený průměr</span>`
@@ -798,10 +798,9 @@ function vykresliDashboard(film, typ) {
     if (f101 != null) skoreVedlejsi += `<span><strong>f101</strong> ${escapeHtml(f101)}/5</span>`;
   } else {
     skoreVedlejsi += [
-      ["RT", film.hodnoceni?.rottenTomatoesAudience],
-      ["MC", film.hodnoceni?.metacriticUser],
+      ["RT", film.hodnoceni?.rottenTomatoes],
+      ["MC", film.hodnoceni?.metacritic],
       ["IMDb", film.hodnoceni?.imdb],
-      ["ČSFD", film.hodnoceni?.csfd],
     ]
       .filter(([, v]) => v !== null && v !== undefined)
       .map(([n, v]) => `<span><strong>${n}</strong> ${escapeHtml(v)}</span>`)
@@ -1179,10 +1178,9 @@ function vykresliHodnoceniRadek(hodnoceni) {
 
   const zdroje = hodnoceni
     ? [
-        ["RT", hodnoceni.rottenTomatoesAudience],
-        ["MC", hodnoceni.metacriticUser],
+        ["RT", hodnoceni.rottenTomatoes],
+        ["MC", hodnoceni.metacritic],
         ["IMDb", hodnoceni.imdb],
-        ["ČSFD", hodnoceni.csfd],
       ]
         .filter(([, hodnota]) => hodnota !== null && hodnota !== undefined)
         .map(([nazev, hodnota]) => `<span class="zdroj"><strong>${nazev}</strong> ${escapeHtml(hodnota)}</span>`)

@@ -1,25 +1,25 @@
 {
   "typAkce": "odborne_psychoterapie",
-  "vygenerovanoAt": "2026-07-18T19:35:30",
-  "obdobiOd": "18.07.2026",
-  "obdobiDo": "18.08.2026",
+  "vygenerovanoAt": "2026-07-25T11:15:00",
+  "obdobiOd": "25.07.2026",
+  "obdobiDo": "31.08.2026",
   "odborne_psychoterapie": [
     {
-      "nazevCz": "Výklad snů - pokračování",
+      "nazevCz": "Klinický seminář ČPS",
       "nazevOrig": null,
-      "autor": "Doc. PhDr. Jiří Růžička, PhD.",
-      "zanr": "seminář",
-      "datumOd": "23.07.2026",
-      "datumDo": "24.07.2026",
-      "cas": "09:30",
-      "misto": "PVŠPS, Hekrova 805, Praha 4",
+      "autor": "Česká psychoanalytická společnost",
+      "zanr": "klinický seminář",
+      "datumOd": "20.08.2026",
+      "datumDo": "20.08.2026",
+      "cas": "19:30",
+      "misto": null,
       "adresa": null,
-      "url": "https://www.pvsps.cz/seminare-a-vycviky/vikendove-seminare/vikendove-sebezkusenostni-seminare-a-seznam-seminaru/vyklad-snu-pokracovani/",
-      "cena": "3 100 Kč",
+      "url": "https://www.psychoanalyza.cz/udalosti/klinicky-seminar-cps/2026-08-20/",
+      "cena": null,
       "thumbnail": null,
-      "popis": "Dvoudenní navazující seminář o výkladu snů vedený Jiřím Růžičkou. Určeno absolventům dvouletého cyklu Výklad snů, obsahem je další společná práce s výkladem snů.",
-      "estetickeSkore": 82,
-      "duvodSkore": "Hlubinná práce se sny — trefa do psychoanalytického jádra, byť navazující seminář."
+      "popis": "Pravidelný klinický seminář České psychoanalytické společnosti – živá klinická práce, kazuistika a diskuse nad psychoanalytickým materiálem.",
+      "estetickeSkore": 88,
+      "duvodSkore": "Kazuistický seminář psychoanalytické obce – přesně tvoje jádro."
     }
   ]
 }

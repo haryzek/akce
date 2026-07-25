@@ -1,4 +1,4 @@
-# Vytvoření TOP 50 filmů z programu pražských artových kin (s výjimkou Cinestar Anděl)
+# Vytvoření TOP 50 filmů z programu pražských artových kin
 
 Ve složce akce/support najdeš:
 - měsíční program kin z ČSFD (csfd_program.xlsx)
@@ -20,7 +20,6 @@ Vytěž všechny projekce. Pokud jsou časy zalomené na další řádek, připo
 
 ## KROK 2 – FILTR KIN
 Použij pouze tato kina:
-- Praha - CineStar - Anděl
 - Bio Oko
 - Edison Filmhub
 - Kino Aero
@@ -193,7 +192,7 @@ Výstupní JSON MUSÍ být PŘESNĚ v této struktuře. Nepřidávej žádná da
   "vygenerovanoAt": "YYYY-MM-DDTHH:MM:SS",
   "obdobiOd": "dd.mm.yyyy",
   "obdobiDo": "dd.mm.yyyy",
-  "poznamka": "Výběr TOP 50 filmů z programu 14 pražských artových kin + 1 multiplex CineStar Anděl, seřazený podle kombinace estetického profilu a dostupných veřejných hodnocení.",
+  "poznamka": "Výběr TOP 50 filmů z programu 14 pražských artových kin, seřazený podle kombinace estetického profilu a dostupných veřejných hodnocení.",
   "filmy": [
     {
       "nazevCz": "",
@@ -232,7 +231,7 @@ Před vytvořením souboru proveď kontrolu:
 - jsou použita pouze povolená kina,
 - nejsou v názvech filmů suffixy sálů,
 - žádný film není duplicitně,
-- odkaz na program kina vyplněn u ≥ 12 ze 15 použitých kin,
+- odkaz na program kina vyplněn u ≥ 12 ze 14 použitých kin,
 - všechny projekce jsou správně sloučené,
 - veřejná hodnocení nejsou vymyšlená,
 - hodnocení pochází výhradně z OMDb odpovědi pro ověřené IMDb ID, jinak null; Rotten Tomatoes = Tomatometer, Metacritic = Metascore.

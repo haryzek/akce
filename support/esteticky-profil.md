@@ -22,6 +22,7 @@ Zajímají mě odborná témata: theory of mind, nature of consciousness, nature
 Mí oblíbení odborníci: Joscha Bach, Michael Levin, Lee Smolin, David Deutsch, Carlo rovelli, Sean Caroll, Brian Greene, William Hahn, Bernholtz, Anil Seth, Tim Maudlin.
 
 Estetický profil – film
+Kdy odcházím z kina: primitivní humor, nerealističnost s logickými nesmysly (pokud nejde o komedii), naivita, všichni herci jsou krásní a vymazlení, hollywoodské klišé, špatná režie (přehrávání herců), příliš zbytečných emocí.
 Mé preferované žánry (v závorce preference 1-10, 10 = max): Drama (10), Sci-fi (10), Crime (9), Thriller (9), Psychologický (8), Akční (7), Adventure (7), Western (7), War (6), Biography (6), Fantasy (6), Musical (6), Comedy (5), Documentary (5), Romance (4), Family (4), Horror (3).
 Příklady mých oblíbených filmů: Přelet nad kukaččím hnízdem, Vesmírná odysea 2001, Forest Gump, There will be blood, Harold and Maude, Raise the lantern, Festen, The Bands Visit, Graduate, THX 1138, Network, Dark side of the moon, Donnie Darko, Stalker, Lost in Translation, Hair, Jesus Christ Superstar, Man on the Moon
 Mé oblíbené seriály: Twin Peaks, Succession, The Wire, Breaking Bad, Office, Mad Men, Vinyl, Firefly, Severance, Dark.

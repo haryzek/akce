@@ -1,4 +1,4 @@
-# Vytvoření TOP 50 filmů z programu pražských artových kin
+# Vytvoření TOP 50 filmů z programu pražských artových kin (s výjimkou Cinestar Anděl)
 
 Ve složce akce/support najdeš:
 - měsíční program kin z ČSFD (csfd_program.xlsx)
@@ -20,6 +20,7 @@ Vytěž všechny projekce. Pokud jsou časy zalomené na další řádek, připo
 
 ## KROK 2 – FILTR KIN
 Použij pouze tato kina:
+- Praha - CineStar - Anděl
 - Bio Oko
 - Edison Filmhub
 - Kino Aero
@@ -75,29 +76,19 @@ Pokud se spolehlivý odkaz na dané kino nepodaří dohledat, ponech `odkaz` nul
 
 ## KROK 6 – BOB-FIT
 Bob-fit počítej až po ověření identity — český název může být zavádějící (žánr, režisér).
+Důkladně si přečti můj estetický profil, uvědom si do hloubky, na čem mi v umění záleží a co mám rád, vžij se do mě. 
 Na základě mého estetického profilu spočítej pro VŠECHNY filmy hodnotu:
 estetickeSkore 0–100
 Vyšší skóre znamená vyšší pravděpodobnost, že se mi film bude líbit.
-Při výpočtu využij celý můj estetický profil.
 Neomezuj se pouze žánrem.
-Hodnoť hlavně:
-- psychologickou hloubku
-- existenciální témata
-- autorskou režii
-- vizuální styl
-- filozofický přesah
-- morální ambivalenci
-- melancholii
-- inteligentní sci-fi
-- evropský, japonský a kvalitní americký autorský film
+Při výpočtu využij celý můj estetický profil se specifickým důrazem na část "Estetický profil - film".
 
-Naopak snižuj skóre u:
+Výrazně snižuj skóre u:
 - dětských animáků
-- rutinních blockbusterů
+- rutinních samoúčelných blockbusterů (výjimky existují, to je na tvém posouzení)
 - generických komedií
 - čistě efektových filmů
 - laciných hororů
-- filmů bez psychologické hloubky
 
 Do pole duvodSkore stručně vysvětli své rozhodnutí.
 
@@ -125,15 +116,15 @@ Pole, které OMDb nevrátí ("N/A" nebo chybí), nech null. Nikdy nedopočítáv
 
 ## KROK 9 – VÁŽENÉ SKÓRE
 
-IMDb 70 %,  Metacritic 20 % Rotten Tomatoes 10 %. 
+IMDb 50 %,  Metacritic 30 % Rotten Tomatoes 20 %. 
 IMDb převeď na 0–100 (×10).
 Chybějící zdroj: normalizuj váhy jen podle dostupných
 Žádný zdroj dostupný → vazenePrumer null
 
 ## KROK 10 – FINÁLNÍ VÝBĚR
 Po výpočtu veřejných hodnocení spočítej interně:
-70 % Bob-fit
-30 % vážené veřejné skóre.
+60 % Bob-fit
+40 % vážené veřejné skóre.
 Toto skóre slouží pouze pro výběr. Do JSON jej nezapisuj.
 Podle něj vyber TOP 50 filmů.
 
@@ -202,7 +193,7 @@ Výstupní JSON MUSÍ být PŘESNĚ v této struktuře. Nepřidávej žádná da
   "vygenerovanoAt": "YYYY-MM-DDTHH:MM:SS",
   "obdobiOd": "dd.mm.yyyy",
   "obdobiDo": "dd.mm.yyyy",
-  "poznamka": "Výběr TOP 50 filmů z programu 14 pražských artových kin, seřazený podle kombinace estetického profilu a dostupných veřejných hodnocení.",
+  "poznamka": "Výběr TOP 50 filmů z programu 14 pražských artových kin + 1 multiplex CineStar Anděl, seřazený podle kombinace estetického profilu a dostupných veřejných hodnocení.",
   "filmy": [
     {
       "nazevCz": "",
@@ -241,7 +232,7 @@ Před vytvořením souboru proveď kontrolu:
 - jsou použita pouze povolená kina,
 - nejsou v názvech filmů suffixy sálů,
 - žádný film není duplicitně,
-- odkaz na program kina vyplněn u ≥ 12 ze 14 použitých kin,
+- odkaz na program kina vyplněn u ≥ 12 ze 15 použitých kin,
 - všechny projekce jsou správně sloučené,
 - veřejná hodnocení nejsou vymyšlená,
 - hodnocení pochází výhradně z OMDb odpovědi pro ověřené IMDb ID, jinak null; Rotten Tomatoes = Tomatometer, Metacritic = Metascore.

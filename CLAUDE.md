@@ -284,8 +284,8 @@ Cesta k číslům: AI krok najde **IMDb ID** přes suggest endpoint
 i typ) a tím ID se OMDb zeptá. Past: `imdb.com/title/…` vrací **403 na datacentrové IP**,
 takže rating se odtamtud tahat nedá — proto OMDb, ne scrape.
 
-Vážené skóre `vazenePrumer` počítá AI krok z vah: **IMDb 70 %, Metacritic 20 %,
-Rotten Tomatoes 10 %** (IMDb se převede na 0–100 ×10; chybějící zdroj = váhy se normalizují
+Vážené skóre `vazenePrumer` počítá AI krok z vah: **IMDb 50 %, Metacritic 30 %,
+Rotten Tomatoes 20 %** (IMDb se převede na 0–100 ×10; chybějící zdroj = váhy se normalizují
 jen podle dostupných; žádný zdroj = null). Appka ho jen zobrazuje, nepočítá.
 
 Pozn.: **jeden film = jedna karta**, ale může mít **více projekcí** (pole `projekce`) —

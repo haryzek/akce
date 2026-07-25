@@ -212,10 +212,9 @@ Výstupní JSON MUSÍ být PŘESNĚ v této struktuře. Nepřidávej žádná da
       "popis": null,
       "trailerUrl": null,
       "hodnoceni": {
-        "rottenTomatoesAudience": null,
-        "metacriticUser": null,
         "imdb": null,
-        "csfd": null,
+        "metacritic": null,
+        "rottenTomatoes": null,
         "vazenePrumer": null,
         "poznamkaHodnoceni": null
       },
@@ -244,9 +243,8 @@ Před vytvořením souboru proveď kontrolu:
 - žádný film není duplicitně,
 - odkaz na program kina vyplněn u ≥ 12 ze 14 použitých kin,
 - všechny projekce jsou správně sloučené,
-- Rotten Tomatoes používá pouze Audience Score,
-- Metacritic používá pouze User Score,
 - veřejná hodnocení nejsou vymyšlená,
+- hodnocení pochází výhradně z OMDb odpovědi pro ověřené IMDb ID, jinak null; Rotten Tomatoes = Tomatometer, Metacritic = Metascore.
 - vážené skóre je správně spočítané,
 - JSON obsahuje maximálně 50 filmů,
 - JSON přesně odpovídá zadané struktuře.

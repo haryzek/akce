@@ -1,7 +1,7 @@
 {
   "typAkce": "odborne_psychoterapie",
-  "vygenerovanoAt": "2026-07-25T11:15:00",
-  "obdobiOd": "25.07.2026",
+  "vygenerovanoAt": "2026-08-01T16:12:40",
+  "obdobiOd": "01.08.2026",
   "obdobiDo": "31.08.2026",
   "odborne_psychoterapie": [
     {
@@ -17,9 +17,9 @@
       "url": "https://www.psychoanalyza.cz/udalosti/klinicky-seminar-cps/2026-08-20/",
       "cena": null,
       "thumbnail": null,
-      "popis": "Pravidelný klinický seminář České psychoanalytické společnosti – živá klinická práce, kazuistika a diskuse nad psychoanalytickým materiálem.",
+      "popis": "Klinický seminář České psychoanalytické společnosti – pravidelný večer věnovaný živé klinické práci a kazuistice v psychoanalytickém rámci.",
       "estetickeSkore": 88,
-      "duvodSkore": "Kazuistický seminář psychoanalytické obce – přesně tvoje jádro."
+      "duvodSkore": "Živá psychoanalytická kazuistika u ČPS – přesně tvoje jádro."
     }
   ]
 }

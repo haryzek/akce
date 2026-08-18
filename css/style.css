@@ -1545,10 +1545,10 @@ body.zebricek-otevreny {
   color: var(--text-tlumeny);
 }
 
-/* Film zařazený v žebříčku vypadá jako klasické "viděno" kolečko (zelený obrys,
-   zelené číslo — třídu .videno má vždycky s sebou), jen uvnitř je pořadí místo
-   skóre. Zkoušená plná zelená výplň s bílým číslem Bobovi neseděla — kdyby ses
-   k ní vracel, tady bývala: background+border var(--videno), color #fff. */
+/* Film zařazený v žebříčku vypadá na kartě přesně jako klasické "viděno" kolečko
+   (zelený obrys, skóre uvnitř) — pořadí se ukazuje jen v panelu žebříčku.
+   Zkoušené varianty, které Bobovi neseděly: plná zelená výplň s bílým pořadím,
+   i pořadí místo skóre v obrysovém kolečku. Nevracet se k nim bez ptaní. */
 
 /* ---- responsivita, ať to nespadne na mobilu ---- */
 @media (max-width: 600px) {

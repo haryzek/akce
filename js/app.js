@@ -140,17 +140,13 @@ function poradiVZebricku(id) {
   return ZEBRICEK.indexOf(id) + 1;
 }
 
-// Přepočítá VŠECHNA kolečka skóre na stránce podle aktuálního stavu (viděno /
-// pořadí v žebříčku). Zařazení jednoho filmu posune čísla mnoha dalším, takže
-// se neřeší jedno id, ale rovnou všechno viditelné — je to jen textContent a
-// dvě CSS třídy, žádné překreslování karet. Původní skóre nese data-skore.
+// Přepočítá VŠECHNA kolečka skóre na stránce podle aktuálního stavu. Pořadí se
+// v kolečku schválně NEukazuje (zkoušeno, Bobovi nesedělo — pořadí patří jen do
+// panelu žebříčku); kolečko drží skóre a jen zelená: viděno NEBO zařazeno.
 function osvezKolecka() {
   document.querySelectorAll(".skore[data-id]").forEach((s) => {
     const id = decodeURIComponent(s.dataset.id);
-    const poradi = poradiVZebricku(id);
-    s.classList.toggle("v-zebricku", poradi > 0);
-    s.classList.toggle("videno", poradi > 0 || VIDENO.has(id));
-    s.textContent = poradi > 0 ? poradi : (s.dataset.skore ?? "—");
+    s.classList.toggle("videno", VIDENO.has(id) || poradiVZebricku(id) > 0);
   });
 }
 
@@ -516,7 +512,6 @@ function domaId(film) {
 function vykresliKartuFilmuDoma(film, id) {
   const prumer = film.hodnoceni?.vazenePrumer;
   const skore = prumer === null || prumer === undefined ? "—" : Math.round(prumer);
-  const poradi = poradiVZebricku(id); // zařazený film ukazuje v kolečku pořadí, ne skóre
   const rezieRok = [film.rezie, film.rok].filter(Boolean).join(" · ");
 
   // žlutý řádek: vpředu estetické skóre s ikonkou (role váženého průměru), za ním films101
@@ -547,9 +542,9 @@ function vykresliKartuFilmuDoma(film, id) {
         </div>
 
         <div class="karta-vpravo">
-          <div class="skore skore-klik${poradi ? " videno v-zebricku" : VIDENO.has(id) ? " videno" : ""}"
+          <div class="skore skore-klik${VIDENO.has(id) || poradiVZebricku(id) ? " videno" : ""}"
                data-id="${encodeURIComponent(id)}" data-skore="${escapeHtml(skore)}"
-               title="${poradi ? `${poradi}. místo v žebříčku · vážený průměr ${escapeHtml(skore)}` : "Vážený průměr · klik = viděno, druhý klik = zařadit do žebříčku"}">${poradi || escapeHtml(skore)}</div>
+               title="Vážený průměr · klik = viděno, další klik = žebříček">${escapeHtml(skore)}</div>
           ${vykresliSrdce(id, OBLIBENE.has(id))}
         </div>
       </div>
@@ -929,10 +924,10 @@ function vykresliDashboard(film, typ) {
         </div>
         <div class="dash-skore-blok">
           <div class="dash-skore-hlavni">
-            <div class="skore dash-skore skore-klik${poradiVZebricku(id) ? " videno v-zebricku" : VIDENO.has(id) ? " videno" : ""}"
+            <div class="skore dash-skore skore-klik${VIDENO.has(id) || poradiVZebricku(id) ? " videno" : ""}"
                  data-id="${encodeURIComponent(id)}" data-skore="${escapeHtml(hodnotaNebo(film.estetickeSkore))}"
-                 title="${poradiVZebricku(id) ? `${poradiVZebricku(id)}. místo v žebříčku` : "Estetické skóre · klik = viděno, druhý klik = zařadit do žebříčku"}">${poradiVZebricku(id) || escapeHtml(hodnotaNebo(film.estetickeSkore))}</div>
-            <span class="dash-skore-popisek">${poradiVZebricku(id) ? "pořadí v žebříčku" : "estetické skóre"}</span>
+                 title="Estetické skóre · klik = viděno, další klik = žebříček">${escapeHtml(hodnotaNebo(film.estetickeSkore))}</div>
+            <span class="dash-skore-popisek">estetické skóre</span>
           </div>
           <div class="dash-skore-vedlejsi">
             ${skoreVedlejsi}

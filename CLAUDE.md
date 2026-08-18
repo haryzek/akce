@@ -334,7 +334,8 @@ splice, filmy pod pozicí se odsunou o jedna; zařazení implikuje viděno. Pře
 pořadové číslo řádku → film vyskočí nahoru jako čekající (z pole se nemaže, jen se v
 seznamu schová — čísla řádků pak rovnou odpovídají cílovým pozicím). Křížek řádku vyřadí
 ze žebříčku (viděno zůstane); „zrušit viděno" u čekajícího je jediná cesta k odviděnění.
-Zařazený film má kolečko **plně zelené s bílým pořadím** (`.skore.v-zebricku`) místo skóre.
+Zařazený film vypadá na kartě jako obyčejné „viděno" (zelený obrys, skóre) — pořadí se
+ukazuje JEN v panelu (plná výplň i pořadí v kolečku byly zkoušené a Bobovi neseděly).
 Žebříček jede přes export/import zálohy spolu se srdíčky a viděnem (`sloucZebricek`:
 uspořádaný seznam nejde sjednotit Setem — prázdný se převezme celý, jinak se neznámá ID
 přilepí na konec). Žebříček drží jen ID a přežije film, který už v datech není

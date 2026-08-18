@@ -101,16 +101,69 @@ function ulozVideno() {
   }
 }
 
-// Přepne "viděno" a synchronizuje všechna kolečka téhož filmu (karta + dashboard)
+// Přepne "viděno" a přes osvezKolecka() synchronizuje kolečka (karta + dashboard)
 function prepniVideno(id) {
-  const nove = !VIDENO.has(id);
-  if (nove) VIDENO.add(id);
-  else VIDENO.delete(id);
+  if (VIDENO.has(id)) VIDENO.delete(id);
+  else VIDENO.add(id);
   ulozVideno();
+  osvezKolecka();
+}
+
+// ---- žebříček viděných filmů (localStorage, panel vpravo) ----
+// Bobovo "legrační" hodnocení: místo známky pořadí. Pole ID, index 0 = 1. místo.
+// Zařazení na pozici N odsune všechno od N dál o jedna — obyčejný splice.
+
+const ZEBRICEK_KLIC = "akce-zebricek";
+
+function nactiZebricek() {
+  try {
+    const pole = JSON.parse(localStorage.getItem(ZEBRICEK_KLIC) || "[]");
+    return Array.isArray(pole) ? pole.filter((x) => typeof x === "string") : [];
+  } catch {
+    return [];
+  }
+}
+
+let ZEBRICEK = nactiZebricek();
+let ZEBRICEK_PENDING = null; // id filmu čekajícího nahoře v panelu na zařazení
+
+function ulozZebricek() {
+  try {
+    localStorage.setItem(ZEBRICEK_KLIC, JSON.stringify(ZEBRICEK));
+  } catch {
+    /* stejné jako u oblíbených — tiše přejít */
+  }
+}
+
+// 1-based pořadí v žebříčku, 0 = film v žebříčku není (funguje jako falsy)
+function poradiVZebricku(id) {
+  return ZEBRICEK.indexOf(id) + 1;
+}
+
+// Přepočítá VŠECHNA kolečka skóre na stránce podle aktuálního stavu (viděno /
+// pořadí v žebříčku). Zařazení jednoho filmu posune čísla mnoha dalším, takže
+// se neřeší jedno id, ale rovnou všechno viditelné — je to jen textContent a
+// dvě CSS třídy, žádné překreslování karet. Původní skóre nese data-skore.
+function osvezKolecka() {
   document.querySelectorAll(".skore[data-id]").forEach((s) => {
-    if (decodeURIComponent(s.dataset.id) !== id) return;
-    s.classList.toggle("videno", nove);
+    const id = decodeURIComponent(s.dataset.id);
+    const poradi = poradiVZebricku(id);
+    s.classList.toggle("v-zebricku", poradi > 0);
+    s.classList.toggle("videno", poradi > 0 || VIDENO.has(id));
+    s.textContent = poradi > 0 ? poradi : (s.dataset.skore ?? "—");
   });
+}
+
+// Klik na kolečko skóre — zřetězené chování: neviděný film → označit jako viděno
+// (zelený obrys, jako dřív); viděný/zařazený film → otevřít panel žebříčku
+// (nový film jako čekající na zařazení, zařazený se v žebříčku jen zvýrazní).
+// Odviděnit jde v panelu ("zrušit viděno" u čekajícího filmu).
+function klikNaKolecko(id) {
+  if (!VIDENO.has(id) && !poradiVZebricku(id)) {
+    prepniVideno(id);
+    return;
+  }
+  otevriZebricek(id);
 }
 
 // srdíčko na kartě (dva stavy). Sdílený helper, ať ho každý typ karty jen zavolá.
@@ -208,7 +261,7 @@ async function ziskejSlozkuZalohy() {
 
 async function exportujZalohuAutomaticky() {
   const slozka = await ziskejSlozkuZalohy();
-  const zaloha = { exportovanoAt: new Date().toISOString(), oblibene: [...OBLIBENE], videno: [...VIDENO] };
+  const zaloha = { exportovanoAt: new Date().toISOString(), oblibene: [...OBLIBENE], videno: [...VIDENO], zebricek: [...ZEBRICEK] };
   const soubor = await slozka.getFileHandle(ZALOHA_SOUBOR, { create: true });
   const zapis = await soubor.createWritable();
   await zapis.write(JSON.stringify(zaloha, null, 2));
@@ -229,9 +282,26 @@ async function naimportujZalohuAutomaticky() {
   const noveVideno = Array.isArray(data.videno) ? data.videno : [];
   noveOblibene.forEach((id) => OBLIBENE.add(id));
   noveVideno.forEach((id) => VIDENO.add(id));
+  sloucZebricek(data.zebricek);
   ulozOblibene();
   ulozVideno();
   prekresli();
+}
+
+// Sloučení žebříčku ze zálohy: pořadí je uspořádaný seznam, union Setů tu nefunguje.
+// Prázdný aktuální žebříček → převzít celý ze zálohy; jinak neznámá ID přilepit na
+// konec (v jejich pořadí). Nic se nemaže, stejná filozofie jako u srdíček.
+function sloucZebricek(zeZalohy) {
+  if (!Array.isArray(zeZalohy)) return;
+  const nova = zeZalohy.filter((x) => typeof x === "string");
+  if (ZEBRICEK.length === 0) {
+    ZEBRICEK = nova;
+  } else {
+    nova.forEach((id) => {
+      if (!ZEBRICEK.includes(id)) ZEBRICEK.push(id);
+    });
+  }
+  ulozZebricek();
 }
 
 // Stáhne zálohu localStorage (oblíbené + viděné filmy) jako JSON — pro případ
@@ -243,6 +313,7 @@ function exportujZalohu() {
     exportovanoAt: new Date().toISOString(),
     oblibene: [...OBLIBENE],
     videno: [...VIDENO],
+    zebricek: [...ZEBRICEK],
   };
   const blob = new Blob([JSON.stringify(zaloha, null, 2)], { type: "application/json" });
   const url = URL.createObjectURL(blob);
@@ -271,6 +342,7 @@ function naimportujZalohu(soubor) {
     const noveVideno = Array.isArray(data.videno) ? data.videno : [];
     noveOblibene.forEach((id) => OBLIBENE.add(id));
     noveVideno.forEach((id) => VIDENO.add(id));
+    sloucZebricek(data.zebricek);
     ulozOblibene();
     ulozVideno();
     prekresli(); // ať se srdíčka/kolečka na obrazovce hned zobrazí správně
@@ -444,6 +516,7 @@ function domaId(film) {
 function vykresliKartuFilmuDoma(film, id) {
   const prumer = film.hodnoceni?.vazenePrumer;
   const skore = prumer === null || prumer === undefined ? "—" : Math.round(prumer);
+  const poradi = poradiVZebricku(id); // zařazený film ukazuje v kolečku pořadí, ne skóre
   const rezieRok = [film.rezie, film.rok].filter(Boolean).join(" · ");
 
   // žlutý řádek: vpředu estetické skóre s ikonkou (role váženého průměru), za ním films101
@@ -474,8 +547,9 @@ function vykresliKartuFilmuDoma(film, id) {
         </div>
 
         <div class="karta-vpravo">
-          <div class="skore skore-klik${VIDENO.has(id) ? " videno" : ""}" data-id="${encodeURIComponent(id)}"
-               title="Vážený průměr · kliknutím označíš jako viděno">${escapeHtml(skore)}</div>
+          <div class="skore skore-klik${poradi ? " videno v-zebricku" : VIDENO.has(id) ? " videno" : ""}"
+               data-id="${encodeURIComponent(id)}" data-skore="${escapeHtml(skore)}"
+               title="${poradi ? `${poradi}. místo v žebříčku · vážený průměr ${escapeHtml(skore)}` : "Vážený průměr · klik = viděno, druhý klik = zařadit do žebříčku"}">${poradi || escapeHtml(skore)}</div>
           ${vykresliSrdce(id, OBLIBENE.has(id))}
         </div>
       </div>
@@ -855,9 +929,10 @@ function vykresliDashboard(film, typ) {
         </div>
         <div class="dash-skore-blok">
           <div class="dash-skore-hlavni">
-            <div class="skore dash-skore skore-klik${VIDENO.has(id) ? " videno" : ""}" data-id="${encodeURIComponent(id)}"
-                 title="Estetické skóre · kliknutím označíš jako viděno">${escapeHtml(hodnotaNebo(film.estetickeSkore))}</div>
-            <span class="dash-skore-popisek">estetické skóre</span>
+            <div class="skore dash-skore skore-klik${poradiVZebricku(id) ? " videno v-zebricku" : VIDENO.has(id) ? " videno" : ""}"
+                 data-id="${encodeURIComponent(id)}" data-skore="${escapeHtml(hodnotaNebo(film.estetickeSkore))}"
+                 title="${poradiVZebricku(id) ? `${poradiVZebricku(id)}. místo v žebříčku` : "Estetické skóre · klik = viděno, druhý klik = zařadit do žebříčku"}">${poradiVZebricku(id) || escapeHtml(hodnotaNebo(film.estetickeSkore))}</div>
+            <span class="dash-skore-popisek">${poradiVZebricku(id) ? "pořadí v žebříčku" : "estetické skóre"}</span>
           </div>
           <div class="dash-skore-vedlejsi">
             ${skoreVedlejsi}
@@ -1604,10 +1679,10 @@ async function init() {
       prepniSrdce(srdce);
       return;
     }
-    // kolečko skóre ve filmotéce = přepínač "viděno" (nesmí otevřít dashboard)
+    // kolečko skóre ve filmotéce: neviděno → viděno → žebříček (nesmí otevřít dashboard)
     const kolecko = e.target.closest(".skore-klik");
     if (kolecko) {
-      prepniVideno(decodeURIComponent(kolecko.dataset.id));
+      klikNaKolecko(decodeURIComponent(kolecko.dataset.id));
       return;
     }
     // klik kamkoli jinam na kartu filmotéky (mimo odkazy) otevře dashboard filmu
@@ -1676,6 +1751,7 @@ async function init() {
 
   nastavModal();
   nastavDashboard();
+  nastavZebricek();
 }
 
 // vytvoří fullscreen overlay dashboardu a nadrátuje interakce (delegovaně, obsah se
@@ -1702,10 +1778,14 @@ function nastavDashboard() {
       prepniSrdce(srdce);
       return;
     }
-    // kolečko skóre v dashboardu = přepínač "viděno" (synchronizuje se s kartou)
+    // kolečko skóre v dashboardu: stejné řetězení jako na kartě (viděno → žebříček).
+    // Když klik povede na otevření žebříčku, dashboard se zavře — panel by jinak
+    // zůstal schovaný pod fullscreen overlayem a klik by vypadal, že nic nedělá.
     const kolecko = e.target.closest(".skore-klik");
     if (kolecko) {
-      prepniVideno(decodeURIComponent(kolecko.dataset.id));
+      const idKolecka = decodeURIComponent(kolecko.dataset.id);
+      if (VIDENO.has(idKolecka) || poradiVZebricku(idKolecka)) zavriDashboard();
+      klikNaKolecko(idKolecka);
       return;
     }
     // tile příbuzného filmu → otevřít jeho dashboard (brouzdání filmotékou i kartami
@@ -1735,6 +1815,214 @@ function nastavDashboard() {
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && !overlay.hidden) zavriDashboard();
   });
+}
+
+// ---- panel žebříčku (pravý sloupec) ----
+// Otevírá se klikem na zelené kolečko viděného filmu. Nahoře čekající film (sticky),
+// pod ním skrolovací žebříček. Zařazení: číslo do inputu, klik na řádek („NAD něj"),
+// nebo „na konec". Přeřazení: klik na pořadové číslo řádku — film vyskočí nahoru
+// jako čekající a zařazuje se znovu stejným mechanismem.
+
+// Dohledá film podle ID napříč datasety (filmotéka + načtené akce). Žebříček drží
+// jen ID, takže musí přežít i film, který už v žádných datech není — fallback
+// vyloupne název přímo z ID ("typ::nazev|rezie").
+function filmPodleId(id) {
+  if (DOMA_MAPA.has(id)) return { film: DOMA_MAPA.get(id), typ: "filmy_doma" };
+  const akce = VSECHNY_AKCE.find((a) => akceId(a) === id);
+  return akce ? { film: akce.data, typ: akce.typAkce } : null;
+}
+
+function popisFilmuZId(id) {
+  const nalez = filmPodleId(id);
+  if (nalez) {
+    const f = nalez.film;
+    return { nazev: f.nazevCz || f.nazevOrig || "?", rok: f.rok || null };
+  }
+  // film v datech není (např. kinofilm z minulého měsíce) — název z ID
+  const zaTypem = id.split("::")[1] || id;
+  return { nazev: zaTypem.split("|")[0] || id, rok: null };
+}
+
+// Zařadí film na 1-based pozici (počítáno v žebříčku BEZ něj — při přeřazování se
+// nejdřív vyjme, pak vloží). Zařazený film je automaticky viděný.
+function zaradFilm(id, pozice) {
+  const stary = ZEBRICEK.indexOf(id);
+  if (stary !== -1) ZEBRICEK.splice(stary, 1);
+  pozice = Math.max(1, Math.min(Math.floor(pozice), ZEBRICEK.length + 1));
+  ZEBRICEK.splice(pozice - 1, 0, id);
+  if (!VIDENO.has(id)) {
+    VIDENO.add(id);
+    ulozVideno();
+  }
+  ulozZebricek();
+  ZEBRICEK_PENDING = null;
+  prekresliZebricek(id); // čerstvě zařazený se zvýrazní a odscrolluje do záběru
+  osvezKolecka();
+}
+
+function otevriZebricek(id) {
+  const panel = document.getElementById("zebricek-panel");
+  let zvyraznit = null;
+  if (id) {
+    // zařazený film se jen ukáže na svém místě; nezařazený čeká nahoře na zařazení
+    if (poradiVZebricku(id)) zvyraznit = id;
+    else ZEBRICEK_PENDING = id;
+  }
+  panel.hidden = false;
+  document.body.classList.add("zebricek-otevreny"); // odsune obsah stránky doleva
+  prekresliZebricek(zvyraznit);
+}
+
+function zavriZebricek() {
+  const panel = document.getElementById("zebricek-panel");
+  panel.hidden = true;
+  ZEBRICEK_PENDING = null;
+  document.body.classList.remove("zebricek-otevreny");
+}
+
+function prekresliZebricek(zvyraznitId) {
+  const panel = document.getElementById("zebricek-panel");
+  if (!panel || panel.hidden) return;
+  // čekající film se ze seznamu schová — čísla řádků pak rovnou odpovídají pozicím,
+  // na které by se zařadil (přesně jak to Bob popsal: "vyskočí nahoru z místa")
+  const viditelne = ZEBRICEK.filter((id) => id !== ZEBRICEK_PENDING);
+
+  let pendingHtml = "";
+  if (ZEBRICEK_PENDING) {
+    const { nazev, rok } = popisFilmuZId(ZEBRICEK_PENDING);
+    pendingHtml = `
+      <div class="zeb-pending">
+        <p class="zeb-pending-titul">${escapeHtml(nazev)}${rok ? ` <span class="zeb-rok">(${escapeHtml(rok)})</span>` : ""}</p>
+        <form class="zeb-form">
+          <input type="number" class="zeb-input" min="1" max="${viditelne.length + 1}" placeholder="pořadí" autocomplete="off">
+          <button type="submit">Zařadit</button>
+        </form>
+        <p class="zeb-napoveda">…nebo klikni na film v žebříčku — zařadí se nad něj.</p>
+        <button type="button" class="zeb-odvidet">zrušit viděno</button>
+      </div>`;
+  }
+
+  const radky = viditelne
+    .map((id, i) => {
+      const { nazev, rok } = popisFilmuZId(id);
+      return `
+      <li class="zeb-radek${ZEBRICEK_PENDING ? " zeb-cil" : ""}${id === zvyraznitId ? " zeb-zvyraznen" : ""}" data-id="${encodeURIComponent(id)}">
+        <button type="button" class="zeb-poradi" title="Přeřadit — film vyskočí nahoru k novému zařazení">${i + 1}</button>
+        <span class="zeb-nazev">${escapeHtml(nazev)}${rok ? ` <span class="zeb-rok">${escapeHtml(rok)}</span>` : ""}</span>
+        <button type="button" class="zeb-smazat" title="Vyřadit ze žebříčku (viděno zůstane)">×</button>
+      </li>`;
+    })
+    .join("");
+
+  const konec = ZEBRICEK_PENDING
+    ? `<li class="zeb-konec"><button type="button" class="zeb-na-konec">zařadit na konec (${viditelne.length + 1}.)</button></li>`
+    : "";
+
+  panel.innerHTML = `
+    <header class="zeb-hlavicka">
+      <h3>Žebříček <span class="zeb-pocet">${viditelne.length}</span></h3>
+      <button type="button" class="zeb-zavrit" aria-label="Zavřít">×</button>
+    </header>
+    ${pendingHtml}
+    ${radky || konec
+      ? `<ol class="zeb-seznam">${radky}${konec}</ol>`
+      : '<p class="zeb-prazdny">Žebříček je prázdný — klikni na zelené kolečko viděného filmu a zařaď ho.</p>'}`;
+
+  const vstup = panel.querySelector(".zeb-input");
+  if (vstup) vstup.focus();
+  const zvyraznen = panel.querySelector(".zeb-zvyraznen");
+  if (zvyraznen) zvyraznen.scrollIntoView({ block: "center" });
+}
+
+// vytvoří panel a nadrátuje interakce (delegovaně — obsah se generuje při každé změně)
+function nastavZebricek() {
+  const panel = document.createElement("aside");
+  panel.id = "zebricek-panel";
+  panel.className = "zebricek-panel";
+  panel.hidden = true;
+  document.body.appendChild(panel);
+
+  panel.addEventListener("click", (e) => {
+    if (e.target.closest(".zeb-zavrit")) {
+      zavriZebricek();
+      return;
+    }
+    // "zrušit viděno" u čekajícího filmu — jediná cesta, jak film odviděnit
+    // (klik na kolečko už viděné jen otevírá tenhle panel)
+    if (e.target.closest(".zeb-odvidet") && ZEBRICEK_PENDING) {
+      const id = ZEBRICEK_PENDING;
+      VIDENO.delete(id);
+      ulozVideno();
+      const idx = ZEBRICEK.indexOf(id);
+      if (idx !== -1) {
+        ZEBRICEK.splice(idx, 1);
+        ulozZebricek();
+      }
+      ZEBRICEK_PENDING = null;
+      prekresliZebricek();
+      osvezKolecka();
+      return;
+    }
+    if (e.target.closest(".zeb-na-konec") && ZEBRICEK_PENDING) {
+      zaradFilm(ZEBRICEK_PENDING, ZEBRICEK.filter((x) => x !== ZEBRICEK_PENDING).length + 1);
+      return;
+    }
+    const poradiTlacitko = e.target.closest(".zeb-poradi");
+    if (poradiTlacitko) {
+      // přeřazení: film vyskočí nahoru jako čekající (v poli zůstává, ze seznamu
+      // se jen schová — když se panel zavře bez zařazení, nic se neztratí)
+      ZEBRICEK_PENDING = decodeURIComponent(poradiTlacitko.closest(".zeb-radek").dataset.id);
+      prekresliZebricek();
+      return;
+    }
+    const smazat = e.target.closest(".zeb-smazat");
+    if (smazat) {
+      const id = decodeURIComponent(smazat.closest(".zeb-radek").dataset.id);
+      const idx = ZEBRICEK.indexOf(id);
+      if (idx !== -1) {
+        ZEBRICEK.splice(idx, 1);
+        ulozZebricek();
+      }
+      prekresliZebricek();
+      osvezKolecka();
+      return;
+    }
+    const radek = e.target.closest(".zeb-radek");
+    if (radek) {
+      const cilId = decodeURIComponent(radek.dataset.id);
+      if (ZEBRICEK_PENDING) {
+        // zařadit NAD kliknutý film — pozice = jeho číslo v zobrazeném (filtrovaném) seznamu
+        const bezPending = ZEBRICEK.filter((x) => x !== ZEBRICEK_PENDING);
+        zaradFilm(ZEBRICEK_PENDING, bezPending.indexOf(cilId) + 1);
+      } else {
+        // bez čekajícího filmu je klik na řádek zkratka na dashboard
+        const nalez = filmPodleId(cilId);
+        if (nalez) otevriDashboardFilmu(nalez.film, nalez.typ);
+      }
+    }
+  });
+
+  panel.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (!ZEBRICEK_PENDING) return;
+    const hodnota = Number(panel.querySelector(".zeb-input")?.value);
+    if (!Number.isFinite(hodnota) || hodnota < 1) return;
+    zaradFilm(ZEBRICEK_PENDING, hodnota);
+  });
+
+  // Esc zavírá panel, jen když nad ním zrovna neleží dashboard (ten má vlastní Esc
+  // a jeden stisk má zavřít jen vrchní vrstvu). Capture fáze = tenhle test proběhne
+  // DŘÍV, než dashboardový listener stihne overlay schovat — jinak by jeden Esc
+  // zavřel obojí naráz.
+  document.addEventListener(
+    "keydown",
+    (e) => {
+      if (e.key === "Escape" && !panel.hidden && document.getElementById("dashboard-film").hidden) {
+        zavriZebricek();
+      }
+    },
+    true
+  );
 }
 
 // ---- modal se všemi projekcemi ----

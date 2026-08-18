@@ -318,9 +318,29 @@ srovnají) se z dotazu vyloupne jako číselný filtr roku (`rozeberDotazDoma`),
 zbytek jede dál substringem → funguje i „bergman 1950-1960".
 Srdíčka mají prefix `filmy_doma::`, takže watchlist se nemíchá s oblíbenými z kin.
 
-Klik na **kolečko skóre** karty (i v dashboardu) přepíná **„viděno"** — kolečko zezelená
-(`--videno`), drží se v localStorage (`akce-videno`, stejná ID jako srdíčka) a synchronizuje
-se mezi kartou a dashboardem (`prepniVideno`, třída `.skore-klik`).
+Klik na **kolečko skóre** karty (i v dashboardu) je zřetězený přepínač (`klikNaKolecko`):
+neviděný film → **„viděno"** (zelený obrys, `--videno`, localStorage `akce-videno`);
+viděný/zařazený film → otevře **panel žebříčku** (viz níže). Kolečka se synchronizují
+mezi kartou a dashboardem přes `osvezKolecka()` (přepočítá všechna naráz — zařazení
+jednoho filmu posune čísla mnoha dalším; původní skóre nese `data-skore`).
+
+**Žebříček viděných filmů** (`ZEBRICEK`, localStorage `akce-zebricek` = pole ID, index 0
+= 1. místo): Bobovo „legrační" hodnocení pořadím místo známky. Panel = fixní pravý sloupec
+(`aside#zebricek-panel`, tvoří ho `nastavZebricek()` jako modal/dashboard; obsah stránky
+odsune `body.zebricek-otevreny { padding-right }`, grid karet se přeskládá sám; na mobilu
+fullscreen). Nahoře sticky čekající film (`ZEBRICEK_PENDING`), pod ním skrolovací seznam.
+Zařazení: číslo do inputu, klik na řádek (= NAD něj), nebo „na konec" — `zaradFilm` udělá
+splice, filmy pod pozicí se odsunou o jedna; zařazení implikuje viděno. Přeřazení: klik na
+pořadové číslo řádku → film vyskočí nahoru jako čekající (z pole se nemaže, jen se v
+seznamu schová — čísla řádků pak rovnou odpovídají cílovým pozicím). Křížek řádku vyřadí
+ze žebříčku (viděno zůstane); „zrušit viděno" u čekajícího je jediná cesta k odviděnění.
+Zařazený film má kolečko **plně zelené s bílým pořadím** (`.skore.v-zebricku`) místo skóre.
+Žebříček jede přes export/import zálohy spolu se srdíčky a viděnem (`sloucZebricek`:
+uspořádaný seznam nejde sjednotit Setem — prázdný se převezme celý, jinak se neznámá ID
+přilepí na konec). Žebříček drží jen ID a přežije film, který už v datech není
+(`popisFilmuZId` vyloupne název přímo z ID). Pasti: `.zebricek-panel[hidden]` potřebuje
+explicitní `display:none` (flex by atribut přebil); Esc panelu poslouchá v capture fázi,
+jinak by jeden stisk zavřel dashboard i panel naráz.
 
 Klik na kartu otevře **fullscreen dashboard filmu** (`otevriDashboardFilmu`, overlay
 `#dashboard-film`, zavírá křížek/Esc): velký trailer (maxres thumbnail s fallbackem),

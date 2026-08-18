@@ -1299,6 +1299,257 @@ a.vystava-thumb:hover .vystava-obrazek {
   color: var(--text);
 }
 
+/* ---- žebříček viděných filmů (pravý panel) ---- */
+/* Fixní sloupec u pravého okraje; obsah stránky se odsune přes padding na body
+   (grid karet má auto-fill sloupce, tak se prostě přeskládá). Nahoře hlavička
+   a čekající film drží na místě, skroluje jen samotný seznam (.zeb-seznam). */
+
+.zebricek-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 360px;
+  z-index: 70; /* nad dashboardem (60) — klik na kolečko v dashboardu ho stejně zavírá */
+  background: var(--bg-karta);
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.9rem;
+}
+
+/* display:flex výš by jinak přebil atribut hidden a panel by nešel schovat */
+.zebricek-panel[hidden] {
+  display: none;
+}
+
+body.zebricek-otevreny {
+  padding-right: 360px;
+}
+
+.zeb-hlavicka {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.2rem;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.zeb-hlavicka h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.zeb-pocet {
+  color: var(--text-jemny);
+  font-weight: 400;
+  margin-left: 0.3rem;
+}
+
+.zeb-zavrit {
+  background: none;
+  border: none;
+  color: var(--text-tlumeny);
+  font-size: 1.5rem;
+  line-height: 1;
+  padding: 0.1rem 0.4rem;
+  cursor: pointer;
+}
+
+.zeb-zavrit:hover {
+  color: var(--text);
+}
+
+/* čekající film "ready k zařazení" — sticky nad skrolovacím seznamem */
+.zeb-pending {
+  padding: 1rem 1.2rem;
+  border-bottom: 1px solid var(--border);
+  background: rgba(95, 168, 119, 0.08); /* jemný nádech zelené = pracuje se s viděným */
+  flex-shrink: 0;
+}
+
+.zeb-pending-titul {
+  margin: 0 0 0.6rem;
+  font-weight: 600;
+  font-family: "Georgia", "Iowan Old Style", "Charter", serif;
+  font-size: 1rem;
+}
+
+.zeb-form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.zeb-input {
+  width: 5.5rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  padding: 0.35rem 0.5rem;
+  font-size: 1rem;
+}
+
+.zeb-input:focus {
+  outline: none;
+  border-color: var(--videno);
+}
+
+.zeb-form button {
+  background: var(--videno);
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  font-weight: 600;
+  padding: 0.35rem 0.9rem;
+  cursor: pointer;
+}
+
+.zeb-form button:hover {
+  filter: brightness(1.1);
+}
+
+.zeb-napoveda {
+  margin: 0.6rem 0 0.4rem;
+  font-size: 0.78rem;
+  color: var(--text-tlumeny);
+}
+
+.zeb-odvidet {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--text-jemny);
+  font-size: 0.78rem;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.zeb-odvidet:hover {
+  color: var(--text-tlumeny);
+}
+
+.zeb-seznam {
+  list-style: none;
+  margin: 0;
+  padding: 0.4rem 0;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.zeb-radek {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.3rem 1.2rem;
+}
+
+.zeb-radek:hover {
+  background: var(--bg-karta-hover);
+}
+
+/* při čekajícím filmu je řádek cíl zařazení („NAD něj") — zelená linka nahoře to naznačí */
+.zeb-cil {
+  cursor: pointer;
+}
+
+.zeb-cil:hover {
+  box-shadow: inset 0 2px 0 var(--videno);
+}
+
+.zeb-zvyraznen {
+  background: var(--akcent-slaby);
+}
+
+/* pořadové číslo = mini verze zeleného kolečka z karty; klik = přeřadit */
+.zeb-poradi {
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 1.5px solid var(--videno);
+  background: var(--videno);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+}
+
+.zeb-poradi:hover {
+  background: transparent;
+  color: var(--videno);
+}
+
+.zeb-nazev {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: "Georgia", "Iowan Old Style", "Charter", serif;
+  font-size: 0.92rem;
+}
+
+.zeb-rok {
+  color: var(--text-jemny);
+  font-size: 0.8rem;
+}
+
+.zeb-smazat {
+  background: none;
+  border: none;
+  color: var(--text-jemny);
+  font-size: 1.1rem;
+  line-height: 1;
+  padding: 0 0.2rem;
+  cursor: pointer;
+  opacity: 0; /* ukáže se až na hoveru řádku, ať seznam nekřičí křížky */
+}
+
+.zeb-radek:hover .zeb-smazat {
+  opacity: 1;
+}
+
+.zeb-smazat:hover {
+  color: #c96a6a;
+}
+
+.zeb-konec {
+  padding: 0.5rem 1.2rem;
+}
+
+.zeb-na-konec {
+  width: 100%;
+  background: none;
+  border: 1px dashed var(--border);
+  border-radius: 6px;
+  color: var(--text-tlumeny);
+  padding: 0.45rem;
+  cursor: pointer;
+}
+
+.zeb-na-konec:hover {
+  border-color: var(--videno);
+  color: var(--videno);
+}
+
+.zeb-prazdny {
+  padding: 1.2rem;
+  color: var(--text-tlumeny);
+}
+
+/* Film zařazený v žebříčku vypadá jako klasické "viděno" kolečko (zelený obrys,
+   zelené číslo — třídu .videno má vždycky s sebou), jen uvnitř je pořadí místo
+   skóre. Zkoušená plná zelená výplň s bílým číslem Bobovi neseděla — kdyby ses
+   k ní vracel, tady bývala: background+border var(--videno), color #fff. */
+
 /* ---- responsivita, ať to nespadne na mobilu ---- */
 @media (max-width: 600px) {
   .hlavicka { padding: 2rem 1.2rem 1rem; }
@@ -1434,5 +1685,15 @@ a.vystava-thumb:hover .vystava-obrazek {
   .typ-razeni-radek select {
     width: 100%;
     min-width: 0;
+  }
+
+  /* žebříček na mobilu: vedle karet se nevejde, tak přes celou obrazovku */
+  .zebricek-panel {
+    width: 100%;
+    border-left: none;
+  }
+
+  body.zebricek-otevreny {
+    padding-right: 0;
   }
 }

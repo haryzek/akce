@@ -1550,6 +1550,32 @@ body.zebricek-otevreny {
    Zkoušené varianty, které Bobovi neseděly: plná zelená výplň s bílým pořadím,
    i pořadí místo skóre v obrysovém kolečku. Nevracet se k nim bez ptaní. */
 
+/* ---- toast: nenápadné potvrzení dole, samo zmizí ---- */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 1.5rem;
+  transform: translateX(-50%) translateY(1rem);
+  max-width: min(90vw, 460px);
+  background: var(--bg-karta);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.7rem 1.1rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.88rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  z-index: 100;
+}
+
+.toast-viditelny {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
 /* ---- responsivita, ať to nespadne na mobilu ---- */
 @media (max-width: 600px) {
   .hlavicka { padding: 2rem 1.2rem 1rem; }

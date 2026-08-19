@@ -262,6 +262,7 @@ async function exportujZalohuAutomaticky() {
   const zapis = await soubor.createWritable();
   await zapis.write(JSON.stringify(zaloha, null, 2));
   await zapis.close();
+  return slozka.name; // jméno složky pro potvrzení (kam se to uložilo)
 }
 
 async function naimportujZalohuAutomaticky() {
@@ -320,6 +321,24 @@ function exportujZalohu() {
   odkaz.click();
   odkaz.remove();
   URL.revokeObjectURL(url);
+  zobrazToast("Záloha stažena (najdeš ji ve Stažených souborech)");
+}
+
+// Nenápadné potvrzení, co samo zmizí — místo otravného alert(). Jeden sdílený prvek,
+// každé volání restartuje odpočet, ať se zprávy nehromadí.
+let TOAST_TIMER = null;
+function zobrazToast(zprava) {
+  let toast = document.getElementById("toast");
+  if (!toast) {
+    toast = document.createElement("div");
+    toast.id = "toast";
+    toast.className = "toast";
+    document.body.appendChild(toast);
+  }
+  toast.textContent = zprava;
+  toast.classList.add("toast-viditelny");
+  clearTimeout(TOAST_TIMER);
+  TOAST_TIMER = setTimeout(() => toast.classList.remove("toast-viditelny"), 3200);
 }
 
 // Nahraje zálohu zpět — SLUČUJE s aktuálním stavem (union), nic nemaže. Bezpečné
@@ -1605,7 +1624,8 @@ async function init() {
   document.getElementById("export-zaloha").addEventListener("click", async () => {
     if (!PODPORA_FS_API) return exportujZalohu();
     try {
-      await exportujZalohuAutomaticky();
+      const slozka = await exportujZalohuAutomaticky();
+      zobrazToast(`Záloha uložena do ${slozka}/${ZALOHA_SOUBOR}`);
     } catch (chyba) {
       if (chyba.name !== "AbortError") {
         console.warn("Automatický zápis zálohy selhal, padám na stažení:", chyba);

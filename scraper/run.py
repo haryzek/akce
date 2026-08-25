@@ -45,6 +45,11 @@ SUBSCRAPERY = [
     "cps_psychoterapie",    # ČPS ČLS JEP (Joomla blog, volný text)
     "akp_psychoterapie",    # AKP (Google Sites)
     "ipvz_psychoterapie",   # IPVZ katedra klinické psychologie (JSON API)
+    "lavka_psychoterapie",  # Centrum Lávka (WP, lovec stop "Termín:" přes celé menu)
+    # psychoterapeutické akce pro veřejnost (sebezkušenostní kurzy a skupiny) —
+    # stejný crawl Lávky jako výše (cache v lavka_common), rozdělení odborné vs.
+    # veřejnost dělají až Cowork prompty (vylučovací, hraniční akce → veřejnost)
+    "lavka_verejnost",      # Centrum Lávka podruhé, typ verejnost_psychoterapie
     # píčovinky (menší komunitní akcičky — open mic, kvízy, workshopy).
     # POZOR: typ nemá AI krok, RAW jde rovnou do data/ (viz docstring modulu).
     # Zdroje jsou jednotlivé hospody — akce se nepřekrývají, dedup profil netřeba.
@@ -71,6 +76,7 @@ POPISKY_TYPU = {
     "divadlo": "Divadlo",
     "party": "Party",
     "odborne_psychoterapie": "Psychoterapie (odborné akce)",
+    "verejnost_psychoterapie": "Psychoterapie (pro veřejnost)",
     "picovinky": "Píčovinky (malé akcičky)",
 }
 

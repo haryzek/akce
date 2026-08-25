@@ -14,7 +14,9 @@ jednoznačné (výcvik v názvu, akce delší než ~měsíc); jemné rozhodován
 na Cowork promptu.
 """
 
+import calendar
 import re
+import unicodedata
 from datetime import datetime
 
 TYP_AKCE = "odborne_psychoterapie"  # jeden slug pro všech 7 zdrojů — runner je slije
@@ -108,6 +110,76 @@ def najdi_datumy(text):
     return sorted(nalezene, key=parsuj_den)
 
 
+# --- vylovení SLOVNÍCH českých datumů ("26. – 27. září 2026", "30. říjen – 1. listopad 2026") ---
+# Potřebuje je Lávka (centrum-lavka.cz), která termíny píše volným textem s názvy měsíců.
+# Porovnává se bez diakritiky přes prefixy — chytí všechny pády (leden/ledna/lednu…).
+# Pořadí prefixů je důležité: "cervenc" (červenec, 7) musí předběhnout "cerven" (červen, 6).
+_MESIC_PREFIXY = [
+    ("cervenc", 7), ("cerven", 6), ("cervn", 6), ("listopad", 11),
+    ("led", 1), ("unor", 2), ("brez", 3), ("dub", 4), ("kvet", 5),
+    ("srp", 8), ("zari", 9), ("rij", 10), ("pros", 12),
+]
+_MES_ALT = "|".join(p for p, _ in _MESIC_PREFIXY)
+_MESIC_CISLO = dict(_MESIC_PREFIXY)
+
+# "8. září 2026", "26. – 27. září 2026" (den navíc vlevo), rok volitelný — v češtině se
+# u rozsahu přes dva měsíce píše až na konci ("30. říjen – 1. listopad 2026"), takže
+# chybějící rok se dědí od NÁSLEDUJÍCÍHO datumu s rokem (backfill zprava).
+_DATUM_SLOVNI = re.compile(
+    rf"(?:(\d{{1,2}})\s*\.?\s*[-–]\s*)?(\d{{1,2}})\s*\.\s*({_MES_ALT})[a-z]*\s*\.?\s*(\d{{4}})?"
+)
+# Rozsah jen z měsíců bez dnů: "září-říjen 2026" → 1. den prvního až poslední den druhého.
+_MESICE_ROZSAH = re.compile(rf"\b({_MES_ALT})[a-z]*\s*[-–]\s*({_MES_ALT})[a-z]*\s+(\d{{4}})")
+
+
+def _bez_diakritiky(text):
+    """"září" → "zari" (NFD dekompozice + zahození kombinujících znaků), lowercase."""
+    return "".join(
+        c for c in unicodedata.normalize("NFD", text) if not unicodedata.combining(c)
+    ).lower()
+
+
+def najdi_datumy_slovni(text):
+    """
+    Datumy s českým názvem měsíce z volného textu → list intervalů
+    [("DD-MM-YYYY", "DD-MM-YYYY"), …] seřazený podle začátku.
+
+    Interval proto, že slovní zápis bývá rozsah ("26.–27. září" = jedna vícedenní
+    akce, ne dva termíny). Jednodenní datum má oba konce stejné. Rozsah jen
+    z měsíců ("září-říjen 2026") dá celé rozmezí 1.9.–31.10. Datum bez
+    dohledatelného roku se zahodí (radši nic než tipovat).
+    """
+    if not text:
+        return []
+    t = _bez_diakritiky(text)
+
+    # den+měsíc (+volitelný rok, volitelný den navíc vlevo přes pomlčku)
+    syrove = []  # (pozice, den1|None, den2, mesic, rok|None)
+    for m in _DATUM_SLOVNI.finditer(t):
+        d1, d2, mes, rok = m.groups()
+        syrove.append((m.start(), d1, d2, _MESIC_CISLO[mes], rok))
+
+    # backfill roku zprava (rok se píše na konci rozsahu)
+    intervaly = []
+    rok_zprava = None
+    for _, d1, d2, mesic, rok in reversed(syrove):
+        rok_zprava = rok or rok_zprava
+        if not rok_zprava:
+            continue
+        konec = _slozit(d2, mesic, rok_zprava)
+        zacatek = _slozit(d1, mesic, rok_zprava) if d1 else konec
+        if konec:
+            intervaly.append((zacatek or konec, konec))
+
+    # rozsah jen z měsíců: "září-říjen 2026" → (01-09-2026, 31-10-2026)
+    for m in _MESICE_ROZSAH.finditer(t):
+        mes1, mes2, rok = _MESIC_CISLO[m.group(1)], _MESIC_CISLO[m.group(2)], int(m.group(3))
+        posledni = calendar.monthrange(rok, mes2)[1]
+        intervaly.append((f"01-{mes1:02d}-{rok}", f"{posledni:02d}-{mes2:02d}-{rok}"))
+
+    return sorted(set(intervaly), key=lambda iv: parsuj_den(iv[0]))
+
+
 # Čas: napřed dvojtečková podoba (17:00), pak tečková (9.30) — ta ale s negativním
 # lookaheadem, ať se z datumu "16.9.2026" nestane čas.
 _CAS_DVOJTECKA = re.compile(r"\b([01]?\d|2[0-3]):([0-5]\d)\b")
@@ -131,6 +203,7 @@ _ZANRY = [
     ("přednáška", re.compile(r"přednáš|prednas", re.I)),
     ("supervize", re.compile(r"superviz", re.I)),
     ("workshop", re.compile(r"workshop|dílna", re.I)),
+    ("skupina", re.compile(r"skupin", re.I)),
     ("kurz", re.compile(r"kurz", re.I)),
     ("seminář", re.compile(r"seminá|semina", re.I)),
 ]

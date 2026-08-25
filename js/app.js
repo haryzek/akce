@@ -16,6 +16,7 @@ const ZDROJE_DAT = [
   "data/party.json",
   "data/prednasky.json",
   "data/odborne_psychoterapie.json",
+  "data/verejnost_psychoterapie.json",
   "data/picovinky.json",
 ];
 
@@ -24,7 +25,7 @@ const ZDROJE_DAT = [
 // zdrojem a barvou akcentu. Ať se nemusí vyjmenovávat na deseti místech, drží se tady.
 const TERMINOVE_TYPY = new Set([
   "koncerty_klasika", "koncerty_jazzblues", "divadlo", "party", "odborne_psychoterapie",
-  "picovinky",
+  "verejnost_psychoterapie", "picovinky",
 ]);
 const jeTerminovy = (typ) => TERMINOVE_TYPY.has(typ);
 
@@ -1394,6 +1395,7 @@ const TERMINOVA_CSS_TRIDA = {
   divadlo: "karta-divadlo",
   party: "karta-party",
   odborne_psychoterapie: "karta-psychoterapie",
+  verejnost_psychoterapie: "karta-psychoterapie", // schválně stejný teal jako odborné
   picovinky: "karta-picovinky",
 };
 
@@ -1471,6 +1473,7 @@ function vykresliKartu(polozka, rozsah) {
     case "divadlo":
     case "party":
     case "odborne_psychoterapie":
+    case "verejnost_psychoterapie":
     case "picovinky":
       return vykresliKartuTerminu(polozka.data, id, rozsah, polozka.typAkce);
     default:
@@ -1508,6 +1511,7 @@ const POPISKY_TYPU = {
   divadlo: "Divadlo",
   party: "Party",
   odborne_psychoterapie: "Psychoterapie",
+  verejnost_psychoterapie: "Psychoterapie (veřejnost)",
   picovinky: "Píčovinky",
 };
 

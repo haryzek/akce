@@ -1089,7 +1089,9 @@ body.dashboard-otevreny {
 }
 
 .karta-psychoterapie {
-  --akcent: #3fb8af; /* klidný teal — konzultovna, mezi modrou koncertů a zelenou výstav */
+  /* klidný teal — konzultovna, mezi modrou koncertů a zelenou výstav.
+     Sdílí ho typ odborne_psychoterapie i verejnost_psychoterapie (Bobovo přání). */
+  --akcent: #3fb8af;
 }
 
 .karta-picovinky {

@@ -7,7 +7,7 @@ dohledávání, žádný starší JSON.
 
 ## Vstupy (přečti si je sám ze složky projektu)
 - **RAW data:** `scraper/output/odborne_psychoterapie.json` – syrový, deduplikovaný seznam
-  akcí ze scraperu (7 zdrojů: ČAP, ČSPP, ČSP, PVŠPS, ČPS ČLS JEP, AKP, IPVZ).
+  akcí ze scraperu.
 - **Bobův estetický profil:** `support/esteticky-profil.md` – doplňkový vstup; hlavní
   profil pro tenhle typ akce je popsaný níže v Kroku 1.
 
@@ -46,7 +46,12 @@ Odstraň položky, které fakticky **nejsou jednorázová odborná akce pro tera
   kurzy, akce výslovně jen pro zařazené do specializační přípravy — Bob v ní není),
 - **zkoušky a testy** (atestační testy apod.),
 - **členské a provozní schůze** (valné hromady, setkání členů, jednání institutů),
-- akce **pro rodiče/veřejnost nebo děti**, ne pro odborníky,
+- akce **pro rodiče/veřejnost nebo děti**, ne pro odborníky — sem patří i
+  **sebezkušenostní kurzy a skupiny pro veřejnost** (mindfulness kurzy, jungovsky
+  laděné víkendy pro laiky, meditační víkendy…): ty má vlastní typ
+  `verejnost_psychoterapie` a zpracovávají se zvlášť. **Rozdělení je přísně
+  vylučovací**: když je akce na hraně mezi odbornou a sebezkušenostní, **vyhoď ji
+  TADY** — patří veřejnosti a vezme si ji druhý prompt,
 - duplicitní zbytky (stejná akce dvakrát pod trochu jiným názvem — nech bohatší záznam).
 Buď spíš zdrženlivý: když je něco na hraně (vícedenní konference, dvouvíkendový kurz
 krizové intervence), NECHEJ to v seznamu – od toho je skóre. **Profil slouží k seřazení,

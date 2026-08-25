@@ -37,6 +37,9 @@ akce/
 ├── cowork_prompt_kina.md    # prompt pro výběr/skórování filmů (ChatGPT)
 ├── cowork_prompt_vystavy.md # prompt pro výběr/skórování výstav (Cowork)
 ├── cowork_prompt_psychoterapie.md # prompt pro odborné akce pro terapeuty (Cowork)
+├── cowork_prompt_psychoterapie_verejnost.md # prompt pro psychoterapeutické akce
+│                            #   pro veřejnost (sebezkušenostní kurzy; vylučovací
+│                            #   dvojče odborného promptu — hraniční akce → veřejnost)
 └── CLAUDE.md
 ```
 
@@ -71,8 +74,10 @@ Python, výběr a skórování dělá AI krok podle promptů (`cowork_prompt_kin
 `cowork_prompt_vystavy.md`). Prompty jsou **kontrakt** — appka musí umět zobrazit přesně tu
 strukturu, kterou generují (viz níže).
 
-**Stav (2026-07):** kompletně běží filmy, výstavy, klasika (vážná hudba), Jazz&Blues (klubová
-scéna), divadlo, party i odborné akce pro psychoterapeuty end-to-end. Filmy plní Bobův vychytaný
+**Stav (2026-08):** kompletně běží filmy, výstavy, klasika (vážná hudba), Jazz&Blues (klubová
+scéna), divadlo, party, odborné akce pro psychoterapeuty i psychoterapeutické akce pro
+veřejnost (sebezkušenostní kurzy a skupiny — typ `verejnost_psychoterapie`, zdroj Centrum
+Lávka) end-to-end. Filmy plní Bobův vychytaný
 ChatGPT prompt (ručně), zbytek Cowork prompty nad RAW ze scraperu. Dva zdroje mají **party**
 (ra.co + goout.net) i **výstavy** (prague.eu + goout.net), **psychoterapie** jich má sedm
 (profesní organizace + vzdělavatelé, viz níže). Navíc běží **píčovinky** (malé komunitní
@@ -192,7 +197,24 @@ agregátoru (goout.net). Každý zdroj = jeden modul, mechaniku si řeší po sv
   = katedra klinické psychologie, vrací vše naráz; termíny téže akce se grupují podle názvu
   do `terminy`, URL detailu se skládá `{id}-{slug}`; filtruje zkoušky/testy).
   Scraper filtruje jen tvrdé jistoty, jemné rozhodování (povinná specializační výuka, akce
-  pro laiky, KBT vs. psychodynamika) dělá `cowork_prompt_psychoterapie.md`.
+  pro laiky, KBT vs. psychodynamika) dělá `cowork_prompt_psychoterapie.md`. Osmý zdroj je
+  **Lávka** (viz níže), která krmí odborné i typ `verejnost_psychoterapie`.
+- Zdroj **centrum-lavka.cz** (Psychoterapeutické centrum Lávka) — čtvrtá mechanika v repu:
+  **„univerzální lovec stop"**. WordPress/Gutenberg bez kalendářního pluginu, akce jsou ručně
+  nasekané odstavce po různu na podstránkách, submenu se může kdykoli přeskládat. Proto se
+  z homepage vyparsuje celé `ul.menu`, prolezou se VŠECHNY interní odkazy a na každé stránce
+  se hledá kotva **„Termín:"/„Termíny:"** (jediný konzistentní vzor webu; kolem ní bývá
+  Lektor:/Místo:/Cena:). Stránka bez kotvy nic nedá — tím se samy vyfiltrují kontakty a
+  články. Jádro v `lavka_common.py` + cache per okno; DVĚ tenké obálky (`lavka_psychoterapie`,
+  `lavka_verejnost`) vracejí STEJNÝ kompletní seznam do dvou typů akcí — rozdělení odborné
+  vs. veřejnost dělají až Cowork prompty (přísně vylučovací, hraniční akce → veřejnost).
+  Pasti: datumy jsou SLOVNÍ česky („30. říjen – 1. listopad 2026", rok se u rozsahů dědí
+  zprava) → `najdi_datumy_slovni` v `psychoterapie_common.py`; na stránkách visí mrtvoly
+  z minulých let (okno filtruje per interval, jinak by prosákly do `terminy`); paralelní
+  běhy kurzu („Mindfulness skupina | ÚTERÝ…" vs „| STŘEDA…") slévá intra-zdroj dedup
+  `_sluc_varianty` do jedné položky s `terminy` — generický dedup by je slil taky, ale
+  zahodil by termín i čas druhé varianty; SCHVÁLNĚ se nepoužívá `je_vycvik` ani
+  `je_dlouhodoba` („Základní výcvik mindfulness" je 8týdenní kurz, který Bob chce).
 - Typ **picovinky** (`cozebar_picovinky.py` — bar Cože? na Letné, malé komunitní akcičky:
   open mic, kvízy, workshopy, slowdating). Nejjednodušší mechanika v repu: server-side HTML,
   jedna stránka (`article.event`), žádné stránkování ani detaily. **Zásadní odchylka: typ nemá
@@ -436,13 +458,17 @@ popis + jednověté doporučení, dole datum rozmezí + galerie (odkaz) a klikac
 
 ## JSON kontrakt — termínové typy (koncerty i divadlo)
 
-**Termínové typy** (koncerty klasika/Jazz&Blues, divadlo, party, psychoterapie, píčovinky) sdílí
+**Termínové typy** (koncerty klasika/Jazz&Blues, divadlo, party, psychoterapie odborné
+i pro veřejnost, píčovinky) sdílí
 **jeden tvar i jednu kartu** — mají termín(y), místo, thumbnail, `autor` a žádná veřejná hodnocení;
 liší se jen slugem/souborem, zdrojem a barvou akcentu. Klasika = `data/koncerty_klasika.json`
 (akcent modrá), Jazz&Blues = `data/koncerty_jazzblues.json` (fialová), divadlo = `data/divadlo.json`
 (červená), party = `data/party.json` (oranžová), psychoterapie = `data/odborne_psychoterapie.json`
-(teal), píčovinky = `data/picovinky.json` (růžová).
-Pole se jmenuje podle slugu (`koncerty`/`divadlo`/`party`/`odborne_psychoterapie`). Struktura
+(teal), psychoterapie pro veřejnost = `data/verejnost_psychoterapie.json` (schválně STEJNÝ
+teal — Bobovo přání, oba typy sdílí CSS třídu `karta-psychoterapie`), píčovinky =
+`data/picovinky.json` (růžová).
+Pole se jmenuje podle slugu (`koncerty`/`divadlo`/`party`/`odborne_psychoterapie`/
+`verejnost_psychoterapie`). Struktura
 je jako výstava, ale bez `nazevOrig`, s `autor`/`cas` a volitelným polem `terminy`:
 
 Výjimka **píčovinky**: soubor je 1:1 RAW výstup scraperu (typ nemá AI krok), takže pole s akcemi

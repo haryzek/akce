@@ -1,34 +1,16 @@
 {
   "typAkce": "picovinky",
-  "scrapedAt": "2026-08-01T16:09:56",
-  "obdobiOd": "01.08.2026",
-  "obdobiDo": "31.08.2026",
+  "scrapedAt": "2026-09-01T21:15:16",
+  "obdobiOd": "01.09.2026",
+  "obdobiDo": "01.10.2026",
   "polozky": [
-    {
-      "nazevCz": "Tvoření při učení češtiny",
-      "nazevOrig": null,
-      "autor": null,
-      "zanr": null,
-      "datumOd": "11.08.2026",
-      "datumDo": "11.08.2026",
-      "cas": "18:30",
-      "misto": "Cože?",
-      "adresa": "Malířská 227/14, Praha 7 — Letná",
-      "url": "https://www.cozebar.cz/#eventy",
-      "cena": null,
-      "thumbnail": "https://www.cozebar.cz/assets/hero.jpg",
-      "popis": null,
-      "zdroje": [
-        "cozebar.cz"
-      ]
-    },
     {
       "nazevCz": "Under the Sauce Pub Quiz",
       "nazevOrig": null,
       "autor": null,
       "zanr": null,
-      "datumOd": "12.08.2026",
-      "datumDo": "26.08.2026",
+      "datumOd": "02.09.2026",
+      "datumDo": "30.09.2026",
       "cas": "19:00",
       "misto": "Third Coast Pizza",
       "adresa": "Chvalova 1, Praha 3 — Žižkov",
@@ -38,20 +20,68 @@
       "popis": null,
       "terminy": [
         {
-          "datum": "12.08.2026",
+          "datum": "02.09.2026",
           "cas": "19:00"
         },
         {
-          "datum": "19.08.2026",
+          "datum": "09.09.2026",
           "cas": "19:00"
         },
         {
-          "datum": "26.08.2026",
+          "datum": "16.09.2026",
+          "cas": "19:00"
+        },
+        {
+          "datum": "23.09.2026",
+          "cas": "19:00"
+        },
+        {
+          "datum": "30.09.2026",
           "cas": "19:00"
         }
       ],
       "zdroje": [
         "thirdcoastpizza.cz"
+      ]
+    },
+    {
+      "nazevCz": "Open Mic Tuesday",
+      "nazevOrig": null,
+      "autor": null,
+      "zanr": null,
+      "datumOd": "01.09.2026",
+      "datumDo": "29.09.2026",
+      "cas": "20:00",
+      "misto": "Žižkovšiška",
+      "adresa": "Husitská 888/11, Praha 3 — Žižkov",
+      "url": "https://www.zizkovsiska.cz/open-mic-tuesday-jam-session-prague",
+      "cena": null,
+      "thumbnail": "https://static.wixstatic.com/media/546a55_8ecc0e0933f04e5db696c9e8590c9b1d%7Emv2.jpg/v1/fit/w_2500,h_1330,al_c/546a55_8ecc0e0933f04e5db696c9e8590c9b1d%7Emv2.jpg",
+      "popis": null,
+      "terminy": [
+        {
+          "datum": "01.09.2026",
+          "cas": "20:00"
+        },
+        {
+          "datum": "08.09.2026",
+          "cas": "20:00"
+        },
+        {
+          "datum": "15.09.2026",
+          "cas": "20:00"
+        },
+        {
+          "datum": "22.09.2026",
+          "cas": "20:00"
+        },
+        {
+          "datum": "29.09.2026",
+          "cas": "20:00"
+        }
+      ],
+      "zdroje": [
+        "zizkovsiska.cz"
       ]
     }
   ]

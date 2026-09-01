@@ -1,8 +1,8 @@
 {
   "typAkce": "koncerty_jazzblues",
-  "vygenerovanoAt": "2026-08-01T16:26:00",
-  "obdobiOd": "01.08.2026",
-  "obdobiDo": "31.08.2026",
+  "vygenerovanoAt": "2026-09-01T21:22:26",
+  "obdobiOd": "01.09.2026",
+  "obdobiDo": "01.10.2026",
   "koncerty": [
     {
       "nazevCz": "Ana Silvera a Saied Silbak",
@@ -19,41 +19,24 @@
       "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/02/16112805/2025-CPH-05-hi-res-1.jpg",
       "popis": "Koncert Ana Silvera a Saied Silbak — Songs We Carry přináší do pražského Jazz Docku výjimečný hudební večer, kde se setkávají dvě bohaté kulturní tradice a tvoří emotivní hudební dialog. Britská zpěvačka a multiinstrumentalistka Ana Silvera a palestinský hráč na oud a zpěvák Saied Silbak propojují v projektech Songs We Carry melancholické ladino písně ze židovsko-španělské tradice s rafinovanými maqamy a arabskými melodiemi. Jejich hudba, hluboce zakořeněná v rodinných i kulturních příbězích, vytváří meditativní a silně emotivní prožitek, který plyne mezi melancholií a nadějí. Tato jedinečná fúze tradic, dialogu a sdílení zní jako pozvánka k setkání s příběhy a melodiemi napříč generacemi a hranicemi.",
       "estetickeSkore": 90,
-      "duvodSkore": "Ladino písně a arabské maqamy v meditativním dialogu — melancholie, prostor, hloubka."
+      "duvodSkore": "Ladino a arabské maqamy, meditativní melancholie a hloubka — tvůj vrchol."
     },
     {
-      "nazevCz": "Prague Sounds 2026 — Choice: Ondřej Pivec, Shabaka",
+      "nazevCz": "Stuart McCallum",
       "nazevOrig": null,
-      "autor": "Ondřej Pivec & Shabaka",
+      "autor": "Stuart McCallum",
       "zanr": "klubová scéna",
-      "datumOd": "05.11.2026",
-      "datumDo": "05.11.2026",
-      "cas": "19:30",
-      "misto": "La Fabrika",
-      "adresa": "Komunardů 30, 170 00, Holešovice, Praha 7",
-      "url": "https://prague.eu/cs/akce/prague-sounds-2026-ondrej-pivec-shabaka/",
-      "cena": null,
-      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/05/29100242/Ondrej-Pivec-Wall.jpg",
-      "popis": "Držitel Grammy Ondřej Pivec se ujímá role kurátora večera Choice a zve na jedinečné setkání světového i domácího jazzu. Po jeho boku vystoupí vizionář současné scény Shabaka Hutchings, který posouvá hranice žánru směrem k pulzující, spirituálně laděné hudbě. Večer doplní spontánní jam session s formací Greatest Hits 4000 a mladými českými talenty slibuje energický průnik stylů, generací i hudebních světů.",
-      "estetickeSkore": 89,
-      "duvodSkore": "Kurátorský večer Pivce se Shabakou — spirituálně laděný, vizionářský current jazz."
-    },
-    {
-      "nazevCz": "Sachal Vasandani „Best Life Now“",
-      "nazevOrig": null,
-      "autor": "Sachal Vasandani",
-      "zanr": "klubová scéna",
-      "datumOd": "26.10.2026",
-      "datumDo": "26.10.2026",
-      "cas": "20:00",
+      "datumOd": "12.09.2026",
+      "datumDo": "12.09.2026",
+      "cas": "19:00",
       "misto": "Jazz Dock",
       "adresa": "Janáčkovo nábřeží 2, 150 00, Smíchov, Praha 5",
-      "url": "https://prague.eu/cs/akce/sachal-vasandani-best-life-now/",
+      "url": "https://prague.eu/cs/akce/stuart-mccallum/",
       "cena": null,
-      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2025/12/19092823/Sachal-Vasandani.png",
-      "popis": "Sachal Vasandani patří k nejvýraznějším současným jazzovým vokalistům. Je ceněn pro svůj jedinečný hlas, charakteristickou barvu a osobitou práci s frázováním, díky nimž si získal pověst mimořádně přesvědčivého a originálního interpreta. Je hluboce zakořeněný v jazzové tradici, ale zároveň v sobě spojuje sebejistotu frontmana velkých swingových orchestrů i křehkost potřebnou pro intimní baladické polohy. Na novém albu Best Life Now zve posluchače do světa moderních partnerských vztahů. Písně zachycují radosti i bolesti lásky: smyslnost, zlomené srdce, touhu po blízkosti, vědomí nenaplněných citů, bezmoc, ztrátu, naději, okouzlení, sny, vnitřní dialog i konečné smíření. Vše je ponořeno do soulu a groovu, které dodávají emotivním tématům lehkost a přirozenost. Na zvuku alba se podílel i renomovaný bubeník a producent Nate Smith, jehož výrazné beaty a melodické nápady skvěle doplňují Sachalův hypnotický vokál.",
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/08/20130512/Stuart-McCallum-4322-1200-x-900-e1787224206865.jpg",
+      "popis": "Britský kytarista, skladatel a producent Stuart McCallum se v Jazz Docku představí vůbec poprvé sólově. Na koncertě uvede své nové EP A Quiet Gathering, které se pohybuje na pomezí jazzu, folku a ambientu a sází na intimní atmosféru, prostorový zvuk a soustředěný posluchačský zážitek. McCallum, známý mimo jiné z projektů The Cinematic Orchestra, The Breath či Slowly Rolling Camera, patří k hudebníkům, kteří dlouhodobě kombinují jazzovou tradici se současnými zvukovými přístupy. Působí také jako profesor kytary na Royal Northern College of Music v Manchesteru.",
       "estetickeSkore": 88,
-      "duvodSkore": "Sachal Vasandani — jeden z nejvýraznějších soul-jazzových vokalistů, křehkost i groove."
+      "duvodSkore": "Jazz na pomezí folku a ambientu, intimní prostorový zvuk — přesně tvoje."
     },
     {
       "nazevCz": "Altın Gün",
@@ -69,110 +52,42 @@
       "cena": null,
       "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/06/24100742/Altin-Gun-bySanja-Marusic-3-1.jpg",
       "popis": "Nizozemsko-turecká kapela Altın Gün, jedna z nejvýraznějších tváří současné anatolské rockové scény, přijíždí do Prahy. V MeetFactory 5. listopadu 2026 představí album Garip, na němž propojuje tradiční tureckou hudbu s psychedelickým rockem, funkem i elektronikou a vzdává hold legendárnímu písničkáři Neşetu Ertaşovi.",
-      "estetickeSkore": 87,
-      "duvodSkore": "Altın Gün — anatolský psychedelický rock s funkem, groove a tradice v jednom."
-    },
-    {
-      "nazevCz": "Le Čhavendar",
-      "nazevOrig": null,
-      "autor": "Le Čhavendar",
-      "zanr": "klubová scéna",
-      "datumOd": "14.08.2026",
-      "datumDo": "14.08.2026",
-      "cas": "21:00",
-      "misto": "Jazz Dock",
-      "adresa": "Janáčkovo nábřeží 2, 150 00, Smíchov, Praha 5",
-      "url": "https://prague.eu/cs/akce/le-chavendar/",
-      "cena": null,
-      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2025/12/16110016/le-chavendar-official-photo-6924535626527066381244-e1783682712620.webp",
-      "popis": "Le Čhavendar je autorská romská kapela, která tvoří výhradně vlastní repertoár. Stylově propojuje romskou melodiku s jazzem, soulem, funkem a bossa novou — s důrazem na autenticitu, emoce a lidskost. Členové jsou potomky zakladatelů slavné kapely Kale a hudbě se věnují od dětství; ve 13 letech je objevila Ida Kelarová, která rozpoznala jejich mimořádný talent. Výrazného úspěchu dosáhli vítězstvím v soutěži Zlín Talent 2004 s autorskou skladbou Sako Vakerel. Kapela koncertovala v Londýně, Berlíně, Mnichově i Krakově. Jejich typickými znaky jsou bohaté vícehlasy, akustický zvuk a silná pódiová energie, která spojuje publikum napříč kulturami.",
       "estetickeSkore": 86,
-      "duvodSkore": "Autorská romská kapela snoubící soul, funk a bossa novu s vícehlasy a syrovou emocí."
+      "duvodSkore": "Anatolský psych-rock s funkem a elektronikou — přímo do tvého srdce."
     },
     {
-      "nazevCz": "Fink",
+      "nazevCz": "Harpreet Bansal Trio",
       "nazevOrig": null,
-      "autor": "Fink",
+      "autor": "Harpreet Bansal",
       "zanr": "klubová scéna",
-      "datumOd": "05.10.2026",
-      "datumDo": "05.10.2026",
-      "cas": "20:00",
-      "misto": "MeetFactory",
-      "adresa": "Ke Sklárně 15, 150 00, Smíchov, Praha 5",
-      "url": "https://prague.eu/cs/akce/fink/",
-      "cena": null,
-      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/03/20103525/Fink_Zennor-120-copy.jpg",
-      "popis": "Fin Greenall neboli Fink, známý svými folkovými a elektronickými skladbami. se vrací do Prahy s novou deskou The City Is Coming to Erase It All a potvrzuje, že ani po letech neztrácí tvůrčí hlad. Deváté album, inspirované estetikou 70. let, přináší syrový i objevný zvuk, který kapela představí 5. října 2026 v MeetFactory. Spolu s nimi vystoupí i nashvillská hudebnice Angela Autum. Čeká vás večer, kde se nostalgie potkává s neklidnou touhou po novém.",
-      "estetickeSkore": 85,
-      "duvodSkore": "Fink — folk a elektronika s analogovou 70s estetikou, syrovost a introspektivní neklid."
-    },
-    {
-      "nazevCz": "Lenka Dusilová & Katta",
-      "nazevOrig": null,
-      "autor": "Lenka Dusilová & Katta",
-      "zanr": "klubová scéna",
-      "datumOd": "11.11.2026",
-      "datumDo": "11.11.2026",
-      "cas": "20:00",
-      "misto": "Kostel U Salvátora",
-      "adresa": "Salvátorská 1 , 110 00, Staré Město, Praha 1",
-      "url": "https://prague.eu/cs/akce/lenka-dusilova-katta/",
-      "cena": null,
-      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/06/01094211/Lenka-Dusilova-1.jpg",
-      "popis": "Premiéra společného projektu Lenky Dusilové a varhanice Katty představí setkání dvou výrazných autorek, které spojuje zájem o zvukový experiment a otevřenou tvorbu napříč žánry. V dialogu hlasu, elektroniky a varhan vzniká hudba založená na improvizaci, práci s prostorem i citlivém naslouchání. Koncert nabídne aktuální podobu jejich spolupráce, v níž se potkávají osobité přístupy obou interpretek.",
-      "estetickeSkore": 85,
-      "duvodSkore": "Dusilová & Katta — hlas, elektronika a varhany v improvizaci a práci s prostorem."
-    },
-    {
-      "nazevCz": "Terne Čhave",
-      "nazevOrig": null,
-      "autor": "Terne Čhave",
-      "zanr": "klubová scéna",
-      "datumOd": "01.08.2026",
-      "datumDo": "01.08.2026",
-      "cas": "21:00",
+      "datumOd": "23.10.2026",
+      "datumDo": "23.10.2026",
+      "cas": null,
       "misto": "Jazz Dock",
       "adresa": "Janáčkovo nábřeží 2, 150 00, Smíchov, Praha 5",
-      "url": "https://prague.eu/cs/akce/terne-chave/",
+      "url": "https://prague.eu/cs/akce/harpreet-bansal-trio/",
       "cena": null,
-      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2025/07/09092813/Terne-Chave--e1752052805868.webp",
-      "popis": "Terne Čhave jsou považováni za jednu z nejlepších romských skupin v ČR. Již před pár lety se postavili na vlastní nohy, překročili hranice romského ghetta a vydali se do velkého světa. Přijali mezi sebe „gadže“, projeli Evropu a v jejich hudbě jste kromě rodných melodií mohli slyšet také rock, latino, jazz nebo taneční rytmy.",
-      "estetickeSkore": 84,
-      "duvodSkore": "Romská skupina mísící rodné melodie s rockem, jazzem i latinem — autenticita a groove."
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/08/24131412/Harpreet-Bansal-e1787570342598.jpg",
+      "popis": "Mezinárodní česko-indicko-norské uskupení v čele s houslistkou a skladatelkou Harpreet Bansal vytváří osobitý hudební svět, v němž se setkávají indické rágy, jazzová improvizace, lidová hudba i prvky současné klasiky. Harpreet Bansal patří k nejvýraznějším osobnostem současné norské hudební scény a pravidelně vystupuje na prestižních festivalech i s předními orchestry. V Jazz Docku ji doplní český pianista a skladatel Vojtěch Procházka a norský perkusionista Andreas Bratlie, který ovládá mimo jiné tradiční indické bubny tabla.",
+      "estetickeSkore": 82,
+      "duvodSkore": "Indické rágy, jazz a lidová hudba, osobitý světový zvuk — tvoje."
     },
     {
-      "nazevCz": "Rudy Linka Trio „Live“",
+      "nazevCz": "Sachal Vasandani „Best Life Now“",
       "nazevOrig": null,
-      "autor": "Rudy Linka Trio",
+      "autor": "Sachal Vasandani",
       "zanr": "klubová scéna",
-      "datumOd": "14.10.2026",
-      "datumDo": "14.10.2026",
-      "cas": "19:30",
-      "misto": "Městská knihovna v Praze — Ústřední knihovna",
-      "adresa": "Mariánské náměstí 1/98, 110 00, Staré Město, Praha 1",
-      "url": "https://prague.eu/cs/akce/rudy-linka-trio-live/",
+      "datumOd": "26.10.2026",
+      "datumDo": "26.10.2026",
+      "cas": "20:00",
+      "misto": "Jazz Dock",
+      "adresa": "Janáčkovo nábřeží 2, 150 00, Smíchov, Praha 5",
+      "url": "https://prague.eu/cs/akce/sachal-vasandani-best-life-now/",
       "cena": null,
-      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/07/21125522/rudy-linka-trio-web.jpeg.jpg",
-      "popis": "Rudy Linka patří k nejvýraznějším českým jazzovým hudebníkům s mezinárodním renomé. V komorním obsazení tria představí skladby z alba Live i novější autorskou tvorbu, ve které se propojuje virtuózní kytarová hra, melodická nápaditost a spontánní souhra špičkových muzikantů. Společně s bubeníkem Rudym Roystonem a kontrabasistou Christem van Voorst van Beestem nabídne večer současného jazzu v podání hudebníků, kteří působí na předních světových scénách.",
-      "estetickeSkore": 84,
-      "duvodSkore": "Rudy Linka Trio — virtuózní kytara a spontánní souhra hráčů světových scén."
-    },
-    {
-      "nazevCz": "Prague Proms 2026 — Martina Barta feat. David Friedman",
-      "nazevOrig": null,
-      "autor": "Martina Barta & David Friedman",
-      "zanr": "klubová scéna",
-      "datumOd": "18.09.2026",
-      "datumDo": "18.09.2026",
-      "cas": "19:00",
-      "misto": "The Loop Jazz Club",
-      "adresa": "Weilova 2, 102 00, Hostivař, Praha 10",
-      "url": "https://prague.eu/cs/akce/prague-proms-2026-martina-barta-feat-david-friedman/",
-      "cena": null,
-      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2025/12/05145738/e12cf466-eba9-470a-968c-3cf76ad426fe.jpg",
-      "popis": "Česká jazzová zpěvačka Martina Barta a legendární americký vibrafonista David Friedman tvoří od roku 2019 výjimečné hudební duo. Jejich společný projekt propojuje sametový vokál s jemnou, barevně bohatou hrou na vibrafon. Návštěvníkům koncertu představí album You Taught My Heart To Sing, které zahrnuje nejen balady z Great American Songbook, ale i neobvyklé jazzové a populární kompozice autorů jako Burt Bacharach, Carole King či Jimmy Webb. Hudba dua je intimní, hluboce procítěná a přirozeně spojuje jazzovou tradici s osobními výpověďmi obou umělců.",
-      "estetickeSkore": 83,
-      "duvodSkore": "Sametový vokál Barta a vibrafon legendy Friedmana — intimní, procítěné komorní duo."
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2025/12/19092823/Sachal-Vasandani.png",
+      "popis": "Sachal Vasandani patří k nejvýraznějším současným jazzovým vokalistům. Je ceněn pro svůj jedinečný hlas, charakteristickou barvu a osobitou práci s frázováním, díky nimž si získal pověst mimořádně přesvědčivého a originálního interpreta. Je hluboce zakořeněný v jazzové tradici, ale zároveň v sobě spojuje sebejistotu frontmana velkých swingových orchestrů i křehkost potřebnou pro intimní baladické polohy. Na novém albu Best Life Now zve posluchače do světa moderních partnerských vztahů. Písně zachycují radosti i bolesti lásky: smyslnost, zlomené srdce, touhu po blízkosti, vědomí nenaplněných citů, bezmoc, ztrátu, naději, okouzlení, sny, vnitřní dialog i konečné smíření. Vše je ponořeno do soulu a groovu, které dodávají emotivním tématům lehkost a přirozenost. Na zvuku alba se podílel i renomovaný bubeník a producent Nate Smith, jehož výrazné beaty a melodické nápady skvěle doplňují Sachalův hypnotický vokál.",
+      "estetickeSkore": 82,
+      "duvodSkore": "Intimní jazzový vokalista, soul a groove kolem lásky a smíření."
     },
     {
       "nazevCz": "Temples",
@@ -188,86 +103,59 @@
       "cena": null,
       "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/04/15131547/e3c8f70e_Temples-Press-Select-2026-Horizontal-e1776251997512.jpg",
       "popis": "Britská neopsychedelická čtveřice Temples se vrací do Prahy s novou deskou Bliss — albem plným taneční euforie, barevné psychedelie a jemné melancholie. Kapela, která umí propojit kytarový hypnotismus se synťákovým opojením, tentokrát míří přímo na taneční parket. První singly naznačují výrazný posun ve zvuku i náladě a potvrzují, že Temples se ani po letech nebojí proměn. Album Bliss vyjde 26. června a jeho živou podobu přivezou Temples 26. října 2026 do pražského klubu Rock Café.",
-      "estetickeSkore": 83,
-      "duvodSkore": "Temples — neopsychedelie s kytarovým hypnotismem a jemnou melancholií."
-    },
-    {
-      "nazevCz": "Blue Tones Society",
-      "nazevOrig": null,
-      "autor": "Blue Tones Society",
-      "zanr": "klubová scéna",
-      "datumOd": "10.08.2026",
-      "datumDo": "25.08.2026",
-      "cas": "20:00",
-      "misto": "Jazz Republic",
-      "adresa": "Jilská 1a, 110 00, Staré Město, Praha 1",
-      "url": "https://prague.eu/cs/akce/blue-tones-society/",
-      "cena": null,
-      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2024/12/26125345/adam-tvrdy-gibson-es-banner-1-e1769428695224.jpg",
-      "popis": "Sólistou koncertu je Adam Tvrdý, jazzový kytarista s bluesovým a rockovým drajvem i zálibou v lyrických polohách. Jako lídr vydal několik alb, mezi nimiž byly výrazně ceněny deska Doublewell (2012) a spolupráce s Brianem Charretem na albu Suspicious Activities (2014). Jako žádanému sidemanovi a studiovému hráči se Adamovi Tvrdému dostalo řady pozoruhodných možností ke spolupráci, mj. nahrával hudbu do filmu Quentina Tarantina The Hateful Eight.",
       "estetickeSkore": 82,
-      "duvodSkore": "Kytarista Adam Tvrdý s bluesovým a rockovým drajvem i lyrikou — nahrával pro Tarantina.",
-      "terminy": [
-        {
-          "datum": "10.08.2026",
-          "cas": "20:00"
-        },
-        {
-          "datum": "25.08.2026",
-          "cas": "20:00"
-        }
-      ]
+      "duvodSkore": "Neopsychedelie s melancholií a kytarovým hypnotismem — tvoje psych stopa."
     },
     {
-      "nazevCz": "Prague Proms 2026 — Ruchadze Band — Amsterdam Beyond",
+      "nazevCz": "Louis Boudot Trio invite Zdeněk Tománek",
       "nazevOrig": null,
-      "autor": "Ruchadze Band",
+      "autor": "Louis Boudot Trio",
       "zanr": "klubová scéna",
-      "datumOd": "16.09.2026",
-      "datumDo": "16.09.2026",
-      "cas": "19:00",
-      "misto": "The Loop Jazz Club",
-      "adresa": "Weilova 2, 102 00, Hostivař, Praha 10",
-      "url": "https://prague.eu/cs/akce/prague-proms-2026-ruchadze-band-amsterdam-beyond/",
-      "cena": null,
-      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2025/12/04151740/6b16bff7-0f35-4513-b311-eaf3ed78f662.jpg",
-      "popis": "Ojedinělý kosmopolitní projekt Ruchadze Band – Amsterdam Beyond pod vedením světoběžníka Konstantina Ruchadzeho přináší hudbu, která se vymyká žánrovým a stylovým hranicím. Tvorba této formace je svobodná, nespoutaná, plná emocí, spontaneity, výbušné energie a odvahy jít vlastní cestou bez ohledu na tlak komerce a trendů. V jejich zvuku se organicky prolínají prvky jazzu, klasiky, folku, rhythm & blues i dalších stylů a výsledek oslovuje posluchače napříč generacemi.",
-      "estetickeSkore": 81,
-      "duvodSkore": "Kosmopolitní Ruchadze Band, svobodná fúze jazzu, folku a R&B mimo trendy."
-    },
-    {
-      "nazevCz": "Mayflowers",
-      "nazevOrig": null,
-      "autor": "Mayflowers",
-      "zanr": "klubová scéna",
-      "datumOd": "23.08.2026",
-      "datumDo": "23.08.2026",
+      "datumOd": "06.09.2026",
+      "datumDo": "06.09.2026",
       "cas": "20:00",
-      "misto": "Jazz Republic",
-      "adresa": "Jilská 1a, 110 00, Staré Město, Praha 1",
-      "url": "https://prague.eu/cs/akce/mayflowers/",
-      "cena": null,
-      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2024/12/05112729/1767277985-1569225411-39756-e1767608924153.jpg",
-      "popis": "Bharata Rajnošek v Jazz Republic působí v rezidentním projektu Mayflowers, kde v proměnlivých sestavách pražských jazzmanů zaznívají Bharatovy skladby i jazzové standardy. Bharata Rajnošek hraje na trubku, křídlovku, saxofony a flétnu. Střídáním nástrojů a používáním smyčkovacího efektového procesoru dodává Bharata svojí hře výjimečnou barevnost. Jako saxofonista má blízko jak k postbopové tradici, tak ke stylu smooth-jazz. Album For You, které v roce 2013 vydal se svou kapelou Rajnošek B.and, bylo označeno jako nejlepší česká smooth-jazzová deska.",
-      "estetickeSkore": 80,
-      "duvodSkore": "Bharata Rajnošek a proměnlivé sestavy, barevný post-bop i smooth-jazz z vlastního pera."
-    },
-    {
-      "nazevCz": "Duende",
-      "nazevOrig": null,
-      "autor": "Duende",
-      "zanr": "klubová scéna",
-      "datumOd": "26.08.2026",
-      "datumDo": "26.08.2026",
-      "cas": "21:00",
       "misto": "Jazz Dock",
       "adresa": "Janáčkovo nábřeží 2, 150 00, Smíchov, Praha 5",
-      "url": "https://prague.eu/cs/akce/duende/",
+      "url": "https://prague.eu/cs/akce/louis-boudot-trio-invite-zdenek-tomanek/",
       "cena": null,
-      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2024/12/10083616/Duende_jazzdock2.webp",
-      "popis": "Mezinárodní jazz-popová kapela Duende (CZ/Peru/Kuba) přináší na trh čistě autorskou hudbu. Kapela vytváří originální a pestrou fúzi s vlivy latinsko-americké hudby, flamenca, jazzu či popu. To vše je zabaleno do příjemné písničkové formy obohacené velkou dávkou improvizace. Tři studiová alba jsou důkazem velkého autorsko-interpretačního rozpětí a jsou opřena o výrazné osobnosti současné hudební scény. Autorem hudby je kytarista Tomislav Zvardoň, který si přizval ke spolupráci peruánské hudebníky Carlo Zegarru a Vlado Urlicha, jež tvoří kompaktní celek, doplněný o basistu Jaryna Janka a pianistu Kryštofa Pobořila. Výsledný zvuk je podpořen osobitým pěveckým výrazem kubánské zpěvačky Adriany Asseff Rodriguez.",
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/08/20125141/Louis-Boudot-e1787223315376.jpg",
+      "popis": "Francouzský kytarista Louis Boudot, jeden z výrazných představitelů mladé generace gypsy jazzu, vystoupí poprvé v České republice se svým triem v pražském Jazz Docku. Koncert navazuje na vydání jeho debutového alba a nabídne autorskou tvorbu i osobité interpretace skladeb inspirovaných gypsy jazzem, klasickou hudbou a hudebními tradicemi z různých koutů světa. Speciálním hostem večera bude saxofonista Zdeněk Tománek.",
       "estetickeSkore": 80,
-      "duvodSkore": "Jazz-popová fúze CZ/Peru/Kuba s flamenkem a improvizací, silný autorský rukopis."
+      "duvodSkore": "Gypsy jazz mladé francouzské generace, autorská tvorba a světové přesahy."
+    },
+    {
+      "nazevCz": "Fink",
+      "nazevOrig": null,
+      "autor": "Fink",
+      "zanr": "klubová scéna",
+      "datumOd": "05.10.2026",
+      "datumDo": "05.10.2026",
+      "cas": "20:00",
+      "misto": "MeetFactory",
+      "adresa": "Ke Sklárně 15, 150 00, Smíchov, Praha 5",
+      "url": "https://prague.eu/cs/akce/fink/",
+      "cena": null,
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/03/20103525/Fink_Zennor-120-copy.jpg",
+      "popis": "Fin Greenall neboli Fink, známý svými folkovými a elektronickými skladbami. se vrací do Prahy s novou deskou The City Is Coming to Erase It All a potvrzuje, že ani po letech neztrácí tvůrčí hlad. Deváté album, inspirované estetikou 70. let, přináší syrový i objevný zvuk, který kapela představí 5. října 2026 v MeetFactory. Spolu s nimi vystoupí i nashvillská hudebnice Angela Autum. Čeká vás večer, kde se nostalgie potkává s neklidnou touhou po novém.",
+      "estetickeSkore": 80,
+      "duvodSkore": "Folk a elektronika, estetika 70. let, syrový introspektivní zvuk."
+    },
+    {
+      "nazevCz": "Prague Sounds 2026 — Choice: Ondřej Pivec, Shabaka",
+      "nazevOrig": null,
+      "autor": "Ondřej Pivec, Shabaka Hutchings",
+      "zanr": "klubová scéna",
+      "datumOd": "05.11.2026",
+      "datumDo": "05.11.2026",
+      "cas": "19:30",
+      "misto": "La Fabrika",
+      "adresa": "Komunardů 30, 170 00, Holešovice, Praha 7",
+      "url": "https://prague.eu/cs/akce/prague-sounds-2026-ondrej-pivec-shabaka/",
+      "cena": null,
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/05/29100242/Ondrej-Pivec-Wall.jpg",
+      "popis": "Držitel Grammy Ondřej Pivec se ujímá role kurátora večera Choice a zve na jedinečné setkání světového i domácího jazzu. Po jeho boku vystoupí vizionář současné scény Shabaka Hutchings, který posouvá hranice žánru směrem k pulzující, spirituálně laděné hudbě. Večer doplní spontánní jam session s formací Greatest Hits 4000 a mladými českými talenty slibuje energický průnik stylů, generací i hudebních světů.",
+      "estetickeSkore": 80,
+      "duvodSkore": "Spirituálně laděný jazz Shabaky a Pivce, vizionářský průnik světů."
     },
     {
       "nazevCz": "Kovacs",
@@ -284,247 +172,191 @@
       "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/05/26103250/pK3sk7Mw-e1779786362370.jpeg",
       "popis": "Temný šanson, silná emoce a hypnotický hlas — nizozemská zpěvačka Kovacs se vrací do Prahy, kde v únoru 2027 představí novou tvorbu i hitový singl A Perfect Crime. V klubu Roxy nabídne koncert plný elegance, temnoty a výrazné originality, která ji řadí mezi nejvýraznější osobnosti současné hudební scény.",
       "estetickeSkore": 80,
-      "duvodSkore": "Kovacs — temný šanson, hypnotický hlas a výrazná originalita."
+      "duvodSkore": "Temný šanson, silná emoce a hypnotický hlas — přesně tvá temná poloha."
     },
     {
-      "nazevCz": "Radůza",
+      "nazevCz": "Natia Todua & Band",
       "nazevOrig": null,
-      "autor": "Radůza",
+      "autor": "Natia Todua",
       "zanr": "klubová scéna",
-      "datumOd": "24.09.2026",
-      "datumDo": "24.09.2026",
+      "datumOd": "25.09.2026",
+      "datumDo": "25.09.2026",
+      "cas": "22:00",
+      "misto": "Jazz Dock",
+      "adresa": "Janáčkovo nábřeží 2, 150 00, Smíchov, Praha 5",
+      "url": "https://prague.eu/cs/akce/natia-todua-band/",
+      "cena": null,
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/08/24130439/Natia-Todua-e1787569683779.jpg",
+      "popis": "Gruzínská zpěvačka Natia Todua vystoupí 25. září 2026 v pražském Jazz Docku v doprovodu mezinárodní kapely složené z hudebníků z Ekvádoru, Chile a Itálie. Umělkyně, která na sebe výrazně upozornila účastí v soutěži The Voice of Germany, si získala publikum osobitým propojením soulu, blues a jazzu i mimořádně emotivním hlasovým projevem. Návštěvníci se mohou těšit na koncert plný energie, improvizace a silných hudebních příběhů, v nichž se snoubí soulová vášeň, bluesová hloubka a jazzová lehkost",
+      "estetickeSkore": 78,
+      "duvodSkore": "Soul, blues a jazz s mimořádně emotivním hlasem — emocionální pravda."
+    },
+    {
+      "nazevCz": "Lenka Dusilová & Katta",
+      "nazevOrig": null,
+      "autor": "Lenka Dusilová & Katta",
+      "zanr": "klubová scéna",
+      "datumOd": "11.11.2026",
+      "datumDo": "11.11.2026",
+      "cas": "20:00",
+      "misto": "Kostel U Salvátora",
+      "adresa": "Salvátorská 1 , 110 00, Staré Město, Praha 1",
+      "url": "https://prague.eu/cs/akce/lenka-dusilova-katta/",
+      "cena": null,
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/06/01094211/Lenka-Dusilova-1.jpg",
+      "popis": "Premiéra společného projektu Lenky Dusilové a varhanice Katty představí setkání dvou výrazných autorek, které spojuje zájem o zvukový experiment a otevřenou tvorbu napříč žánry. V dialogu hlasu, elektroniky a varhan vzniká hudba založená na improvizaci, práci s prostorem i citlivém naslouchání. Koncert nabídne aktuální podobu jejich spolupráce, v níž se potkávají osobité přístupy obou interpretek.",
+      "estetickeSkore": 78,
+      "duvodSkore": "Hlas, varhany a elektronika v improvizaci a práci s prostorem — experiment."
+    },
+    {
+      "nazevCz": "Prague Proms 2026 — Martina Barta feat. David Friedman",
+      "nazevOrig": null,
+      "autor": "Martina Barta & David Friedman",
+      "zanr": "klubová scéna",
+      "datumOd": "18.09.2026",
+      "datumDo": "18.09.2026",
+      "cas": "19:00",
+      "misto": "The Loop Jazz Club",
+      "adresa": "Weilova 2, 102 00, Hostivař, Praha 10",
+      "url": "https://prague.eu/cs/akce/prague-proms-2026-martina-barta-feat-david-friedman/",
+      "cena": null,
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2025/12/05145738/e12cf466-eba9-470a-968c-3cf76ad426fe.jpg",
+      "popis": "Česká jazzová zpěvačka Martina Barta a legendární americký vibrafonista David Friedman tvoří od roku 2019 výjimečné hudební duo. Jejich společný projekt propojuje sametový vokál s jemnou, barevně bohatou hrou na vibrafon. Návštěvníkům koncertu představí album You Taught My Heart To Sing, které zahrnuje nejen balady z Great American Songbook, ale i neobvyklé jazzové a populární kompozice autorů jako Burt Bacharach, Carole King či Jimmy Webb. Hudba dua je intimní, hluboce procítěná a přirozeně spojuje jazzovou tradici s osobními výpověďmi obou umělců.",
+      "estetickeSkore": 76,
+      "duvodSkore": "Sametový vokál a vibrafon, intimní a procítěné duo — melancholie."
+    },
+    {
+      "nazevCz": "Rudy Linka Trio „Live“",
+      "nazevOrig": null,
+      "autor": "Rudy Linka",
+      "zanr": "klubová scéna",
+      "datumOd": "14.10.2026",
+      "datumDo": "14.10.2026",
       "cas": "19:30",
       "misto": "Městská knihovna v Praze — Ústřední knihovna",
       "adresa": "Mariánské náměstí 1/98, 110 00, Staré Město, Praha 1",
-      "url": "https://prague.eu/cs/akce/raduza/",
+      "url": "https://prague.eu/cs/akce/rudy-linka-trio-live/",
       "cena": null,
-      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/07/21110136/foto-Lenka-HatasovaDSC_7772.jpg",
-      "popis": "Radůza patří k nejvýraznějším osobnostem české hudební scény. Zpěvačka, skladatelka a multiinstrumentalistka si získala publikum jedinečným propojením písničkářství, folklorních inspirací a silných příběhů. Na koncertě představí průřez svou oceňovanou tvorbou za doprovodu Josefa Štěpánka a Miloše Dvořáčka.",
-      "estetickeSkore": 78,
-      "duvodSkore": "Radůza — silné příběhy, folklorní inspirace a multiinstrumentální autorský projev."
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/07/21125522/rudy-linka-trio-web.jpeg.jpg",
+      "popis": "Rudy Linka patří k nejvýraznějším českým jazzovým hudebníkům s mezinárodním renomé. V komorním obsazení tria představí skladby z alba Live i novější autorskou tvorbu, ve které se propojuje virtuózní kytarová hra, melodická nápaditost a spontánní souhra špičkových muzikantů. Společně s bubeníkem Rudym Roystonem a kontrabasistou Christem van Voorst van Beestem nabídne večer současného jazzu v podání hudebníků, kteří působí na předních světových scénách.",
+      "estetickeSkore": 74,
+      "duvodSkore": "Komorní jazzové trio s mezinárodním renomé, melodická nápaditost."
     },
     {
-      "nazevCz": "Strawberry Guy",
+      "nazevCz": "Laco Deczi",
       "nazevOrig": null,
-      "autor": "Strawberry Guy",
+      "autor": "Laco Deczi",
       "zanr": "klubová scéna",
-      "datumOd": "05.10.2026",
-      "datumDo": "05.10.2026",
-      "cas": null,
-      "misto": "Rock Café",
-      "adresa": "Národní 20, 110 00, Nové Město, Praha 1",
-      "url": "https://prague.eu/cs/akce/strawberry-guy/",
+      "datumOd": "02.10.2026",
+      "datumDo": "30.10.2026",
+      "cas": "22:00",
+      "misto": "Jazz Dock",
+      "adresa": "Janáčkovo nábřeží 2, 150 00, Smíchov, Praha 5",
+      "url": "https://prague.eu/cs/akce/laco-deczi/",
       "cena": null,
-      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/05/27115533/Bs5WrPQ.jpg",
-      "popis": "Když je svět příliš kyselý, Strawberry Guy ho promění v jemné snění. Britský hudebník Alex Stephens přiváží do Prahy své nové turné Give Me a Dream, kolekci křehkých, sluncem prozářených písní, které znějí jako vzpomínky na lepší dny. 5. října 2026 rozezní Rock Café pastelovou melancholií i nadějí, jež oslovila miliony posluchačů po celém světě.",
-      "estetickeSkore": 78,
-      "duvodSkore": "Křehký, sluncem prozářený indie-pop Alexe Stephense s pastelovou melancholií."
-    },
-    {
-      "nazevCz": "Prague Jazz Ensemble",
-      "nazevOrig": null,
-      "autor": "Prague Jazz Ensemble",
-      "zanr": "klubová scéna",
-      "datumOd": "07.08.2026",
-      "datumDo": "13.08.2026",
-      "cas": "20:00",
-      "misto": "Jazz Republic",
-      "adresa": "Jilská 1a, 110 00, Staré Město, Praha 1",
-      "url": "https://prague.eu/cs/akce/prague-jazz-ensemble/",
-      "cena": null,
-      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2024/12/21105056/IMG_8305.jpg",
-      "popis": "Atmosféra živé improvizace v srdci Prahy! V klubu Jazz Republic se představí Prague Jazz Ensemble — kvartet špičkových instrumentalistů, kteří přetvářejí jazzové tradice v neustále se vyvíjející hudební dialog. Lídrem kapely je Milan Potoček, v mládí byl ovlivněn uměním kultovního slovenského art-rockového klávesisty Mariana Vargy nebo multiinstrumentalistickým přístupem Mike Oldfielda.",
-      "estetickeSkore": 76,
-      "duvodSkore": "Autorský kvartet přetavující jazzovou tradici v živý dialog, kořeny v art-rocku.",
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2025/06/10114517/Laco_Deczi_10-1-e1778838591717.webp",
+      "popis": "Legendární trumpetista, žijící již mnoho let v USA, přijíždí opět do České republiky a jednou ze zastávek jeho turné bude také Jazz Dock. Od svého vstupu na profesionální hudební scénu před více než padesáti lety byl Laco Deczi jejím enfant terrible a punc výjimečnosti mu zůstal dodnes.",
+      "estetickeSkore": 74,
+      "duvodSkore": "Legendární enfant terrible trubky, půlstoletí výjimečné hry.",
       "terminy": [
         {
-          "datum": "07.08.2026",
-          "cas": "20:00"
+          "datum": "02.10.2026",
+          "cas": "22:00"
         },
         {
-          "datum": "12.08.2026",
-          "cas": "20:00"
+          "datum": "16.10.2026",
+          "cas": "22:00"
         },
         {
-          "datum": "13.08.2026",
-          "cas": "20:00"
+          "datum": "30.10.2026",
+          "cas": "22:00"
         }
       ]
     },
     {
-      "nazevCz": "Karel Plíhal — Recitál",
+      "nazevCz": "Amble",
       "nazevOrig": null,
-      "autor": "Karel Plíhal",
+      "autor": "Amble",
       "zanr": "klubová scéna",
-      "datumOd": "10.12.2026",
-      "datumDo": "10.12.2026",
-      "cas": "19:30",
-      "misto": "Městská knihovna v Praze — Ústřední knihovna",
-      "adresa": "Mariánské náměstí 1/98, 110 00, Staré Město, Praha 1",
-      "url": "https://prague.eu/cs/akce/karel-plihal-recital/",
-      "cena": null,
-      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/07/23091106/karel-plihal-recital.jpeg-e1784791858197.avif",
-      "popis": "Písničkář, kytarista a básník Karel Plíhal vystoupí 10. prosince 2026 ve Velkém sále Městské knihovny v Praze. V rámci komorního recitálu zazní jeho známé písně i poetické texty, které si během let získaly několik generací posluchačů. Na pódiu ho doprovodí kytarista Petr Fiala.",
-      "estetickeSkore": 76,
-      "duvodSkore": "Karel Plíhal — poetický písničkář, komorní recitál pro několik generací."
-    },
-    {
-      "nazevCz": "Jazz Union",
-      "nazevOrig": null,
-      "autor": "Jazz Union",
-      "zanr": "klubová scéna",
-      "datumOd": "20.08.2026",
-      "datumDo": "20.08.2026",
+      "datumOd": "17.02.2027",
+      "datumDo": "17.02.2027",
       "cas": "20:00",
-      "misto": "Jazz Republic",
-      "adresa": "Jilská 1a, 110 00, Staré Město, Praha 1",
-      "url": "https://prague.eu/cs/akce/jazz-union/",
+      "misto": "MeetFactory",
+      "adresa": "Ke Sklárně 15, 150 00, Smíchov, Praha 5",
+      "url": "https://prague.eu/cs/akce/amble/",
       "cena": null,
-      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2024/12/28135050/RajnosekBand_230815_BIG_07.jpg",
-      "popis": "Lídrem jazzové formace je Jaroslav Friedl, uctívaný kytarista s tak citlivým přístupem k hudbě, že ani v nejmenším nelze rozpoznat jeho původně matematické vzdělání absolventa ČVUT. Na české scéně se proslavil především svým desetiletým působením v kapele Illustratosphere zpěváka Dana Bárty. O čistě jazzovém přístupu k věci pak svědčí jeho účinkování s multiinstrumentalistou Baharatou Rajnoškem.",
-      "estetickeSkore": 75,
-      "duvodSkore": "Kytarista Friedl (ex-Illustratosphere) s citlivým, čistě jazzovým přístupem."
-    },
-    {
-      "nazevCz": "Acoustic Cabinet",
-      "nazevOrig": null,
-      "autor": "Acoustic Cabinet",
-      "zanr": "klubová scéna",
-      "datumOd": "09.08.2026",
-      "datumDo": "14.08.2026",
-      "cas": "20:00",
-      "misto": "Jazz Republic",
-      "adresa": "Jilská 1a, 110 00, Staré Město, Praha 1",
-      "url": "https://prague.eu/cs/akce/acoustic-cabinet/",
-      "cena": null,
-      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2024/07/13120107/110117932_10220235654073835_1617352792172759230_n-e1776074909293.jpg",
-      "popis": "Objevte kouzlo komorní jazzové atmosféry v pozdních večerních hodinách. Acoustic Cabinet přináší do klubu Jazz Republic jemnější jazzový set vedený respektovaným kytaristou Jaroslavem Šindlerem.",
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/08/06111456/Amble-2026-Press-Shot-Update-scaled.jpg",
+      "popis": "Irské trio Amble přiváží 17. února 2027 do pražského klubu MeetFactory svůj emotivní folk postavený na intimním storytellingu, přirozených harmoniích a minimalistických akustických aranžích. Kapela si získává pozornost autentickým přístupem k tvorbě i schopností proměnit osobní životní zkušenosti v podmanivé a silně atmosférické skladby inspirované klidem irského venkova.",
       "estetickeSkore": 74,
-      "duvodSkore": "Komorní jazz v pozdním večeru, intimní set kytaristy Šindlera — přesně ta atmosféra.",
-      "terminy": [
-        {
-          "datum": "09.08.2026",
-          "cas": "20:00"
-        },
-        {
-          "datum": "14.08.2026",
-          "cas": "20:00"
-        }
-      ]
+      "duvodSkore": "Intimní irský folk, přirozené harmonie a atmosféra venkovského klidu."
     },
     {
-      "nazevCz": "Privilege of the Blue",
+      "nazevCz": "Prague Proms 2026 — Ruchadze Band — Amsterdam Beyond",
       "nazevOrig": null,
-      "autor": "Privilege of the Blue",
+      "autor": "Ruchadze Band",
       "zanr": "klubová scéna",
-      "datumOd": "01.09.2026",
-      "datumDo": "20.09.2026",
-      "cas": "20:00",
-      "misto": "Jazz Republic",
-      "adresa": "Jilská 1a, 110 00, Staré Město, Praha 1",
-      "url": "https://prague.eu/cs/akce/privilege-of-the-blue/",
+      "datumOd": "16.09.2026",
+      "datumDo": "16.09.2026",
+      "cas": "19:00",
+      "misto": "The Loop Jazz Club",
+      "adresa": "Weilova 2, 102 00, Hostivař, Praha 10",
+      "url": "https://prague.eu/cs/akce/prague-proms-2026-ruchadze-band-amsterdam-beyond/",
       "cena": null,
-      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2024/12/02143011/002_20260216_DSC6822_edit.jpg",
-      "popis": "Přijďte si vychutnat živou koncertní atmosféru do klubu Jazz Republic! Privilege of the Blue přináší energickou směs jazzu, rocku a blues s brilantními sóly kytaristy Karela Bárty a jeho kapely profesionálních hudebníků.",
-      "estetickeSkore": 74,
-      "duvodSkore": "Energická směs jazzu, rocku a blues s brilantními kytarovými sóly.",
-      "terminy": [
-        {
-          "datum": "01.09.2026",
-          "cas": "20:00"
-        },
-        {
-          "datum": "04.08.2026",
-          "cas": "20:00"
-        },
-        {
-          "datum": "06.09.2026",
-          "cas": "20:00"
-        },
-        {
-          "datum": "20.09.2026",
-          "cas": "20:00"
-        }
-      ]
-    },
-    {
-      "nazevCz": "Triggerfinge",
-      "nazevOrig": null,
-      "autor": "Triggerfinger",
-      "zanr": "klubová scéna",
-      "datumOd": "27.10.2026",
-      "datumDo": "27.10.2026",
-      "cas": "20:00",
-      "misto": "Rock Café",
-      "adresa": "Národní 20, 110 00, Nové Město, Praha 1",
-      "url": "https://prague.eu/cs/akce/triggerfinge/",
-      "cena": null,
-      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/05/05113447/TRIGGERFINGER_2027-c-Charlie-De-Keersmaeker-LO-RES.jpg",
-      "popis": "Belgické rockové trio Triggerfinger se vrací do Prahy a do klubu Rock Café přiveze syrovou energii i novou kapitolu své kariéry. Po zásadních změnách v sestavě a letech ticha představí nejen osvědčené skladby, ale i čerstvý materiál z připravovaného alba, který naznačuje posun v jejich zvuku. Fanoušky čeká intenzivní koncertní zážitek plný výrazných riffů, emocí i autentické rockové síly kapely.",
-      "estetickeSkore": 74,
-      "duvodSkore": "Triggerfinger — syrová belgická rocková energie, výrazné riffy a autenticita."
-    },
-    {
-      "nazevCz": "Jazz Caravan",
-      "nazevOrig": null,
-      "autor": "Jazz Caravan",
-      "zanr": "klubová scéna",
-      "datumOd": "08.08.2026",
-      "datumDo": "28.08.2026",
-      "cas": "20:00",
-      "misto": "Jazz Republic",
-      "adresa": "Jilská 1a, 110 00, Staré Město, Praha 1",
-      "url": "https://prague.eu/cs/akce/jazz-caravan/",
-      "cena": null,
-      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2024/12/26125345/adam-tvrdy-gibson-es-banner-1-e1769428695224.jpg",
-      "popis": "Skupina Jazz Caravan osobitým způsobem interpretuje jazzové standardy od amerických autorů, v playlistu nejčastěji najdeme jména jako Bob Berg, Jack McDuff, Horace Silver nebo Buddy Johnson. Lídrem kapely je Adam Tvrdý, technicky skvěle vybavený kytarista, který dokáže svůj expresivní styl hry doplnit neomylným citem pro daný žánr.",
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2025/12/04151740/6b16bff7-0f35-4513-b311-eaf3ed78f662.jpg",
+      "popis": "Ojedinělý kosmopolitní projekt Ruchadze Band – Amsterdam Beyond pod vedením světoběžníka Konstantina Ruchadzeho přináší hudbu, která se vymyká žánrovým a stylovým hranicím. Tvorba této formace je svobodná, nespoutaná, plná emocí, spontaneity, výbušné energie a odvahy jít vlastní cestou bez ohledu na tlak komerce a trendů. V jejich zvuku se organicky prolínají prvky jazzu, klasiky, folku, rhythm & blues i dalších stylů a výsledek oslovuje posluchače napříč generacemi.",
       "estetickeSkore": 72,
-      "duvodSkore": "Jazzové standardy Berg/Silver/McDuff v podání expresivního kytaristy Tvrdého.",
-      "terminy": [
-        {
-          "datum": "08.08.2026",
-          "cas": "20:00"
-        },
-        {
-          "datum": "11.08.2026",
-          "cas": "20:00"
-        },
-        {
-          "datum": "28.08.2026",
-          "cas": "20:00"
-        }
-      ]
+      "duvodSkore": "Svobodný kosmopolitní projekt, jazz-folk-blues bez žánrových hranic."
     },
     {
-      "nazevCz": "Live & United",
+      "nazevCz": "AIGEL",
       "nazevOrig": null,
-      "autor": "Live & United",
+      "autor": "AIGEL",
       "zanr": "klubová scéna",
-      "datumOd": "03.08.2026",
-      "datumDo": "22.09.2026",
+      "datumOd": "21.10.2026",
+      "datumDo": "21.10.2026",
       "cas": "20:00",
-      "misto": "Jazz Republic",
-      "adresa": "Jilská 1a, 110 00, Staré Město, Praha 1",
-      "url": "https://prague.eu/cs/akce/live-united/",
+      "misto": "Futurum Music Bar",
+      "adresa": "Zborovská 7, 150 00, Smíchov, Praha 5",
+      "url": "https://prague.eu/cs/akce/aigel/",
       "cena": null,
-      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/02/03125011/013_20260216_DSC7041_edit.jpg",
-      "popis": "Zažijte večer nabitý energií latinskoamerických rytmů! Klub Jazz Republic vás zve na Latin Jazz Edition, jedinečný koncertní koncept, který propojuje špičkové české hudebníky a přináší publiku spontánní jazzovou improvizaci v rytmech latinu.",
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/08/25101050/IMG_6066-e1787645665559.jpg",
+      "popis": "Elektronické duo AIGEL, které si během deseti let existence vybudovalo pozici jednoho z nejvýraznějších nezávislých hudebních projektů východní Evropy, vystoupí 21. října v Praze se speciálním výročním koncertem. Tatarská básnířka a zpěvačka Aigel Gaisina a petrohradský producent Ilja Baramija vytvářejí osobitý hudební svět na pomezí trip-hopu, elektroniky a psychedelie, který překračuje jazykové i kulturní hranice. Ve své tvorbě přirozeně střídají ruštinu, tatarštinu, angličtinu i němčinu. Celosvětovou pozornost jim přinesly zejména virální hity Tatarin a Pyyala, přičemž druhý jmenovaný ovládl streamovací žebříčky ve 25 zemích a dostal se na vrchol globálního žebříčku Shazam. Za deset let na scéně vydali pět studiových alb a řadu singlů, získali prestižní ocenění Cannes Lions za videoklip You're Born a absolvovali koncertní turné po desítkách zemí světa.",
       "estetickeSkore": 72,
-      "duvodSkore": "Latin jazz s otevřenou improvizací — groove a spontánnost živého klubu.",
-      "terminy": [
-        {
-          "datum": "03.08.2026",
-          "cas": "20:00"
-        },
-        {
-          "datum": "16.08.2026",
-          "cas": "20:00"
-        },
-        {
-          "datum": "22.09.2026",
-          "cas": "20:00"
-        }
-      ]
+      "duvodSkore": "Trip-hop, elektronika a psychedelie, poetika napříč jazyky — temná stopa."
+    },
+    {
+      "nazevCz": "Botticelli Baby",
+      "nazevOrig": null,
+      "autor": "Botticelli Baby",
+      "zanr": "klubová scéna",
+      "datumOd": "31.10.2026",
+      "datumDo": "31.10.2026",
+      "cas": "22:00",
+      "misto": "Jazz Dock",
+      "adresa": "Janáčkovo nábřeží 2, 150 00, Smíchov, Praha 5",
+      "url": "https://prague.eu/cs/akce/botticelli-baby/",
+      "cena": null,
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/08/20115214/Botticelli-Baby.jpg",
+      "popis": "Německá formace Botticelli Baby patří k nejenergičtějším evropským koncertním kapelám současnosti. V pražském Jazz Docku představí svůj nezaměnitelný mix soulu, jazzu, rockabilly, ska i filmové hudby, který se vzpírá žánrovým škatulkám. Šestičlenná sestava kolem zpěváka a kontrabasisty Marlona Bösherze je proslulá strhujícími živými vystoupeními plnými nespoutané energie, humoru a hudební virtuozity, která publikum jen zřídka nechá v klidu sedět.",
+      "estetickeSkore": 72,
+      "duvodSkore": "Nespoutaný mix soulu, jazzu a rockabilly, strhující živá energie."
+    },
+    {
+      "nazevCz": "Arlo Parks",
+      "nazevOrig": null,
+      "autor": "Arlo Parks",
+      "zanr": "klubová scéna",
+      "datumOd": "21.11.2026",
+      "datumDo": "21.11.2026",
+      "cas": "20:00",
+      "misto": "ARCHA+",
+      "adresa": "Na Poříčí 1047/26, 110 00, Nové Město, Praha 1",
+      "url": "https://prague.eu/cs/akce/arlo-parks/",
+      "cena": null,
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/08/06125612/ArloParks_JG_07-Large.jpg",
+      "popis": "Arlo Parks vystoupí 21. listopadu 2026 v pražském prostoru ARCHA+. Britská zpěvačka, básnířka a držitelka Mercury Music Prize patří k nejvýraznějším hlasům současné hudby a publikum po celém světě si získala citlivými texty, intimní atmosférou i jedinečnou schopností proměnit osobní příběhy v silné koncertní momenty. Do Prahy přijede v době vydání očekávaného třetího alba Ambiguous Desire, na kterém posouvá svůj zvuk směrem k odvážnějším a experimentálnějším polohám.",
+      "estetickeSkore": 72,
+      "duvodSkore": "Poetické intimní texty, Mercury Prize, osobní příběhy v silných momentech."
     },
     {
       "nazevCz": "Prague Proms 2026 — Focused on Motown",
@@ -541,76 +373,397 @@
       "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2025/12/04150733/db4d07f7-2d91-43d9-8c4c-52e7d2aade00.jpg",
       "popis": "Motown Records není jen nahrávací společnost, ale kulturní fenomén, který zásadně ovlivnil populární hudbu, americkou společnost i rasovou integraci. Založil ji v Detroitu roku 1959 vizionář Berry Gordy junior a následně se stala symbolem „zvuku mladé Ameriky“ a továrnou na hity. Sehrála také klíčovou roli v kariérách černošských umělců a v boji za jejich mainstreamové uznání. Přijďte si poslechnout písně, které překročily rasové bariéry a uchvátily svět, tentokráte v podání The Loop Jazz Orchestra a vynikajících amerických zpěváků v hostivařském klubu The Loop Jazz Club.",
       "estetickeSkore": 70,
-      "duvodSkore": "Motown v podání big bandu — soulová klasika, spíš tribute než objevná tvorba."
+      "duvodSkore": "Motown a soulová klasika naživo, tvoje afinita k soulu 60. let."
     },
     {
-      "nazevCz": "Jazz Harmony Collective",
+      "nazevCz": "Jazz Union",
       "nazevOrig": null,
-      "autor": "Jazz Harmony Collective",
+      "autor": "Jaroslav Friedl",
       "zanr": "klubová scéna",
-      "datumOd": "01.08.2026",
-      "datumDo": "21.08.2026",
+      "datumOd": "13.09.2026",
+      "datumDo": "13.09.2026",
       "cas": "20:00",
       "misto": "Jazz Republic",
       "adresa": "Jilská 1a, 110 00, Staré Město, Praha 1",
-      "url": "https://prague.eu/cs/akce/jazz-harmony-collective/",
+      "url": "https://prague.eu/cs/akce/jazz-union/",
       "cena": null,
-      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2024/12/04134713/008_20260216_DSC7013_edit.jpg",
-      "popis": "Zažijte večer, kde se autentický jazz tradičního swingu prolíná s improvizací a živou energií v podání kapely Jazz Harmony Collective v klubu Jazz Republic. Kvarteto vedené saxofonistou Bedřichem Šmardou, známým svou precizní swingovou frázi a jedinečnou schopností propojit klasický styl 30. let s moderní jazzovou energií,přináší do pražského klubu hudbu, která má šarm, rytmus i hloubku.",
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2024/12/28135050/RajnosekBand_230815_BIG_07.jpg",
+      "popis": "Lídrem jazzové formace je Jaroslav Friedl, uctívaný kytarista s tak citlivým přístupem k hudbě, že ani v nejmenším nelze rozpoznat jeho původně matematické vzdělání absolventa ČVUT. Na české scéně se proslavil především svým desetiletým působením v kapele Illustratosphere zpěváka Dana Bárty. O čistě jazzovém přístupu k věci pak svědčí jeho účinkování s multiinstrumentalistou Baharatou Rajnoškem.",
+      "estetickeSkore": 68,
+      "duvodSkore": "Citlivý kytarista Friedl, čistě jazzový přístup bez efektů."
+    },
+    {
+      "nazevCz": "Clarinet Factory",
+      "nazevOrig": null,
+      "autor": "Clarinet Factory",
+      "zanr": "klubová scéna",
+      "datumOd": "26.11.2026",
+      "datumDo": "26.11.2026",
+      "cas": "19:30",
+      "misto": "Městská knihovna v Praze — Ústřední knihovna",
+      "adresa": "Mariánské náměstí 1/98, 110 00, Staré Město, Praha 1",
+      "url": "https://prague.eu/cs/akce/clarinet-factory-2/",
+      "cena": null,
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/08/20114501/clarinet-factory.jpg.avif",
+      "popis": "Clarinet Factory patří už více než dvě desetiletí k výrazným projektům české hudební scény. Čtveřice klarinetistů na svém koncertě v Městské knihovně v Praze nabídne originální spojení klasické hudby, jazzu, elektroniky i improvizace, které překračuje hranice jednotlivých žánrů. Večer navíc obohatí hosté Milan Cimfe a zpěvačka Kateřina García.",
       "estetickeSkore": 66,
-      "duvodSkore": "Swingový kvartet, poctivé řemeslo 30. let — příjemné, ale žánrově konvenční.",
+      "duvodSkore": "Klarinetové kvarteto propojující klasiku, jazz, elektroniku a improvizaci."
+    },
+    {
+      "nazevCz": "Karel Plíhal — Recitál",
+      "nazevOrig": null,
+      "autor": "Karel Plíhal",
+      "zanr": "klubová scéna",
+      "datumOd": "10.12.2026",
+      "datumDo": "10.12.2026",
+      "cas": "19:30",
+      "misto": "Městská knihovna v Praze — Ústřední knihovna",
+      "adresa": "Mariánské náměstí 1/98, 110 00, Staré Město, Praha 1",
+      "url": "https://prague.eu/cs/akce/karel-plihal-recital/",
+      "cena": null,
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/07/23091106/karel-plihal-recital.jpeg-e1784791858197.avif",
+      "popis": "Písničkář, kytarista a básník Karel Plíhal vystoupí 10. prosince 2026 ve Velkém sále Městské knihovny v Praze. V rámci komorního recitálu zazní jeho známé písně i poetické texty, které si během let získaly několik generací posluchačů. Na pódiu ho doprovodí kytarista Petr Fiala.",
+      "estetickeSkore": 66,
+      "duvodSkore": "Komorní recitál písničkáře a básníka, intimní poetika."
+    },
+    {
+      "nazevCz": "Passenger",
+      "nazevOrig": null,
+      "autor": "Passenger",
+      "zanr": "klubová scéna",
+      "datumOd": "16.04.2027",
+      "datumDo": "16.04.2027",
+      "cas": "19:00",
+      "misto": "Roxy",
+      "adresa": "Dlouhá 33, 110 00, Staré Město, Praha 1",
+      "url": "https://prague.eu/cs/akce/passenger/",
+      "cena": null,
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/08/24121242/086A2721.jpg",
+      "popis": "Britský písničkář Passenger, známý svým nezaměnitelným hlasem a hity plnými emocí, se vrací do Prahy s novým albem Wild Love. Na koncertě 16. dubna 2027 v klubu Roxy představí nejen nové skladby inspirované zásadní životní proměnou, ale i své největší hity včetně celosvětově úspěšné písně Let Her Go. Nová tvorba zachycuje příběh lásky, rodiny a odvahy vydat se vstříc nečekaným životním změnám, které Mike Rosenberg prožil po boku své dlouholeté manažerky, dnes manželky a matky jejich prvního dítěte. Fanoušky tak čeká večer plný intimních písní, upřímných příběhů a charakteristického indie-folkového kouzla, které z Passengera udělalo jednoho z nejoblíbenějších písničkářů své generace.",
+      "estetickeSkore": 66,
+      "duvodSkore": "Indie-folk s nezaměnitelným hlasem a upřímnými příběhy."
+    },
+    {
+      "nazevCz": "Gerald Clark & Band",
+      "nazevOrig": null,
+      "autor": "Gerald Clark",
+      "zanr": "klubová scéna",
+      "datumOd": "28.08.2026",
+      "datumDo": "28.08.2026",
+      "cas": null,
+      "misto": "Jazz Dock",
+      "adresa": null,
+      "url": "https://prague.eu/cs/akce/gerald-clark-band/",
+      "cena": null,
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2025/12/16110451/Gerald-Clark-.webp",
+      "popis": null,
+      "estetickeSkore": 65,
+      "duvodSkore": "Bluesově laděný band v Jazz Docku, přesně tvůj groove a atmosféra."
+    },
+    {
+      "nazevCz": "Privilege of the Blue",
+      "nazevOrig": null,
+      "autor": "Privilege of the Blue",
+      "zanr": "klubová scéna",
+      "datumOd": "01.09.2026",
+      "datumDo": "20.09.2026",
+      "cas": "20:00",
+      "misto": "Jazz Republic",
+      "adresa": "Jilská 1a, 110 00, Staré Město, Praha 1",
+      "url": "https://prague.eu/cs/akce/privilege-of-the-blue/",
+      "cena": null,
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2024/12/02143011/002_20260216_DSC6822_edit.jpg",
+      "popis": "Přijďte si vychutnat živou koncertní atmosféru do klubu Jazz Republic! Privilege of the Blue přináší energickou směs jazzu, rocku a blues s brilantními sóly kytaristy Karela Bárty a jeho kapely profesionálních hudebníků.",
+      "estetickeSkore": 64,
+      "duvodSkore": "Jazz-rock-blues s brilantními kytarovými sóly, tvoje bluesová stopa.",
       "terminy": [
         {
-          "datum": "01.08.2026",
+          "datum": "01.09.2026",
           "cas": "20:00"
         },
         {
-          "datum": "06.08.2026",
+          "datum": "06.09.2026",
           "cas": "20:00"
         },
         {
-          "datum": "15.08.2026",
-          "cas": "20:00"
-        },
-        {
-          "datum": "21.08.2026",
+          "datum": "20.09.2026",
           "cas": "20:00"
         }
       ]
     },
     {
-      "nazevCz": "Prague Sounds 2026 — Kojey Radical",
+      "nazevCz": "Havel & šestatřicátníci",
       "nazevOrig": null,
-      "autor": "Kojey Radical",
+      "autor": null,
       "zanr": "klubová scéna",
-      "datumOd": "16.11.2026",
-      "datumDo": "16.11.2026",
-      "cas": "20:00",
-      "misto": "Lucerna Music Bar",
-      "adresa": "Vodičkova 36, 110 00, Nové Město, Praha 1",
-      "url": "https://prague.eu/cs/akce/prague-sounds-2026-kojey-radical/",
+      "datumOd": "01.10.2026",
+      "datumDo": "01.10.2026",
+      "cas": "17:00",
+      "misto": "Městská knihovna v Praze — Ústřední knihovna",
+      "adresa": "Mariánské náměstí 1/98, 110 00, Staré Město, Praha 1",
+      "url": "https://prague.eu/cs/akce/havel-sestatricatnici/",
       "cena": null,
-      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/05/29104908/Kojey-Radical_Press-shot-Ashley-Verse-2.jpg",
-      "popis": "Nekompromisní hlas současného britského rapu míří poprvé do Prahy. Kojey Radical, vizionářský performer balancující mezi poezií, rapem i živelnou energií, přiveze na Prague Sounds intenzivní koncert plný osobních výpovědí i společenské reflexe. Umělec na vrcholu kariéry, nominovaný na Mercury Prize, slibuje strhující zážitek, který propojí intimitu i výbušnou sílu současné scény a potvrdí pověst festivalu jako místa, kde zní ty nejvýraznější hlasy dneška.",
-      "estetickeSkore": 66,
-      "duvodSkore": "Kojey Radical — britský rap s poezií a společenskou reflexí, intenzivní performer."
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/08/20111929/havel-sestatricatnici.jpg-e1787217982278.avif",
+      "popis": "Projekt Havel & šestatřicátníci připomíná mimořádnou generační skupinu českých autorů, která se formovala kolem Václava Havla v 50. letech a výrazně ovlivnila podobu české poválečné literatury. V Ústřední knihovně zazní zhudebněná poezie a texty členů této tvůrčí komunity v podání písničkářů a literátů Vladimíra Merty, Jiřího Dědečka a Přemysla Ruta. Hudebně-literární večer nabídne osobité setkání s dílem autorů, jejichž tvorba navzdory dlouholetým omezením ze strany komunistického režimu zůstává živou součástí české kulturní paměti.",
+      "estetickeSkore": 64,
+      "duvodSkore": "Zhudebněná poezie Havlovy generace, literární existenciální večer."
     },
     {
-      "nazevCz": "Písně Hany",
+      "nazevCz": "Acoustic Cabinet",
       "nazevOrig": null,
-      "autor": "Světlana Nálepková",
+      "autor": "Jaroslav Šindler",
       "zanr": "klubová scéna",
-      "datumOd": "22.10.2026",
-      "datumDo": "22.10.2026",
-      "cas": "19:30",
-      "misto": "Hudební divadlo Karlín",
-      "adresa": "Křižíkova 10, 186 00, Karlín, Praha 8",
-      "url": "https://prague.eu/cs/akce/pisne-hany/",
+      "datumOd": "06.10.2026",
+      "datumDo": "27.10.2026",
+      "cas": "22:00",
+      "misto": "Jazz Republic",
+      "adresa": "Jilská 1a, 110 00, Staré Město, Praha 1",
+      "url": "https://prague.eu/cs/akce/acoustic-cabinet/",
       "cena": null,
-      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2025/01/10145444/image3-6553210d5d490.jpeg",
-      "popis": "Světlana Nálepková uvadí recitál klasických šansonů Hany Hegerové, s krásnými texty Pavla Kopty, Michala Horáčka a Milana Lasici, jako jsou Lásko prokletá, Pojď dál, Lásko má, Cesta, Maestro tango, Čerešně, Denim blue, Vana plná fialek a mnoho dalších, recitál je dopovázen novou vizuální projekcí.",
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2024/07/13120107/110117932_10220235654073835_1617352792172759230_n-e1776074909293.jpg",
+      "popis": "Objevte kouzlo komorní jazzové atmosféry v pozdních večerních hodinách. Acoustic Cabinet přináší do klubu Jazz Republic jemnější jazzový set vedený respektovaným kytaristou Jaroslavem Šindlerem.",
       "estetickeSkore": 64,
-      "duvodSkore": "Recitál šansonů Hany Hegerové — poetické texty, komorní, mimo jazz jádro."
+      "duvodSkore": "Komorní pozdně večerní jazz, jemný intimní set — atmosféra klubu.",
+      "terminy": [
+        {
+          "datum": "06.10.2026",
+          "cas": "22:00"
+        },
+        {
+          "datum": "08.09.2026",
+          "cas": "22:00"
+        },
+        {
+          "datum": "13.10.2026",
+          "cas": "22:00"
+        },
+        {
+          "datum": "15.09.2026",
+          "cas": "22:00"
+        },
+        {
+          "datum": "20.10.2026",
+          "cas": "22:00"
+        },
+        {
+          "datum": "27.10.2026",
+          "cas": "22:00"
+        },
+        {
+          "datum": "29.09.2026",
+          "cas": "22:00"
+        }
+      ]
+    },
+    {
+      "nazevCz": "The Keyboard Combo",
+      "nazevOrig": null,
+      "autor": "Vít Pospíšil",
+      "zanr": "klubová scéna",
+      "datumOd": "03.09.2026",
+      "datumDo": "03.09.2026",
+      "cas": "20:00",
+      "misto": "Jazz Republic",
+      "adresa": "Jilská 1a, 110 00, Staré Město, Praha 1",
+      "url": "https://prague.eu/cs/akce/the-keyboard-combo/",
+      "cena": null,
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2024/08/18142612/2915.jpg",
+      "popis": "Jazz Republic zve na energický večer s The Keyboard Combo — skvělým kvartetem vedeným virtuózním klavíristou Vítem Pospíšilem, jehož hra je oceňována pro spojení technické brilance a silné muzikality.",
+      "estetickeSkore": 62,
+      "duvodSkore": "Virtuózní klavírní kvarteto — muzikantsky poctivý klubový jazz."
+    },
+    {
+      "nazevCz": "Imran Musa Zangi & Aqua Congas",
+      "nazevOrig": null,
+      "autor": "Aqua Congas",
+      "zanr": "klubová scéna",
+      "datumOd": "08.09.2026",
+      "datumDo": "09.09.2026",
+      "cas": "21:00",
+      "misto": "Jazz Dock",
+      "adresa": "Janáčkovo nábřeží 2, 150 00, Smíchov, Praha 5",
+      "url": "https://prague.eu/cs/akce/imran-musa-zangi-aqua-congas/",
+      "cena": null,
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2025/02/14125559/imran.webp",
+      "popis": "Aqua Congas zvou na křest nového singlu! Hudební projekt Aqua Congas, za kterým stojí otec a syn — Imran Musa Zangi a Filip Zangi — uvede svůj nový autorský singl z připravované desky, která vyjde letos v říjnu u Warner Music. Těšit se můžete na energickou směs funku, jazzu a moderního groove, výraznou rytmiku a koncert plný živé atmosféry, která je pro Aqua Congas typická. Součástí večera bude i křest singlu Filipa Zangiho a speciální host – překvapení. Kapela nyní přichází v nové sestavě plné energie, připravené zazářit na klubových i velkých pódiích. Jejich hudba je dynamickou směsí funku, jazzu, popu a world music, postavenou na výrazné rytmice, silném groove a autentické koncertní atmosféře.",
+      "estetickeSkore": 62,
+      "duvodSkore": "Otec a syn, funk-jazz groove s živelnou koncertní energií.",
+      "terminy": [
+        {
+          "datum": "08.09.2026",
+          "cas": "21:00"
+        },
+        {
+          "datum": "09.09.2026",
+          "cas": null
+        }
+      ]
+    },
+    {
+      "nazevCz": "Radůza",
+      "nazevOrig": null,
+      "autor": "Radůza",
+      "zanr": "klubová scéna",
+      "datumOd": "24.09.2026",
+      "datumDo": "24.09.2026",
+      "cas": "19:30",
+      "misto": "Městská knihovna v Praze — Ústřední knihovna",
+      "adresa": "Mariánské náměstí 1/98, 110 00, Staré Město, Praha 1",
+      "url": "https://prague.eu/cs/akce/raduza/",
+      "cena": null,
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/07/21110136/foto-Lenka-HatasovaDSC_7772.jpg",
+      "popis": "Radůza patří k nejvýraznějším osobnostem české hudební scény. Zpěvačka, skladatelka a multiinstrumentalistka si získala publikum jedinečným propojením písničkářství, folklorních inspirací a silných příběhů. Na koncertě představí průřez svou oceňovanou tvorbou za doprovodu Josefa Štěpánka a Miloše Dvořáčka.",
+      "estetickeSkore": 62,
+      "duvodSkore": "Výrazná písničkářka, folklorní inspirace a silné příběhy."
+    },
+    {
+      "nazevCz": "Strawberry Guy",
+      "nazevOrig": null,
+      "autor": "Strawberry Guy",
+      "zanr": "klubová scéna",
+      "datumOd": "05.10.2026",
+      "datumDo": "05.10.2026",
+      "cas": null,
+      "misto": "Rock Café",
+      "adresa": "Národní 20, 110 00, Nové Město, Praha 1",
+      "url": "https://prague.eu/cs/akce/strawberry-guy/",
+      "cena": null,
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/05/27115533/Bs5WrPQ.jpg",
+      "popis": "Když je svět příliš kyselý, Strawberry Guy ho promění v jemné snění. Britský hudebník Alex Stephens přiváží do Prahy své nové turné Give Me a Dream, kolekci křehkých, sluncem prozářených písní, které znějí jako vzpomínky na lepší dny. 5. října 2026 rozezní Rock Café pastelovou melancholií i nadějí, jež oslovila miliony posluchačů po celém světě.",
+      "estetickeSkore": 62,
+      "duvodSkore": "Křehké, sluncem prozářené písně s melancholií — snová poloha."
+    },
+    {
+      "nazevCz": "Duende",
+      "nazevOrig": null,
+      "autor": null,
+      "zanr": "klubová scéna",
+      "datumOd": "26.08.2026",
+      "datumDo": "26.08.2026",
+      "cas": null,
+      "misto": "Jazz Dock",
+      "adresa": null,
+      "url": "https://prague.eu/cs/akce/duende/",
+      "cena": null,
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2024/12/10083616/Duende_jazzdock2.webp",
+      "popis": null,
+      "estetickeSkore": 60,
+      "duvodSkore": "Rezidentní jazzový večer v Jazz Docku — klidná sázka na intimní klub."
+    },
+    {
+      "nazevCz": "Candlelight Ficus",
+      "nazevOrig": null,
+      "autor": "Candlelight Ficus",
+      "zanr": "klubová scéna",
+      "datumOd": "18.09.2026",
+      "datumDo": "18.09.2026",
+      "cas": "22:00",
+      "misto": "Jazz Dock",
+      "adresa": "Janáčkovo nábřeží 2, 150 00, Smíchov, Praha 5",
+      "url": "https://prague.eu/cs/akce/candlelight-ficus/",
+      "cena": null,
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/08/20115203/Candlelight-Ficus-e1787222534476.jpg",
+      "popis": "Rakouská kapela Candlelight Ficus přiveze do Jazz Docku energickou směs funku, popu, soulu, R&B. Šestičlenná formace z Grazu si získala publikum chytlavými melodiemi, výrazným groovem a bezprostřední koncertní energií, se kterou vystupuje stejně přesvědčivě v klubovém prostředí jako na mezinárodních festivalech.",
+      "estetickeSkore": 60,
+      "duvodSkore": "Rakouská šestka, funk-soul-R&B s bezprostřední klubovou energií."
+    },
+    {
+      "nazevCz": "Prague Jazz Ensemble",
+      "nazevOrig": null,
+      "autor": "Milan Potoček",
+      "zanr": "klubová scéna",
+      "datumOd": "01.10.2026",
+      "datumDo": "26.10.2026",
+      "cas": "20:00",
+      "misto": "Jazz Republic",
+      "adresa": "Jilská 1a, 110 00, Staré Město, Praha 1",
+      "url": "https://prague.eu/cs/akce/prague-jazz-ensemble/",
+      "cena": null,
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2024/12/21105056/IMG_8305.jpg",
+      "popis": "Atmosféra živé improvizace v srdci Prahy! V klubu Jazz Republic se představí Prague Jazz Ensemble — kvartet špičkových instrumentalistů, kteří přetvářejí jazzové tradice v neustále se vyvíjející hudební dialog. Lídrem kapely je Milan Potoček, v mládí byl ovlivněn uměním kultovního slovenského art-rockového klávesisty Mariana Vargy nebo multiinstrumentalistickým přístupem Mike Oldfielda.",
+      "estetickeSkore": 60,
+      "duvodSkore": "Kvartet přetvářející jazzovou tradici v živý dialog, art-rockové kořeny lídra.",
+      "terminy": [
+        {
+          "datum": "01.10.2026",
+          "cas": "20:00"
+        },
+        {
+          "datum": "03.10.2026",
+          "cas": "20:00"
+        },
+        {
+          "datum": "11.09.2026",
+          "cas": "20:00"
+        },
+        {
+          "datum": "14.10.2026",
+          "cas": "20:00"
+        },
+        {
+          "datum": "23.10.2026",
+          "cas": "20:00"
+        },
+        {
+          "datum": "26.10.2026",
+          "cas": "20:00"
+        }
+      ]
+    },
+    {
+      "nazevCz": "Jazz Caravan",
+      "nazevOrig": null,
+      "autor": "Adam Tvrdý",
+      "zanr": "klubová scéna",
+      "datumOd": "02.10.2026",
+      "datumDo": "30.10.2026",
+      "cas": "20:00",
+      "misto": "Jazz Republic",
+      "adresa": "Jilská 1a, 110 00, Staré Město, Praha 1",
+      "url": "https://prague.eu/cs/akce/jazz-caravan/",
+      "cena": null,
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2024/12/26125345/adam-tvrdy-gibson-es-banner-1-e1769428695224.jpg",
+      "popis": "Skupina Jazz Caravan osobitým způsobem interpretuje jazzové standardy od amerických autorů, v playlistu nejčastěji najdeme jména jako Bob Berg, Jack McDuff, Horace Silver nebo Buddy Johnson. Lídrem kapely je Adam Tvrdý, technicky skvěle vybavený kytarista, který dokáže svůj expresivní styl hry doplnit neomylným citem pro daný žánr.",
+      "estetickeSkore": 60,
+      "duvodSkore": "Jazzové standardy s expresivním kytaristou Tvrdým, cit pro žánr.",
+      "terminy": [
+        {
+          "datum": "02.10.2026",
+          "cas": "20:00"
+        },
+        {
+          "datum": "07.10.2026",
+          "cas": "20:00"
+        },
+        {
+          "datum": "10.10.2026",
+          "cas": "20:00"
+        },
+        {
+          "datum": "12.09.2026",
+          "cas": "20:00"
+        },
+        {
+          "datum": "16.10.2026",
+          "cas": "20:00"
+        },
+        {
+          "datum": "19.09.2026",
+          "cas": "20:00"
+        },
+        {
+          "datum": "24.09.2026",
+          "cas": "20:00"
+        },
+        {
+          "datum": "27.09.2026",
+          "cas": "20:00"
+        },
+        {
+          "datum": "30.10.2026",
+          "cas": "20:00"
+        }
+      ]
     },
     {
       "nazevCz": "The Nina Simone Experience",
@@ -626,8 +779,8 @@
       "cena": null,
       "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2024/12/20093927/480492389_1549991925944788_1063874395233274534_n-e1767617519555.jpg",
       "popis": "V průběhu večera zazní skladby Niny Simone, v přednesu půvabné české zpěvačky Terezy Rychlé s doprovodnou kapelou The Masters.",
-      "estetickeSkore": 64,
-      "duvodSkore": "Nina Simone v podání Terezy Rychlé — soul a emoce, byť cover poloha.",
+      "estetickeSkore": 60,
+      "duvodSkore": "Písně Niny Simone — silná emoce a hloubka, i když je to pocta.",
       "terminy": [
         {
           "datum": "05.09.2026",
@@ -650,10 +803,6 @@
           "cas": "19:00"
         },
         {
-          "datum": "27.08.2026",
-          "cas": "20:00"
-        },
-        {
           "datum": "27.11.2026",
           "cas": "19:00"
         },
@@ -664,48 +813,150 @@
       ]
     },
     {
-      "nazevCz": "Bohemia Big Band: Glenn Miller, Duke Ellington, Benny Goodman…",
+      "nazevCz": "Christian Marclay & Magnus Lindberg",
       "nazevOrig": null,
-      "autor": "Bohemia Big Band",
+      "autor": null,
       "zanr": "klubová scéna",
-      "datumOd": "02.10.2026",
-      "datumDo": "02.10.2026",
-      "cas": "19:00",
-      "misto": "Reduta Jazz Club",
-      "adresa": "Národní 20, 110 00, Nové Město, Praha 1",
-      "url": "https://prague.eu/cs/akce/bohemia-big-band-tribute-to-glenn-miller-duke-ellington-benny-goodman/",
+      "datumOd": "30.09.2026",
+      "datumDo": "30.09.2026",
+      "cas": "19:30",
+      "misto": "Gabriel Loci",
+      "adresa": "Holečkova 10, 150 00, Smíchov, Praha 5",
+      "url": "https://prague.eu/cs/akce/christian-marclay-magnus-lindberg/",
       "cena": null,
-      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2024/03/13052653/309825473-530243125768792-5944503802710732595-n.jpg",
-      "popis": "Klasický swingový orchestr vyhlášený doma i v zahraničí. V jeho repertoáru naleznete nejslavnější swingové skladby od Bennyho Goodmana, Glenna Millera a mnoha dalších. Díky fantastické souhře, procítěnosti hry a mnohým zkušenostem dokáže toto těleso proměnit každý svůj koncert v nevšední událost. I proto je big band vyhledávaný swingovými hvězdami, které touží jen po tom nejlepším.",
-      "estetickeSkore": 62,
-      "duvodSkore": "Klasický swingový big band, řemeslně zdatná pocta Millerovi a Goodmanovi.",
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/08/17145941/KS_MarclayLindberg.jpg",
+      "popis": "Podzimní sezónu mezinárodního ansámblu Klang Systematiek zahájí 30. září v Gabriel Loci koncert na pomezí hudby, obrazu a performance. Program představí tvorbu Christiana Marclaye, jednoho z výrazných současných umělců propojujících zvuk a vizuální umění. V jeho dílech Graffiti Composition, Shuffle a To Be Continued se vizuální materiál stává východiskem pro živou hudební interpretaci a otevírá otázku, co všechno může být hudební partiturou. Večer doplní energická skladba Ablauf finského skladatele Magnuse Lindberga. Výrazná architektura Gabriel Loci přitom není pouze místem konání, ale přirozenou součástí programu propojujícího zvuk, obraz a prostor.",
+      "estetickeSkore": 58,
+      "duvodSkore": "Zvuk, obraz a performance na pomezí žánrů — pro zvědavce, ale konceptuální."
+    },
+    {
+      "nazevCz": "Písně Hany",
+      "nazevOrig": null,
+      "autor": "Světlana Nálepková",
+      "zanr": "klubová scéna",
+      "datumOd": "22.10.2026",
+      "datumDo": "22.10.2026",
+      "cas": "19:30",
+      "misto": "Hudební divadlo Karlín",
+      "adresa": "Křižíkova 10, 186 00, Karlín, Praha 8",
+      "url": "https://prague.eu/cs/akce/pisne-hany/",
+      "cena": null,
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2025/01/10145444/image3-6553210d5d490.jpeg",
+      "popis": "Světlana Nálepková uvadí recitál klasických šansonů Hany Hegerové, s krásnými texty Pavla Kopty, Michala Horáčka a Milana Lasici, jako jsou Lásko prokletá, Pojď dál, Lásko má, Cesta, Maestro tango, Čerešně, Denim blue, Vana plná fialek a mnoho dalších, recitál je dopovázen novou vizuální projekcí.",
+      "estetickeSkore": 58,
+      "duvodSkore": "Recitál šansonů Hany Hegerové, krásné texty a intimní poloha."
+    },
+    {
+      "nazevCz": "Symphony of Ebony",
+      "nazevOrig": null,
+      "autor": "Petr Dvorský",
+      "zanr": "klubová scéna",
+      "datumOd": "11.10.2026",
+      "datumDo": "24.10.2026",
+      "cas": "20:00",
+      "misto": "Jazz Republic",
+      "adresa": "Jilská 1a, 110 00, Staré Město, Praha 1",
+      "url": "https://prague.eu/cs/akce/symphony-of-ebony/",
+      "cena": null,
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2024/12/03101519/180767174_10220877798428513_772025232746543246_n.jpg",
+      "popis": "Pod vedením kontrabasisty Petra Dvorského, jednoho z nejvýraznějších protagonistů české jazzové scény, zazní během večera v Jazz Republic netradiční i známé jazzové skladby v originálních aranžích.",
+      "estetickeSkore": 58,
+      "duvodSkore": "Netradiční aranže jazzových skladeb, kontrabasista Dvorský vede kvalitní band.",
       "terminy": [
         {
-          "datum": "02.10.2026",
-          "cas": "19:00"
+          "datum": "11.10.2026",
+          "cas": "20:00"
         },
         {
-          "datum": "21.08.2026",
-          "cas": "19:00"
+          "datum": "24.10.2026",
+          "cas": "20:00"
         }
       ]
     },
     {
-      "nazevCz": "Young the Giant",
+      "nazevCz": "Karlheinz Stockhausen & Terje Rypdal",
       "nazevOrig": null,
-      "autor": "Young the Giant",
+      "autor": null,
       "zanr": "klubová scéna",
-      "datumOd": "21.10.2026",
-      "datumDo": "21.10.2026",
-      "cas": null,
-      "misto": "Roxy",
-      "adresa": "Dlouhá 33, 110 00, Staré Město, Praha 1",
-      "url": "https://prague.eu/cs/akce/young-the-giant/",
+      "datumOd": "05.11.2026",
+      "datumDo": "05.11.2026",
+      "cas": "19:30",
+      "misto": "Kostel Panny Marie Sněžné",
+      "adresa": "Jungmannovo náměstí 18, 110 00, Nové Město, Praha 1",
+      "url": "https://prague.eu/cs/akce/karlheinz-stockhausen-terje-rypdal/",
       "cena": null,
-      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/05/04100732/1.jpg",
-      "popis": "Kalifornští Young the Giant míří do Prahy s albem Victory Garden, optimistickým manifestem pro časy plné nejistoty. Jedna z nejvýraznějších kapel současného indie rocku přiveze do Roxy oslavu radikální empatie, silných refrénů a emocí, které nezakrývají stíny, ale učí s nimi žít. .",
-      "estetickeSkore": 60,
-      "duvodSkore": "Young the Giant — melodický indie rock s emocí, spíš arénová poloha."
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/08/18081155/KS_StockhausenRypdal.jpg",
+      "popis": "Klang Systematiek představí 5. listopadu v Kostele Panny Marie Sněžné večer věnovaný dvěma velmi odlišným způsobům práce se zvukem. Ve Stockhausenově Mikrophonii I šest interpretů objevuje zvukové možnosti jediného velkého tam-tamu: jeho povrch rozeznívají různými způsoby, zatímco mikrofony a elektronika odhalují a proměňují i ty nejjemnější zvukové detaily. Program doplní Arktik norského skladatele Terje Rypdala. Monumentální prostor a akustika Kostela Panny Marie Sněžné se stanou přirozenou součástí koncertu, jehož společným tématem je otázka, co všechno může být hudebním nástrojem.",
+      "estetickeSkore": 58,
+      "duvodSkore": "Stockhausen a Rypdal — zvukový experiment v akustice kostela, náročné."
+    },
+    {
+      "nazevCz": "Like Elephants",
+      "nazevOrig": null,
+      "autor": "Like Elephants",
+      "zanr": "klubová scéna",
+      "datumOd": "06.11.2026",
+      "datumDo": "06.11.2026",
+      "cas": null,
+      "misto": "Chapeau Rouge",
+      "adresa": "Jakubská 2, 110 00, Staré Město, Praha 1",
+      "url": "https://prague.eu/cs/akce/like-elephants/",
+      "cena": null,
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/07/23085936/kYnPrqMg-e1785917165727.jpeg",
+      "popis": "Po nezapomenutelném večeru, kdy Like Elephants vystoupili v Praze jako předkapela White Lies, se rakouská kapela konečně vrací zpět do české metropole. Dne 6. listopadu 2026 vystoupí Like Elephants v legendárním klubu Chapeau Rouge, jednom z nejznámějších míst pražské živé hudební scény. Společně s pražskou kapelou ROYE připraví večer plný intenzivní atmosféry, působivých melodií a emocionálních skladeb. Like Elephants propojují zasněné zvukové plochy s výraznými kytarami, pulzujícími rytmy a jedinečnou kombinací melancholie a naděje. Jejich písně vyprávějí příběhy, které se dotýkají posluchačů, a naživo vytvářejí energii, která provází publikum od prvního tónu až do poslední chvíle.",
+      "estetickeSkore": 58,
+      "duvodSkore": "Zasněné plochy, výrazné kytary, melancholie a naděje."
+    },
+    {
+      "nazevCz": "The Ray Charles Experience by Lee Andrew Davison",
+      "nazevOrig": null,
+      "autor": "Lee Andrew Davison",
+      "zanr": "koncerty",
+      "datumOd": "10.10.2026",
+      "datumDo": "24.11.2026",
+      "cas": "19:00",
+      "misto": "Reduta Jazz Club",
+      "adresa": "Národní 20, 110 00, Nové Město, Praha 1",
+      "url": "https://prague.eu/cs/akce/the-ray-charles-experience-by-lee-andrew-davison-usa/",
+      "cena": null,
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2024/12/31121434/AdobeStock_565483788.jpg",
+      "popis": "Raye Charlese známe jako rozesmátého jazzmana, kterého proslavily písně z 60. a 70. let Georgia on my mind. Jeho životní i profesionální cesta byla plná krkolomných překážek, a i přes to byly obě dvě cesty po delší době úspěšně a zdatně zdolány. Raye Charlese a Lee Andrew Davisona nepojí jen láska k hudbě, ale i elán a touha tvořit hudbu publiku, které jí ocení a předá dalším generacím.",
+      "estetickeSkore": 58,
+      "duvodSkore": "Pocta Rayi Charlesovi — soul a groove, který máš rád, i když je to tribute.",
+      "terminy": [
+        {
+          "datum": "10.10.2026",
+          "cas": "19:00"
+        },
+        {
+          "datum": "11.09.2026",
+          "cas": "21:15"
+        },
+        {
+          "datum": "14.11.2026",
+          "cas": "21:15"
+        },
+        {
+          "datum": "16.10.2026",
+          "cas": "21:15"
+        },
+        {
+          "datum": "18.09.2026",
+          "cas": "19:00"
+        },
+        {
+          "datum": "20.11.2026",
+          "cas": "21:15"
+        },
+        {
+          "datum": "24.11.2026",
+          "cas": "19:00"
+        },
+        {
+          "datum": "27.09.2026",
+          "cas": "19:00"
+        }
+      ]
     },
     {
       "nazevCz": "The Saxophone Legacy: Tribute to Coltrane, Getz, Rollins & Young",
@@ -721,8 +972,8 @@
       "cena": null,
       "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2024/12/31121402/324256643_858311791919117_5848990018036132962_n.jpg",
       "popis": "Hudební projekt věnovaný největším saxofonistům. Těšit se můžete na večery plné libozvučných tónů, které vás přenesou do období druhé poloviny minulého století.",
-      "estetickeSkore": 60,
-      "duvodSkore": "Pocta velkým saxofonistům (Coltrane, Getz, Rollins) — tribute, ale silný repertoár.",
+      "estetickeSkore": 58,
+      "duvodSkore": "Pocta Coltraneovi, Getzovi a Rollinsovi — saxofon, který ctíš.",
       "terminy": [
         {
           "datum": "08.11.2026",
@@ -743,6 +994,92 @@
       ]
     },
     {
+      "nazevCz": "Jazz Harmony Collective",
+      "nazevOrig": null,
+      "autor": "Bedřich Šmarda",
+      "zanr": "klubová scéna",
+      "datumOd": "04.09.2026",
+      "datumDo": "21.10.2026",
+      "cas": "20:00",
+      "misto": "Jazz Republic",
+      "adresa": "Jilská 1a, 110 00, Staré Město, Praha 1",
+      "url": "https://prague.eu/cs/akce/jazz-harmony-collective/",
+      "cena": null,
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2024/12/04134713/008_20260216_DSC7013_edit.jpg",
+      "popis": "Zažijte večer, kde se autentický jazz tradičního swingu prolíná s improvizací a živou energií v podání kapely Jazz Harmony Collective v klubu Jazz Republic. Kvarteto vedené saxofonistou Bedřichem Šmardou, známým svou precizní swingovou frázi a jedinečnou schopností propojit klasický styl 30. let s moderní jazzovou energií,přináší do pražského klubu hudbu, která má šarm, rytmus i hloubku.",
+      "estetickeSkore": 56,
+      "duvodSkore": "Tradiční swing 30. let s improvizací, muzikantsky solidní kvarteto.",
+      "terminy": [
+        {
+          "datum": "04.09.2026",
+          "cas": "20:00"
+        },
+        {
+          "datum": "05.09.2026",
+          "cas": "20:00"
+        },
+        {
+          "datum": "18.09.2026",
+          "cas": "20:00"
+        },
+        {
+          "datum": "21.10.2026",
+          "cas": "20:00"
+        }
+      ]
+    },
+    {
+      "nazevCz": "Mauricio Kagel",
+      "nazevOrig": null,
+      "autor": null,
+      "zanr": "klubová scéna",
+      "datumOd": "04.12.2026",
+      "datumDo": "04.12.2026",
+      "cas": "19:30",
+      "misto": "Divadlo X10",
+      "adresa": "Charvátova 10/39, 110 00, Nové Město, Praha 1",
+      "url": "https://prague.eu/cs/akce/mauricio-kagel/",
+      "cena": null,
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/08/18090206/KS_Kagel-e1787036786759.jpg",
+      "popis": "Podzimní sezónu 2027 ansámblu Klang Systematiek uzavře 4. prosince v Divadle X10 Ludwig van Mauricia Kagela — neobvyklý pohled na hudbu Ludwiga van Beethovena, ve kterém se koncert setkává s divadlem, humorem a nadsázkou. Kagel Beethovenovu hudbu rozebírá, vrství a skládá do nových souvislostí, takže se známé fragmenty objevují v překvapivých kombinacích a umožňují poslouchat důvěrně známého skladatele z úplně jiné perspektivy. Prostor Divadla X10 zároveň umožní rozvinout scénickou a performativní stránku díla a uzavřít podzimní sérii otázkou, co všechno vlastně může být koncertem.",
+      "estetickeSkore": 56,
+      "duvodSkore": "Kagelovo divadelní rozebrání Beethovena s humorem a nadsázkou."
+    },
+    {
+      "nazevCz": "Diva Baara",
+      "nazevOrig": null,
+      "autor": "Diva Baara",
+      "zanr": "klubová scéna",
+      "datumOd": "01.09.2026",
+      "datumDo": "01.09.2026",
+      "cas": "21:00",
+      "misto": "Jazz Dock",
+      "adresa": "Janáčkovo nábřeží 2, 150 00, Smíchov, Praha 5",
+      "url": "https://prague.eu/cs/akce/diva-baara/",
+      "cena": null,
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2025/02/14120415/diva-baara-2025-opr-67928565a47c5869818217.webp",
+      "popis": "Diva Baara, vlastním jménem Bára Vaculíková, skládá hudbu na pomezí jazzu, popu, retro groovu, elektroswingu a ženského písničkářství. Její živelné písně, často za doprovodu ukulele, se tematicky věnují hlavně ženám, jejich pocitům a vztahovým peripetiím.",
+      "estetickeSkore": 55,
+      "duvodSkore": "Jazz-pop s retro groovem a elektroswingem, spíš lehčí písničkářská poloha."
+    },
+    {
+      "nazevCz": "Bohemia Big Band: Glenn Miller, Duke Ellington, Benny Goodman…",
+      "nazevOrig": null,
+      "autor": null,
+      "zanr": "klubová scéna",
+      "datumOd": "02.10.2026",
+      "datumDo": "02.10.2026",
+      "cas": "19:00",
+      "misto": "Reduta Jazz Club",
+      "adresa": "Národní 20, 110 00, Nové Město, Praha 1",
+      "url": "https://prague.eu/cs/akce/bohemia-big-band-tribute-to-glenn-miller-duke-ellington-benny-goodman/",
+      "cena": null,
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2024/03/13052653/309825473-530243125768792-5944503802710732595-n.jpg",
+      "popis": "Klasický swingový orchestr vyhlášený doma i v zahraničí. V jeho repertoáru naleznete nejslavnější swingové skladby od Bennyho Goodmana, Glenna Millera a mnoha dalších. Díky fantastické souhře, procítěnosti hry a mnohým zkušenostem dokáže toto těleso proměnit každý svůj koncert v nevšední událost. I proto je big band vyhledávaný swingovými hvězdami, které touží jen po tom nejlepším.",
+      "estetickeSkore": 55,
+      "duvodSkore": "Klasický swingový big band, poctivé řemeslo v Redutě."
+    },
+    {
       "nazevCz": "Berre",
       "nazevOrig": null,
       "autor": "Berre",
@@ -756,88 +1093,115 @@
       "cena": null,
       "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/05/25094343/Berre-Pers-1-foto-JelleJoly-1.jpeg",
       "popis": "Belgický zpěvák Berre vyráží na své první evropské turné v roli headlinera a 19. října 2026 představí v pražském Café V lese nové EP How Beautiful This Life Is.",
-      "estetickeSkore": 58,
-      "duvodSkore": "Belgický popový zpěvák Berre na prvním turné — mladý mainstream."
+      "estetickeSkore": 55,
+      "duvodSkore": "Belgický pop headliner s novým EP, příjemné, ale konvenční."
     },
     {
-      "nazevCz": "Jazz Treasures — A Tribute Concert to the American Jazz Masters",
+      "nazevCz": "Young the Giant",
       "nazevOrig": null,
-      "autor": "Otto Hejnic",
+      "autor": "Young the Giant",
       "zanr": "klubová scéna",
-      "datumOd": "09.11.2026",
-      "datumDo": "09.11.2026",
+      "datumOd": "21.10.2026",
+      "datumDo": "21.10.2026",
+      "cas": null,
+      "misto": "Roxy",
+      "adresa": "Dlouhá 33, 110 00, Staré Město, Praha 1",
+      "url": "https://prague.eu/cs/akce/young-the-giant/",
+      "cena": null,
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/05/04100732/1.jpg",
+      "popis": "Kalifornští Young the Giant míří do Prahy s albem Victory Garden, optimistickým manifestem pro časy plné nejistoty. Jedna z nejvýraznějších kapel současného indie rocku přiveze do Roxy oslavu radikální empatie, silných refrénů a emocí, které nezakrývají stíny, ale učí s nimi žít. .",
+      "estetickeSkore": 55,
+      "duvodSkore": "Indie rock s velkými refrény, energie ano, hloubka spíš mainstream."
+    },
+    {
+      "nazevCz": "Triggerfinge",
+      "nazevOrig": null,
+      "autor": "Triggerfinger",
+      "zanr": "klubová scéna",
+      "datumOd": "27.10.2026",
+      "datumDo": "27.10.2026",
+      "cas": "20:00",
+      "misto": "Rock Café",
+      "adresa": "Národní 20, 110 00, Nové Město, Praha 1",
+      "url": "https://prague.eu/cs/akce/triggerfinge/",
+      "cena": null,
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/05/05113447/TRIGGERFINGER_2027-c-Charlie-De-Keersmaeker-LO-RES.jpg",
+      "popis": "Belgické rockové trio Triggerfinger se vrací do Prahy a do klubu Rock Café přiveze syrovou energii i novou kapitolu své kariéry. Po zásadních změnách v sestavě a letech ticha představí nejen osvědčené skladby, ale i čerstvý materiál z připravovaného alba, který naznačuje posun v jejich zvuku. Fanoušky čeká intenzivní koncertní zážitek plný výrazných riffů, emocí i autentické rockové síly kapely.",
+      "estetickeSkore": 55,
+      "duvodSkore": "Syrové belgické rockové trio, výrazné riffy a autentická energie."
+    },
+    {
+      "nazevCz": "Žalman & spol.",
+      "nazevOrig": null,
+      "autor": "Žalman & spol.",
+      "zanr": "klubová scéna",
+      "datumOd": "29.10.2026",
+      "datumDo": "29.10.2026",
+      "cas": "19:30",
+      "misto": "Městská knihovna v Praze — Ústřední knihovna",
+      "adresa": "Mariánské náměstí 1/98, 110 00, Staré Město, Praha 1",
+      "url": "https://prague.eu/cs/akce/zalman-spol/",
+      "cena": null,
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/08/20113335/zalman-spol.jpg-e1787218687929.avif",
+      "popis": "Legenda českého folku Žalman & Spol. vystoupí v Městské knihovně v Praze s průřezem své tvorby, která už několik desetiletí oslovuje posluchače napříč generacemi. Koncert nabídne poetické texty, akustický zvuk a atmosféru, díky níž patří Žalmanovy písně k nejvýraznějším položkám domácí folkové tradice. Návštěvníci se mohou těšit na známé skladby i připomínku bohaté historie kapely, která je neodmyslitelně spjata s českou folkovou scénou.",
+      "estetickeSkore": 55,
+      "duvodSkore": "Legenda českého folku, poetické texty a akustická atmosféra."
+    },
+    {
+      "nazevCz": "Ella Fitzgerald — The Voice of Jazz, Forever Resonating",
+      "nazevOrig": null,
+      "autor": "Elena Sonenshine",
+      "zanr": "klubová scéna",
+      "datumOd": "02.11.2026",
+      "datumDo": "16.11.2026",
       "cas": "19:00",
       "misto": "Reduta Jazz Club",
       "adresa": "Národní 20, 110 00, Nové Město, Praha 1",
-      "url": "https://prague.eu/cs/akce/jazz-treasures-a-tribute-concert-to-the-american-jazz-masters/",
+      "url": "https://prague.eu/cs/akce/ella-fitzgerald-the-voice-of-jazz-forever-resonating/",
       "cena": null,
-      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2024/07/12134500/AdobeStock_565483788.jpg",
-      "popis": "Špičkový projekt, kde uslyšíte to nejlepší z americké ale i z české jazzové scény. Mix jazzových osobností jako Marsalis, Louis Armstrong, Herbie Hancock, Gershwin, Jaroslav Ježek a mnoho dalších. Vychutnejte si tento opravdu skvostný zážitek v podání kapely skvělého bubeníka Otto Hejnice, který koncertuje po celém světě.",
-      "estetickeSkore": 58,
-      "duvodSkore": "Tribute americkým jazzovým mistrům, cover mix bez vlastní tvorby.",
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2024/03/13053036/ef.jpg",
+      "popis": "Nejznámější jazzová zpěvačka všech dob, skutečná královna svého žánru. Poslechněte si nezapomenutelný koncert k poctě Elly Fitzgerald v podání mistryně skatu a klasického jazzu, skvělé Eleny Sonenshine a jejího výtečného kvartetu těch nejlepších jazzových profesionálů.",
+      "estetickeSkore": 55,
+      "duvodSkore": "Pocta Elle Fitzgerald, mistryně skatu, ale rotační tribute Reduty.",
       "terminy": [
         {
-          "datum": "09.11.2026",
+          "datum": "02.11.2026",
           "cas": "19:00"
         },
         {
-          "datum": "13.09.2026",
-          "cas": "20:00"
-        },
-        {
-          "datum": "13.10.2026",
+          "datum": "04.09.2026",
           "cas": "19:00"
         },
         {
-          "datum": "23.08.2026",
-          "cas": "20:00"
-        }
-      ]
-    },
-    {
-      "nazevCz": "Polyphia",
-      "nazevOrig": null,
-      "autor": "Polyphia",
-      "zanr": "klubová scéna",
-      "datumOd": "28.11.2026",
-      "datumDo": "28.11.2026",
-      "cas": "19:30",
-      "misto": "SaSaZu — Club",
-      "adresa": "Bubenské nábřeží 306, 170 00, Holešovice, Praha 7",
-      "url": "https://prague.eu/cs/akce/polyphia/",
-      "cena": null,
-      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/06/17090558/Caleb-Young-Large.jpg",
-      "popis": "Instrumentální fenomén Polyphia zamíří 28. listopadu 2026 do pražského SaSaZu. Čtveřice z Texasu si získala celosvětovou pozornost originálním propojením virtuózních kytarových výkonů, hiphopových rytmů, trapové produkce a progresivního metalu. Po úspěchu alba Remember That You Will Die a vydání nového singlu Can You Feel It vstupují Polyphia do další kapitoly své kariéry, která vyvrcholí novou deskou a rozsáhlým mezinárodním turné.",
-      "estetickeSkore": 58,
-      "duvodSkore": "Polyphia — virtuózní instrumentální fúze kytar, trapu a prog-metalu."
-    },
-    {
-      "nazevCz": "Tribute to Jazz Legends: Timeless Melodies",
-      "nazevOrig": null,
-      "autor": "Eva Emingerová",
-      "zanr": "klubová scéna",
-      "datumOd": "01.09.2026",
-      "datumDo": "20.10.2026",
-      "cas": "20:00",
-      "misto": "Reduta Jazz Club",
-      "adresa": "Národní 20, 110 00, Nové Město, Praha 1",
-      "url": "https://prague.eu/cs/akce/tribute-to-jazz-legends-timeless-melodies-best-jazz-songs-great-singer/",
-      "cena": null,
-      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2024/07/31132706/tribute.jpg",
-      "popis": "Fenomenální songy jazzových legend jsou kořením každého koncertu. Velice talentovaná Eva Emingerová, zpěvačka s mimořádným žánrovým přesahem, má pro Vás připravené skladby, které promění do tisíce různých podob jako správný jazzman. Přesto skladbám zanechá jejich nenapodobitelnou krásu, dochutí je šarmem, energií a navodí atmosféru, která vtáhne posluchače do dobových kompozic.",
-      "estetickeSkore": 56,
-      "duvodSkore": "Tribute jazzovým legendám, cover večer s šarmem, ale bez autorské tvorby.",
-      "terminy": [
-        {
-          "datum": "01.09.2026",
+          "datum": "07.09.2026",
           "cas": "20:00"
         },
         {
-          "datum": "16.08.2026",
+          "datum": "09.10.2026",
+          "cas": "19:00"
+        },
+        {
+          "datum": "13.11.2026",
+          "cas": "19:00"
+        },
+        {
+          "datum": "16.11.2026",
+          "cas": "19:00"
+        },
+        {
+          "datum": "17.09.2026",
           "cas": "20:00"
         },
         {
-          "datum": "20.10.2026",
+          "datum": "19.10.2026",
+          "cas": "19:00"
+        },
+        {
+          "datum": "23.10.2026",
+          "cas": "19:00"
+        },
+        {
+          "datum": "26.09.2026",
           "cas": "19:00"
         }
       ]
@@ -856,190 +1220,129 @@
       "cena": null,
       "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/03/23100656/KODALINE-POSTER-IMAGE-Large-e1774257091630.jpg",
       "popis": "Jedna z nejvýraznějších irských kapel současnosti Kodaline vyráží na své poslední světové turné Farewell Tour 2026 a v jeho rámci se 5. prosince zastaví v pražském klubu SaSaZu. Emotivní rozlučkový večer v Praha doprovází i oznámení finálního alba, které uzavře více než desetiletou kariéru kapely. Kodaline se během své kariéry vypracovali z pouličního hraní v Dublinu až na vyprodané koncerty a haly po celém světě. Jejich emotivní skladby a charakteristický zvuk si získaly miliony fanoušků napříč kontinenty a zařadily kapelu mezi nejúspěšnější irské hudební projekty posledních let.",
-      "estetickeSkore": 56,
-      "duvodSkore": "Kodaline — emotivní irský rozlučkový koncert, mainstreamová emoce."
-    },
-    {
-      "nazevCz": "Prague Proms 2026 — Jazz Drink",
-      "nazevOrig": null,
-      "autor": null,
-      "zanr": "klubová scéna",
-      "datumOd": "19.09.2026",
-      "datumDo": "19.09.2026",
-      "cas": "19:00",
-      "misto": "The Loop Jazz Club",
-      "adresa": "Weilova 2, 102 00, Hostivař, Praha 10",
-      "url": "https://prague.eu/cs/akce/prague-proms-2026-jazz-drink/",
-      "cena": null,
-      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2024/07/05151956/da5886dbe4269a79706493435c9463bd_f5363.jpg",
-      "popis": "Jazzový večer v rámci festivalu Prague Proms v The Loop Jazz Clubu v Praze spojuje live jazz s mícháním originálních drinků) a nabízí tak spojení hudby světových legend a umění barmanů v jedinečné atmosféře klubu.",
       "estetickeSkore": 55,
-      "duvodSkore": "Jazz s koktejly, spíš atmosférický klubový večer než hudební těžiště."
+      "duvodSkore": "Emotivní irský pop-rock na rozlučkovém turné, líbivé, ale mainstream."
     },
     {
-      "nazevCz": "Big Band Trumpets",
+      "nazevCz": "LOOK MUM NO COMPUTER",
       "nazevOrig": null,
-      "autor": "Big Band Trumpets",
+      "autor": "LOOK MUM NO COMPUTER",
       "zanr": "klubová scéna",
-      "datumOd": "03.11.2026",
-      "datumDo": "08.12.2026",
-      "cas": "19:00",
-      "misto": "Reduta Jazz Club",
-      "adresa": "Národní 20, 110 00, Nové Město, Praha 1",
-      "url": "https://prague.eu/cs/akce/big-band-trumpets-kings-of-swing-tribute-to-duke-ellington-quincy-jones-dizzy-gillespie-glen-miller/",
+      "datumOd": "16.02.2027",
+      "datumDo": "16.02.2027",
+      "cas": "20:00",
+      "misto": "MeetFactory",
+      "adresa": "Ke Sklárně 15, 150 00, Smíchov, Praha 5",
+      "url": "https://prague.eu/cs/akce/look-mum-no-computer/",
       "cena": null,
-      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2024/03/13050452/img-0196.jpg",
-      "popis": "Big Band Trumpets přináší do Reduta Jazz Clubu jedinečný swingový večer „Kings of Swing“ jako poctu velikánům typu Duke Ellington, Quincy Jones, Glen Miller či Dizzy Gillespie. Originální formát orchestru složeného výhradně z trumpetové sekce, doplněné rytmikou a ženským vokálem, dává známým jazzovým standardům nečekaný zvuk i energii. Připravte se na slavné hity v neobvyklém, strhujícím podání, které překvapuje i zkušené posluchače.",
-      "estetickeSkore": 54,
-      "duvodSkore": "Swingový večer trumpetové sekce, nezvyklý formát ale tribute repertoár.",
-      "terminy": [
-        {
-          "datum": "03.11.2026",
-          "cas": "19:00"
-        },
-        {
-          "datum": "06.09.2026",
-          "cas": "20:00"
-        },
-        {
-          "datum": "08.12.2026",
-          "cas": "19:00"
-        },
-        {
-          "datum": "09.08.2026",
-          "cas": "20:00"
-        },
-        {
-          "datum": "18.11.2026",
-          "cas": "19:00"
-        },
-        {
-          "datum": "23.09.2026",
-          "cas": "20:00"
-        },
-        {
-          "datum": "25.10.2026",
-          "cas": "19:00"
-        }
-      ]
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/08/24091716/LOOK-MUM-NO-COMPUTER-by-Melanie-King-compressed-scale-x2-Large.jpg",
+      "popis": "LOOK MUM NO COMPUTER vystoupí 16. února 2027 v MeetFactory. Britský hudebník, vynálezce a internetový fenomén, který kombinuje elektronickou hudbu s vlastnoručně postavenými syntezátory a neobvyklými hudebními stroji, přiveze do Prahy svou jedinečnou audiovizuální show. LOOK MUM NO COMPUTER si získal miliony fanoušků díky originálním hudebním projektům i virálním videím a letos bude reprezentovat Velkou Británii na soutěži Eurovision Song Contest se skladbou Eins, Zwei, Drei.",
+      "estetickeSkore": 55,
+      "duvodSkore": "Vlastnoručně stavěné syntezátory a audiovizuální show — tech kuriozita."
     },
     {
-      "nazevCz": "Ondřej Havelka a jeho Melody Makers — exkluzivní program pro letní scénu",
-      "nazevOrig": null,
-      "autor": "Ondřej Havelka a jeho Melody Makers",
-      "zanr": "klubová scéna",
-      "datumOd": "07.08.2026",
-      "datumDo": "07.08.2026",
-      "cas": "19:00",
-      "misto": "Letní scéna pod žižkovskou věží",
-      "adresa": "Mahlerovy sady, Žižkov, Praha 3",
-      "url": "https://prague.eu/cs/akce/ondrej-havelka-a-jeho-melody-makers-exkluzivni-program-pro-letni-scenu/",
-      "cena": null,
-      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2025/05/29141756/649-max-1200x1200-1.jpg",
-      "popis": "Nejkrasší kusy saisóny!",
-      "estetickeSkore": 52,
-      "duvodSkore": "Retro swingová show Melody Makers, spíš efektní zábava než introspektivní klub."
-    },
-    {
-      "nazevCz": "Swingin‘ to the Jazz Age — The Ultimate Tribute Concert",
-      "nazevOrig": null,
-      "autor": "Doris Lamošová",
-      "zanr": "klubová scéna",
-      "datumOd": "22.08.2026",
-      "datumDo": "28.10.2026",
-      "cas": "21:15",
-      "misto": "Reduta Jazz Club",
-      "adresa": "Národní 20, 110 00, Nové Město, Praha 1",
-      "url": "https://prague.eu/cs/akce/swingin-to-the-jazz-age-the-ultimate-tribute-concert/",
-      "cena": null,
-      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2024/03/13050437/dl.jpg",
-      "popis": "Doris Lamošová je skladatelka, hudební aranžérka a zpěvačka, která působí v několika formacích, například v The Lamas nebo v dívčím swingovém triu Hot Sisters. V Redutě vystoupí na pódiu spolu se sestru Sophii.",
-      "estetickeSkore": 52,
-      "duvodSkore": "Tribute jazzové éře, swingová revue Doris Lamošové — zábavní poloha.",
-      "terminy": [
-        {
-          "datum": "22.08.2026",
-          "cas": "21:15"
-        },
-        {
-          "datum": "28.10.2026",
-          "cas": "19:00"
-        }
-      ]
-    },
-    {
-      "nazevCz": "Swing! Swing! Swing!",
+      "nazevCz": "Live & United",
       "nazevOrig": null,
       "autor": null,
       "zanr": "klubová scéna",
-      "datumOd": "28.09.2026",
-      "datumDo": "28.09.2026",
-      "cas": "19:00",
-      "misto": "Divadlo ABC",
-      "adresa": "Vodičkova 28, 110 00, Nové Město, Praha 1",
-      "url": "https://prague.eu/cs/akce/swing-swing-swing/",
+      "datumOd": "29.10.2026",
+      "datumDo": "29.10.2026",
+      "cas": "20:00",
+      "misto": "Jazz Republic",
+      "adresa": "Jilská 1a, 110 00, Staré Město, Praha 1",
+      "url": "https://prague.eu/cs/akce/live-united/",
       "cena": null,
-      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/07/02115027/4H7B2133_Jan-Malir.jpg",
-      "popis": "Nejkrasší české písně z nesmrtelných filmových komedií První republiky! Jakož i sladké a žhavé kusy zpoza Atlantiku! V hudebním uragánu, v němž bude swištět Swing! Jedině Swing! Ten senzační Swing!",
-      "estetickeSkore": 50,
-      "duvodSkore": "Swingová revue prvorepublikových filmových hitů, zábavní retro spíš než klub."
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/02/03125011/013_20260216_DSC7041_edit.jpg",
+      "popis": "Zažijte večer nabitý energií latinskoamerických rytmů! Klub Jazz Republic vás zve na Latin Jazz Edition, jedinečný koncertní koncept, který propojuje špičkové české hudebníky a přináší publiku spontánní jazzovou improvizaci v rytmech latinu.",
+      "estetickeSkore": 54,
+      "duvodSkore": "Latin jazz s živelnou improvizací, energie víc než introspekce."
     },
     {
-      "nazevCz": "The Jazz Legends",
+      "nazevCz": "The Billie Holiday Tribute — A Journey into the Jazz Era",
       "nazevOrig": null,
-      "autor": "Metropolitan Jazz Band",
+      "autor": "Sophia Lamoš",
       "zanr": "klubová scéna",
-      "datumOd": "02.12.2026",
-      "datumDo": "16.12.2026",
+      "datumOd": "03.09.2026",
+      "datumDo": "12.11.2026",
+      "cas": "20:00",
+      "misto": "Reduta Jazz Club",
+      "adresa": "Národní 20, 110 00, Nové Město, Praha 1",
+      "url": "https://prague.eu/cs/akce/the-billie-holiday-tribute-a-journey-into-the-jazz-era/",
+      "cena": null,
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2024/03/13050642/305931346-940957173514936-5715257518342703734-n.jpg",
+      "popis": "Vystoupí Sophia Lamoš a připomene hudbu Billie Holiday, americké jazzové a swingové zpěvačky, jejíž kariéra trvala téměř tři desetiletí. Zažijete kouzlo její nadčasové hudby.",
+      "estetickeSkore": 54,
+      "duvodSkore": "Pocta Billie Holiday, nadčasové písně, ale opakovaný tribute.",
+      "terminy": [
+        {
+          "datum": "03.09.2026",
+          "cas": "20:00"
+        },
+        {
+          "datum": "12.11.2026",
+          "cas": "19:00"
+        },
+        {
+          "datum": "15.10.2026",
+          "cas": "19:00"
+        }
+      ]
+    },
+    {
+      "nazevCz": "Tribute to Jazz Legends: Timeless Melodies",
+      "nazevOrig": null,
+      "autor": "Eva Emingerová",
+      "zanr": "klubová scéna",
+      "datumOd": "01.09.2026",
+      "datumDo": "20.10.2026",
+      "cas": "20:00",
+      "misto": "Reduta Jazz Club",
+      "adresa": "Národní 20, 110 00, Nové Město, Praha 1",
+      "url": "https://prague.eu/cs/akce/tribute-to-jazz-legends-timeless-melodies-best-jazz-songs-great-singer/",
+      "cena": null,
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2024/07/31132706/tribute.jpg",
+      "popis": "Fenomenální songy jazzových legend jsou kořením každého koncertu. Velice talentovaná Eva Emingerová, zpěvačka s mimořádným žánrovým přesahem, má pro Vás připravené skladby, které promění do tisíce různých podob jako správný jazzman. Přesto skladbám zanechá jejich nenapodobitelnou krásu, dochutí je šarmem, energií a navodí atmosféru, která vtáhne posluchače do dobových kompozic.",
+      "estetickeSkore": 52,
+      "duvodSkore": "Jazzové standardy v šarmantním podání, ale tribute formát pro klub.",
+      "terminy": [
+        {
+          "datum": "01.09.2026",
+          "cas": "20:00"
+        },
+        {
+          "datum": "20.10.2026",
+          "cas": "19:00"
+        }
+      ]
+    },
+    {
+      "nazevCz": "Jazz Treasures — A Tribute Concert to the American Jazz Masters",
+      "nazevOrig": null,
+      "autor": "Otto Hejnic",
+      "zanr": "klubová scéna",
+      "datumOd": "09.11.2026",
+      "datumDo": "09.11.2026",
       "cas": "19:00",
       "misto": "Reduta Jazz Club",
       "adresa": "Národní 20, 110 00, Nové Město, Praha 1",
-      "url": "https://prague.eu/cs/akce/the-jazz-legends/",
+      "url": "https://prague.eu/cs/akce/jazz-treasures-a-tribute-concert-to-the-american-jazz-masters/",
       "cena": null,
       "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2024/07/12134500/AdobeStock_565483788.jpg",
-      "popis": "Jazzový večer s nestárnoucími melodiemi Louise Armstronga, George Gershwina a Antonia Carlose Jobima. Metropolitan Jazz Band vás provede hudební cestou, která propojuje jazzovou klasiku s bossa novou a vytváří nezapomenutelnou atmosféru plnou mistrovského provedení.",
-      "estetickeSkore": 50,
-      "duvodSkore": "Jazzové standardy a bossa nova Metropolitan Jazz Bandem — cover večer.",
+      "popis": "Špičkový projekt, kde uslyšíte to nejlepší z americké ale i z české jazzové scény. Mix jazzových osobností jako Marsalis, Louis Armstrong, Herbie Hancock, Gershwin, Jaroslav Ježek a mnoho dalších. Vychutnejte si tento opravdu skvostný zážitek v podání kapely skvělého bubeníka Otto Hejnice, který koncertuje po celém světě.",
+      "estetickeSkore": 52,
+      "duvodSkore": "Tribute americkým jazzovým mistrům, kvalitní band, ale klubový formát.",
       "terminy": [
         {
-          "datum": "02.12.2026",
+          "datum": "09.11.2026",
           "cas": "19:00"
         },
         {
-          "datum": "04.08.2026",
+          "datum": "13.09.2026",
           "cas": "20:00"
         },
         {
-          "datum": "05.11.2026",
+          "datum": "13.10.2026",
           "cas": "19:00"
-        },
-        {
-          "datum": "06.10.2026",
-          "cas": "19:00"
-        },
-        {
-          "datum": "08.09.2026",
-          "cas": "20:00"
-        },
-        {
-          "datum": "14.10.2026",
-          "cas": "19:00"
-        },
-        {
-          "datum": "16.12.2026",
-          "cas": "19:00"
-        },
-        {
-          "datum": "24.09.2026",
-          "cas": "20:00"
-        },
-        {
-          "datum": "25.11.2026",
-          "cas": "19:00"
-        },
-        {
-          "datum": "26.08.2026",
-          "cas": "20:00"
         }
       ]
     },
@@ -1057,8 +1360,8 @@
       "cena": null,
       "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2024/12/31121434/AdobeStock_565483788.jpg",
       "popis": "Večer plný jazzového podání oblíbených klasických skladeb Beatles.",
-      "estetickeSkore": 50,
-      "duvodSkore": "Jazzové aranže Beatles — příjemný cover večer bez vlastní tvorby.",
+      "estetickeSkore": 52,
+      "duvodSkore": "Beatles v jazzovém podání, hravé, ale tribute poloha.",
       "terminy": [
         {
           "datum": "05.09.2026",
@@ -1091,114 +1394,21 @@
       ]
     },
     {
-      "nazevCz": "Koncert filmové hudby",
+      "nazevCz": "Swingin‘ to the Jazz Age — The Ultimate Tribute Concert",
       "nazevOrig": null,
-      "autor": "Symfonický orchestr Dalibora Havlíčka",
+      "autor": "Doris Lamošová",
       "zanr": "klubová scéna",
-      "datumOd": "02.10.2026",
-      "datumDo": "02.10.2026",
+      "datumOd": "28.10.2026",
+      "datumDo": "28.10.2026",
       "cas": "19:00",
-      "misto": "Divadlo ABC",
-      "adresa": "Vodičkova 28, 110 00, Nové Město, Praha 1",
-      "url": "https://prague.eu/cs/akce/koncert-filmove-hudby/",
-      "cena": null,
-      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/07/02120832/foto1200x900-2-2-1772014297.png",
-      "popis": "Symfonický orchestr Dalibora Havlíčka vás zve na večer plný nezapomenutelných filmových melodií.",
-      "estetickeSkore": 48,
-      "duvodSkore": "Filmové melodie se symfonickým orchestrem — populární, mimo klubovou intimitu."
-    },
-    {
-      "nazevCz": "Nieve Ella",
-      "nazevOrig": null,
-      "autor": "Nieve Ella",
-      "zanr": "klubová scéna",
-      "datumOd": "26.11.2026",
-      "datumDo": "26.11.2026",
-      "cas": "20:00",
-      "misto": "MeetFactory",
-      "adresa": "Ke Sklárně 15, 150 00, Smíchov, Praha 5",
-      "url": "https://prague.eu/cs/akce/nieve-ella/",
-      "cena": null,
-      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/07/30134157/NE-X-YVN-ALBUM-8-e1785412205176.jpg",
-      "popis": "Britská zpěvačka a autorka Nieve Ella, která patří k nejvýraznějším novým hlasům generace Z, se vrátí do Prahy s debutovým albem How Long Will It Take?. Deska plná upřímných výpovědí o dospívání, komplikovaných vztazích i každodenních nejistotách potvrzuje její pověst interpretky, která dokáže autenticky zachytit pocity své generace. Nieve Ella vystoupí 26. listopadu 2026 v MeetFactory, kde představí nejen nové skladby, ale i energickou koncertní show, díky níž si získává stále širší publikum. Večer otevře Sofia and the Antoinettes se svým osobitým a nespoutaným popem.",
-      "estetickeSkore": 48,
-      "duvodSkore": "Nieve Ella — gen-Z pop o dospívání, mainstreamová klubová show."
-    },
-    {
-      "nazevCz": "Ruel",
-      "nazevOrig": null,
-      "autor": "Ruel",
-      "zanr": "klubová scéna",
-      "datumOd": "24.10.2026",
-      "datumDo": "24.10.2026",
-      "cas": "20:00",
-      "misto": "MeetFactory",
-      "adresa": "Ke Sklárně 15, 150 00, Smíchov, Praha 5",
-      "url": "https://prague.eu/cs/akce/ruel/",
-      "cena": null,
-      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/05/05112625/1-1.jpg",
-      "popis": "Australská popová senzace Ruel míří poprvé do Česka a v pražském MeetFactory představí svou aktuální tvorbu v rámci turné Kicking & Screaming. Charismatický zpěvák, který prorazil už jako teenager, přiveze nové album Kicking My Feet & Screaming i výběr svých největších hitů. Intimní klubové prostředí slibuje silný koncertní zážitek, v němž vynikne jeho výrazný hlas, emoce i bezprostřední kontakt s publikem.",
-      "estetickeSkore": 46,
-      "duvodSkore": "Australská popová senzace Ruel — teenage mainstream mimo Bobův vkus."
-    },
-    {
-      "nazevCz": "The Ray Charles Experience by Lee Andrew Davison",
-      "nazevOrig": null,
-      "autor": "Lee Andrew Davison",
-      "zanr": "koncerty",
-      "datumOd": "01.08.2026",
-      "datumDo": "24.11.2026",
-      "cas": "21:15",
       "misto": "Reduta Jazz Club",
       "adresa": "Národní 20, 110 00, Nové Město, Praha 1",
-      "url": "https://prague.eu/cs/akce/the-ray-charles-experience-by-lee-andrew-davison-usa/",
+      "url": "https://prague.eu/cs/akce/swingin-to-the-jazz-age-the-ultimate-tribute-concert/",
       "cena": null,
-      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2024/12/31121434/AdobeStock_565483788.jpg",
-      "popis": "Raye Charlese známe jako rozesmátého jazzmana, kterého proslavily písně z 60. a 70. let Georgia on my mind. Jeho životní i profesionální cesta byla plná krkolomných překážek, a i přes to byly obě dvě cesty po delší době úspěšně a zdatně zdolány. Raye Charlese a Lee Andrew Davisona nepojí jen láska k hudbě, ale i elán a touha tvořit hudbu publiku, které jí ocení a předá dalším generacím.",
-      "estetickeSkore": 46,
-      "duvodSkore": "Ray Charles tribute — každovečerní klubová show, cover poloha.",
-      "terminy": [
-        {
-          "datum": "01.08.2026",
-          "cas": "21:15"
-        },
-        {
-          "datum": "10.10.2026",
-          "cas": "19:00"
-        },
-        {
-          "datum": "11.09.2026",
-          "cas": "21:15"
-        },
-        {
-          "datum": "14.08.2026",
-          "cas": "21:15"
-        },
-        {
-          "datum": "14.11.2026",
-          "cas": "21:15"
-        },
-        {
-          "datum": "16.10.2026",
-          "cas": "21:15"
-        },
-        {
-          "datum": "18.09.2026",
-          "cas": "19:00"
-        },
-        {
-          "datum": "20.11.2026",
-          "cas": "21:15"
-        },
-        {
-          "datum": "24.11.2026",
-          "cas": "19:00"
-        },
-        {
-          "datum": "27.09.2026",
-          "cas": "19:00"
-        }
-      ]
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2024/03/13050437/dl.jpg",
+      "popis": "Doris Lamošová je skladatelka, hudební aranžérka a zpěvačka, která působí v několika formacích, například v The Lamas nebo v dívčím swingovém triu Hot Sisters. V Redutě vystoupí na pódiu spolu se sestru Sophii.",
+      "estetickeSkore": 50,
+      "duvodSkore": "Swingový tribute, sesterské duo, řemeslně dobré, ale klubová rutina."
     },
     {
       "nazevCz": "Le Magnifique 1",
@@ -1214,8 +1424,8 @@
       "cena": null,
       "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/07/15110711/618-ob-le-magnifique-073-www.klapper.cz_.c8fb7726831e5b8932c4c869f2c8031d.webp",
       "popis": "Jedinečný performer, zpěvák a dirigent Ondřej Brzobohatý a jeho Le Magnifique, s doprovodem skvělého Epoque Symphonic Orchestra v krásném prostředí Hudebního divadla Karlín.",
-      "estetickeSkore": 45,
-      "duvodSkore": "Estrádní show Ondřeje Brzobohatého se symfoniky — spíš spektákl než klub.",
+      "estetickeSkore": 50,
+      "duvodSkore": "Brzobohatý a symfonický orchestr, velká podívaná spíš než intimita.",
       "terminy": [
         {
           "datum": "09.11.2026",
@@ -1232,115 +1442,132 @@
       ]
     },
     {
-      "nazevCz": "Louis Armstrong Forever",
+      "nazevCz": "Prague Sounds 2026 — Kojey Radical",
       "nazevOrig": null,
-      "autor": "Old Timers Jazz Band",
+      "autor": "Kojey Radical",
       "zanr": "klubová scéna",
-      "datumOd": "07.12.2026",
-      "datumDo": "07.12.2026",
+      "datumOd": "16.11.2026",
+      "datumDo": "16.11.2026",
+      "cas": "20:00",
+      "misto": "Lucerna Music Bar",
+      "adresa": "Vodičkova 36, 110 00, Nové Město, Praha 1",
+      "url": "https://prague.eu/cs/akce/prague-sounds-2026-kojey-radical/",
+      "cena": null,
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/05/29104908/Kojey-Radical_Press-shot-Ashley-Verse-2.jpg",
+      "popis": "Nekompromisní hlas současného britského rapu míří poprvé do Prahy. Kojey Radical, vizionářský performer balancující mezi poezií, rapem i živelnou energií, přiveze na Prague Sounds intenzivní koncert plný osobních výpovědí i společenské reflexe. Umělec na vrcholu kariéry, nominovaný na Mercury Prize, slibuje strhující zážitek, který propojí intimitu i výbušnou sílu současné scény a potvrdí pověst festivalu jako místa, kde zní ty nejvýraznější hlasy dneška.",
+      "estetickeSkore": 50,
+      "duvodSkore": "Britský rap a poezie s živelnou energií, mimo tvůj hlavní záběr."
+    },
+    {
+      "nazevCz": "Big Band Trumpets",
+      "nazevOrig": null,
+      "autor": "Big Band Trumpets",
+      "zanr": "klubová scéna",
+      "datumOd": "03.11.2026",
+      "datumDo": "08.12.2026",
       "cas": "19:00",
       "misto": "Reduta Jazz Club",
       "adresa": "Národní 20, 110 00, Nové Město, Praha 1",
-      "url": "https://prague.eu/cs/akce/louis-armstrong-forever/",
+      "url": "https://prague.eu/cs/akce/big-band-trumpets-kings-of-swing-tribute-to-duke-ellington-quincy-jones-dizzy-gillespie-glen-miller/",
       "cena": null,
-      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2024/12/31114755/6.-560x790--e1777287287266.jpg",
-      "popis": "Oslava jazzové ikony Old Timers Jazz Bandem.",
-      "estetickeSkore": 45,
-      "duvodSkore": "Louis Armstrong tribute Old Timers bandem — opakovaná cover klasika.",
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2024/03/13050452/img-0196.jpg",
+      "popis": "Big Band Trumpets přináší do Reduta Jazz Clubu jedinečný swingový večer „Kings of Swing“ jako poctu velikánům typu Duke Ellington, Quincy Jones, Glen Miller či Dizzy Gillespie. Originální formát orchestru složeného výhradně z trumpetové sekce, doplněné rytmikou a ženským vokálem, dává známým jazzovým standardům nečekaný zvuk i energii. Připravte se na slavné hity v neobvyklém, strhujícím podání, které překvapuje i zkušené posluchače.",
+      "estetickeSkore": 50,
+      "duvodSkore": "Swingový večer trumpetové sekce, poctivé řemeslo, tribute formát.",
       "terminy": [
         {
-          "datum": "07.12.2026",
+          "datum": "03.11.2026",
           "cas": "19:00"
         },
         {
-          "datum": "10.11.2026",
-          "cas": "19:00"
-        },
-        {
-          "datum": "11.10.2026",
-          "cas": "19:00"
-        },
-        {
-          "datum": "12.08.2026",
+          "datum": "06.09.2026",
           "cas": "20:00"
         },
         {
-          "datum": "14.09.2026",
-          "cas": "20:00"
-        },
-        {
-          "datum": "26.10.2026",
+          "datum": "08.12.2026",
           "cas": "19:00"
         },
         {
-          "datum": "29.09.2026",
-          "cas": "20:00"
-        },
-        {
-          "datum": "29.11.2026",
+          "datum": "18.11.2026",
           "cas": "19:00"
         },
         {
-          "datum": "30.08.2026",
+          "datum": "23.09.2026",
           "cas": "20:00"
+        },
+        {
+          "datum": "25.10.2026",
+          "cas": "19:00"
         }
       ]
     },
     {
-      "nazevCz": "The Billie Holiday Tribute — A Journey into the Jazz Era",
+      "nazevCz": "The Jazz Legends",
       "nazevOrig": null,
-      "autor": "Sophia Lamoš",
+      "autor": "Metropolitan Jazz Band",
       "zanr": "klubová scéna",
-      "datumOd": "03.09.2026",
-      "datumDo": "12.11.2026",
-      "cas": "20:00",
+      "datumOd": "02.12.2026",
+      "datumDo": "16.12.2026",
+      "cas": "19:00",
       "misto": "Reduta Jazz Club",
       "adresa": "Národní 20, 110 00, Nové Město, Praha 1",
-      "url": "https://prague.eu/cs/akce/the-billie-holiday-tribute-a-journey-into-the-jazz-era/",
+      "url": "https://prague.eu/cs/akce/the-jazz-legends/",
       "cena": null,
-      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2024/03/13050642/305931346-940957173514936-5715257518342703734-n.jpg",
-      "popis": "Vystoupí Sophia Lamoš a připomene hudbu Billie Holiday, americké jazzové a swingové zpěvačky, jejíž kariéra trvala téměř tři desetiletí. Zažijete kouzlo její nadčasové hudby.",
-      "estetickeSkore": 44,
-      "duvodSkore": "Billie Holiday tribute — opakovaný cover večer v Redutě.",
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2024/07/12134500/AdobeStock_565483788.jpg",
+      "popis": "Jazzový večer s nestárnoucími melodiemi Louise Armstronga, George Gershwina a Antonia Carlose Jobima. Metropolitan Jazz Band vás provede hudební cestou, která propojuje jazzovou klasiku s bossa novou a vytváří nezapomenutelnou atmosféru plnou mistrovského provedení.",
+      "estetickeSkore": 50,
+      "duvodSkore": "Jazzová klasika s bossa novou, Metropolitan Jazz Band, klubová rutina.",
       "terminy": [
         {
-          "datum": "03.09.2026",
-          "cas": "20:00"
-        },
-        {
-          "datum": "06.08.2026",
-          "cas": "20:00"
-        },
-        {
-          "datum": "12.11.2026",
+          "datum": "02.12.2026",
           "cas": "19:00"
         },
         {
-          "datum": "15.10.2026",
+          "datum": "05.11.2026",
           "cas": "19:00"
         },
         {
-          "datum": "24.08.2026",
+          "datum": "06.10.2026",
+          "cas": "19:00"
+        },
+        {
+          "datum": "08.09.2026",
           "cas": "20:00"
+        },
+        {
+          "datum": "14.10.2026",
+          "cas": "19:00"
+        },
+        {
+          "datum": "16.12.2026",
+          "cas": "19:00"
+        },
+        {
+          "datum": "24.09.2026",
+          "cas": "20:00"
+        },
+        {
+          "datum": "25.11.2026",
+          "cas": "19:00"
         }
       ]
     },
     {
-      "nazevCz": "Baby Lasagna",
+      "nazevCz": "Prague Proms 2026 — Jazz Drink",
       "nazevOrig": null,
-      "autor": "Baby Lasagna",
+      "autor": null,
       "zanr": "klubová scéna",
-      "datumOd": "03.12.2026",
-      "datumDo": "03.12.2026",
-      "cas": "20:00",
-      "misto": "ARCHA+",
-      "adresa": "Na Poříčí 1047/26, 110 00, Nové Město, Praha 1",
-      "url": "https://prague.eu/cs/akce/baby-lasagna/",
+      "datumOd": "19.09.2026",
+      "datumDo": "19.09.2026",
+      "cas": "19:00",
+      "misto": "The Loop Jazz Club",
+      "adresa": "Weilova 2, 102 00, Hostivař, Praha 10",
+      "url": "https://prague.eu/cs/akce/prague-proms-2026-jazz-drink/",
       "cena": null,
-      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/03/18120802/Press-Shot-1-e1773832261984.jpg",
-      "popis": "Baby Lasagna se vrací do Prahy — syrovější, temnější a osobnější než kdy dřív. Chorvatský fenomén, který po Eurovizi 2024 vystřelil mezi nejvýraznější evropské umělce, dorazí 3. prosince 2026 do ARCHA+ s turné END THE PARTY TOUR. Naživo představí novou éru své tvorby, intenzivní návrat k alternativním a metalovým kořenům, hlubší sebereflexi i nečekaně upřímné výpovědi o tlaku úspěchu. Fanoušky čeká koncert, který bourá vlastní obraz i hranici mezi performerem a publikem.",
-      "estetickeSkore": 44,
-      "duvodSkore": "Baby Lasagna — post-Eurovize alt/metal show, mimo Bobovu introspekci."
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2024/07/05151956/da5886dbe4269a79706493435c9463bd_f5363.jpg",
+      "popis": "Jazzový večer v rámci festivalu Prague Proms v The Loop Jazz Clubu v Praze spojuje live jazz s mícháním originálních drinků) a nabízí tak spojení hudby světových legend a umění barmanů v jedinečné atmosféře klubu.",
+      "estetickeSkore": 48,
+      "duvodSkore": "Jazz s mícháním drinků — spíš atmosférický festivalový večer než čirá muzika."
     },
     {
       "nazevCz": "The Golden Voice: A Celebration of Tony Bennett",
@@ -1356,15 +1583,11 @@
       "cena": null,
       "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2025/12/31124937/tb.jpg",
       "popis": "Koncert věnovaný odkazu Tonyho Benetta, jedné z nejvýraznějších osobností světového jazzu, nabídne průřez jeho nejznámější tvorbou. Jazzový zpěvák David Kleňha připomene Bennettovy romantické balady i energické swingové skladby. Večer bude poctou nadčasové hudbě a výjimečnému interpretačnímu stylu.",
-      "estetickeSkore": 43,
-      "duvodSkore": "Tony Bennett tribute — opakovaný cover večer, standardy bez vlastní tvorby.",
+      "estetickeSkore": 48,
+      "duvodSkore": "Pocta Tony Bennettovi, romantické balady, klasický tribute.",
       "terminy": [
         {
           "datum": "08.10.2026",
-          "cas": "19:00"
-        },
-        {
-          "datum": "15.08.2026",
           "cas": "19:00"
         },
         {
@@ -1373,6 +1596,70 @@
         },
         {
           "datum": "21.11.2026",
+          "cas": "19:00"
+        }
+      ]
+    },
+    {
+      "nazevCz": "Polyphia",
+      "nazevOrig": null,
+      "autor": "Polyphia",
+      "zanr": "klubová scéna",
+      "datumOd": "28.11.2026",
+      "datumDo": "28.11.2026",
+      "cas": "19:30",
+      "misto": "SaSaZu — Club",
+      "adresa": "Bubenské nábřeží 306, 170 00, Holešovice, Praha 7",
+      "url": "https://prague.eu/cs/akce/polyphia/",
+      "cena": null,
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/06/17090558/Caleb-Young-Large.jpg",
+      "popis": "Instrumentální fenomén Polyphia zamíří 28. listopadu 2026 do pražského SaSaZu. Čtveřice z Texasu si získala celosvětovou pozornost originálním propojením virtuózních kytarových výkonů, hiphopových rytmů, trapové produkce a progresivního metalu. Po úspěchu alba Remember That You Will Die a vydání nového singlu Can You Feel It vstupují Polyphia do další kapitoly své kariéry, která vyvrcholí novou deskou a rozsáhlým mezinárodním turné.",
+      "estetickeSkore": 48,
+      "duvodSkore": "Virtuózní instrumentální prog s trapem, technika nad emocí."
+    },
+    {
+      "nazevCz": "Louis Armstrong Forever",
+      "nazevOrig": null,
+      "autor": "Old Timers Jazz Band",
+      "zanr": "klubová scéna",
+      "datumOd": "07.12.2026",
+      "datumDo": "07.12.2026",
+      "cas": "19:00",
+      "misto": "Reduta Jazz Club",
+      "adresa": "Národní 20, 110 00, Nové Město, Praha 1",
+      "url": "https://prague.eu/cs/akce/louis-armstrong-forever/",
+      "cena": null,
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2024/12/31114755/6.-560x790--e1777287287266.jpg",
+      "popis": "Oslava jazzové ikony Old Timers Jazz Bandem.",
+      "estetickeSkore": 48,
+      "duvodSkore": "Oslava Armstronga Old Timers bandem, milé, ale klubová klasika.",
+      "terminy": [
+        {
+          "datum": "07.12.2026",
+          "cas": "19:00"
+        },
+        {
+          "datum": "10.11.2026",
+          "cas": "19:00"
+        },
+        {
+          "datum": "11.10.2026",
+          "cas": "19:00"
+        },
+        {
+          "datum": "14.09.2026",
+          "cas": "20:00"
+        },
+        {
+          "datum": "26.10.2026",
+          "cas": "19:00"
+        },
+        {
+          "datum": "29.09.2026",
+          "cas": "20:00"
+        },
+        {
+          "datum": "29.11.2026",
           "cas": "19:00"
         }
       ]
@@ -1391,15 +1678,11 @@
       "cena": null,
       "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2024/03/13051138/frank-sinatra-1957-studio-portrait-close-up-.jpg",
       "popis": "Reduta Jazz Club patří opakovaně k TOP 10 jazzovým klubů světa. V kombinaci s hity amerického elegána, bezkonkurenčního zpěváka a charismatického Franka Sinatry dostanou všichni milovníci hudby dokonalý nezapomenutelný hudební zážitek. Frank Sinatra zazní v podání mezinárodně oceňovaného bandu Mira Ochotnického, kterému není Sinatrův šarm rozhodně cizí a postará se o to, že na Vás dýchne atmosféra minulých let.",
-      "estetickeSkore": 43,
-      "duvodSkore": "Sinatra tribute — opakovaná klubová show standardů.",
+      "estetickeSkore": 46,
+      "duvodSkore": "Sinatra tribute v top klubu, elegantní, ale opakovaný formát.",
       "terminy": [
         {
           "datum": "03.10.2026",
-          "cas": "19:00"
-        },
-        {
-          "datum": "07.08.2026",
           "cas": "19:00"
         },
         {
@@ -1425,69 +1708,6 @@
         {
           "datum": "28.11.2026",
           "cas": "19:00"
-        },
-        {
-          "datum": "29.08.2026",
-          "cas": "19:00"
-        }
-      ]
-    },
-    {
-      "nazevCz": "Ella Fitzgerald — The Voice of Jazz, Forever Resonating",
-      "nazevOrig": null,
-      "autor": "Elena Sonenshine",
-      "zanr": "klubová scéna",
-      "datumOd": "02.11.2026",
-      "datumDo": "16.11.2026",
-      "cas": "19:00",
-      "misto": "Reduta Jazz Club",
-      "adresa": "Národní 20, 110 00, Nové Město, Praha 1",
-      "url": "https://prague.eu/cs/akce/ella-fitzgerald-the-voice-of-jazz-forever-resonating/",
-      "cena": null,
-      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2024/03/13053036/ef.jpg",
-      "popis": "Nejznámější jazzová zpěvačka všech dob, skutečná královna svého žánru. Poslechněte si nezapomenutelný koncert k poctě Elly Fitzgerald v podání mistryně skatu a klasického jazzu, skvělé Eleny Sonenshine a jejího výtečného kvartetu těch nejlepších jazzových profesionálů.",
-      "estetickeSkore": 42,
-      "duvodSkore": "Ella Fitzgerald tribute — každotýdenní klubová cover show pro návštěvníky.",
-      "terminy": [
-        {
-          "datum": "02.11.2026",
-          "cas": "19:00"
-        },
-        {
-          "datum": "04.09.2026",
-          "cas": "19:00"
-        },
-        {
-          "datum": "07.09.2026",
-          "cas": "20:00"
-        },
-        {
-          "datum": "08.08.2026",
-          "cas": "19:00"
-        },
-        {
-          "datum": "09.10.2026",
-          "cas": "19:00"
-        },
-        {
-          "datum": "13.11.2026",
-          "cas": "19:00"
-        },
-        {
-          "datum": "14.08.2026",
-          "cas": "19:00"
-        },
-        {
-          "datum": "16.11.2026",
-          "cas": "19:00"
-        },
-        {
-          "datum": "17.09.2026",
-          "cas": "20:00"
-        },
-        {
-          "datum": "19.10.2026",
-          "cas": "19:00"
         }
       ]
     },
@@ -1505,8 +1725,8 @@
       "cena": null,
       "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2024/07/31114337/elen.jpg",
       "popis": "To nejlepší ze swingové klasiky v podání okouzlující Eleny Sonenshine, která svým projevem a temperamentem připomíná Ellu Fitzgerald.",
-      "estetickeSkore": 42,
-      "duvodSkore": "Swingová klasika à la Ella — opakovaný cover večer.",
+      "estetickeSkore": 46,
+      "duvodSkore": "Swingová klasika à la Ella, půvabný projev, ale rotační set Reduty.",
       "terminy": [
         {
           "datum": "04.09.2026",
@@ -1514,10 +1734,6 @@
         },
         {
           "datum": "04.12.2026",
-          "cas": "21:15"
-        },
-        {
-          "datum": "08.08.2026",
           "cas": "21:15"
         },
         {
@@ -1543,6 +1759,108 @@
       ]
     },
     {
+      "nazevCz": "Koncert filmové hudby",
+      "nazevOrig": null,
+      "autor": null,
+      "zanr": "klubová scéna",
+      "datumOd": "02.10.2026",
+      "datumDo": "02.10.2026",
+      "cas": "19:00",
+      "misto": "Divadlo ABC",
+      "adresa": "Vodičkova 28, 110 00, Nové Město, Praha 1",
+      "url": "https://prague.eu/cs/akce/koncert-filmove-hudby/",
+      "cena": null,
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/07/02120832/foto1200x900-2-2-1772014297.png",
+      "popis": "Symfonický orchestr Dalibora Havlíčka vás zve na večer plný nezapomenutelných filmových melodií.",
+      "estetickeSkore": 45,
+      "duvodSkore": "Symfonický večer filmových melodií, líbivé, ale bez autorské hloubky."
+    },
+    {
+      "nazevCz": "Baby Lasagna",
+      "nazevOrig": null,
+      "autor": "Baby Lasagna",
+      "zanr": "klubová scéna",
+      "datumOd": "03.12.2026",
+      "datumDo": "03.12.2026",
+      "cas": "20:00",
+      "misto": "ARCHA+",
+      "adresa": "Na Poříčí 1047/26, 110 00, Nové Město, Praha 1",
+      "url": "https://prague.eu/cs/akce/baby-lasagna/",
+      "cena": null,
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/03/18120802/Press-Shot-1-e1773832261984.jpg",
+      "popis": "Baby Lasagna se vrací do Prahy — syrovější, temnější a osobnější než kdy dřív. Chorvatský fenomén, který po Eurovizi 2024 vystřelil mezi nejvýraznější evropské umělce, dorazí 3. prosince 2026 do ARCHA+ s turné END THE PARTY TOUR. Naživo představí novou éru své tvorby, intenzivní návrat k alternativním a metalovým kořenům, hlubší sebereflexi i nečekaně upřímné výpovědi o tlaku úspěchu. Fanoušky čeká koncert, který bourá vlastní obraz i hranici mezi performerem a publikem.",
+      "estetickeSkore": 42,
+      "duvodSkore": "Chorvatský alt-metal fenomén po Eurovizi, hlučnější poloha."
+    },
+    {
+      "nazevCz": "Swing! Swing! Swing!",
+      "nazevOrig": null,
+      "autor": null,
+      "zanr": "klubová scéna",
+      "datumOd": "28.09.2026",
+      "datumDo": "28.09.2026",
+      "cas": "19:00",
+      "misto": "Divadlo ABC",
+      "adresa": "Vodičkova 28, 110 00, Nové Město, Praha 1",
+      "url": "https://prague.eu/cs/akce/swing-swing-swing/",
+      "cena": null,
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/07/02115027/4H7B2133_Jan-Malir.jpg",
+      "popis": "Nejkrasší české písně z nesmrtelných filmových komedií První republiky! Jakož i sladké a žhavé kusy zpoza Atlantiku! V hudebním uragánu, v němž bude swištět Swing! Jedině Swing! Ten senzační Swing!",
+      "estetickeSkore": 40,
+      "duvodSkore": "Swingová revue prvorepublikových hitů, spíš zábavní nostalgie."
+    },
+    {
+      "nazevCz": "Ruel",
+      "nazevOrig": null,
+      "autor": "Ruel",
+      "zanr": "klubová scéna",
+      "datumOd": "24.10.2026",
+      "datumDo": "24.10.2026",
+      "cas": "20:00",
+      "misto": "MeetFactory",
+      "adresa": "Ke Sklárně 15, 150 00, Smíchov, Praha 5",
+      "url": "https://prague.eu/cs/akce/ruel/",
+      "cena": null,
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/05/05112625/1-1.jpg",
+      "popis": "Australská popová senzace Ruel míří poprvé do Česka a v pražském MeetFactory představí svou aktuální tvorbu v rámci turné Kicking & Screaming. Charismatický zpěvák, který prorazil už jako teenager, přiveze nové album Kicking My Feet & Screaming i výběr svých největších hitů. Intimní klubové prostředí slibuje silný koncertní zážitek, v němž vynikne jeho výrazný hlas, emoce i bezprostřední kontakt s publikem.",
+      "estetickeSkore": 40,
+      "duvodSkore": "Australský pop pro mladé publikum, mimo tvůj vkus."
+    },
+    {
+      "nazevCz": "Nieve Ella",
+      "nazevOrig": null,
+      "autor": "Nieve Ella",
+      "zanr": "klubová scéna",
+      "datumOd": "26.11.2026",
+      "datumDo": "26.11.2026",
+      "cas": "20:00",
+      "misto": "MeetFactory",
+      "adresa": "Ke Sklárně 15, 150 00, Smíchov, Praha 5",
+      "url": "https://prague.eu/cs/akce/nieve-ella/",
+      "cena": null,
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/07/30134157/NE-X-YVN-ALBUM-8-e1785412205176.jpg",
+      "popis": "Britská zpěvačka a autorka Nieve Ella, která patří k nejvýraznějším novým hlasům generace Z, se vrátí do Prahy s debutovým albem How Long Will It Take?. Deska plná upřímných výpovědí o dospívání, komplikovaných vztazích i každodenních nejistotách potvrzuje její pověst interpretky, která dokáže autenticky zachytit pocity své generace. Nieve Ella vystoupí 26. listopadu 2026 v MeetFactory, kde představí nejen nové skladby, ale i energickou koncertní show, díky níž si získává stále širší publikum. Večer otevře Sofia and the Antoinettes se svým osobitým a nespoutaným popem.",
+      "estetickeSkore": 38,
+      "duvodSkore": "Gen Z pop o dospívání, energická show, mimo tvůj vkus."
+    },
+    {
+      "nazevCz": "Zelenáči — vánoční koncert",
+      "nazevOrig": null,
+      "autor": "Zelenáči",
+      "zanr": "klubová scéna",
+      "datumOd": "09.12.2026",
+      "datumDo": "09.12.2026",
+      "cas": "19:30",
+      "misto": "Městská knihovna v Praze — Ústřední knihovna",
+      "adresa": "Mariánské náměstí 1/98, 110 00, Staré Město, Praha 1",
+      "url": "https://prague.eu/cs/akce/zelenaci-vanocni-koncert/",
+      "cena": null,
+      "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/08/20115152/zelenaci_cesta.jpg-e1787222029883.avif",
+      "popis": "Skupina Zelenáči zve na tradiční vánoční koncert do Městské knihovny v Praze. Večer nabídne průřez repertoárem jedné z nejvýraznějších kapel české country scény, doplněný o písně s vánoční tematikou. Koncert naváže na dlouholetou tradici předvánočních vystoupení, která Zelenáči pořádají již od roku 1990.",
+      "estetickeSkore": 35,
+      "duvodSkore": "Country vánoční koncert Zelenáčů, mimo tvoji krevní skupinu."
+    },
+    {
       "nazevCz": "Pocta Haně Zagorové",
       "nazevOrig": null,
       "autor": "Hana Skalická",
@@ -1556,8 +1874,8 @@
       "cena": null,
       "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/07/02122835/PosterA3_KaZ_Pocta_Hane_Zagorove_page-0001-2-1780578493.jpg",
       "popis": "Písničky Hany Zagorové nás provázejí celým životem a jsou pevně zapsané v našich srdcích. Večer s názvem Pocta Haně Zagorové je připomene v plné parádě, s obrovskou úctou a láskou, jakou si tato legenda zaslouží. Nestárnoucích hitů se chopí půvabná Hana Skalická, jejíž projev v sobě nese neuvěřitelně povědomou lehkost a křehkost.",
-      "estetickeSkore": 40,
-      "duvodSkore": "Pocta Zagorové — nostalgický popový večer mimo Bobovo ladění."
+      "estetickeSkore": 30,
+      "duvodSkore": "Tribute pop hitům Zagorové, mimo tvoji krevní skupinu."
     },
     {
       "nazevCz": "Edis",
@@ -1573,8 +1891,8 @@
       "cena": null,
       "thumbnail": "https://imgproxy.cdn.praguecitytourism.city/insecure/rt:fit/w:399/q:90/plain/https://pct-wp-prod.storage.googleapis.com/2026/05/28121828/EDIS-PHOTO-2-e1779963808804.jpg",
       "popis": "Turecká popová superstar EDIS poprvé míří na evropské turné a 18. listopadu 2026 dorazí i do pražské Cargo Gallery. Jeden z nejvýraznějších hlasů současné turecké scény, jehož hity nasbíraly miliardy streamů, přiveze energickou show potvrzující sílu globálního popu napříč jazykovými hranicemi. Koncert nabídne jedinečnou příležitost zažít umělce, který patří k hlavním favoritům na průlom turecké hudby do světového mainstreamu.",
-      "estetickeSkore": 40,
-      "duvodSkore": "Turecká popová superstar Edis — globální mainstream mimo Bobovo ladění."
+      "estetickeSkore": 30,
+      "duvodSkore": "Turecký pop superstar, velká show pro masy, ne tvoje."
     }
   ]
 }

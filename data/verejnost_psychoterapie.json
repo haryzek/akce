@@ -1,0 +1,90 @@
+{
+  "typAkce": "verejnost_psychoterapie",
+  "vygenerovanoAt": "2026-09-01T21:30:00",
+  "obdobiOd": "01.09.2026",
+  "obdobiDo": "01.10.2026",
+  "verejnost_psychoterapie": [
+    {
+      "nazevCz": "Práce se sny podle C. G. Junga",
+      "nazevOrig": null,
+      "autor": "Michal Pacvoň, PhD.",
+      "zanr": "seminář",
+      "datumOd": "26.09.2026",
+      "datumDo": "27.09.2026",
+      "cas": null,
+      "misto": "Centrum Lávka, Kafkova 10, Praha 6 – Dejvice",
+      "adresa": null,
+      "url": "https://centrum-lavka.cz/prace-se-sny-jung-seminar/",
+      "cena": "3600 Kč",
+      "thumbnail": null,
+      "popis": "Seminář je rozdělený do dvou bloků. První den představí teorii práce se sny – různá pojetí a funkce snu i to, jak se sny pracovat v každodenním životě. Druhý den se věnuje konkrétním snům účastníků, na kterých si prakticky ukážou různé metody práce se sny: techniku volných asociací, amplifikaci snového materiálu, imaginativní rozvinutí snových motivů i rozvinutí snu pomocí kreativního vyjádření. Sen je něco důvěrného a citlivého, proto je při práci kladen důraz na bezpečný prostor všech účastníků. Východiskem je Jungovo pojetí snu jako něčeho živoucího – nejde jen o porozumění snu, ale o naladění na emoce a obsahy, které přináší, a vstup s nimi do dialogu.",
+      "estetickeSkore": 93,
+      "duvodSkore": "Jungovská práce se sny, stínem a archetypy – hlubinná psychologie v čisté podobě."
+    },
+    {
+      "nazevCz": "Jednodenní kurz focusingu – Úvod",
+      "nazevOrig": null,
+      "autor": "Centrum Lávka",
+      "zanr": "kurz",
+      "datumOd": "19.09.2026",
+      "datumDo": "19.09.2026",
+      "cas": "09:30",
+      "misto": "Centrum Lávka, Kafkova 10, Praha 6 – Dejvice",
+      "adresa": null,
+      "url": "https://centrum-lavka.cz/focusing/",
+      "cena": null,
+      "thumbnail": null,
+      "popis": "Focusing je terapeutická metoda založená na uvědomování si tělesného ohniska prožívání (focus), porozumění jeho prožívanému významu (felt sense) a následné spontánní změně prožívání, tzv. prožívaném posunu (felt shift). Dostává nás do kontaktu s vlastním prožíváním a emocemi na předpojmové úrovni, takže se lze vyhnout starým myšlenkovým schématům, které bývají zavádějící a brání hlubšímu porozumění vlastním problémům. Metodu vytvořil na univerzitě v Chicagu americký psychoterapeut Eugene Gendlin, blízký spolupracovník Carla Rogerse. Focusing lze aplikovat v psychoterapii nebo se ho naučit používat samostatně jako metodu sebepoznání a psychohygieny. Sebezkušenostní workshop se zaměřuje na praktické pochopení základních kroků focusingového procesu a na to, jak objevovat pociťovaný smysl přímo v těle.",
+      "estetickeSkore": 90,
+      "duvodSkore": "Focusing = tělesné prožívání a předpojmové vrstvy, přesně tvoje parketa."
+    },
+    {
+      "nazevCz": "Mindfulness skupina – základní výcvik",
+      "nazevOrig": null,
+      "autor": "Jan Honzík, Slávek Keprt",
+      "zanr": "skupina",
+      "datumOd": "09.09.2026",
+      "datumDo": "30.11.2026",
+      "cas": "19:00",
+      "misto": "Centrum Lávka, Kafkova 10, Praha 6 – Dejvice",
+      "adresa": null,
+      "url": "https://centrum-lavka.cz/zakladni-vycvik-mindfulness/",
+      "cena": "5800 Kč / 8 setkání",
+      "thumbnail": null,
+      "popis": "Během osmi týdnů probíhá osm skupinových setkání (cca 2hodinových). Účastníci si pod vedením zkušených lektorů osvojí základní techniky rozvíjející sebeuvědomění, soustředění, klid, vyrovnanost, trpělivost, odolnost, laskavost a další schopnosti mysli, které pomáhají zvládat pracovní, zdravotní i psychickou zátěž a prohlubují porozumění sobě samému. Techniky pak účastníci praktikují samostatně každý den po dobu osmi týdnů, prohlubují dovednosti vlastní praxí a sdílením ve skupině. Vedle formální praxe (meditační a introspektivní cvičení) se věnují i neformální praxi – aplikaci principů všímavosti v běžných denních činnostech.",
+      "estetickeSkore": 85,
+      "duvodSkore": "Poctivý osmitýdenní mindfulness výcvik se zkušenými lektory, ne wellness pozlátko.",
+      "terminy": [
+        {
+          "datum": "09.09.2026",
+          "cas": "19:00"
+        },
+        {
+          "datum": "15.09.2026",
+          "cas": "10:00"
+        },
+        {
+          "datum": "01.10.2026",
+          "cas": "19:00"
+        }
+      ]
+    },
+    {
+      "nazevCz": "Mindfulness III – pokračovací program",
+      "nazevOrig": null,
+      "autor": "Centrum Lávka",
+      "zanr": "skupina",
+      "datumOd": "14.09.2026",
+      "datumDo": "30.11.2026",
+      "cas": null,
+      "misto": "Centrum Lávka, Kafkova 10, Praha 6 – Dejvice",
+      "adresa": null,
+      "url": "https://centrum-lavka.cz/mindfulness-program-3/",
+      "cena": "5800 Kč (cena zahrnuje 8 lekcí a Průvodce výcvikem s archy pro záznam domácí praxe)",
+      "thumbnail": null,
+      "popis": "Pokračovací program pro ty, kdo už absolvovali základní osmitýdenní mindfulness výcvik a chtějí ve skupinové práci a pravidelném setkávání pokračovat, oživit a dále rozvíjet svou praxi. Nabízí možnost poznat další zkušené lektory mindfulness a sdílet zkušenosti s ostatními účastníky. Přihlásit se lze i bez absolvování Mindfulness II.",
+      "estetickeSkore": 68,
+      "duvodSkore": "Pokračování mindfulness praxe pro ty, kdo chtějí jít hlouběji, ne u základů."
+    }
+  ]
+}

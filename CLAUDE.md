@@ -340,6 +340,22 @@ srovnají) se z dotazu vyloupne jako číselný filtr roku (`rozeberDotazDoma`),
 zbytek jede dál substringem → funguje i „bergman 1950-1960".
 Srdíčka mají prefix `filmy_doma::`, takže watchlist se nemíchá s oblíbenými z kin.
 
+**Dudlík „rozmazlenej frack"** (`#filtr-frack`, třída `.dudlik`, vidět jen v režimu
+doma): každý film má v JSONu `dobovaZatez` 0–10 = kolik z jeho pověsti nese doba
+vzniku, technika, závažnost tématu, vliv na další tvůrce či dobová politika, NE
+provedení z dnešního pohledu (přirozené herectví, moderní režie a střih). Zapnutý
+dudlík srazí **obě metriky** (`estetickeSkore` i `vazenePrumer`) o `FRACK_NASOBEK`
+(3) × zátěž, dole oříznuto na 0 — nahoru vyplavou filmy, které baví i moderního
+fracka, kánon se vrátí vypnutím. Jde přes helpery `skoreDoma`/`prumerDoma`
+(řazení `seradFilmyDoma`, filtr hvězdy, karta, dashboard i tiles příbuzných);
+kina (`filmy.json`) pole nemají a helpery je nechají beze změny. Stav se pamatuje
+v localStorage `akce-frack` (na rozdíl od hvězdy/srdíčka — je to nálada na dýl).
+Zátěž je jednorázový AI výstup (Claude, 2026-09, po dávkách 200 podle názvu+roku);
+dolévá ji `support/pridej_zatez.py` z JSONu `{"<nazevOrig>|<rok>": 0–10}`, který
+hlídá, že se v datech nezmění nic jiného. Kalibrace: 0 = Mulholland Dr., Festen,
+Parasite; 3–4 = 400 Blows, Vertigo, 2001; 6–7 = Tokyo Story, Citizen Kane, Ordet;
+9–10 = Joan of Arc, Potěmkin, Jeanne Dielman, němý film obecně.
+
 Klik na **kolečko skóre** karty (i v dashboardu) je zřetězený přepínač (`klikNaKolecko`):
 neviděný film → **„viděno"** (zelený obrys, `--videno`, localStorage `akce-videno`);
 viděný/zařazený film → otevře **panel žebříčku** (viz níže). Kolečka se synchronizují

@@ -43,6 +43,42 @@ let DOMA_MAPA = new Map(); // domaId -> film (lookup pro dashboard po kliku na k
 const DOMA_DAVKA = 100; // karet na jednu dávku renderu (3000 karet naráz by DOM zabilo)
 let DOMA_LIMIT = DOMA_DAVKA; // kolik karet je právě zobrazeno (infinite scroll zvyšuje)
 
+// "Rozmazlenej frack" (dudlík): penalizace dobové zátěže. Každý film ve filmotéce má
+// dobovaZatez 0–10 = kolik z jeho pověsti nese doba vzniku, technika, závažnost tématu,
+// vliv na další tvůrce či dobová politika, NE provedení z dnešního pohledu (přirozené
+// herectví, moderní režie a střih). Zapnutý dudlík srazí skóre o NASOBEK × zátěž, takže
+// nahoru vyplavou filmy, které baví i moderního fracka; kánon se vrátí vypnutím.
+// Stav se pamatuje v localStorage (na rozdíl od hvězdy/srdíčka — je to nálada na dýl).
+const FRACK_KLIC = "akce-frack";
+const FRACK_NASOBEK = 3; // body skóre za jeden bod zátěže (0–10 → srážka 0–30)
+let FRACK = false;
+try {
+  FRACK = localStorage.getItem(FRACK_KLIC) === "1";
+} catch (_) { /* privátní okno apod. — prostě vypnuto */ }
+
+// Srážka pro daný film (0, když je dudlík vypnutý nebo film pole nemá).
+function dobovaPenalizace(film) {
+  if (!FRACK) return 0;
+  return FRACK_NASOBEK * (Number(film.dobovaZatez) || 0);
+}
+
+// Skóre po srážce, dole oříznuté na 0; null/undefined projde beze změny ("—").
+function penalizovane(hodnota, film) {
+  if (hodnota === null || hodnota === undefined) return hodnota;
+  return Math.max(0, hodnota - dobovaPenalizace(film));
+}
+
+// Obě metriky filmotéky v jedné podobě, jakou používá řazení, karta i dashboard.
+const skoreDoma = (film) => penalizovane(film.estetickeSkore, film);
+const prumerDoma = (film) => penalizovane(film.hodnoceni?.vazenePrumer, film);
+
+// Filmotéka se řadí podle estetického skóre (režim nemá volbu řazení); po přepnutí
+// dudlíku se musí přeřadit, protože srážka je per film.
+function seradFilmyDoma() {
+  if (!FILMY_DOMA) return;
+  FILMY_DOMA.sort((a, b) => (skoreDoma(b.data) ?? -1) - (skoreDoma(a.data) ?? -1));
+}
+
 // ---- oblíbené (localStorage, generické napříč typy akcí) ----
 
 const OBLIBENE_KLIC = "akce-oblibene";
@@ -170,6 +206,16 @@ const IKONA_SRDCE =
 // hvězda pro horní přepínač "jen špička" (stejný styl a dva stavy jako srdce)
 const IKONA_HVEZDA =
   '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.85 6.02 6.6.62-4.98 4.38 1.48 6.48L12 16.9l-5.95 3.2 1.48-6.48L2.55 9.24l6.6-.62z"/></svg>';
+
+// dudlík pro přepínač "rozmazlenej frack" (srážka za dobovou zátěž ve filmotéce):
+// tři jednoduché uzavřené tvary (savička, štítek, kroužek), stejný obrys→výplň
+// princip jako hvězda — CSS přes .dudlik.
+const IKONA_DUDLIK =
+  '<svg viewBox="0 0 24 24" aria-hidden="true">' +
+  '<ellipse cx="12" cy="6.3" rx="3" ry="3.4"/>' +
+  '<rect x="3.5" y="9.6" width="17" height="5.2" rx="2.6"/>' +
+  '<circle cx="12" cy="18.3" r="3"/>' +
+  "</svg>";
 
 // filmový pás pro přepínač režimu "filmy na doma". Dvě cesty, mezi kterými přepíná
 // CSS podle stavu (jako obrys→výplň u srdce/hvězdy): v klidu čárová obrysovka
@@ -510,8 +556,8 @@ async function nactiFilmyDoma() {
         [f.nazevCz, f.nazevOrig, f.rezie, f.rok, f.zanr].filter(Boolean).join(" ")
       ),
     }));
-    // žebříček se řadí jednou tady (podle estetického skóre), režim nemá volbu řazení
-    FILMY_DOMA.sort((a, b) => (b.data.estetickeSkore ?? -1) - (a.data.estetickeSkore ?? -1));
+    // žebříček se řadí tady (podle estetického skóre) a pak už jen po přepnutí dudlíku
+    seradFilmyDoma();
     DOMA_MAPA = new Map(FILMY_DOMA.map((f) => [domaId(f.data), f.data]));
   } catch (chyba) {
     console.warn("Chyba při čtení data/filmy_doma.json:", chyba);
@@ -530,14 +576,20 @@ function domaId(film) {
 // vážený průměr (zaokrouhlený, ať se vejde), ve žlutém řádku estetické skóre + films101.
 // Bez projekcí (žádné nejsou), popis se dočasně bere z duvodSkore (viz JSON kontrakt).
 function vykresliKartuFilmuDoma(film, id) {
-  const prumer = film.hodnoceni?.vazenePrumer;
+  // obě metriky přes helpery — se zapnutým dudlíkem už jsou po srážce za dobovou zátěž
+  const prumer = prumerDoma(film);
   const skore = prumer === null || prumer === undefined ? "—" : Math.round(prumer);
   const rezieRok = [film.rezie, film.rok].filter(Boolean).join(" · ");
+  const srazka = dobovaPenalizace(film);
+  const titulSkore = srazka
+    ? `Vážený průměr po srážce −${srazka} za dobovou zátěž · klik = viděno, další klik = žebříček`
+    : "Vážený průměr · klik = viděno, další klik = žebříček";
 
   // žlutý řádek: vpředu estetické skóre s ikonkou (role váženého průměru), za ním films101
+  const estHodnota = skoreDoma(film);
   const est =
-    film.estetickeSkore !== null && film.estetickeSkore !== undefined
-      ? `<span class="prumer">${IKONA_PRUMER}${escapeHtml(film.estetickeSkore)}</span>`
+    estHodnota !== null && estHodnota !== undefined
+      ? `<span class="prumer">${IKONA_PRUMER}${escapeHtml(estHodnota)}</span>`
       : "";
   const f101 =
     film.hodnoceni?.films101 !== null && film.hodnoceni?.films101 !== undefined
@@ -564,7 +616,7 @@ function vykresliKartuFilmuDoma(film, id) {
         <div class="karta-vpravo">
           <div class="skore skore-klik${VIDENO.has(id) || poradiVZebricku(id) ? " videno" : ""}"
                data-id="${encodeURIComponent(id)}" data-skore="${escapeHtml(skore)}"
-               title="Vážený průměr · klik = viděno, další klik = žebříček">${escapeHtml(skore)}</div>
+               title="${escapeHtml(titulSkore)}">${escapeHtml(skore)}</div>
           ${vykresliSrdce(id, OBLIBENE.has(id))}
         </div>
       </div>
@@ -864,7 +916,11 @@ function vykresliDashboard(film, typ) {
     .split(",").map((z) => z.trim()).filter(Boolean)
     .map((z) => `<span class="dash-zanr">${escapeHtml(z)}</span>`).join("");
 
-  const prumer = film.hodnoceni?.vazenePrumer;
+  // filmotéka: obě metriky po případné srážce dudlíku (kina dudlík nemají — helpery vrací
+  // hodnotu beze změny, když film pole dobovaZatez nemá)
+  const prumer = typ === "filmy_doma" ? prumerDoma(film) : film.hodnoceni?.vazenePrumer;
+  const estSkore = typ === "filmy_doma" ? skoreDoma(film) : film.estetickeSkore;
+  const srazka = typ === "filmy_doma" ? dobovaPenalizace(film) : 0;
 
   // Hlavní text: popis, pak (jen když se liší) duvodSkore, pak vlastní recenze — stejné
   // pořadí jako na kartě "Filmy". U filmotéky je popis===duvodSkore (dočasná vlastnost
@@ -910,7 +966,7 @@ function vykresliDashboard(film, typ) {
     .map(({ data: p, typ: typP }) => `
       <button type="button" class="dash-tile" data-film-id="${encodeURIComponent(akceId({ typAkce: typP, data: p }))}" data-typ="${escapeHtml(typP)}">
         <span class="dash-tile-nazev">${escapeHtml(p.nazevCz)}</span>
-        <span class="dash-tile-meta">${escapeHtml(p.rok || "—")} · <strong>${escapeHtml(hodnotaNebo(p.estetickeSkore))}</strong></span>
+        <span class="dash-tile-meta">${escapeHtml(p.rok || "—")} · <strong>${escapeHtml(hodnotaNebo(typP === "filmy_doma" ? skoreDoma(p) : p.estetickeSkore))}</strong></span>
       </button>`)
     .join("");
   const hledatRezisera = pribuzne.rezie && typ === "filmy_doma"
@@ -945,9 +1001,9 @@ function vykresliDashboard(film, typ) {
         <div class="dash-skore-blok">
           <div class="dash-skore-hlavni">
             <div class="skore dash-skore skore-klik${VIDENO.has(id) || poradiVZebricku(id) ? " videno" : ""}"
-                 data-id="${encodeURIComponent(id)}" data-skore="${escapeHtml(hodnotaNebo(film.estetickeSkore))}"
-                 title="Estetické skóre · klik = viděno, další klik = žebříček">${escapeHtml(hodnotaNebo(film.estetickeSkore))}</div>
-            <span class="dash-skore-popisek">estetické skóre</span>
+                 data-id="${encodeURIComponent(id)}" data-skore="${escapeHtml(hodnotaNebo(estSkore))}"
+                 title="Estetické skóre${srazka ? ` po srážce −${srazka} za dobovou zátěž` : ""} · klik = viděno, další klik = žebříček">${escapeHtml(hodnotaNebo(estSkore))}</div>
+            <span class="dash-skore-popisek">${srazka ? `estetické skóre −${srazka} (dudlík)` : "estetické skóre"}</span>
           </div>
           <div class="dash-skore-vedlejsi">
             ${skoreVedlejsi}
@@ -1054,7 +1110,7 @@ function prekresliDoma() {
     }
     if (dotaz && !f.hledaci.includes(dotaz)) return false;
     if (JEN_OBLIBENE && !OBLIBENE.has(domaId(f.data))) return false;
-    if (JEN_TOP && (f.data.estetickeSkore ?? -1) < TOP_PRAH) return false;
+    if (JEN_TOP && (skoreDoma(f.data) ?? -1) < TOP_PRAH) return false;
     return true;
   });
 
@@ -1605,16 +1661,17 @@ async function init() {
   // duplicitní ID, žádné ruční syncování dvou tlačítek.
   const hvezdaTlacitko = document.getElementById("filtr-top");
   const pasTlacitko = document.getElementById("rezim-doma");
+  const dudlikTlacitko = document.getElementById("filtr-frack"); // jede s nimi (vidět jen v režimu doma)
   const srdceTlacitko = document.getElementById("filtr-oblibene"); // kotva pro návrat na desktopu
   const mobilniPrepinace = document.getElementById("mobilni-prepinace");
   const jeMobil = window.matchMedia("(max-width: 600px)");
 
   function aktualizujUmisteniPrepinacu() {
     if (jeMobil.matches) {
-      mobilniPrepinace.append(hvezdaTlacitko, pasTlacitko);
+      mobilniPrepinace.append(hvezdaTlacitko, pasTlacitko, dudlikTlacitko);
     } else if (srdceTlacitko.nextElementSibling !== hvezdaTlacitko) {
       // vrátit zpět do rychlé volby, za srdíčko, v původním pořadí
-      srdceTlacitko.after(hvezdaTlacitko, pasTlacitko);
+      srdceTlacitko.after(hvezdaTlacitko, pasTlacitko, dudlikTlacitko);
     }
   }
 
@@ -1758,6 +1815,25 @@ async function init() {
     DOMA_LIMIT = DOMA_DAVKA; // každé zapnutí začíná od první dávky
     window.scrollTo(0, 0);
     prekresli();
+  });
+
+  // dudlík "rozmazlenej frack": zapne/vypne srážku za dobovou zátěž (viz FRACK nahoře),
+  // přeřadí filmotéku a překreslí od první dávky. Stav přežije reload (localStorage).
+  const prepinacFrack = document.getElementById("filtr-frack");
+  prepinacFrack.innerHTML = IKONA_DUDLIK;
+  prepinacFrack.classList.toggle("aktivni", FRACK);
+  prepinacFrack.setAttribute("aria-pressed", FRACK);
+  prepinacFrack.addEventListener("click", () => {
+    FRACK = !FRACK;
+    prepinacFrack.classList.toggle("aktivni", FRACK);
+    prepinacFrack.setAttribute("aria-pressed", FRACK);
+    try {
+      localStorage.setItem(FRACK_KLIC, FRACK ? "1" : "0");
+    } catch (_) { /* bez persistence to jede taky */ }
+    seradFilmyDoma();
+    DOMA_LIMIT = DOMA_DAVKA;
+    window.scrollTo(0, 0);
+    if (REZIM_DOMA) prekresli();
   });
 
   // fulltext ve filmotéce — filtruje při psaní, každá změna resetuje dávkování

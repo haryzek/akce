@@ -396,6 +396,46 @@ html, body {
   fill: currentColor;
 }
 
+/* dudlík "rozmazlenej frack" (srážka za dobovou zátěž): klon hvězdy (obrys → výplň),
+   vidět JEN v režimu doma — mimo filmotéku nemá co penalizovat */
+.dudlik {
+  display: none;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0 0 0 0.15rem;
+  cursor: pointer;
+  line-height: 0;
+  color: var(--text-jemny);
+}
+
+body.rezim-doma .dudlik {
+  display: inline-block;
+}
+
+.dudlik svg {
+  width: 1.9rem;
+  height: 1.9rem;
+  fill: transparent;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  transition: fill 0.15s ease, color 0.15s ease, transform 0.1s ease;
+}
+
+.dudlik:hover svg {
+  color: var(--text-tlumeny);
+  transform: scale(1.12);
+}
+
+.dudlik.aktivni {
+  color: var(--akcent);
+}
+
+.dudlik.aktivni svg {
+  fill: currentColor;
+  stroke: currentColor;
+}
+
 /* ---- režim "filmy na doma" ---- */
 /* Filmotéka je mimo běžné filtry: typ, řazení, datumy i datumové zkratky zmizí,
    místo nich se ukáže fulltextové hledání. Srdíčko, hvězda a pás zůstávají. */

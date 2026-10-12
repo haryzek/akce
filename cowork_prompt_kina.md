@@ -21,6 +21,7 @@ Vytěž všechny projekce. Pokud jsou časy zalomené na další řádek, připo
 ## KROK 2 – FILTR KIN
 Použij pouze tato kina:
 - Bio Oko
+- Dlabačov
 - Edison Filmhub
 - Kino Aero
 - Kino Atlas

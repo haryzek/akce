@@ -1,8 +1,8 @@
 {
   "typAkce": "verejnost_psychoterapie",
-  "vygenerovanoAt": "2026-10-31T14:12:57",
-  "obdobiOd": "31.10.2026",
-  "obdobiDo": "30.11.2026",
+  "vygenerovanoAt": "2026-11-08T16:07:59",
+  "obdobiOd": "08.11.2026",
+  "obdobiDo": "08.12.2026",
   "verejnost_psychoterapie": [
     {
       "nazevCz": "Víkendový seminář práce s nevědomím podle Junga",
@@ -17,33 +17,33 @@
       "url": "https://centrum-lavka.cz/jung-nevedomi-stin/",
       "cena": "3600 Kč",
       "thumbnail": null,
-      "popis": "Víkendový seminář zaměřený sebezkušenostně, na němž budeme rozvíjet práci se sny a imaginacemi. Tématem semináře bude archetyp stínu a setkání s vnitřním zvířetem. Stín pro Junga představuje oblast vnitřních kvalit, které jsou pro člověka morálně pochybné a které proto vytěsňuje ze svého života. Stín je často promítán na druhého člověka. Setkání se stínem je důležitým aspektem dialogu s nevědomím, kterým v životě musíme všichni pravidelně procházet. Stín se často objevuje například v podobě různých vnitřních zvířat. V setkání s vnitřním zvířetem potom půjde nejprve o přijetí zvířete, a potom o dobrou péči o toto zvíře a o vytvoření místa pro něj v našem životě. Jiné aspekty stínu se týkají morálních hodnot a bývají znázorněny například v podobě lupičů nebo různých „pochybných“ existencí.",
+      "popis": "Víkendový seminář na téma Setkání se stínem bude zaměřený sebezkušenostně a budeme na něm rozvíjet práci se sny a imaginacemi. Tématem semináře bude archetyp stínu a setkání s vnitřním zvířetem. Stín pro Junga představuje oblast vnitřních kvalit, které jsou pro člověka morálně pochybné a které proto vytěsňuje ze svého života. Stín je často promítán na druhého člověka. Setkání se stínem je důležitým aspektem dialogu s nevědomím, kterým v životě musíme všichni pravidelně procházet. Stín se často objevuje například v podobě různých vnitřních zvířat. V setkání s vnitřním zvířetem potom půjde nejprve o přijetí zvířete, a potom o dobrou péči o toto zvíře a o vytvoření místa pro něj v našem životě.",
       "estetickeSkore": 95,
-      "duvodSkore": "Jungovská práce se stínem a sny – hlubinná analytika přímo na míru tvému zaměření."
+      "duvodSkore": "Jungovská práce se stínem a nevědomím – přesně tvá hlubinná nota."
     },
     {
-      "nazevCz": "Smrt – průvodce a spojenec",
+      "nazevCz": "Čtyřdenní kurz buddhistické meditace",
       "nazevOrig": null,
       "autor": "Centrum Lávka",
       "zanr": "kurz",
-      "datumOd": "01.11.2026",
-      "datumDo": "01.11.2026",
-      "cas": "17:30",
+      "datumOd": "02.12.2026",
+      "datumDo": "06.12.2026",
+      "cas": null,
       "misto": null,
       "adresa": null,
-      "url": "https://centrum-lavka.cz/smrt-pruvodce-a-spojenec/",
-      "cena": "4200 Kč",
+      "url": "https://centrum-lavka.cz/satipatthana-meditace/",
+      "cena": null,
       "thumbnail": null,
-      "popis": "Smrt je nevyhnutelnou součástí života. Je jisté, že jednou zemřeme, jen nevíme kdy. Můžeme na to být připraveni? V rámci kurzu budeme pracovat s vědomím vlastní smrti, abychom ji učinili svým spojencem na cestě životem a byli lépe připraveni, až skutečně přijde. Přijetí vlastní pomíjivosti je také předpokladem smysluplné podpory při doprovázení umírajících.",
-      "estetickeSkore": 92,
-      "duvodSkore": "Práce s vlastní smrtelností a pomíjivostí – přesně tvoje existenciální hloubka."
+      "popis": "Tři a půl dne s buddhistickou meditací všímavosti (satipatthánou). Kurz je otevřený všem zájemcům, včetně těch, kteří ještě na meditačním ústraní nebyli, i pro pokročilejší praktikující mindfulness. Bydlet a meditovat budeme v Tuněchodském mlýně u Stříbra. Součástí kurzu budou i večerní rozpravy o Buddhově učení a sdílení zkušeností. Učitelé a organizátoři nejsou za kurz honorováni a poskytují svůj čas, vědomosti a energii zdarma jako dar.",
+      "estetickeSkore": 82,
+      "duvodSkore": "Pořádný meditační retreat s buddhistickou psychologií, ne jen wellness víkend."
     },
     {
-      "nazevCz": "Základní výcvik mindfulness",
+      "nazevCz": "Mindfulness skupina",
       "nazevOrig": null,
-      "autor": "Jan Honzík, Slávek Keprt",
+      "autor": "Slávek Keprt",
       "zanr": "skupina",
-      "datumOd": "01.09.2026",
+      "datumOd": "01.10.2026",
       "datumDo": "30.11.2026",
       "cas": "19:00",
       "misto": "Centrum Lávka, Kafkova 10, Praha 6 – Dejvice",
@@ -51,36 +51,26 @@
       "url": "https://centrum-lavka.cz/zakladni-vycvik-mindfulness/",
       "cena": "5800 Kč / 8 setkání",
       "thumbnail": null,
-      "popis": "Během osmi týdnů probíhá osm skupinových setkání (cca 2 hodinových). V nich si účastníci osvojí pod vedením zkušených lektorů základní techniky rozvíjející sebeuvědomění, soustředění, klid, vyrovnanost, trpělivost, odolnost, laskavost a další důležité schopnosti mysli, umožňující efektivnější zvládání pracovní, zdravotní či psychické zátěže, a prohloubí porozumění sobě samé/mu. Tyto techniky pak účastníci praktikují samostatně každý den po dobu osmi týdnů a prohlubují své porozumění a dovednosti na základě vlastní praxe a díky společnému sdílení ve skupině. Vedle tzv. formální praxe, sestávající z různých meditačních a introspektivních cvičení, se účastníci programu průběžně věnují i tzv. neformální praxi, která spočívá v aplikaci principů sebeuvědomění při běžných denních činnostech.",
-      "estetickeSkore": 88,
-      "duvodSkore": "Osmitýdenní mindfulness výcvik s terapeuticky zkušenými lektory – tvoje liga.",
-      "terminy": [
-        {
-          "datum": "01.09.2026",
-          "cas": "19:00"
-        },
-        {
-          "datum": "01.10.2026",
-          "cas": "19:00"
-        }
-      ]
+      "popis": "Během osmi týdnů probíhá osm skupinových setkání (cca 2 hodinová). Účastníci si pod vedením zkušených lektorů osvojí základní techniky rozvíjející sebeuvědomění, soustředění, klid, vyrovnanost, trpělivost, odolnost a laskavost, umožňující efektivnější zvládání zátěže a hlubší porozumění sobě samému. Techniky pak praktikují samostatně každý den po dobu osmi týdnů a prohlubují své porozumění a dovednosti na základě vlastní praxe a společného sdílení ve skupině. Vedle formální praxe (meditační a introspektivní cvičení) se věnují i neformální praxi – aplikaci principů sebeuvědomění v běžných denních činnostech.",
+      "estetickeSkore": 76,
+      "duvodSkore": "Poctivý mindfulness výcvik se zkušenými lektory, přesně tvůj styl práce na sobě."
     },
     {
       "nazevCz": "Mindfulness III",
       "nazevOrig": null,
       "autor": "Centrum Lávka",
-      "zanr": "skupina",
+      "zanr": "kurz",
       "datumOd": "01.10.2026",
       "datumDo": "30.11.2026",
       "cas": null,
       "misto": "Centrum Lávka, Kafkova 10, Praha 6 – Dejvice",
       "adresa": null,
       "url": "https://centrum-lavka.cz/mindfulness-program-3/",
-      "cena": "5800 Kč (cena zahrnuje 8 lekcí a Průvodce výcvikem s archy pro záznam domácí praxe)",
+      "cena": "5800 Kč / 8 lekcí",
       "thumbnail": null,
-      "popis": "Navazující program pro ty, kdo už absolvovali základní osmitýdenní mindfulness výcvik (Mindfulness II) a chtějí praxi oživit, dále rozvíjet a poznat další zkušené lektory mindfulness. Přihlásit se lze i bez absolvování Mindfulness II.",
-      "estetickeSkore": 79,
-      "duvodSkore": "Navazující mindfulness program pro prohloubení praxe s dalšími zkušenými lektory."
+      "popis": "Pokračování základního osmitýdenního mindfulness výcviku pro ty, kdo chtějí svou praxi oživit a dále rozvíjet. Program přináší nová témata, setkání s dalšími zkušenými lektory mindfulness a sdílení zkušeností ve skupině. Přihlásit se lze i bez absolvování Mindfulness II.",
+      "estetickeSkore": 68,
+      "duvodSkore": "Navazující mindfulness prohlubování s dalšími zkušenými lektory a sdílením."
     }
   ]
 }

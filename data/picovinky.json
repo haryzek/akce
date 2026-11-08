@@ -1,34 +1,16 @@
 {
   "typAkce": "picovinky",
-  "scrapedAt": "2026-10-31T15:06:35",
-  "obdobiOd": "31.10.2026",
-  "obdobiDo": "30.11.2026",
+  "scrapedAt": "2026-11-08T16:01:45",
+  "obdobiOd": "08.11.2026",
+  "obdobiDo": "08.12.2026",
   "polozky": [
-    {
-      "nazevCz": "Halloween Quiz at Third Coast",
-      "nazevOrig": null,
-      "autor": null,
-      "zanr": null,
-      "datumOd": "31.10.2026",
-      "datumDo": "31.10.2026",
-      "cas": "15:00",
-      "misto": "Third Coast Pizza",
-      "adresa": "Chvalova 1, Praha 3 — Žižkov",
-      "url": "https://www.thirdcoastpizza.cz/en/events/under-the-sauce-pub-quiz",
-      "cena": "100 Kč",
-      "thumbnail": "https://flexitill-smokehouse-prod.s3.eu-central-1.amazonaws.com/events/cmn9ddqcj000i406t3iaqv68b/featureImageLandscape/7a6a50a4-1392-447a-9dac-9f60b82564d1.jpg",
-      "popis": null,
-      "zdroje": [
-        "thirdcoastpizza.cz"
-      ]
-    },
     {
       "nazevCz": "Under the Sauce Pub Quiz",
       "nazevOrig": null,
       "autor": null,
       "zanr": null,
-      "datumOd": "04.11.2026",
-      "datumDo": "25.11.2026",
+      "datumOd": "11.11.2026",
+      "datumDo": "02.12.2026",
       "cas": "19:00",
       "misto": "Third Coast Pizza",
       "adresa": "Chvalova 1, Praha 3 — Žižkov",
@@ -37,10 +19,6 @@
       "thumbnail": "https://flexitill-smokehouse-prod.s3.eu-central-1.amazonaws.com/events/cmn9ddqcj000i406t3iaqv68b/featureImageLandscape/7a6a50a4-1392-447a-9dac-9f60b82564d1.jpg",
       "popis": null,
       "terminy": [
-        {
-          "datum": "04.11.2026",
-          "cas": "19:00"
-        },
         {
           "datum": "11.11.2026",
           "cas": "19:00"
@@ -51,6 +29,10 @@
         },
         {
           "datum": "25.11.2026",
+          "cas": "19:00"
+        },
+        {
+          "datum": "02.12.2026",
           "cas": "19:00"
         }
       ],
@@ -63,8 +45,8 @@
       "nazevOrig": null,
       "autor": null,
       "zanr": null,
-      "datumOd": "03.11.2026",
-      "datumDo": "24.11.2026",
+      "datumOd": "10.11.2026",
+      "datumDo": "08.12.2026",
       "cas": "20:00",
       "misto": "Žižkovšiška",
       "adresa": "Husitská 888/11, Praha 3 — Žižkov",
@@ -73,10 +55,6 @@
       "thumbnail": "https://static.wixstatic.com/media/546a55_8ecc0e0933f04e5db696c9e8590c9b1d%7Emv2.jpg/v1/fit/w_2500,h_1330,al_c/546a55_8ecc0e0933f04e5db696c9e8590c9b1d%7Emv2.jpg",
       "popis": null,
       "terminy": [
-        {
-          "datum": "03.11.2026",
-          "cas": "20:00"
-        },
         {
           "datum": "10.11.2026",
           "cas": "20:00"
@@ -87,6 +65,14 @@
         },
         {
           "datum": "24.11.2026",
+          "cas": "20:00"
+        },
+        {
+          "datum": "01.12.2026",
+          "cas": "20:00"
+        },
+        {
+          "datum": "08.12.2026",
           "cas": "20:00"
         }
       ],

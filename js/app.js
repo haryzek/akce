@@ -68,6 +68,21 @@ function penalizovane(hodnota, film) {
   return Math.max(0, hodnota - dobovaPenalizace(film));
 }
 
+// Kostka (jen filmotéka): zapnutá = filmotéka v náhodném pořadí místo podle skóre.
+// Filtry (hvězda, srdíčko, hledání, dudlík) jedou dál nad zamíchaným pořadím —
+// "hvězda + kostka" = náhodný výběr ze špičky. Nové zamíchání = vypnout a zapnout.
+// Jen runtime, po reloadu je zase řazeno podle skóre.
+let ZAMICHANO = false;
+
+// Fisher–Yates: férové náhodné pořadí, míchá pole na místě
+function zamichejFilmyDoma() {
+  if (!FILMY_DOMA) return;
+  for (let i = FILMY_DOMA.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [FILMY_DOMA[i], FILMY_DOMA[j]] = [FILMY_DOMA[j], FILMY_DOMA[i]];
+  }
+}
+
 // Obě metriky filmotéky v jedné podobě, jakou používá řazení, karta i dashboard.
 const skoreDoma = (film) => penalizovane(film.estetickeSkore, film);
 const prumerDoma = (film) => penalizovane(film.hodnoceni?.vazenePrumer, film);
@@ -75,7 +90,7 @@ const prumerDoma = (film) => penalizovane(film.hodnoceni?.vazenePrumer, film);
 // Filmotéka se řadí podle estetického skóre (režim nemá volbu řazení); po přepnutí
 // dudlíku se musí přeřadit, protože srážka je per film.
 function seradFilmyDoma() {
-  if (!FILMY_DOMA) return;
+  if (!FILMY_DOMA || ZAMICHANO) return; // zamíchaná filmotéka drží náhodné pořadí
   FILMY_DOMA.sort((a, b) => (skoreDoma(b.data) ?? -1) - (skoreDoma(a.data) ?? -1));
 }
 
@@ -216,6 +231,18 @@ const IKONA_DUDLIK =
   '<rect x="3.5" y="9.6" width="17" height="5.2" rx="2.6"/>' +
   '<circle cx="12" cy="18.3" r="3"/>' +
   "</svg>";
+
+// kostka pro přepínač "zamíchat filmotéku": v klidu obrys s pěti oky, aktivní stav
+// plná kostka s vyříznutými oky (evenodd) — stejný princip dvou cest jako filmový pás.
+const KOSTKA_OKA = [[8.5, 8.5], [15.5, 8.5], [12, 12], [8.5, 15.5], [15.5, 15.5]];
+const KOSTKA_TELO = "M7 4h10a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3z";
+const IKONA_KOSTKA =
+  '<svg viewBox="0 0 24 24" aria-hidden="true">' +
+  `<path class="kostka-obrys" d="${KOSTKA_TELO}"/>` +
+  KOSTKA_OKA.map(([x, y]) => `<circle class="kostka-oko" cx="${x}" cy="${y}" r="1.35"/>`).join("") +
+  `<path class="kostka-vypln" fill-rule="evenodd" d="${KOSTKA_TELO} ` +
+  KOSTKA_OKA.map(([x, y]) => `M${x - 1.6} ${y}a1.6 1.6 0 1 0 3.2 0a1.6 1.6 0 1 0 -3.2 0z`).join(" ") +
+  '"/></svg>';
 
 // filmový pás pro přepínač režimu "filmy na doma". Dvě cesty, mezi kterými přepíná
 // CSS podle stavu (jako obrys→výplň u srdce/hvězdy): v klidu čárová obrysovka
@@ -1689,16 +1716,17 @@ async function init() {
   const hvezdaTlacitko = document.getElementById("filtr-top");
   const pasTlacitko = document.getElementById("rezim-doma");
   const dudlikTlacitko = document.getElementById("filtr-frack"); // jede s nimi (vidět jen v režimu doma)
+  const kostkaTlacitko = document.getElementById("zamichat-doma"); // dtto
   const srdceTlacitko = document.getElementById("filtr-oblibene"); // kotva pro návrat na desktopu
   const mobilniPrepinace = document.getElementById("mobilni-prepinace");
   const jeMobil = window.matchMedia("(max-width: 600px)");
 
   function aktualizujUmisteniPrepinacu() {
     if (jeMobil.matches) {
-      mobilniPrepinace.append(hvezdaTlacitko, pasTlacitko, dudlikTlacitko);
+      mobilniPrepinace.append(hvezdaTlacitko, pasTlacitko, dudlikTlacitko, kostkaTlacitko);
     } else if (srdceTlacitko.nextElementSibling !== hvezdaTlacitko) {
       // vrátit zpět do rychlé volby, za srdíčko, v původním pořadí
-      srdceTlacitko.after(hvezdaTlacitko, pasTlacitko, dudlikTlacitko);
+      srdceTlacitko.after(hvezdaTlacitko, pasTlacitko, dudlikTlacitko, kostkaTlacitko);
     }
   }
 
@@ -1858,6 +1886,27 @@ async function init() {
       localStorage.setItem(FRACK_KLIC, FRACK ? "1" : "0");
     } catch (_) { /* bez persistence to jede taky */ }
     seradFilmyDoma();
+    DOMA_LIMIT = DOMA_DAVKA;
+    window.scrollTo(0, 0);
+    if (REZIM_DOMA) prekresli();
+  });
+
+  // kostka: zapnout = zamíchat filmotéku náhodně, vypnout = zpátky podle skóre
+  // (viz ZAMICHANO nahoře). Při hodu se ikonka krátce zatočí (CSS .hod).
+  const prepinacKostka = document.getElementById("zamichat-doma");
+  prepinacKostka.innerHTML = IKONA_KOSTKA;
+  prepinacKostka.addEventListener("click", () => {
+    ZAMICHANO = !ZAMICHANO;
+    prepinacKostka.classList.toggle("aktivni", ZAMICHANO);
+    prepinacKostka.setAttribute("aria-pressed", ZAMICHANO);
+    if (ZAMICHANO) {
+      zamichejFilmyDoma();
+      prepinacKostka.classList.remove("hod");
+      void prepinacKostka.offsetWidth; // restart animace i při rychlém opakování
+      prepinacKostka.classList.add("hod");
+    } else {
+      seradFilmyDoma();
+    }
     DOMA_LIMIT = DOMA_DAVKA;
     window.scrollTo(0, 0);
     if (REZIM_DOMA) prekresli();

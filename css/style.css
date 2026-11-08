@@ -436,6 +436,73 @@ body.rezim-doma .dudlik {
   stroke: currentColor;
 }
 
+/* kostka "zamíchat filmotéku": vidět JEN v režimu doma, dvě cesty jako filmový pás
+   (klid = obrys + oka, aktivní = plná kostka s vyříznutými oky) */
+.kostka {
+  display: none;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0 0 0 0.15rem;
+  cursor: pointer;
+  line-height: 0;
+  color: var(--text-jemny);
+}
+
+body.rezim-doma .kostka {
+  display: inline-block;
+}
+
+.kostka svg {
+  width: 1.9rem;
+  height: 1.9rem;
+  transition: color 0.15s ease, transform 0.1s ease;
+}
+
+.kostka svg .kostka-obrys {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+}
+
+.kostka svg .kostka-oko {
+  fill: currentColor;
+}
+
+.kostka svg .kostka-vypln {
+  display: none;
+}
+
+.kostka:hover svg {
+  color: var(--text-tlumeny);
+  transform: scale(1.12);
+}
+
+.kostka.aktivni {
+  color: var(--akcent);
+}
+
+.kostka.aktivni svg .kostka-obrys,
+.kostka.aktivni svg .kostka-oko {
+  display: none;
+}
+
+.kostka.aktivni svg .kostka-vypln {
+  display: block;
+  fill: currentColor;
+}
+
+/* hod: krátké zatočení při zamíchání */
+.kostka.hod svg {
+  animation: hod-kostkou 0.45s ease-out;
+}
+
+@keyframes hod-kostkou {
+  0%   { transform: rotate(0) scale(1); }
+  50%  { transform: rotate(200deg) scale(1.2); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
 /* ---- režim "filmy na doma" ---- */
 /* Filmotéka je mimo běžné filtry: typ, řazení, datumy i datumové zkratky zmizí,
    místo nich se ukáže fulltextové hledání. Srdíčko, hvězda a pás zůstávají. */

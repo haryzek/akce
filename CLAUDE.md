@@ -339,6 +339,10 @@ Jediná výjimka: rozmezí let „1950-1960" (i s en-dash/mezerami, prohozené m
 srovnají) se z dotazu vyloupne jako číselný filtr roku (`rozeberDotazDoma`),
 zbytek jede dál substringem → funguje i „bergman 1950-1960".
 Srdíčka mají prefix `filmy_doma::`, takže watchlist se nemíchá s oblíbenými z kin.
+**Kostka** (`#zamichat-doma`, třída `.kostka`, jen v režimu doma) zamíchá filmotéku
+náhodně (Fisher–Yates, stav `ZAMICHANO`, jen runtime), druhý klik vrátí řazení podle
+skóre; `seradFilmyDoma` zamíchané pořadí nepřepisuje (ani při dudlíku). Filtry jedou
+dál nad zamíchaným pořadím — hvězda + kostka = náhodný výběr ze špičky.
 
 **Čekárna** (`data/filmy_doma_pridane.json`): filmy, které si Bob přidává sám (chce je
 vidět, nebo je viděl a chce je v žebříčku). Plní je projektový skill **`/cekarna`**

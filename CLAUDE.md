@@ -353,6 +353,10 @@ srdíček a lookupy), `nazevCz` český název. Appka soubor stahuje v `nactiFil
 s filmotékou (chybějící = nic), přilepí ho, filmy se stejným ID jako ve filmotéce
 přeskočí a dá jim příznak `cekarna` jen v paměti → štítek „čekárna" na kartě, místo f101
 ukáže IMDb. Slovo `cekarna` je v hledacím řetězci, takže hledání „cekarna" = jen přídavky.
+Obdobně **příznak `cesky: true`** (česká/československá produkce — u čekárny podle OMDb
+Country, ve filmotéce ručně u 9 filmů jako Marketa, Sedmikrásky, Kolja; Formanovy
+americké filmy NE) přidá do hledacího řetězce „cesky ceske cesko" → hledání „český".
+Čekárna bere i seriály (Vinyl, Babylon Berlin) — `zanr` začíná „Seriál, ".
 Pasti: IMDb suggest řadí podle relevance, ne podle `rank` (podle popularity by „Pelíšky"
 skončily jako Dodgeball); starý český film najde jen dotaz „název rok"; OMDb `Year` je rok
 premiéry (Stalker 1980) → rok se bere z IMDb a duplicity se hlídají s tolerancí ±1.

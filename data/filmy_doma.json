@@ -5453,7 +5453,8 @@
       "specialniProjekce": false,
       "specialniPopis": null,
       "projekce": [],
-      "dobovaZatez": 8
+      "dobovaZatez": 8,
+      "cesky": true
     },
     {
       "nazevCz": "The Mystery of the Wax Museum",
@@ -30503,7 +30504,8 @@
       "specialniProjekce": false,
       "specialniPopis": null,
       "projekce": [],
-      "dobovaZatez": 2
+      "dobovaZatez": 2,
+      "cesky": true
     },
     {
       "nazevCz": "Pierrot le fou",
@@ -30678,7 +30680,8 @@
       "specialniProjekce": false,
       "specialniPopis": null,
       "projekce": [],
-      "dobovaZatez": 4
+      "dobovaZatez": 4,
+      "cesky": true
     },
     {
       "nazevCz": "The Ipcress File",
@@ -31353,7 +31356,8 @@
       "specialniProjekce": false,
       "specialniPopis": null,
       "projekce": [],
-      "dobovaZatez": 3
+      "dobovaZatez": 3,
+      "cesky": true
     },
     {
       "nazevCz": "Au hasard Balthazar",
@@ -31503,7 +31507,8 @@
       "specialniProjekce": false,
       "specialniPopis": null,
       "projekce": [],
-      "dobovaZatez": 7
+      "dobovaZatez": 7,
+      "cesky": true
     },
     {
       "nazevCz": "Alfie",
@@ -32453,7 +32458,8 @@
       "specialniProjekce": false,
       "specialniPopis": null,
       "projekce": [],
-      "dobovaZatez": 3
+      "dobovaZatez": 3,
+      "cesky": true
     },
     {
       "nazevCz": "The Two of Us",
@@ -32653,7 +32659,8 @@
       "specialniProjekce": false,
       "specialniPopis": null,
       "projekce": [],
-      "dobovaZatez": 5
+      "dobovaZatez": 5,
+      "cesky": true
     },
     {
       "nazevCz": "Elvira Madigan",
@@ -51228,7 +51235,8 @@
       "specialniProjekce": false,
       "specialniPopis": null,
       "projekce": [],
-      "dobovaZatez": 3
+      "dobovaZatez": 3,
+      "cesky": true
     },
     {
       "nazevCz": "The Last Temptation of Christ",
@@ -57803,7 +57811,8 @@
       "specialniProjekce": false,
       "specialniPopis": null,
       "projekce": [],
-      "dobovaZatez": 0
+      "dobovaZatez": 0,
+      "cesky": true
     },
     {
       "nazevCz": "Lone Star",

@@ -85,12 +85,13 @@ def _suggest(nazev):
         d = http(url).get("d", [])
     except Exception:
         return []
-    # jen filmy (feature/TV film/krátký), ne lidi a seriály
+    # filmy i seriály (Bob si do čekárny dává i Vinyl nebo Babylon Berlin), ne lidi
     return [
         {"id": x["id"], "nazev": x.get("l"), "rok": x.get("y"), "druh": x.get("q"),
          "herci": x.get("s"), "rank": x.get("rank")}
         for x in d
-        if x.get("id", "").startswith("tt") and x.get("qid") in ("movie", "tvMovie", "short", "video")
+        if x.get("id", "").startswith("tt")
+        and x.get("qid") in ("movie", "tvMovie", "short", "video", "tvSeries", "tvMiniSeries")
     ]
 
 

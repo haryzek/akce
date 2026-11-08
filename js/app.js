@@ -566,10 +566,12 @@ async function nactiFilmyDoma() {
       .filter((f) => !znama.has(domaId(f)));
     FILMY_DOMA = [...zaklad, ...pridane].map((f) => ({
       data: f,
-      // slovo "cekarna" je v hledacím řetězci schválně — napsat ho do hledání
-      // = ukázat jen vlastní přídavky, bez dalšího tlačítka
+      // slova "cekarna" a "cesky/ceske" jsou v hledacím řetězci schválně — napsat je
+      // do hledání = ukázat jen vlastní přídavky / jen české filmy, bez dalšího tlačítka
+      // (příznak "cesky": true nese JSON u české a československé produkce)
       hledaci: bezDiakritiky(
-        [f.nazevCz, f.nazevOrig, f.rezie, f.rok, f.zanr, f.cekarna && "cekarna"]
+        [f.nazevCz, f.nazevOrig, f.rezie, f.rok, f.zanr,
+         f.cekarna && "cekarna", f.cesky && "cesky ceske cesko"]
           .filter(Boolean).join(" ")
       ),
     }));

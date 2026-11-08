@@ -68,11 +68,20 @@ estetické skóre podle profilu, dobovou zátěž (dudlík), vážený průměr 
      "dobovaZatez": 1,
      "trailerUrl": "https://www.youtube.com/watch?v=…",
      "imdbId": "tt0167331",
+     "cesky": true,                     // česká/československá produkce (OMDb Country
+                                        //   obsahuje "Czech"); appka podle něj hledá „český"
      "hodnoceni": { … }                 // 1:1 z pracovního JSONu (imdb, metacritic,
                                         //   rottenTomatoes, vazenePrumer, poznamkaHodnoceni)
    }
    ```
    `films101` tam není (null/chybí) — karta místo něj ukáže IMDb.
+   Seriál (IMDb `TV series`/`TV mini-series`) je v pořádku — Bob tam dává i Vinyl nebo
+   Babylon Berlin; do `zanr` dej na začátek „Seriál, " a do `rezie` tvůrce/showrunnera
+   (OMDb má u seriálů Director N/A).
+   Bob píše názvy z hlavy, česky i s překlepy, někdy jen hlášku nebo herce
+   („Zavřete oči, odcházím" = píseň z Kristiána, „Humr" = The Lobster) — rozlušti
+   je předem a do vstupu pro skript dej anglický/originální název s rokem.
+   Co nejde rozlousknout ani přes WebSearch, nech v čekárně a zeptej se.
 
 6. **Zápis**:
    ```
@@ -88,4 +97,4 @@ estetické skóre podle profilu, dobovou zátěž (dudlík), vážený průměr 
 
 8. **Hlášení Bobovi** — krátce: co přibylo (název, rok, skóre), co bylo duplicitní,
    co se nenašlo a proč. V appce je najde ve filmotéce (pás), štítek „čekárna";
-   do hledání stačí napsat `cekarna` a ukážou se jen jeho přídavky.
+   do hledání stačí napsat `cekarna` a ukážou se jen jeho přídavky, `český` = jen české.

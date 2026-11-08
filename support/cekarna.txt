@@ -1,2 +1,10 @@
 # Čekárna filmotéky — jeden film na řádek, rok volitelně (např. „Kristián 1939").
 # Zpracuje skill /cekarna („v čekárně jsou nový filmy"), zpracované řádky pak smaže.
+
+# NEROZLUŠTĚNO (2026-11-08) — upřesni název/rok/režiséra a pusť /cekarna znova:
+Fake angels
+Kumo
+Pojdme bydlet spolu - woody allen
+Huho haas
+Merlin od Disney (ten s Isabellou Rossellini už je přidaný)
+Pavol Barabas - v zajeti ledu

@@ -547,13 +547,30 @@ async function nactiFilmyDoma() {
   try {
     // no-cache je tu zásadní: fetch běží až při kliknutí na pás, takže ho nekryje
     // ani Ctrl+F5 — bez něj umí prohlížeč podstrčit starý JSON z diskové cache
-    const odpoved = await fetch("data/filmy_doma.json", { cache: "no-cache" });
+    // vedle filmotéky se stahuje i čekárna (data/filmy_doma_pridane.json = filmy, co si
+    // Bob přidal sám přes skill /cekarna); chybějící/rozbitý soubor čekárny nic nezastaví
+    const [odpoved, cekarna] = await Promise.all([
+      fetch("data/filmy_doma.json", { cache: "no-cache" }),
+      fetch("data/filmy_doma_pridane.json", { cache: "no-cache" })
+        .then((r) => (r.ok ? r.json() : { filmy: [] }))
+        .catch(() => ({ filmy: [] })),
+    ]);
     if (!odpoved.ok) throw new Error(`HTTP ${odpoved.status}`);
     const soubor = await odpoved.json();
-    FILMY_DOMA = (soubor.filmy || []).map((f) => ({
+    // příznak "cekarna" se dává až tady podle souboru, v JSONu ho není potřeba nosit;
+    // film, co už ve filmotéce je (stejné ID), se z čekárny nepřidává podruhé
+    const zaklad = (soubor.filmy || []).map((f) => ({ ...f, cekarna: false }));
+    const znama = new Set(zaklad.map(domaId));
+    const pridane = (cekarna.filmy || [])
+      .map((f) => ({ ...f, cekarna: true }))
+      .filter((f) => !znama.has(domaId(f)));
+    FILMY_DOMA = [...zaklad, ...pridane].map((f) => ({
       data: f,
+      // slovo "cekarna" je v hledacím řetězci schválně — napsat ho do hledání
+      // = ukázat jen vlastní přídavky, bez dalšího tlačítka
       hledaci: bezDiakritiky(
-        [f.nazevCz, f.nazevOrig, f.rezie, f.rok, f.zanr].filter(Boolean).join(" ")
+        [f.nazevCz, f.nazevOrig, f.rezie, f.rok, f.zanr, f.cekarna && "cekarna"]
+          .filter(Boolean).join(" ")
       ),
     }));
     // žebříček se řadí tady (podle estetického skóre) a pak už jen po přepnutí dudlíku
@@ -595,7 +612,12 @@ function vykresliKartuFilmuDoma(film, id) {
     film.hodnoceni?.films101 !== null && film.hodnoceni?.films101 !== undefined
       ? `<span class="zdroj"><strong>f101</strong> <span class="zdroj-cislo">${escapeHtml(film.hodnoceni.films101)}</span></span>`
       : "";
-  const radekHodnoceni = `<div class="hodnoceni-radek">${est + f101 || '<span class="bez-hodnoceni">Bez hodnocení</span>'}</div>`;
+  // filmy z čekárny nemají films101, místo něj ukážou IMDb z OMDb
+  const imdb =
+    !f101 && film.hodnoceni?.imdb != null
+      ? `<span class="zdroj"><strong>IMDb</strong> <span class="zdroj-cislo">${escapeHtml(film.hodnoceni.imdb)}</span></span>`
+      : "";
+  const radekHodnoceni = `<div class="hodnoceni-radek">${est + f101 + imdb || '<span class="bez-hodnoceni">Bez hodnocení</span>'}</div>`;
 
   return `
     <article class="karta karta-doma" data-film-id="${encodeURIComponent(id)}">
@@ -607,6 +629,7 @@ function vykresliKartuFilmuDoma(film, id) {
           </div>
 
           <div class="meta-blok">
+            ${film.cekarna ? '<div class="stitek-cekarna" title="Přidal jsi sám (čekárna)">čekárna</div>' : ""}
             <div class="meta-radek">${escapeHtml(hodnotaNebo(rezieRok))}</div>
             <div class="meta-radek">${escapeHtml(hodnotaNebo(film.zanr))}</div>
             ${radekHodnoceni}
@@ -941,7 +964,9 @@ function vykresliDashboard(film, typ) {
   if (typ === "filmy_doma") {
     const f101 = film.hodnoceni?.films101;
     if (f101 != null) skoreVedlejsi += `<span><strong>f101</strong> ${escapeHtml(f101)}/5</span>`;
-  } else {
+  }
+  // RT/MC/IMDb z OMDb mají kina i filmy z čekárny (filmotéka z films101 je nemá → nic)
+  {
     skoreVedlejsi += [
       ["RT", film.hodnoceni?.rottenTomatoes],
       ["MC", film.hodnoceni?.metacritic],

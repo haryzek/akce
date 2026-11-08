@@ -340,6 +340,23 @@ srovnají) se z dotazu vyloupne jako číselný filtr roku (`rozeberDotazDoma`),
 zbytek jede dál substringem → funguje i „bergman 1950-1960".
 Srdíčka mají prefix `filmy_doma::`, takže watchlist se nemíchá s oblíbenými z kin.
 
+**Čekárna** (`data/filmy_doma_pridane.json`): filmy, které si Bob přidává sám (chce je
+vidět, nebo je viděl a chce je v žebříčku). Plní je projektový skill **`/cekarna`**
+(`.claude/skills/cekarna/` — `SKILL.md` = postup, `cekarna.py` = mechanika: IMDb suggest →
+OMDb hodnocení + vážený průměr → kandidáti traileru z YouTube ověření přes oEmbed;
+texty, skóre a dobovou zátěž dopisuje Claude podle profilu). Vstup je `support/cekarna.txt`
+(film na řádek, rok volitelně, případně natvrdo `tt…` ID). OMDb klíč je v uživatelské
+proměnné prostředí `OMDB_KEY`, NIKDY v repu. Tvar = kontrakt filmotéky + `imdbId`,
+`pridanoAt` a reálná OMDb hodnocení (`imdb`/`metacritic`/`rottenTomatoes`) místo
+`films101`; `nazevOrig` je anglický OMDb titul jako u zbytku filmotéky (stojí na něm ID
+srdíček a lookupy), `nazevCz` český název. Appka soubor stahuje v `nactiFilmyDoma` spolu
+s filmotékou (chybějící = nic), přilepí ho, filmy se stejným ID jako ve filmotéce
+přeskočí a dá jim příznak `cekarna` jen v paměti → štítek „čekárna" na kartě, místo f101
+ukáže IMDb. Slovo `cekarna` je v hledacím řetězci, takže hledání „cekarna" = jen přídavky.
+Pasti: IMDb suggest řadí podle relevance, ne podle `rank` (podle popularity by „Pelíšky"
+skončily jako Dodgeball); starý český film najde jen dotaz „název rok"; OMDb `Year` je rok
+premiéry (Stalker 1980) → rok se bere z IMDb a duplicity se hlídají s tolerancí ±1.
+
 **Dudlík „rozmazlenej frack"** (`#filtr-frack`, třída `.dudlik`, vidět jen v režimu
 doma): každý film má v JSONu `dobovaZatez` 0–10 = kolik z jeho pověsti nese doba
 vzniku, technika, závažnost tématu, vliv na další tvůrce či dobová politika, NE

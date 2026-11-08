@@ -470,6 +470,22 @@ body.rezim-doma .rychle-volby button[data-rozsah] {
   cursor: pointer;
 }
 
+/* štítek "čekárna" — film, co si Bob přidal sám (data/filmy_doma_pridane.json);
+   tichý obrys v akcentu, ať je vidět na první pohled, ale nekřičí */
+.stitek-cekarna {
+  align-self: flex-start;
+  width: fit-content;
+  margin-bottom: 0.15rem;
+  padding: 0.05rem 0.45rem;
+  border: 1px solid var(--akcent);
+  border-radius: 999px;
+  color: var(--akcent);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
 /* kolečko skóre ve filmotéce je přepínač "viděno": klik → zelené, drží v localStorage */
 .skore-klik {
   cursor: pointer;

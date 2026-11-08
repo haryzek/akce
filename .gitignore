@@ -1,5 +1,7 @@
 # osobní / lokální věci, nepatří na veřejný web
-.claude/
+.claude/*
+# …kromě projektových skillů (čekárna filmotéky) — ty patří k repu
+!.claude/skills/
 
 # scratch prototypy — hrací písek, nepatří na web
 _scratch/

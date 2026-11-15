@@ -2232,8 +2232,12 @@ function prekresliZebricek(zvyraznitId) {
   const radky = viditelne
     .map((id, i) => {
       const { nazev, rok } = popisFilmuZId(id);
+      // druh (film/seriál/dokument) barví kolečko pořadí — tři odstíny zelené;
+      // co v datech není nebo je z kin, bere se jako film
+      const nalez = filmPodleId(id);
+      const druh = nalez ? druhFilmuDoma(nalez.film) : "film";
       return `
-      <li class="zeb-radek${ZEBRICEK_PENDING ? " zeb-cil" : ""}${id === zvyraznitId ? " zeb-zvyraznen" : ""}" data-id="${encodeURIComponent(id)}">
+      <li class="zeb-radek zeb-druh-${druh}${ZEBRICEK_PENDING ? " zeb-cil" : ""}${id === zvyraznitId ? " zeb-zvyraznen" : ""}" data-id="${encodeURIComponent(id)}">
         <button type="button" class="zeb-poradi" title="Přeřadit — film vyskočí nahoru k novému zařazení">${i + 1}</button>
         <span class="zeb-nazev">${escapeHtml(nazev)}${rok ? ` <span class="zeb-rok">${escapeHtml(rok)}</span>` : ""}</span>
         <button type="button" class="zeb-smazat" title="Vyřadit ze žebříčku (viděno zůstane)">×</button>
@@ -2248,6 +2252,11 @@ function prekresliZebricek(zvyraznitId) {
   panel.innerHTML = `
     <header class="zeb-hlavicka">
       <h3>Žebříček <span class="zeb-pocet">${viditelne.length}</span></h3>
+      <span class="zeb-legenda" aria-hidden="true">
+        <span class="zeb-druh-film"><i></i>film</span>
+        <span class="zeb-druh-serial"><i></i>seriál</span>
+        <span class="zeb-druh-dokument"><i></i>dokument</span>
+      </span>
       <button type="button" class="zeb-zavrit" aria-label="Zavřít">×</button>
     </header>
     ${pendingHtml}

@@ -417,6 +417,11 @@ splice, filmy pod pozicí se odsunou o jedna; zařazení implikuje viděno. Pře
 pořadové číslo řádku → film vyskočí nahoru jako čekající (z pole se nemaže, jen se v
 seznamu schová — čísla řádků pak rovnou odpovídají cílovým pozicím). Křížek řádku vyřadí
 ze žebříčku (viděno zůstane); „zrušit viděno" u čekajícího je jediná cesta k odviděnění.
+Žebříček je jeden společný pro všechno — filmy, seriály i dokumenty (bráno jako
+„filmový zážitek"); v panelu je odlišuje barva kolečka pořadí podle `druhFilmuDoma`:
+tři odstíny zelené (film tmavší, seriál světlejší s tmavým číslem, dokument
+našedlý) přes CSS proměnné `--zeb-barva`/`--zeb-text` na třídách `.zeb-druh-*`,
+v hlavičce panelu malá legenda. Film, který v datech není, se bere jako film.
 Zařazený film vypadá na kartě jako obyčejné „viděno" (zelený obrys, skóre) — pořadí se
 ukazuje JEN v panelu (plná výplň i pořadí v kolečku byly zkoušené a Bobovi neseděly).
 Žebříček jede přes export/import zálohy spolu se srdíčky a viděnem (`sloucZebricek`:

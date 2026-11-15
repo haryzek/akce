@@ -1648,9 +1648,9 @@ body.zebricek-otevreny {
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
-  border: 1.5px solid var(--videno);
-  background: var(--videno);
-  color: #fff;
+  border: 1.5px solid var(--zeb-barva, var(--videno));
+  background: var(--zeb-barva, var(--videno));
+  color: var(--zeb-text, #fff);
   font-weight: 700;
   font-size: 0.8rem;
   display: flex;
@@ -1662,7 +1662,35 @@ body.zebricek-otevreny {
 
 .zeb-poradi:hover {
   background: transparent;
-  color: var(--videno);
+  color: var(--zeb-barva, var(--videno));
+}
+
+/* druh v žebříčku — tři odstíny zelené: film tmavší, seriál světlejší, dokument
+   našedlý (šalvějový). Nastavuje se proměnnou, ať ji sdílí kolečko i legenda. */
+.zeb-druh-film     { --zeb-barva: #3a7a50; --zeb-text: #fff; }
+.zeb-druh-serial   { --zeb-barva: #8fd4a6; --zeb-text: #14281b; }
+.zeb-druh-dokument { --zeb-barva: #7f9686; --zeb-text: #fff; }
+
+.zeb-legenda {
+  display: flex;
+  gap: 0.7rem;
+  margin-left: auto;
+  margin-right: 0.8rem;
+  color: var(--text-jemny);
+  font-size: 0.7rem;
+}
+
+.zeb-legenda > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.zeb-legenda i {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: var(--zeb-barva);
 }
 
 .zeb-nazev {

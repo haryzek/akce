@@ -539,10 +539,43 @@ body.rezim-doma .rychle-volby button[data-rozsah] {
 
 /* štítek "čekárna" — film, co si Bob přidal sám (data/filmy_doma_pridane.json);
    tichý obrys v akcentu, ať je vidět na první pohled, ale nekřičí */
+/* řádek štítku s triáží: [ČEKÁRNA] ✓ ✕ — tlačítka tichá, ožijí na hover */
+.cekarna-triaz {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 0.15rem;
+}
+
+.triaz-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.35rem;
+  height: 1.35rem;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  background: none;
+  color: var(--text-tlumeny);
+  font-size: 0.8rem;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.triaz-btn:hover,
+.triaz-btn:focus-visible {
+  opacity: 1;
+}
+
+.triaz-beru:hover { color: var(--videno); border-color: currentColor; }
+.triaz-pryc:hover { color: #d9776b; border-color: currentColor; }
+
 .stitek-cekarna {
   align-self: flex-start;
   width: fit-content;
-  margin-bottom: 0.15rem;
   padding: 0.05rem 0.45rem;
   border: 1px solid var(--akcent);
   border-radius: 999px;

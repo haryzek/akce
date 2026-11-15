@@ -161,6 +161,59 @@ function prepniVideno(id) {
   osvezKolecka();
 }
 
+// ---- triáž čekárny (filmotéka) — ✓ beru / ✕ pryč u filmů z čekárny ----
+// Čekárna = rychlý přelet nováčků. "Beru" sundá štítek (film je dál normální člen
+// filmotéky), "pryč" film schová úplně. Appka je statická, do JSONu psát neumí →
+// rozhodnutí žijí v localStorage (jako srdíčka) a jedou přes export/import zálohy.
+
+const CEKARNA_PRIJATE_KLIC = "akce-cekarna-prijate";
+const CEKARNA_SMAZANE_KLIC = "akce-cekarna-smazane";
+
+function nactiSet(klic) {
+  try {
+    return new Set(JSON.parse(localStorage.getItem(klic) || "[]"));
+  } catch {
+    return new Set();
+  }
+}
+
+let CEKARNA_PRIJATE = nactiSet(CEKARNA_PRIJATE_KLIC);
+let CEKARNA_SMAZANE = nactiSet(CEKARNA_SMAZANE_KLIC);
+
+function ulozTriaz() {
+  try {
+    localStorage.setItem(CEKARNA_PRIJATE_KLIC, JSON.stringify([...CEKARNA_PRIJATE]));
+    localStorage.setItem(CEKARNA_SMAZANE_KLIC, JSON.stringify([...CEKARNA_SMAZANE]));
+  } catch {
+    /* privátní režim — vydrží aspoň do reloadu */
+  }
+}
+
+// Promítne triáž do načtené filmotéky: smazané vyhodí, přijatým sundá příznak
+// čekárny (a s ním slovo "cekarna" z hledacího řetězce). Volá se po načtení,
+// po kliku na ✓/✕ i po importu zálohy.
+function aplikujTriaz() {
+  if (!FILMY_DOMA) return;
+  FILMY_DOMA = FILMY_DOMA.filter((f) => !(f.data.cekarna && CEKARNA_SMAZANE.has(domaId(f.data))));
+  FILMY_DOMA.forEach((f) => {
+    if (f.data.cekarna && CEKARNA_PRIJATE.has(domaId(f.data))) {
+      f.data.cekarna = false;
+      f.hledaci = hledaciDoma(f.data);
+    }
+  });
+  DOMA_MAPA = new Map(FILMY_DOMA.map((f) => [domaId(f.data), f.data]));
+}
+
+function triazCekarny(id, akce) {
+  const film = DOMA_MAPA?.get(id);
+  if (akce === "pryc") CEKARNA_SMAZANE.add(id);
+  else CEKARNA_PRIJATE.add(id);
+  ulozTriaz();
+  aplikujTriaz();
+  prekresli();
+  if (film) zobrazToast(akce === "pryc" ? `Pryč z čekárny: ${film.nazevCz}` : `Do filmotéky: ${film.nazevCz}`);
+}
+
 // ---- žebříček viděných filmů (localStorage, panel vpravo) ----
 // Bobovo "legrační" hodnocení: místo známky pořadí. Pole ID, index 0 = 1. místo.
 // Zařazení na pozici N odsune všechno od N dál o jedna — obyčejný splice.
@@ -331,7 +384,10 @@ async function ziskejSlozkuZalohy() {
 
 async function exportujZalohuAutomaticky() {
   const slozka = await ziskejSlozkuZalohy();
-  const zaloha = { exportovanoAt: new Date().toISOString(), oblibene: [...OBLIBENE], videno: [...VIDENO], zebricek: [...ZEBRICEK] };
+  const zaloha = {
+    exportovanoAt: new Date().toISOString(), oblibene: [...OBLIBENE], videno: [...VIDENO], zebricek: [...ZEBRICEK],
+    cekarnaPrijate: [...CEKARNA_PRIJATE], cekarnaSmazane: [...CEKARNA_SMAZANE],
+  };
   const soubor = await slozka.getFileHandle(ZALOHA_SOUBOR, { create: true });
   const zapis = await soubor.createWritable();
   await zapis.write(JSON.stringify(zaloha, null, 2));
@@ -354,9 +410,18 @@ async function naimportujZalohuAutomaticky() {
   noveOblibene.forEach((id) => OBLIBENE.add(id));
   noveVideno.forEach((id) => VIDENO.add(id));
   sloucZebricek(data.zebricek);
+  sloucTriaz(data);
   ulozOblibene();
   ulozVideno();
   prekresli();
+}
+
+// Triáž čekárny ze zálohy — union jako u srdíček (nic se nevrací zpátky do čekárny)
+function sloucTriaz(data) {
+  (Array.isArray(data.cekarnaPrijate) ? data.cekarnaPrijate : []).forEach((id) => CEKARNA_PRIJATE.add(id));
+  (Array.isArray(data.cekarnaSmazane) ? data.cekarnaSmazane : []).forEach((id) => CEKARNA_SMAZANE.add(id));
+  ulozTriaz();
+  aplikujTriaz();
 }
 
 // Sloučení žebříčku ze zálohy: pořadí je uspořádaný seznam, union Setů tu nefunguje.
@@ -385,6 +450,8 @@ function exportujZalohu() {
     oblibene: [...OBLIBENE],
     videno: [...VIDENO],
     zebricek: [...ZEBRICEK],
+    cekarnaPrijate: [...CEKARNA_PRIJATE],
+    cekarnaSmazane: [...CEKARNA_SMAZANE],
   };
   const blob = new Blob([JSON.stringify(zaloha, null, 2)], { type: "application/json" });
   const url = URL.createObjectURL(blob);
@@ -432,6 +499,7 @@ function naimportujZalohu(soubor) {
     noveOblibene.forEach((id) => OBLIBENE.add(id));
     noveVideno.forEach((id) => VIDENO.add(id));
     sloucZebricek(data.zebricek);
+    sloucTriaz(data);
     ulozOblibene();
     ulozVideno();
     prekresli(); // ať se srdíčka/kolečka na obrazovce hned zobrazí správně
@@ -591,25 +659,27 @@ async function nactiFilmyDoma() {
     const pridane = (cekarna.filmy || [])
       .map((f) => ({ ...f, cekarna: true }))
       .filter((f) => !znama.has(domaId(f)));
-    FILMY_DOMA = [...zaklad, ...pridane].map((f) => ({
-      data: f,
-      // slova "cekarna" a "cesky/ceske" jsou v hledacím řetězci schválně — napsat je
-      // do hledání = ukázat jen vlastní přídavky / jen české filmy, bez dalšího tlačítka
-      // (příznak "cesky": true nese JSON u české a československé produkce)
-      hledaci: bezDiakritiky(
-        [f.nazevCz, f.nazevOrig, f.rezie, f.rok, f.zanr,
-         f.cekarna && "cekarna", f.cesky && "cesky ceske cesko"]
-          .filter(Boolean).join(" ")
-      ),
-    }));
+    FILMY_DOMA = [...zaklad, ...pridane].map((f) => ({ data: f, hledaci: hledaciDoma(f) }));
     // žebříček se řadí tady (podle estetického skóre) a pak už jen po přepnutí dudlíku
     seradFilmyDoma();
-    DOMA_MAPA = new Map(FILMY_DOMA.map((f) => [domaId(f.data), f.data]));
+    // triáž čekárny (✓/✕ z localStorage) — postaví i DOMA_MAPA
+    aplikujTriaz();
   } catch (chyba) {
     console.warn("Chyba při čtení data/filmy_doma.json:", chyba);
     FILMY_DOMA = []; // ať se to nezkouší stahovat pořád dokola a appka žije dál
   }
   return FILMY_DOMA;
+}
+
+// slova "cekarna" a "cesky/ceske" jsou v hledacím řetězci schválně — napsat je
+// do hledání = ukázat jen nepřetříděné přídavky / jen české filmy, bez dalšího tlačítka
+// (příznak "cesky": true nese JSON u české a československé produkce)
+function hledaciDoma(f) {
+  return bezDiakritiky(
+    [f.nazevCz, f.nazevOrig, f.rezie, f.rok, f.zanr,
+     f.cekarna && "cekarna", f.cesky && "cesky ceske cesko"]
+      .filter(Boolean).join(" ")
+  );
 }
 
 // ID pro srdíčka ve filmotéce — vlastní prefix, ať se watchlist "na doma" nemíchá
@@ -658,7 +728,14 @@ function vykresliKartuFilmuDoma(film, id) {
           </div>
 
           <div class="meta-blok">
-            ${film.cekarna ? '<div class="stitek-cekarna" title="Přidal jsi sám (čekárna)">čekárna</div>' : ""}
+            ${film.cekarna ? `
+              <div class="cekarna-triaz">
+                <span class="stitek-cekarna" title="Přidal jsi sám (čekárna)">čekárna</span>
+                <button type="button" class="triaz-btn triaz-beru" data-id="${encodeURIComponent(id)}" data-akce="beru"
+                        title="Beru — do filmotéky (štítek zmizí)" aria-label="Beru do filmotéky">✓</button>
+                <button type="button" class="triaz-btn triaz-pryc" data-id="${encodeURIComponent(id)}" data-akce="pryc"
+                        title="Pryč — smazat z čekárny" aria-label="Smazat z čekárny">✕</button>
+              </div>` : ""}
             <div class="meta-radek">${escapeHtml(hodnotaNebo(rezieRok))}</div>
             <div class="meta-radek">${escapeHtml(hodnotaNebo(film.zanr))}</div>
             ${radekHodnoceni}
@@ -1808,6 +1885,12 @@ async function init() {
     const srdce = e.target.closest(".srdce");
     if (srdce) {
       prepniSrdce(srdce);
+      return;
+    }
+    // ✓/✕ triáže čekárny (nesmí otevřít dashboard)
+    const triaz = e.target.closest(".triaz-btn");
+    if (triaz) {
+      triazCekarny(decodeURIComponent(triaz.dataset.id), triaz.dataset.akce);
       return;
     }
     // kolečko skóre ve filmotéce: neviděno → viděno → žebříček (nesmí otevřít dashboard)

@@ -338,6 +338,14 @@ v předpočítaném řetězci název+režie+rok+žánr — schválně bez rozli�
 Jediná výjimka: rozmezí let „1950-1960" (i s en-dash/mezerami, prohozené meze se
 srovnají) se z dotazu vyloupne jako číselný filtr roku (`rozeberDotazDoma`),
 zbytek jede dál substringem → funguje i „bergman 1950-1960".
+**Čárka = A ZÁROVEŇ** („cekarna, serial", „dokument, war"): každý kus musí sedět.
+Kus, který je přesně slovem druhu (`DRUH_SLOVA`: film/filmy, seriál/y, dokument/y,
+dokumentární…), nefiltruje substringem, ale podle **druhu** položky (`druhFilmuDoma`,
+předpočítaný `druh` vedle `hledaci`): seriál = žánr začíná „Seriál" (dává ho čekárna),
+dokument = žánr obsahuje „Documentary" (data jsou anglicky, proto by holé „dokument"
+substringem nic nenašlo), jinak film. Seriál má přednost (dokumentární seriál = seriál).
+Substring u „film" by chytal i žánry Film-Noir / Period Film, proto to oddělení.
+Víc druhů v dotazu = NEBO.
 Srdíčka mají prefix `filmy_doma::`, takže watchlist se nemíchá s oblíbenými z kin.
 **Kostka** (`#zamichat-doma`, třída `.kostka`, jen v režimu doma) zamíchá filmotéku
 náhodně (Fisher–Yates, stav `ZAMICHANO`, jen runtime), druhý klik vrátí řazení podle

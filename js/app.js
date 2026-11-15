@@ -700,7 +700,7 @@ async function nactiFilmyDoma() {
     const pridane = (cekarna.filmy || [])
       .map((f) => ({ ...f, cekarna: true }))
       .filter((f) => !znama.has(domaId(f)));
-    FILMY_DOMA = [...zaklad, ...pridane].map((f) => ({ data: f, hledaci: hledaciDoma(f) }));
+    FILMY_DOMA = [...zaklad, ...pridane].map((f) => ({ data: f, hledaci: hledaciDoma(f), druh: druhFilmuDoma(f) }));
     // žebříček se řadí tady (podle estetického skóre) a pak už jen po přepnutí dudlíku
     seradFilmyDoma();
     // triáž čekárny (✓/✕ z localStorage) — postaví i DOMA_MAPA
@@ -1269,20 +1269,50 @@ function rozeberDotazDoma(text) {
     rozsahLet = od <= do_ ? [od, do_] : [do_, od];
     return " ";
   });
-  return { rozsahLet, dotaz: bezDiakritiky(zbytek.replace(/\s+/g, " ").trim()) };
+  // čárka = A ZÁROVEŇ: "cekarna, serial" → obě podmínky musí platit. Termín, který je
+  // přesně slovem druhu (film/seriál/dokument), nefiltruje substringem, ale podle druhu
+  // — "film" by jinak chytal i žánry "Film-Noir"/"Period Film". Víc druhů = NEBO.
+  const terminy = [];
+  const druhy = new Set();
+  zbytek.split(",").forEach((kus) => {
+    const t = bezDiakritiky(kus.replace(/\s+/g, " ").trim());
+    if (!t) return;
+    if (DRUH_SLOVA[t]) druhy.add(DRUH_SLOVA[t]);
+    else terminy.push(t);
+  });
+  return { rozsahLet, terminy, druhy };
+}
+
+// slova, kterými se v hledání filmotéky vybírá druh (bez diakritiky, viz druhFilmuDoma)
+const DRUH_SLOVA = {
+  film: "film", filmy: "film",
+  serial: "serial", serialy: "serial",
+  dokument: "dokument", dokumenty: "dokument", dokumentarni: "dokument",
+  dokumentarka: "dokument", dokumentarky: "dokument",
+};
+
+// Druh položky filmotéky podle žánru: seriál (čekárna mu dává na začátek "Seriál, "),
+// dokument ("Documentary" — i v kombinaci, např. Nanook), jinak film.
+// Seriál má přednost: dokumentární seriál (Clarksonova farma) je seriál.
+function druhFilmuDoma(f) {
+  const zanr = f.zanr || "";
+  if (/^seri[aá]l/i.test(zanr)) return "serial";
+  if (/documentary/i.test(zanr)) return "dokument";
+  return "film";
 }
 
 function prekresliDoma() {
   const kontejner = document.getElementById("seznam-akci");
   const prazdnyStav = document.getElementById("prazdny-stav");
-  const { rozsahLet, dotaz } = rozeberDotazDoma(HLEDANI_DOMA);
+  const { rozsahLet, terminy, druhy } = rozeberDotazDoma(HLEDANI_DOMA);
 
   const filmy = (FILMY_DOMA || []).filter((f) => {
     if (rozsahLet) {
       const rok = Number(f.data.rok);
       if (!rok || rok < rozsahLet[0] || rok > rozsahLet[1]) return false;
     }
-    if (dotaz && !f.hledaci.includes(dotaz)) return false;
+    if (druhy.size && !druhy.has(f.druh)) return false;
+    if (!terminy.every((t) => f.hledaci.includes(t))) return false;
     if (JEN_OBLIBENE && !OBLIBENE.has(domaId(f.data))) return false;
     if (JEN_TOP && (skoreDoma(f.data) ?? -1) < TOP_PRAH) return false;
     return true;

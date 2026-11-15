@@ -161,13 +161,16 @@ function prepniVideno(id) {
   osvezKolecka();
 }
 
-// ---- triáž čekárny (filmotéka) — ✓ beru / ✕ pryč u filmů z čekárny ----
-// Čekárna = rychlý přelet nováčků. "Beru" sundá štítek (film je dál normální člen
-// filmotéky), "pryč" film schová úplně. Appka je statická, do JSONu psát neumí →
-// rozhodnutí žijí v localStorage (jako srdíčka) a jedou přes export/import zálohy.
+// ---- triáž filmotéky — ✓ beru (čekárna) / ✕ pryč (kterýkoli film) ----
+// Čekárna = rychlý přelet nováčků: "beru" sundá štítek (film je dál normální člen
+// filmotéky). "Pryč" jde u KAŽDÉHO filmu ve filmotéce a schová ho úplně (u nováčků
+// tlačítko vedle štítku, u ostatních ✕ pod srdíčkem, jen na desktopu — mobil je na
+// koukání). Appka je statická, do JSONu psát neumí → rozhodnutí žijí v localStorage
+// (jako srdíčka) a jedou přes export/import zálohy. Poslední krok jde vrátit z toastu.
 
 const CEKARNA_PRIJATE_KLIC = "akce-cekarna-prijate";
-const CEKARNA_SMAZANE_KLIC = "akce-cekarna-smazane";
+const SMAZANE_KLIC = "akce-smazane";
+const SMAZANE_KLIC_STARY = "akce-cekarna-smazane"; // první verze mazala jen v čekárně
 
 function nactiSet(klic) {
   try {
@@ -178,12 +181,13 @@ function nactiSet(klic) {
 }
 
 let CEKARNA_PRIJATE = nactiSet(CEKARNA_PRIJATE_KLIC);
-let CEKARNA_SMAZANE = nactiSet(CEKARNA_SMAZANE_KLIC);
+let SMAZANE = new Set([...nactiSet(SMAZANE_KLIC), ...nactiSet(SMAZANE_KLIC_STARY)]);
 
 function ulozTriaz() {
   try {
     localStorage.setItem(CEKARNA_PRIJATE_KLIC, JSON.stringify([...CEKARNA_PRIJATE]));
-    localStorage.setItem(CEKARNA_SMAZANE_KLIC, JSON.stringify([...CEKARNA_SMAZANE]));
+    localStorage.setItem(SMAZANE_KLIC, JSON.stringify([...SMAZANE]));
+    localStorage.removeItem(SMAZANE_KLIC_STARY); // přestěhováno do SMAZANE_KLIC
   } catch {
     /* privátní režim — vydrží aspoň do reloadu */
   }
@@ -194,7 +198,7 @@ function ulozTriaz() {
 // po kliku na ✓/✕ i po importu zálohy.
 function aplikujTriaz() {
   if (!FILMY_DOMA) return;
-  FILMY_DOMA = FILMY_DOMA.filter((f) => !(f.data.cekarna && CEKARNA_SMAZANE.has(domaId(f.data))));
+  FILMY_DOMA = FILMY_DOMA.filter((f) => !SMAZANE.has(domaId(f.data)));
   FILMY_DOMA.forEach((f) => {
     if (f.data.cekarna && CEKARNA_PRIJATE.has(domaId(f.data))) {
       f.data.cekarna = false;
@@ -204,14 +208,34 @@ function aplikujTriaz() {
   DOMA_MAPA = new Map(FILMY_DOMA.map((f) => [domaId(f.data), f.data]));
 }
 
-function triazCekarny(id, akce) {
-  const film = DOMA_MAPA?.get(id);
-  if (akce === "pryc") CEKARNA_SMAZANE.add(id);
+function triazFilmu(id, akce) {
+  const index = FILMY_DOMA ? FILMY_DOMA.findIndex((f) => domaId(f.data) === id) : -1;
+  if (index < 0) return;
+  const polozka = FILMY_DOMA[index];
+  const film = polozka.data;
+  if (akce === "pryc") SMAZANE.add(id);
   else CEKARNA_PRIJATE.add(id);
   ulozTriaz();
   aplikujTriaz();
   prekresli();
-  if (film) zobrazToast(akce === "pryc" ? `Pryč z čekárny: ${film.nazevCz}` : `Do filmotéky: ${film.nazevCz}`);
+
+  // "vrátit" v toastu: smazaný film se vrátí na své původní místo v pořadí,
+  // přijatému se vrátí štítek čekárny
+  const vratit = () => {
+    if (akce === "pryc") {
+      SMAZANE.delete(id);
+      FILMY_DOMA.splice(Math.min(index, FILMY_DOMA.length), 0, polozka);
+    } else {
+      CEKARNA_PRIJATE.delete(id);
+      film.cekarna = true;
+      polozka.hledaci = hledaciDoma(film);
+    }
+    ulozTriaz();
+    aplikujTriaz();
+    prekresli();
+  };
+  const zprava = akce === "pryc" ? `Pryč z filmotéky: ${film.nazevCz}` : `Do filmotéky: ${film.nazevCz}`;
+  zobrazToast(zprava, { popisek: "vrátit", akce: vratit });
 }
 
 // ---- žebříček viděných filmů (localStorage, panel vpravo) ----
@@ -386,7 +410,7 @@ async function exportujZalohuAutomaticky() {
   const slozka = await ziskejSlozkuZalohy();
   const zaloha = {
     exportovanoAt: new Date().toISOString(), oblibene: [...OBLIBENE], videno: [...VIDENO], zebricek: [...ZEBRICEK],
-    cekarnaPrijate: [...CEKARNA_PRIJATE], cekarnaSmazane: [...CEKARNA_SMAZANE],
+    cekarnaPrijate: [...CEKARNA_PRIJATE], smazane: [...SMAZANE],
   };
   const soubor = await slozka.getFileHandle(ZALOHA_SOUBOR, { create: true });
   const zapis = await soubor.createWritable();
@@ -416,10 +440,13 @@ async function naimportujZalohuAutomaticky() {
   prekresli();
 }
 
-// Triáž čekárny ze zálohy — union jako u srdíček (nic se nevrací zpátky do čekárny)
+// Triáž ze zálohy — union jako u srdíček (záloha nic nevrací zpátky)
 function sloucTriaz(data) {
   (Array.isArray(data.cekarnaPrijate) ? data.cekarnaPrijate : []).forEach((id) => CEKARNA_PRIJATE.add(id));
-  (Array.isArray(data.cekarnaSmazane) ? data.cekarnaSmazane : []).forEach((id) => CEKARNA_SMAZANE.add(id));
+  // "cekarnaSmazane" = klíč první verze zálohy (mazalo se jen v čekárně)
+  [data.smazane, data.cekarnaSmazane].forEach((pole) =>
+    (Array.isArray(pole) ? pole : []).forEach((id) => SMAZANE.add(id))
+  );
   ulozTriaz();
   aplikujTriaz();
 }
@@ -451,7 +478,7 @@ function exportujZalohu() {
     videno: [...VIDENO],
     zebricek: [...ZEBRICEK],
     cekarnaPrijate: [...CEKARNA_PRIJATE],
-    cekarnaSmazane: [...CEKARNA_SMAZANE],
+    smazane: [...SMAZANE],
   };
   const blob = new Blob([JSON.stringify(zaloha, null, 2)], { type: "application/json" });
   const url = URL.createObjectURL(blob);
@@ -468,7 +495,9 @@ function exportujZalohu() {
 // Nenápadné potvrzení, co samo zmizí — místo otravného alert(). Jeden sdílený prvek,
 // každé volání restartuje odpočet, ať se zprávy nehromadí.
 let TOAST_TIMER = null;
-function zobrazToast(zprava) {
+// Volitelně s tlačítkem ({popisek, akce}) — třeba "vrátit" po smazání filmu; s tlačítkem
+// toast vydrží déle, ať se na něj dá v klidu kliknout.
+function zobrazToast(zprava, tlacitko = null) {
   let toast = document.getElementById("toast");
   if (!toast) {
     toast = document.createElement("div");
@@ -477,9 +506,21 @@ function zobrazToast(zprava) {
     document.body.appendChild(toast);
   }
   toast.textContent = zprava;
+  toast.classList.toggle("toast-s-akci", Boolean(tlacitko));
+  if (tlacitko) {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "toast-akce";
+    btn.textContent = tlacitko.popisek;
+    btn.addEventListener("click", () => {
+      toast.classList.remove("toast-viditelny");
+      tlacitko.akce();
+    });
+    toast.appendChild(btn);
+  }
   toast.classList.add("toast-viditelny");
   clearTimeout(TOAST_TIMER);
-  TOAST_TIMER = setTimeout(() => toast.classList.remove("toast-viditelny"), 3200);
+  TOAST_TIMER = setTimeout(() => toast.classList.remove("toast-viditelny"), tlacitko ? 6000 : 3200);
 }
 
 // Nahraje zálohu zpět — SLUČUJE s aktuálním stavem (union), nic nemaže. Bezpečné
@@ -747,6 +788,8 @@ function vykresliKartuFilmuDoma(film, id) {
                data-id="${encodeURIComponent(id)}" data-skore="${escapeHtml(skore)}"
                title="${escapeHtml(titulSkore)}">${escapeHtml(skore)}</div>
           ${vykresliSrdce(id, OBLIBENE.has(id))}
+          ${film.cekarna ? "" : `<button type="button" class="triaz-btn triaz-pryc smazat-film" data-id="${encodeURIComponent(id)}" data-akce="pryc"
+                  title="Pryč — smazat z filmotéky" aria-label="Smazat z filmotéky">✕</button>`}
         </div>
       </div>
 
@@ -1890,7 +1933,7 @@ async function init() {
     // ✓/✕ triáže čekárny (nesmí otevřít dashboard)
     const triaz = e.target.closest(".triaz-btn");
     if (triaz) {
-      triazCekarny(decodeURIComponent(triaz.dataset.id), triaz.dataset.akce);
+      triazFilmu(decodeURIComponent(triaz.dataset.id), triaz.dataset.akce);
       return;
     }
     // kolečko skóre ve filmotéce: neviděno → viděno → žebříček (nesmí otevřít dashboard)

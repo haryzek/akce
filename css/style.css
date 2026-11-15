@@ -570,6 +570,26 @@ body.rezim-doma .rychle-volby button[data-rozsah] {
   opacity: 1;
 }
 
+/* ✕ pod srdíčkem u běžného filmu filmotéky: neviditelný, vynoří se až při najetí
+   na kartu (mazání je desktopová editace, ať karty nestraší) */
+.smazat-film {
+  opacity: 0;
+}
+
+.karta-doma:hover .smazat-film {
+  opacity: 0.6;
+}
+
+.karta-doma .smazat-film:hover,
+.smazat-film:focus-visible {
+  opacity: 1;
+}
+
+/* mobil (a dotykové displeje bez hoveru) je na koukání — mazání tam není */
+@media (max-width: 600px), (hover: none) {
+  .smazat-film { display: none; }
+}
+
 .triaz-beru:hover { color: var(--videno); border-color: currentColor; }
 .triaz-pryc:hover { color: #d9776b; border-color: currentColor; }
 
@@ -1727,6 +1747,33 @@ body.zebricek-otevreny {
   pointer-events: none;
   transition: opacity 0.25s ease, transform 0.25s ease;
   z-index: 100;
+}
+
+/* toast s tlačítkem ("vrátit") musí jít kliknout */
+.toast-s-akci {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.toast-s-akci.toast-viditelny {
+  pointer-events: auto;
+}
+
+.toast-akce {
+  flex-shrink: 0;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid var(--akcent);
+  border-radius: 999px;
+  background: none;
+  color: var(--akcent);
+  font: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.toast-akce:hover {
+  background: var(--akcent-slaby);
 }
 
 .toast-viditelny {

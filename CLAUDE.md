@@ -361,14 +361,18 @@ Obdobně **příznak `cesky: true`** (česká/československá produkce — u č
 Country, ve filmotéce ručně u 9 filmů jako Marketa, Sedmikrásky, Kolja; Formanovy
 americké filmy NE) přidá do hledacího řetězce „cesky ceske cesko" → hledání „český".
 Čekárna bere i seriály (Vinyl, Babylon Berlin) — `zanr` začíná „Seriál, ".
-**Triáž čekárny** (rychlý přelet nováčků): vedle štítku „čekárna" jsou tichá tlačítka
-**✓ beru** (štítek zmizí, film je dál normální člen filmotéky a vypadne z hledání
-„cekarna") a **✕ pryč** (film se schová úplně). Do JSONu appka psát neumí, takže
-rozhodnutí žijí v localStorage (`akce-cekarna-prijate` / `akce-cekarna-smazane`, ID jako
-srdíčka) a jedou přes export/import zálohy (union, nic se nevrací). Promítá je
-`aplikujTriaz()` — po načtení, po kliku i po importu; hledací řetězec staví `hledaciDoma()`.
-Smazané filmy fyzicky zůstávají v `filmy_doma_pridane.json`; kdyby to vadilo, dají se
-promazat ručně podle `cekarnaSmazane` ze zálohy.
+**Triáž filmotéky:** vedle štítku „čekárna" jsou tichá tlačítka **✓ beru** (štítek
+zmizí, film je dál normální člen filmotéky a vypadne z hledání „cekarna") a **✕ pryč**.
+Mazat jde **kterýkoli film** filmotéky — u běžných karet je ✕ pod srdíčkem, vynoří se
+až při najetí na kartu a na mobilu / dotykových displejích chybí úplně (mobil je na
+koukání, editace a zálohy se dělají na desktopu). Do JSONu appka psát neumí, takže
+rozhodnutí žijí v localStorage (`akce-cekarna-prijate` / `akce-smazane`; starší klíč
+`akce-cekarna-smazane` se při načtení přestěhuje) a jedou přes export/import zálohy
+(pole `cekarnaPrijate` / `smazane`, union, nic se nevrací). Promítá je `aplikujTriaz()` —
+po načtení, po kliku i po importu; hledací řetězec staví `hledaciDoma()`. Poslední krok
+jde vrátit tlačítkem „vrátit" v toastu (`zobrazToast(zprava, {popisek, akce})`, smazaný
+film se vrátí na původní místo v pořadí). Smazané filmy fyzicky zůstávají v JSONech;
+kdyby to vadilo, dají se promazat ručně podle `smazane` ze zálohy.
 Pasti: IMDb suggest řadí podle relevance, ne podle `rank` (podle popularity by „Pelíšky"
 skončily jako Dodgeball); starý český film najde jen dotaz „název rok"; OMDb `Year` je rok
 premiéry (Stalker 1980) → rok se bere z IMDb a duplicity se hlídají s tolerancí ±1.

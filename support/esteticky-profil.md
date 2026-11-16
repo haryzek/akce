@@ -35,6 +35,12 @@ Opakovaně mě oslovují filmy, které kombinují existenciální témata, morá
 Vyhýbám se filmům, které jsou formulaické, emocionálně manipulativní, povrchní nebo spoléhají na klišé, přehnanou akci nebo umělý humor, zejména sitcomovému stylu a produkcím bez psychologické nebo estetické hloubky.
 POZOR: Rád si také někdy vypláchnu hlavu. Miluju kvalitní akční filmy, thrillery, špionážní filmy, dobrodružné filmy, survivor filmy.  Jen by nemělo jít o slátaniny.
 
+Jak odhadovat skóre filmu (pro AI krok)
+Skóre = jak moc se mi film bude líbit, ne jak dobrý nebo důležitý je. Neříkám „správný / nesprávný", říkám „líbí se mi / nelíbí se mi".
+Hlavní vodítko je můj žebříček viděných filmů (v appce, záloha local/akce-zaloha.json: pole zebricek + zebricekSkore = moje kotvy 0–100, tři žebříčky film / seriál / dokument). Najdi filmy, které jsou odhadovanému nejblíž (tón, téma, hloubka, styl, režie, doba), podívej se, kam jsem je dal, a odhadovaný film mezi ně vsuň.
+Výchozí bod tam, kde žebříček mlčí: films101 (4–5★ ≈ u mě 70+, je to můj kánon), festivalová ocenění (Berlín, Cannes, Sundance), IMDb. Rotten Tomatoes a Metacritic jen okrajově (kritika je dnes angažovaná). Hodnoť provedení a to, jak film obstojí dnes, ne jen koncept, téma a pověst. Výjimky z kánonu (Kmotr) jsou v mých kotvách.
+Do žebříčku a kotev AI nikdy nesahá, ty jsou jen moje.
+
 Estetický profil – hudba (rock, soul, folk, psychedelie)
 Preferuji hudbu, která kombinuje emocionální autenticitu, harmonickou hloubku a existenciální nebo introspektivní atmosféru. Silně mě přitahují skladby, které působí intimně, zranitelně nebo melancholicky, často s pocitem samoty, vnitřního prostoru nebo tichého napětí. Důležitá je pro mě schopnost hudby vytvořit psychologický nebo téměř fyzický prostor, do kterého lze vstoupit, nikoli jen rytmická nebo povrchová stimulace.
 Zásadní roli hraje harmonie, barva zvuku a produkce, zejména analogový charakter nahrávek z 60. a 70. let, přirozený dozvuk nástrojů a absence digitální sterility. Přitahují mě bohaté, často melancholické akordové postupy, subtilní modulace a skladby, které se vyvíjejí organicky místo repetitivní struktury.

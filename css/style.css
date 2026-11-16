@@ -1718,10 +1718,31 @@ body.zebricek-otevreny {
   font-size: 0.7rem;
 }
 
-.zeb-legenda > span {
+/* puntíky v hlavičce = záložky tří žebříčků (film / seriál / dokument) */
+.zeb-zalozka {
   display: inline-flex;
   align-items: center;
   gap: 0.25rem;
+  background: none;
+  border: none;
+  border-bottom: 1.5px solid transparent;
+  padding: 0.15rem 0 0.2rem;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.zeb-zalozka:hover {
+  color: var(--text-tlumeny);
+}
+
+.zeb-zalozka.aktivni {
+  color: var(--text);
+  border-bottom-color: var(--zeb-barva);
+}
+
+.zeb-zalozka .zeb-pocet {
+  margin-left: 0.1rem;
 }
 
 .zeb-legenda i {

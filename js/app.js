@@ -271,6 +271,54 @@ function poradiVZebricku(id) {
   return ZEBRICEK.indexOf(id) + 1;
 }
 
+// ---- tři žebříčky: film / seriál / dokument ----
+// Pořád JEDNO pole ZEBRICEK; záložka v panelu ukazuje jen filmy svého druhu a pořadí,
+// kotvy i dopočet jedou per druh (každý žebříček má vlastní škálu). Druh se bere
+// z dat (druhFilmuDoma), Bob ho může ručně přebít — zařadí film do jiné záložky,
+// appka se zeptá („Vole, tohle je seriál…") a po potvrzení si to pamatuje tady.
+
+const ZEB_DRUHY = [["film", "film"], ["serial", "seriál"], ["dokument", "dokument"]];
+const ZEB_DRUH_KLIC = "akce-zebricek-druh";
+let ZEB_ZALOZKA = "film"; // aktivní záložka panelu (jen runtime)
+
+const jeDruhZebricku = (d) => ZEB_DRUHY.some(([k]) => k === d);
+
+function nactiDruhyZebricku() {
+  try {
+    const obj = JSON.parse(localStorage.getItem(ZEB_DRUH_KLIC) || "{}");
+    const cista = {};
+    for (const [id, d] of Object.entries(obj || {})) {
+      if (jeDruhZebricku(d)) cista[id] = d;
+    }
+    return cista;
+  } catch {
+    return {};
+  }
+}
+
+let ZEB_DRUH_RUCNE = nactiDruhyZebricku(); // {id: druh} — jen Bobova ruční přeřazení
+
+function ulozDruhyZebricku() {
+  try {
+    localStorage.setItem(ZEB_DRUH_KLIC, JSON.stringify(ZEB_DRUH_RUCNE));
+  } catch {
+    /* tiše přejít */
+  }
+}
+
+// druh podle dat (co v datech není nebo je z kin = film)
+function druhPrirozeny(id) {
+  const nalez = filmPodleId(id);
+  return nalez ? druhFilmuDoma(nalez.film) : "film";
+}
+
+// druh, ve kterém žebříčku film žije: Bobovo ruční přeřazení, jinak podle dat
+function druhVZebricku(id) {
+  return ZEB_DRUH_RUCNE[id] || druhPrirozeny(id);
+}
+
+const nazevDruhu = (d) => (ZEB_DRUHY.find(([k]) => k === d) || [d, d])[1];
+
 // ---- Bobovo skóre ze žebříčku (kotvy + dopočet z pozice) ----
 // Bob u vybraných filmů v panelu natvrdo napíše skóre 0–100 (= kotva). Ostatní
 // filmy žebříčku dostanou číslo dopočítané z pozice mezi nejbližšími kotvami:
@@ -311,11 +359,18 @@ function ulozKotvy() {
 
 function prepocitejSkoreZebricku() {
   ZEB_SKORE = new Map();
-  const kotvy = ZEBRICEK
+  // každý druh = samostatný žebříček s vlastními kotvami
+  for (const [druh] of ZEB_DRUHY) {
+    prepocitejSkoreSeznamu(ZEBRICEK.filter((id) => druhVZebricku(id) === druh));
+  }
+}
+
+function prepocitejSkoreSeznamu(seznam) {
+  const kotvy = seznam
     .map((id, i) => [i, ZEB_KOTVY[id]])
     .filter(([, s]) => typeof s === "number");
-  if (!kotvy.length) return; // bez kotev nemá Bob žádné skóre → všude zůstane AI
-  ZEBRICEK.forEach((id, i) => {
+  if (!kotvy.length) return; // bez kotev nemá Bob žádné skóre → zůstane AI
+  seznam.forEach((id, i) => {
     if (typeof ZEB_KOTVY[id] === "number") {
       ZEB_SKORE.set(id, { skore: ZEB_KOTVY[id], kotva: true });
       return;
@@ -492,7 +547,7 @@ async function ziskejSlozkuZalohy() {
 async function exportujZalohuAutomaticky() {
   const slozka = await ziskejSlozkuZalohy();
   const zaloha = {
-    exportovanoAt: new Date().toISOString(), oblibene: [...OBLIBENE], videno: [...VIDENO], zebricek: [...ZEBRICEK], zebricekSkore: { ...ZEB_KOTVY },
+    exportovanoAt: new Date().toISOString(), oblibene: [...OBLIBENE], videno: [...VIDENO], zebricek: [...ZEBRICEK], zebricekSkore: { ...ZEB_KOTVY }, zebricekDruh: { ...ZEB_DRUH_RUCNE },
     cekarnaPrijate: [...CEKARNA_PRIJATE], smazane: [...SMAZANE],
   };
   const soubor = await slozka.getFileHandle(ZALOHA_SOUBOR, { create: true });
@@ -516,6 +571,7 @@ async function naimportujZalohuAutomaticky() {
   const noveVideno = Array.isArray(data.videno) ? data.videno : [];
   noveOblibene.forEach((id) => OBLIBENE.add(id));
   noveVideno.forEach((id) => VIDENO.add(id));
+  sloucDruhyZebricku(data.zebricekDruh);
   sloucKotvy(data.zebricekSkore);
   sloucZebricek(data.zebricek);
   sloucTriaz(data);
@@ -552,6 +608,15 @@ function sloucZebricek(zeZalohy) {
   zmenaSkoreZebricku();
 }
 
+// Ruční druhy ze zálohy — stejně jako kotvy: doplnit jen chybějící
+function sloucDruhyZebricku(zeZalohy) {
+  if (!zeZalohy || typeof zeZalohy !== "object") return;
+  for (const [id, d] of Object.entries(zeZalohy)) {
+    if (jeDruhZebricku(d) && !(id in ZEB_DRUH_RUCNE)) ZEB_DRUH_RUCNE[id] = d;
+  }
+  ulozDruhyZebricku();
+}
+
 // Kotvy (Bobovo skóre) ze zálohy: doplní se jen ty, které tu ještě nejsou — co Bob
 // mezitím přepsal lokálně, má přednost. Volá se PŘED sloucZebricek (ten přepočítá).
 function sloucKotvy(zeZalohy) {
@@ -573,6 +638,7 @@ function exportujZalohu() {
     videno: [...VIDENO],
     zebricek: [...ZEBRICEK],
     zebricekSkore: { ...ZEB_KOTVY },
+    zebricekDruh: { ...ZEB_DRUH_RUCNE },
     cekarnaPrijate: [...CEKARNA_PRIJATE],
     smazane: [...SMAZANE],
   };
@@ -635,6 +701,7 @@ function naimportujZalohu(soubor) {
     const noveVideno = Array.isArray(data.videno) ? data.videno : [];
     noveOblibene.forEach((id) => OBLIBENE.add(id));
     noveVideno.forEach((id) => VIDENO.add(id));
+    sloucDruhyZebricku(data.zebricekDruh);
     sloucKotvy(data.zebricekSkore);
     sloucZebricek(data.zebricek);
     sloucTriaz(data);
@@ -798,10 +865,13 @@ async function nactiFilmyDoma() {
       .map((f) => ({ ...f, cekarna: true }))
       .filter((f) => !znama.has(domaId(f)));
     FILMY_DOMA = [...zaklad, ...pridane].map((f) => ({ data: f, hledaci: hledaciDoma(f), druh: druhFilmuDoma(f) }));
-    // žebříček se řadí tady (podle estetického skóre) a pak už jen po přepnutí dudlíku
-    seradFilmyDoma();
     // triáž čekárny (✓/✕ z localStorage) — postaví i DOMA_MAPA
     aplikujTriaz();
+    // skóre žebříčku se počítá per druh (film/seriál/dokument) a druh se pozná až
+    // z dat filmotéky → přepočet teď; pak teprve řazení podle skóre (a dál už jen
+    // po přepnutí dudlíku / změně žebříčku)
+    prepocitejSkoreZebricku();
+    seradFilmyDoma();
   } catch (chyba) {
     console.warn("Chyba při čtení data/filmy_doma.json:", chyba);
     FILMY_DOMA = []; // ať se to nezkouší stahovat pořád dokola a appka žije dál
@@ -2280,13 +2350,29 @@ function popisFilmuZId(id) {
   return { nazev: zaTypem.split("|")[0] || id, rok: null };
 }
 
-// Zařadí film na 1-based pozici (počítáno v žebříčku BEZ něj — při přeřazování se
-// nejdřív vyjme, pak vloží). Zařazený film je automaticky viděný.
+// Zařadí film na 1-based pozici v AKTIVNÍ záložce (počítáno bez něj — při
+// přeřazování se nejdřív vyjme, pak vloží). Zařazený film je automaticky viděný.
+// Jiný druh než záložka → zeptat se; potvrzení = Bobovo ruční přeřazení druhu.
 function zaradFilm(id, pozice) {
+  const prirozeny = druhPrirozeny(id);
+  if (ZEB_ZALOZKA !== druhVZebricku(id)) {
+    if (ZEB_ZALOZKA !== prirozeny &&
+        !confirm(`Vole, tohle je ${nazevDruhu(prirozeny)}. Fakt ho chceš do žebříčku „${nazevDruhu(ZEB_ZALOZKA)}“?`)) {
+      return;
+    }
+    if (ZEB_ZALOZKA === prirozeny) delete ZEB_DRUH_RUCNE[id]; // návrat domů = žádná výjimka
+    else ZEB_DRUH_RUCNE[id] = ZEB_ZALOZKA;
+    ulozDruhyZebricku();
+  }
   const stary = ZEBRICEK.indexOf(id);
   if (stary !== -1) ZEBRICEK.splice(stary, 1);
-  pozice = Math.max(1, Math.min(Math.floor(pozice), ZEBRICEK.length + 1));
-  ZEBRICEK.splice(pozice - 1, 0, id);
+  // pozice v záložce → index v celém poli: NAD n-tý film záložky, nebo za její poslední
+  const zalozka = ZEBRICEK.filter((x) => druhVZebricku(x) === ZEB_ZALOZKA);
+  pozice = Math.max(1, Math.min(Math.floor(pozice), zalozka.length + 1));
+  const index = pozice <= zalozka.length
+    ? ZEBRICEK.indexOf(zalozka[pozice - 1])
+    : zalozka.length ? ZEBRICEK.indexOf(zalozka[zalozka.length - 1]) + 1 : ZEBRICEK.length;
+  ZEBRICEK.splice(index, 0, id);
   if (!VIDENO.has(id)) {
     VIDENO.add(id);
     ulozVideno();
@@ -2324,6 +2410,7 @@ function otevriZebricek(id) {
   const panel = document.getElementById("zebricek-panel");
   let zvyraznit = null;
   if (id) {
+    ZEB_ZALOZKA = druhVZebricku(id); // panel se otevře rovnou na žebříčku druhu filmu
     // zařazený film se jen ukáže na svém místě; nezařazený čeká nahoře na zařazení
     if (poradiVZebricku(id)) zvyraznit = id;
     else ZEBRICEK_PENDING = id;
@@ -2345,7 +2432,7 @@ function prekresliZebricek(zvyraznitId) {
   if (!panel || panel.hidden) return;
   // čekající film se ze seznamu schová — čísla řádků pak rovnou odpovídají pozicím,
   // na které by se zařadil (přesně jak to Bob popsal: "vyskočí nahoru z místa")
-  const viditelne = ZEBRICEK.filter((id) => id !== ZEBRICEK_PENDING);
+  const viditelne = ZEBRICEK.filter((id) => id !== ZEBRICEK_PENDING && druhVZebricku(id) === ZEB_ZALOZKA);
 
   let pendingHtml = "";
   if (ZEBRICEK_PENDING) {
@@ -2365,10 +2452,8 @@ function prekresliZebricek(zvyraznitId) {
   const radky = viditelne
     .map((id, i) => {
       const { nazev, rok } = popisFilmuZId(id);
-      // druh (film/seriál/dokument) barví kolečko pořadí — tři odstíny zelené;
-      // co v datech není nebo je z kin, bere se jako film
-      const nalez = filmPodleId(id);
-      const druh = nalez ? druhFilmuDoma(nalez.film) : "film";
+      // barva kolečka podle druhu (tři odstíny zelené) — v záložce jsou všechny stejné
+      const druh = ZEB_ZALOZKA;
       const sk = ZEB_SKORE.get(id);
       const titulSk = sk
         ? sk.kotva ? "Tvoje skóre (napsané ručně) · klik = přepsat, smazat = dopočet" : "Dopočteno z pozice mezi kotvami · klik = napsat vlastní"
@@ -2390,18 +2475,19 @@ function prekresliZebricek(zvyraznitId) {
 
   panel.innerHTML = `
     <header class="zeb-hlavicka">
-      <h3>Žebříček <span class="zeb-pocet">${viditelne.length}</span></h3>
-      <span class="zeb-legenda" aria-hidden="true">
-        <span class="zeb-druh-film"><i></i>film</span>
-        <span class="zeb-druh-serial"><i></i>seriál</span>
-        <span class="zeb-druh-dokument"><i></i>dokument</span>
+      <h3>Žebříček</h3>
+      <span class="zeb-legenda" role="tablist">
+        ${ZEB_DRUHY.map(([k, popisek]) => `
+          <button type="button" role="tab" class="zeb-zalozka zeb-druh-${k}${k === ZEB_ZALOZKA ? " aktivni" : ""}"
+                  data-druh="${k}" aria-selected="${k === ZEB_ZALOZKA}"><i></i>${popisek}
+            <span class="zeb-pocet">${ZEBRICEK.filter((id) => druhVZebricku(id) === k).length}</span></button>`).join("")}
       </span>
       <button type="button" class="zeb-zavrit" aria-label="Zavřít">×</button>
     </header>
     ${pendingHtml}
     ${radky || konec
       ? `<ol class="zeb-seznam">${radky}${konec}</ol>`
-      : '<p class="zeb-prazdny">Žebříček je prázdný — klikni na zelené kolečko viděného filmu a zařaď ho.</p>'}`;
+      : `<p class="zeb-prazdny">Žebříček „${nazevDruhu(ZEB_ZALOZKA)}" je prázdný — klikni na zelené kolečko viděného filmu a zařaď ho.</p>`}`;
 
   const vstup = panel.querySelector(".zeb-input");
   if (vstup) vstup.focus();
@@ -2422,6 +2508,12 @@ function nastavZebricek() {
       zavriZebricek();
       return;
     }
+    const zalozka = e.target.closest(".zeb-zalozka");
+    if (zalozka) {
+      ZEB_ZALOZKA = zalozka.dataset.druh; // čekající film zůstává nahoře, jde zařadit i sem
+      prekresliZebricek();
+      return;
+    }
     // "zrušit viděno" u čekajícího filmu — jediná cesta, jak film odviděnit
     // (klik na kolečko už viděné jen otevírá tenhle panel)
     if (e.target.closest(".zeb-odvidet") && ZEBRICEK_PENDING) {
@@ -2440,7 +2532,7 @@ function nastavZebricek() {
       return;
     }
     if (e.target.closest(".zeb-na-konec") && ZEBRICEK_PENDING) {
-      zaradFilm(ZEBRICEK_PENDING, ZEBRICEK.filter((x) => x !== ZEBRICEK_PENDING).length + 1);
+      zaradFilm(ZEBRICEK_PENDING, Infinity); // za poslední film aktivní záložky
       return;
     }
     // klik na kolečko skóre → místo něj políčko na číslo (Enter/opuštění = uložit,
@@ -2501,8 +2593,8 @@ function nastavZebricek() {
       const cilId = decodeURIComponent(radek.dataset.id);
       if (ZEBRICEK_PENDING) {
         // zařadit NAD kliknutý film — pozice = jeho číslo v zobrazeném (filtrovaném) seznamu
-        const bezPending = ZEBRICEK.filter((x) => x !== ZEBRICEK_PENDING);
-        zaradFilm(ZEBRICEK_PENDING, bezPending.indexOf(cilId) + 1);
+        const zalozkaBez = ZEBRICEK.filter((x) => x !== ZEBRICEK_PENDING && druhVZebricku(x) === ZEB_ZALOZKA);
+        zaradFilm(ZEBRICEK_PENDING, zalozkaBez.indexOf(cilId) + 1);
       } else {
         // bez čekajícího filmu je klik na řádek zkratka na dashboard
         const nalez = filmPodleId(cilId);

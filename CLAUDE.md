@@ -418,11 +418,16 @@ splice, filmy pod pozicí se odsunou o jedna; zařazení implikuje viděno. Pře
 na řádku (vidět na hoveru) → film vyskočí nahoru jako čekající (z pole se nemaže, jen se v
 seznamu schová — čísla řádků pak rovnou odpovídají cílovým pozicím). Křížek řádku vyřadí
 ze žebříčku (viděno zůstane); „zrušit viděno" u čekajícího je jediná cesta k odviděnění.
-Žebříček je jeden společný pro všechno — filmy, seriály i dokumenty (bráno jako
-„filmový zážitek"); v panelu je odlišuje barva kolečka pořadí podle `druhFilmuDoma`:
-tři odstíny zelené (film tmavší, seriál světlejší s tmavým číslem, dokument
-našedlý) přes CSS proměnné `--zeb-barva`/`--zeb-text` na třídách `.zeb-druh-*`,
-v hlavičce panelu malá legenda. Film, který v datech není, se bere jako film.
+**Tři žebříčky** (film / seriál / dokument) jako záložky v hlavičce panelu (puntíky
+s počty, `ZEB_ZALOZKA`). Pod tím je pořád JEDNO pole `ZEBRICEK`; záložka jen
+filtruje podle `druhVZebricku` a pořadí, kotvy i dopočet jedou per druh (každý
+žebříček má vlastní škálu). Druh = `druhFilmuDoma` z dat (co v datech není = film),
+přebitý Bobovým ručním přeřazením (localStorage `akce-zebricek-druh`, v záloze
+`zebricekDruh`). Panel se otevře na záložce druhu filmu; zařazení do jiné záložky se
+zeptá („Vole, tohle je seriál…"), potvrzení uloží výjimku, návrat do vlastní záložky
+ji smaže. `zaradFilm` bere pozici v aktivní záložce a přepočítá ji na index v poli.
+Barvy záložek a koleček: tři odstíny zelené (film tmavší, seriál světlejší s tmavým
+číslem, dokument našedlý) přes `--zeb-barva`/`--zeb-text` na třídách `.zeb-druh-*`.
 **Bobovo skóre (kotvy):** kolečko řádku v panelu ukazuje skóre, ne pořadí (pořadí je
 drobně šedě vedle). Klik na kolečko = napsat číslo 0–100 → **kotva** (plné kolečko,
 localStorage `akce-zebricek-skore` = `{id: skóre}`); prázdné = zrušit. Ostatní filmy

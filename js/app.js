@@ -84,7 +84,9 @@ function zamichejFilmyDoma() {
 }
 
 // Obě metriky filmotéky v jedné podobě, jakou používá řazení, karta i dashboard.
-const skoreDoma = (film) => penalizovane(film.estetickeSkore, film);
+// Estetické skóre: Bobovo ze žebříčku (bez dudlíku), jinak AI po případné srážce.
+const skoreDomaAI = (film) => penalizovane(film.estetickeSkore, film);
+const skoreDoma = (film) => bobovoSkore(domaId(film)) ?? skoreDomaAI(film);
 const prumerDoma = (film) => penalizovane(film.hodnoceni?.vazenePrumer, film);
 
 // Filmotéka se řadí podle estetického skóre (režim nemá volbu řazení); po přepnutí
@@ -269,13 +271,94 @@ function poradiVZebricku(id) {
   return ZEBRICEK.indexOf(id) + 1;
 }
 
+// ---- Bobovo skóre ze žebříčku (kotvy + dopočet z pozice) ----
+// Bob u vybraných filmů v panelu natvrdo napíše skóre 0–100 (= kotva). Ostatní
+// filmy žebříčku dostanou číslo dopočítané z pozice mezi nejbližšími kotvami:
+//   - mezi dvěma kotvami lineárně (mezi 90 a 80 v půlce = 85; mezi 88 a 88 = 88),
+//   - nad nejvyšší kotvou = hodnota té kotvy (nahoře budou stovky → 100),
+//   - pod nejnižší kotvou = hodnota té kotvy (Bob si ji pak může přepsat).
+// Přesun filmu v žebříčku kotvu ZRUŠÍ — jedno pravidlo na všechno: kam film vsuneš,
+// takové číslo dostane. Bobovo skóre přebíjí AI estetické skóre všude (kolečko,
+// řazení, hvězda) a dudlík na něj nesahá — Bob hodnotí zážitkem, dnešníma očima.
+// Žádná AI, čistá aritmetika nad localStorage.
+
+const ZEB_KOTVY_KLIC = "akce-zebricek-skore";
+
+function nactiKotvy() {
+  try {
+    const obj = JSON.parse(localStorage.getItem(ZEB_KOTVY_KLIC) || "{}");
+    const cista = {};
+    for (const [id, s] of Object.entries(obj || {})) {
+      if (typeof s === "number" && Number.isFinite(s)) cista[id] = s;
+    }
+    return cista;
+  } catch {
+    return {};
+  }
+}
+
+let ZEB_KOTVY = nactiKotvy(); // {id: 0–100} — jen to, co Bob napsal ručně
+let ZEB_SKORE = new Map(); // id → {skore, kotva} — přepočítává prepocitejSkoreZebricku()
+prepocitejSkoreZebricku(); // hned po startu, ať karty i řazení znají Bobova čísla
+
+function ulozKotvy() {
+  try {
+    localStorage.setItem(ZEB_KOTVY_KLIC, JSON.stringify(ZEB_KOTVY));
+  } catch {
+    /* tiše přejít */
+  }
+}
+
+function prepocitejSkoreZebricku() {
+  ZEB_SKORE = new Map();
+  const kotvy = ZEBRICEK
+    .map((id, i) => [i, ZEB_KOTVY[id]])
+    .filter(([, s]) => typeof s === "number");
+  if (!kotvy.length) return; // bez kotev nemá Bob žádné skóre → všude zůstane AI
+  ZEBRICEK.forEach((id, i) => {
+    if (typeof ZEB_KOTVY[id] === "number") {
+      ZEB_SKORE.set(id, { skore: ZEB_KOTVY[id], kotva: true });
+      return;
+    }
+    let nad = null;
+    let pod = null;
+    for (const k of kotvy) {
+      if (k[0] < i) nad = k;
+      else if (!pod) pod = k;
+    }
+    const s = nad && pod
+      ? nad[1] + ((pod[1] - nad[1]) * (i - nad[0])) / (pod[0] - nad[0])
+      : (nad || pod)[1];
+    ZEB_SKORE.set(id, { skore: Math.round(s), kotva: false });
+  });
+}
+
+// Bobovo skóre filmu podle ID, nebo null (film v žebříčku není / žádné kotvy)
+function bobovoSkore(id) {
+  return ZEB_SKORE.size ? ZEB_SKORE.get(id)?.skore ?? null : null;
+}
+
+// Po každé změně žebříčku/kotev: přepočet, tiché přeřazení filmotéky (projeví se
+// při dalším vykreslení, ať obrazovka neskáče) a přepis čísel v kolečkách.
+function zmenaSkoreZebricku() {
+  prepocitejSkoreZebricku();
+  seradFilmyDoma();
+  osvezKolecka();
+}
+
 // Přepočítá VŠECHNA kolečka skóre na stránce podle aktuálního stavu. Pořadí se
 // v kolečku schválně NEukazuje (zkoušeno, Bobovi nesedělo — pořadí patří jen do
 // panelu žebříčku); kolečko drží skóre a jen zelená: viděno NEBO zařazeno.
+// Číslo v kolečku: Bobovo skóre, jinak AI skóre, které kolečko nese v data-ai.
 function osvezKolecka() {
   document.querySelectorAll(".skore[data-id]").forEach((s) => {
     const id = decodeURIComponent(s.dataset.id);
     s.classList.toggle("videno", VIDENO.has(id) || poradiVZebricku(id) > 0);
+    if (s.dataset.ai !== undefined) {
+      const bob = bobovoSkore(id);
+      s.textContent = bob ?? s.dataset.ai;
+      s.classList.toggle("bobovo", bob !== null);
+    }
   });
 }
 
@@ -409,7 +492,7 @@ async function ziskejSlozkuZalohy() {
 async function exportujZalohuAutomaticky() {
   const slozka = await ziskejSlozkuZalohy();
   const zaloha = {
-    exportovanoAt: new Date().toISOString(), oblibene: [...OBLIBENE], videno: [...VIDENO], zebricek: [...ZEBRICEK],
+    exportovanoAt: new Date().toISOString(), oblibene: [...OBLIBENE], videno: [...VIDENO], zebricek: [...ZEBRICEK], zebricekSkore: { ...ZEB_KOTVY },
     cekarnaPrijate: [...CEKARNA_PRIJATE], smazane: [...SMAZANE],
   };
   const soubor = await slozka.getFileHandle(ZALOHA_SOUBOR, { create: true });
@@ -433,6 +516,7 @@ async function naimportujZalohuAutomaticky() {
   const noveVideno = Array.isArray(data.videno) ? data.videno : [];
   noveOblibene.forEach((id) => OBLIBENE.add(id));
   noveVideno.forEach((id) => VIDENO.add(id));
+  sloucKotvy(data.zebricekSkore);
   sloucZebricek(data.zebricek);
   sloucTriaz(data);
   ulozOblibene();
@@ -465,6 +549,17 @@ function sloucZebricek(zeZalohy) {
     });
   }
   ulozZebricek();
+  zmenaSkoreZebricku();
+}
+
+// Kotvy (Bobovo skóre) ze zálohy: doplní se jen ty, které tu ještě nejsou — co Bob
+// mezitím přepsal lokálně, má přednost. Volá se PŘED sloucZebricek (ten přepočítá).
+function sloucKotvy(zeZalohy) {
+  if (!zeZalohy || typeof zeZalohy !== "object") return;
+  for (const [id, sk] of Object.entries(zeZalohy)) {
+    if (typeof sk === "number" && Number.isFinite(sk) && !(id in ZEB_KOTVY)) ZEB_KOTVY[id] = sk;
+  }
+  ulozKotvy();
 }
 
 // Stáhne zálohu localStorage (oblíbené + viděné filmy) jako JSON — pro případ
@@ -477,6 +572,7 @@ function exportujZalohu() {
     oblibene: [...OBLIBENE],
     videno: [...VIDENO],
     zebricek: [...ZEBRICEK],
+    zebricekSkore: { ...ZEB_KOTVY },
     cekarnaPrijate: [...CEKARNA_PRIJATE],
     smazane: [...SMAZANE],
   };
@@ -539,6 +635,7 @@ function naimportujZalohu(soubor) {
     const noveVideno = Array.isArray(data.videno) ? data.videno : [];
     noveOblibene.forEach((id) => OBLIBENE.add(id));
     noveVideno.forEach((id) => VIDENO.add(id));
+    sloucKotvy(data.zebricekSkore);
     sloucZebricek(data.zebricek);
     sloucTriaz(data);
     ulozOblibene();
@@ -729,24 +826,26 @@ function domaId(film) {
   return akceId({ typAkce: "filmy_doma", data: film });
 }
 
-// Karta filmu "na doma" — klon filmové karty s prohozenými metrikami: v kolečku je
-// vážený průměr (zaokrouhlený, ať se vejde), ve žlutém řádku estetické skóre + films101.
+// Karta filmu "na doma" — stejné rozložení jako filmová karta: v kolečku estetické
+// skóre (Bobovo ze žebříčku, jinak AI), ve žlutém řádku vážený průměr + films101/IMDb.
 // Bez projekcí (žádné nejsou), popis se dočasně bere z duvodSkore (viz JSON kontrakt).
 function vykresliKartuFilmuDoma(film, id) {
   // obě metriky přes helpery — se zapnutým dudlíkem už jsou po srážce za dobovou zátěž
-  const prumer = prumerDoma(film);
-  const skore = prumer === null || prumer === undefined ? "—" : Math.round(prumer);
+  // (Bobovo skóre dudlík nesráží)
+  const ai = hodnotaNebo(skoreDomaAI(film));
+  const bob = bobovoSkore(id);
+  const skore = bob ?? ai;
   const rezieRok = [film.rezie, film.rok].filter(Boolean).join(" · ");
   const srazka = dobovaPenalizace(film);
-  const titulSkore = srazka
-    ? `Vážený průměr po srážce −${srazka} za dobovou zátěž · klik = viděno, další klik = žebříček`
-    : "Vážený průměr · klik = viděno, další klik = žebříček";
+  const titulSkore = bob !== null
+    ? "Tvoje skóre ze žebříčku · klik = žebříček"
+    : `Estetické skóre${srazka ? ` po srážce −${srazka} za dobovou zátěž` : ""} · klik = viděno, další klik = žebříček`;
 
-  // žlutý řádek: vpředu estetické skóre s ikonkou (role váženého průměru), za ním films101
-  const estHodnota = skoreDoma(film);
+  // žlutý řádek: vpředu vážený průměr s ikonkou (zaokrouhlený), za ním films101/IMDb
+  const prumer = prumerDoma(film);
   const est =
-    estHodnota !== null && estHodnota !== undefined
-      ? `<span class="prumer">${IKONA_PRUMER}${escapeHtml(estHodnota)}</span>`
+    prumer !== null && prumer !== undefined
+      ? `<span class="prumer">${IKONA_PRUMER}${escapeHtml(Math.round(prumer))}</span>`
       : "";
   const f101 =
     film.hodnoceni?.films101 !== null && film.hodnoceni?.films101 !== undefined
@@ -784,8 +883,8 @@ function vykresliKartuFilmuDoma(film, id) {
         </div>
 
         <div class="karta-vpravo">
-          <div class="skore skore-klik${VIDENO.has(id) || poradiVZebricku(id) ? " videno" : ""}"
-               data-id="${encodeURIComponent(id)}" data-skore="${escapeHtml(skore)}"
+          <div class="skore skore-klik${VIDENO.has(id) || poradiVZebricku(id) ? " videno" : ""}${bob !== null ? " bobovo" : ""}"
+               data-id="${encodeURIComponent(id)}" data-ai="${escapeHtml(ai)}"
                title="${escapeHtml(titulSkore)}">${escapeHtml(skore)}</div>
           ${vykresliSrdce(id, OBLIBENE.has(id))}
           ${film.cekarna ? "" : `<button type="button" class="triaz-btn triaz-pryc smazat-film" data-id="${encodeURIComponent(id)}" data-akce="pryc"
@@ -1091,8 +1190,11 @@ function vykresliDashboard(film, typ) {
   // filmotéka: obě metriky po případné srážce dudlíku (kina dudlík nemají — helpery vrací
   // hodnotu beze změny, když film pole dobovaZatez nemá)
   const prumer = typ === "filmy_doma" ? prumerDoma(film) : film.hodnoceni?.vazenePrumer;
-  const estSkore = typ === "filmy_doma" ? skoreDoma(film) : film.estetickeSkore;
-  const srazka = typ === "filmy_doma" ? dobovaPenalizace(film) : 0;
+  // AI skóre (po dudlíku) a Bobovo ze žebříčku, které ho přebíjí
+  const estAI = typ === "filmy_doma" ? skoreDomaAI(film) : film.estetickeSkore;
+  const bob = bobovoSkore(id);
+  const estSkore = bob ?? estAI;
+  const srazka = typ === "filmy_doma" && bob === null ? dobovaPenalizace(film) : 0;
 
   // Hlavní text: popis, pak (jen když se liší) duvodSkore, pak vlastní recenze — stejné
   // pořadí jako na kartě "Filmy". U filmotéky je popis===duvodSkore (dočasná vlastnost
@@ -1174,10 +1276,10 @@ function vykresliDashboard(film, typ) {
         </div>
         <div class="dash-skore-blok">
           <div class="dash-skore-hlavni">
-            <div class="skore dash-skore skore-klik${VIDENO.has(id) || poradiVZebricku(id) ? " videno" : ""}"
-                 data-id="${encodeURIComponent(id)}" data-skore="${escapeHtml(hodnotaNebo(estSkore))}"
-                 title="Estetické skóre${srazka ? ` po srážce −${srazka} za dobovou zátěž` : ""} · klik = viděno, další klik = žebříček">${escapeHtml(hodnotaNebo(estSkore))}</div>
-            <span class="dash-skore-popisek">${srazka ? `estetické skóre −${srazka} (dudlík)` : "estetické skóre"}</span>
+            <div class="skore dash-skore skore-klik${VIDENO.has(id) || poradiVZebricku(id) ? " videno" : ""}${bob !== null ? " bobovo" : ""}"
+                 data-id="${encodeURIComponent(id)}" data-ai="${escapeHtml(hodnotaNebo(estAI))}"
+                 title="${bob !== null ? "Tvoje skóre ze žebříčku" : `Estetické skóre${srazka ? ` po srážce −${srazka} za dobovou zátěž` : ""}`} · klik = viděno, další klik = žebříček">${escapeHtml(hodnotaNebo(estSkore))}</div>
+            <span class="dash-skore-popisek">${bob !== null ? `tvoje skóre (AI ${escapeHtml(hodnotaNebo(estAI))})` : srazka ? `estetické skóre −${srazka} (dudlík)` : "estetické skóre"}</span>
           </div>
           <div class="dash-skore-vedlejsi">
             ${skoreVedlejsi}
@@ -1396,6 +1498,12 @@ function ziskejAktivniRozsah() {
   };
 }
 
+// Estetické skóre akce pro řazení a hvězdu: Bobovo ze žebříčku (kinofilm, co viděl),
+// jinak to z dat
+function skoreAkce(polozka) {
+  return bobovoSkore(akceId(polozka)) ?? polozka.data.estetickeSkore;
+}
+
 function ziskejFiltrovaneARazene() {
   const typFiltr = document.getElementById("filtr-typ").value;
   const razeniPodle = document.getElementById("razeni").value;
@@ -1404,14 +1512,14 @@ function ziskejFiltrovaneARazene() {
   let vysledek = VSECHNY_AKCE.filter((polozka) => {
     if (typFiltr !== "vse" && polozka.typAkce !== typFiltr) return false;
     if (JEN_OBLIBENE && !OBLIBENE.has(akceId(polozka))) return false;
-    if (JEN_TOP && (polozka.data.estetickeSkore ?? -1) < TOP_PRAH) return false;
+    if (JEN_TOP && (skoreAkce(polozka) ?? -1) < TOP_PRAH) return false;
     if ((datumOd || datumDo) && !maAkceVRozmezi(polozka, datumOd, datumDo)) return false;
     return true;
   });
 
   vysledek.sort((a, b) => {
     if (razeniPodle === "estetickeSkore") {
-      return (b.data.estetickeSkore ?? -1) - (a.data.estetickeSkore ?? -1);
+      return (skoreAkce(b) ?? -1) - (skoreAkce(a) ?? -1);
     }
     if (razeniPodle === "vazenePrumer") {
       return (b.data.hodnoceni?.vazenePrumer ?? -1) - (a.data.hodnoceni?.vazenePrumer ?? -1);
@@ -1543,7 +1651,8 @@ function vykresliHodnoceniRadek(hodnoceni) {
 }
 
 function vykresliKartuFilmu(film, rozsah, id) {
-  const skore = hodnotaNebo(film.estetickeSkore, "—");
+  // film z kina, který Bob viděl a zařadil do žebříčku, ukáže jeho skóre
+  const skore = hodnotaNebo(bobovoSkore(id) ?? film.estetickeSkore, "—");
 
   return `
     <article class="karta" data-film-id="${encodeURIComponent(id)}" data-typ-akce="filmy">
@@ -2147,8 +2256,9 @@ function nastavDashboard() {
 // ---- panel žebříčku (pravý sloupec) ----
 // Otevírá se klikem na zelené kolečko viděného filmu. Nahoře čekající film (sticky),
 // pod ním skrolovací žebříček. Zařazení: číslo do inputu, klik na řádek („NAD něj"),
-// nebo „na konec". Přeřazení: klik na pořadové číslo řádku — film vyskočí nahoru
-// jako čekající a zařazuje se znovu stejným mechanismem.
+// nebo „na konec". Přeřazení: šipky ↕ na řádku — film vyskočí nahoru jako čekající
+// a zařazuje se znovu stejným mechanismem. Kolečko řádku = Bobovo skóre (plné =
+// kotva napsaná ručně, obrys = dopočet z pozice); klik na něj = zadat/přepsat číslo.
 
 // Dohledá film podle ID napříč datasety (filmotéka + načtené akce). Žebříček drží
 // jen ID, takže musí přežít i film, který už v žádných datech není — fallback
@@ -2182,9 +2292,32 @@ function zaradFilm(id, pozice) {
     ulozVideno();
   }
   ulozZebricek();
+  // přesun/vložení = nové číslo podle sousedů (kotva padá, Bob si ji může napsat znovu)
+  zrusKotvu(id);
   ZEBRICEK_PENDING = null;
+  zmenaSkoreZebricku();
   prekresliZebricek(id); // čerstvě zařazený se zvýrazní a odscrolluje do záběru
-  osvezKolecka();
+}
+
+// Bob napsal číslo do kolečka v panelu. Prázdné = zrušit kotvu (zpět na dopočet);
+// jinak oříznout do 0–100 a zaokrouhlit.
+function nastavKotvu(id, hodnota) {
+  const text = String(hodnota).trim();
+  if (text === "") {
+    zrusKotvu(id);
+  } else {
+    const cislo = Number(text);
+    if (!Number.isFinite(cislo)) return;
+    ZEB_KOTVY[id] = Math.max(0, Math.min(100, Math.round(cislo)));
+    ulozKotvy();
+  }
+  zmenaSkoreZebricku();
+}
+
+function zrusKotvu(id) {
+  if (!(id in ZEB_KOTVY)) return;
+  delete ZEB_KOTVY[id];
+  ulozKotvy();
 }
 
 function otevriZebricek(id) {
@@ -2236,10 +2369,16 @@ function prekresliZebricek(zvyraznitId) {
       // co v datech není nebo je z kin, bere se jako film
       const nalez = filmPodleId(id);
       const druh = nalez ? druhFilmuDoma(nalez.film) : "film";
+      const sk = ZEB_SKORE.get(id);
+      const titulSk = sk
+        ? sk.kotva ? "Tvoje skóre (napsané ručně) · klik = přepsat, smazat = dopočet" : "Dopočteno z pozice mezi kotvami · klik = napsat vlastní"
+        : "Zatím bez skóre · klik = napsat";
       return `
       <li class="zeb-radek zeb-druh-${druh}${ZEBRICEK_PENDING ? " zeb-cil" : ""}${id === zvyraznitId ? " zeb-zvyraznen" : ""}" data-id="${encodeURIComponent(id)}">
-        <button type="button" class="zeb-poradi" title="Přeřadit — film vyskočí nahoru k novému zařazení">${i + 1}</button>
+        <button type="button" class="zeb-skore${sk?.kotva ? " zeb-kotva" : ""}" title="${titulSk}">${sk ? sk.skore : "—"}</button>
+        <span class="zeb-pozice">${i + 1}.</span>
         <span class="zeb-nazev">${escapeHtml(nazev)}${rok ? ` <span class="zeb-rok">${escapeHtml(rok)}</span>` : ""}</span>
+        <button type="button" class="zeb-preradit" title="Přeřadit — film vyskočí nahoru k novému zařazení">↕</button>
         <button type="button" class="zeb-smazat" title="Vyřadit ze žebříčku (viděno zůstane)">×</button>
       </li>`;
     })
@@ -2294,16 +2433,48 @@ function nastavZebricek() {
         ZEBRICEK.splice(idx, 1);
         ulozZebricek();
       }
+      zrusKotvu(id);
       ZEBRICEK_PENDING = null;
+      zmenaSkoreZebricku();
       prekresliZebricek();
-      osvezKolecka();
       return;
     }
     if (e.target.closest(".zeb-na-konec") && ZEBRICEK_PENDING) {
       zaradFilm(ZEBRICEK_PENDING, ZEBRICEK.filter((x) => x !== ZEBRICEK_PENDING).length + 1);
       return;
     }
-    const poradiTlacitko = e.target.closest(".zeb-poradi");
+    // klik na kolečko skóre → místo něj políčko na číslo (Enter/opuštění = uložit,
+    // Esc = zpět, prázdné = zrušit kotvu a nechat dopočet)
+    const skoreTlacitko = e.target.closest(".zeb-skore");
+    if (skoreTlacitko) {
+      const id = decodeURIComponent(skoreTlacitko.closest(".zeb-radek").dataset.id);
+      const vstup = document.createElement("input");
+      vstup.type = "number";
+      vstup.min = "0";
+      vstup.max = "100";
+      vstup.className = "zeb-skore-input";
+      vstup.value = ZEB_KOTVY[id] ?? ZEB_SKORE.get(id)?.skore ?? "";
+      let hotovo = false;
+      const uloz = (potvrdit) => {
+        if (hotovo) return;
+        hotovo = true;
+        if (potvrdit) nastavKotvu(id, vstup.value);
+        prekresliZebricek();
+      };
+      vstup.addEventListener("keydown", (ev) => {
+        if (ev.key === "Enter") uloz(true);
+        if (ev.key === "Escape") {
+          ev.stopPropagation(); // Esc zavře jen políčko, ne celý panel
+          uloz(false);
+        }
+      });
+      vstup.addEventListener("blur", () => uloz(true));
+      skoreTlacitko.replaceWith(vstup);
+      vstup.focus();
+      vstup.select();
+      return;
+    }
+    const poradiTlacitko = e.target.closest(".zeb-preradit");
     if (poradiTlacitko) {
       // přeřazení: film vyskočí nahoru jako čekající (v poli zůstává, ze seznamu
       // se jen schová — když se panel zavře bez zařazení, nic se neztratí)
@@ -2319,10 +2490,12 @@ function nastavZebricek() {
         ZEBRICEK.splice(idx, 1);
         ulozZebricek();
       }
+      zrusKotvu(id);
+      zmenaSkoreZebricku();
       prekresliZebricek();
-      osvezKolecka();
       return;
     }
+    if (e.target.closest(".zeb-skore-input")) return; // klik do políčka skóre nic nespouští
     const radek = e.target.closest(".zeb-radek");
     if (radek) {
       const cilId = decodeURIComponent(radek.dataset.id);
@@ -2353,6 +2526,8 @@ function nastavZebricek() {
   document.addEventListener(
     "keydown",
     (e) => {
+      // (Esc v políčku skóre zavře jen políčko — řeší jeho vlastní listener)
+      if (document.activeElement?.classList.contains("zeb-skore-input")) return;
       if (e.key === "Escape" && !panel.hidden && document.getElementById("dashboard-film").hidden) {
         zavriZebricek();
       }

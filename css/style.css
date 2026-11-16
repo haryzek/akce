@@ -1642,15 +1642,16 @@ body.zebricek-otevreny {
   background: var(--akcent-slaby);
 }
 
-/* pořadové číslo = mini verze zeleného kolečka z karty; klik = přeřadit */
-.zeb-poradi {
+/* skóre = mini verze zeleného kolečka z karty; klik = napsat/přepsat číslo.
+   Plné = kotva (Bob napsal ručně), obrys = dopočet z pozice mezi kotvami. */
+.zeb-skore {
   flex-shrink: 0;
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
   border: 1.5px solid var(--zeb-barva, var(--videno));
-  background: var(--zeb-barva, var(--videno));
-  color: var(--zeb-text, #fff);
+  background: transparent;
+  color: var(--zeb-barva, var(--videno));
   font-weight: 700;
   font-size: 0.8rem;
   display: flex;
@@ -1660,9 +1661,46 @@ body.zebricek-otevreny {
   padding: 0;
 }
 
-.zeb-poradi:hover {
-  background: transparent;
-  color: var(--zeb-barva, var(--videno));
+.zeb-skore.zeb-kotva {
+  background: var(--zeb-barva, var(--videno));
+  color: var(--zeb-text, #fff);
+}
+
+.zeb-skore:hover {
+  box-shadow: 0 0 0 2px var(--bg-karta-hover), 0 0 0 3px var(--zeb-barva, var(--videno));
+}
+
+/* políčko, které při editaci nahradí kolečko — stejně velké, ať řádek neposkočí */
+.zeb-skore-input {
+  flex-shrink: 0;
+  width: 2.6rem;
+  height: 2rem;
+  box-sizing: border-box;
+  border: 1.5px solid var(--zeb-barva, var(--videno));
+  border-radius: 1rem;
+  background: var(--bg, #111);
+  color: inherit;
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-align: center;
+  padding: 0;
+  -moz-appearance: textfield;
+}
+
+.zeb-skore-input::-webkit-inner-spin-button,
+.zeb-skore-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* pořadí už jen drobně šedě (kvůli zařazování číslem) */
+.zeb-pozice {
+  flex-shrink: 0;
+  min-width: 1.6rem;
+  color: var(--text-jemny);
+  font-size: 0.72rem;
+  text-align: right;
 }
 
 /* druh v žebříčku — tři odstíny zelené: film tmavší, seriál světlejší, dokument
@@ -1708,6 +1746,7 @@ body.zebricek-otevreny {
   font-size: 0.8rem;
 }
 
+.zeb-preradit,
 .zeb-smazat {
   background: none;
   border: none;
@@ -1719,8 +1758,17 @@ body.zebricek-otevreny {
   opacity: 0; /* ukáže se až na hoveru řádku, ať seznam nekřičí křížky */
 }
 
+.zeb-radek:hover .zeb-preradit,
 .zeb-radek:hover .zeb-smazat {
   opacity: 1;
+}
+
+.zeb-preradit {
+  font-size: 0.95rem;
+}
+
+.zeb-preradit:hover {
+  color: var(--text);
 }
 
 .zeb-smazat:hover {

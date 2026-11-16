@@ -325,9 +325,10 @@ datumy i datumové zkratky; srdíčko, hvězda a pás zůstávají.
 JSON má tvar filmového kontraktu s odchylkami: navíc `rok` a `hodnoceni.films101`
 (škála 0–5), veřejná hodnocení jsou null, `projekce` prázdné, text je (dočasně) jen
 v `duvodSkore` — appka ho renderuje jako popis (fallback na `popis`). Karta
-(`vykresliKartuFilmuDoma`, třída `karta-doma`) prohazuje metriky: **kolečko =
-`vazenePrumer`** (zaokrouhlený), **žlutý řádek = `estetickeSkore` + f101** (číslo bold);
-meta řádek je „režie · rok".
+(`vykresliKartuFilmuDoma`, třída `karta-doma`): **kolečko = estetické skóre** (Bobovo
+ze žebříčku, jinak AI `estetickeSkore`), **žlutý řádek = `vazenePrumer`** (zaokrouhlený)
++ f101 (čekárna IMDb); meta řádek je „režie · rok". Kolečko, řazení i hvězda tak jedou
+podle stejného čísla (dřív bylo v kolečku `vazenePrumer` a řadilo se podle skóre — mátlo).
 
 Zásadní pro výkon: soubor má **3+ MB**, proto **není v `ZDROJE_DAT`** a stahuje se
 líně až při prvním zapnutí režimu (`nactiFilmyDoma`); renderuje se po dávkách 100 karet
@@ -413,8 +414,8 @@ jednoho filmu posune čísla mnoha dalším; původní skóre nese `data-skore`)
 odsune `body.zebricek-otevreny { padding-right }`, grid karet se přeskládá sám; na mobilu
 fullscreen). Nahoře sticky čekající film (`ZEBRICEK_PENDING`), pod ním skrolovací seznam.
 Zařazení: číslo do inputu, klik na řádek (= NAD něj), nebo „na konec" — `zaradFilm` udělá
-splice, filmy pod pozicí se odsunou o jedna; zařazení implikuje viděno. Přeřazení: klik na
-pořadové číslo řádku → film vyskočí nahoru jako čekající (z pole se nemaže, jen se v
+splice, filmy pod pozicí se odsunou o jedna; zařazení implikuje viděno. Přeřazení: šipky ↕
+na řádku (vidět na hoveru) → film vyskočí nahoru jako čekající (z pole se nemaže, jen se v
 seznamu schová — čísla řádků pak rovnou odpovídají cílovým pozicím). Křížek řádku vyřadí
 ze žebříčku (viděno zůstane); „zrušit viděno" u čekajícího je jediná cesta k odviděnění.
 Žebříček je jeden společný pro všechno — filmy, seriály i dokumenty (bráno jako
@@ -422,6 +423,19 @@ ze žebříčku (viděno zůstane); „zrušit viděno" u čekajícího je jedin
 tři odstíny zelené (film tmavší, seriál světlejší s tmavým číslem, dokument
 našedlý) přes CSS proměnné `--zeb-barva`/`--zeb-text` na třídách `.zeb-druh-*`,
 v hlavičce panelu malá legenda. Film, který v datech není, se bere jako film.
+**Bobovo skóre (kotvy):** kolečko řádku v panelu ukazuje skóre, ne pořadí (pořadí je
+drobně šedě vedle). Klik na kolečko = napsat číslo 0–100 → **kotva** (plné kolečko,
+localStorage `akce-zebricek-skore` = `{id: skóre}`); prázdné = zrušit. Ostatní filmy
+žebříčku dostanou číslo **dopočtené z pozice** (obrys): lineárně mezi nejbližšími
+kotvami nad a pod, nad nejvyšší / pod nejnižší kotvou = její hodnota. Jedno pravidlo
+na všechno: **přesun filmu (↕ nebo nové zařazení) kotvu zruší**, film vezme číslo podle
+sousedů. Bobovo skóre přebíjí AI skóre všude (kolečko karty i dashboardu, řazení
+filmotéky `skoreDoma`, hvězda, kinofilm v žebříčku přes `skoreAkce`); **dudlík na něj
+nesahá** (Bob hodnotí zážitkem dnešníma očima). Bez jediné kotvy se nic nemění.
+Přepočet `prepocitejSkoreZebricku` → `ZEB_SKORE`, po změně `zmenaSkoreZebricku` (tiché
+přeřazení + přepis čísel v kolečkách z `data-ai`, bez překreslení). Záloha nese pole
+`zebricekSkore`, import doplní jen kotvy, které lokálně chybí. Cíl: kotvy jsou kalibrace
+pro AI přeskórování filmotéky (Claude čte `local/akce-zaloha.json`).
 Zařazený film vypadá na kartě jako obyčejné „viděno" (zelený obrys, skóre) — pořadí se
 ukazuje JEN v panelu (plná výplň i pořadí v kolečku byly zkoušené a Bobovi neseděly).
 Žebříček jede přes export/import zálohy spolu se srdíčky a viděnem (`sloucZebricek`:

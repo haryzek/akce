@@ -203,8 +203,10 @@ def cmd_davky(adresar, velikost=300):
 
 
 def _zapis_skore(cesta, skore):
-    original = cesta.read_text(encoding="utf-8")
-    crlf = "\r\n" in original
+    surove = cesta.read_bytes()
+    original = surove.decode("utf-8")
+    crlf = b"\r\n" in surove  # konce řádků a koncový \n zachovat jako v originálu
+    konec_nl = surove.endswith(b"\n")
     d = json.loads(original)
     zmeneno = 0
     for f in d["filmy"]:
@@ -221,7 +223,7 @@ def _zapis_skore(cesta, skore):
     for f in d["filmy"]:
         if klic(f) in skore:
             f["estetickeSkore"] = skore[klic(f)]
-    text = json.dumps(d, ensure_ascii=False, indent=2)
+    text = json.dumps(d, ensure_ascii=False, indent=2) + ("\n" if konec_nl else "")
     if crlf:
         text = text.replace("\n", "\r\n")
     cesta.write_text(text, encoding="utf-8", newline="")

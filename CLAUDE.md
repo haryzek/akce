@@ -353,6 +353,18 @@ náhodně (Fisher–Yates, stav `ZAMICHANO`, jen runtime), druhý klik vrátí �
 skóre; `seradFilmyDoma` zamíchané pořadí nepřepisuje (ani při dudlíku). Filtry jedou
 dál nad zamíchaným pořadím — hvězda + kostka = náhodný výběr ze špičky.
 
+**Přeskórování ze žebříčku** (projektový skill **`/preskoruj`**, `.claude/skills/preskoruj/`):
+AI `estetickeSkore` filmotéky i čekárny se učí z Bobova žebříčku. Rituál: Bob uloží zálohu
+→ `preskoruj.py zebricek` spočítá jeho čísla (kotvy + dopočet, 1:1 s appkou) → čerstvý agent
+vyčte profil jen ze žebříčku do bloku `<!-- ZEBRICEK-PROFIL -->` v `support/esteticky-profil.md`
+(filmovou část profilu Bob už nepíše sám; nad blokem zůstává metoda „Jak odhadovat skóre")
+→ volitelně test naslepo (výsledky v `support/preskoruj-historie.md`) → `davky` → agent
+na dávku → `slij` zapíše jen `estetickeSkore` s kontrolou, že se nic jiného nezměnilo.
+Skóre = jak se to bude líbit Bobovi (sousedi ze žebříčku), ne kvalita/kánon. Do žebříčku,
+kotev ani zálohy AI nikdy nesahá. Rytmus: ~každých 20 nových filmů v žebříčku. První kolo
+2026-11-16 (95 filmů, 19 kotev): starý odhad přestřeloval o +17, test naslepo chyba ~13.
+Pozor: `duvodSkore` texty zůstávají z původního skórování a ke skóre nemusí sedět.
+
 **Čekárna** (`data/filmy_doma_pridane.json`): filmy, které si Bob přidává sám (chce je
 vidět, nebo je viděl a chce je v žebříčku). Plní je projektový skill **`/cekarna`**
 (`.claude/skills/cekarna/` — `SKILL.md` = postup, `cekarna.py` = mechanika: IMDb suggest →

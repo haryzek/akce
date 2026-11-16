@@ -22,24 +22,69 @@ Zajímají mě odborná témata: theory of mind, nature of consciousness, nature
 Mí oblíbení odborníci: Joscha Bach, Michael Levin, Lee Smolin, David Deutsch, Carlo rovelli, Sean Caroll, Brian Greene, William Hahn, Bernholtz, Anil Seth, Tim Maudlin.
 
 Estetický profil – film
-Kdy odcházím z kina: primitivní humor, nerealističnost s logickými nesmysly (pokud nejde o komedii), naivita, všichni herci jsou krásní a vymazlení, hollywoodské klišé, špatná režie (přehrávání herců), příliš zbytečných emocí.
-Mé preferované žánry (v závorce preference 1-10, 10 = max): Drama (10), Sci-fi (10), Crime (9), Thriller (9), Psychologický (8), Akční (7), Adventure (7), Western (7), War (6), Biography (6), Fantasy (6), Musical (6), Comedy (5), Documentary (5), Romance (4), Family (4), Horror (3).
-Příklady mých oblíbených filmů: Přelet nad kukaččím hnízdem, Vesmírná odysea 2001, Forest Gump, There will be blood, Harold and Maude, Raise the lantern, Festen, The Bands Visit, Graduate, THX 1138, Network, Dark side of the moon, Donnie Darko, Stalker, Lost in Translation, Hair, Jesus Christ Superstar, Man on the Moon
-Mé oblíbené seriály: Twin Peaks, Succession, The Wire, Breaking Bad, Office, Mad Men, Vinyl, Firefly, Severance, Dark.
-Mí oblíbení režiséři: Miloš Forman, Stanley Kubrick, Wes Andreson, Quentin Tarrantino, Von Trier, Ridley Scott, Martin Scorsese, Villeneuve, Sergio Leone. 
-Mí oblíbení herci: Daniel Day Lewis, Clint Eastwood, Robert Redford, Paul Newman, Steve McQueen, Tom Cruise. 
-Nesnáším: Sitcomy (nesnáším ten umělý smích).
-Preferuji psychologicky hluboké, existenciálně laděné a realistické filmy, které zkoumají vnitřní svět postav, jejich zranitelnost, morální konflikt nebo odcizení. Klíčová je pro mě autenticita a emocionální pravdivost, nikoli dramatická manipulace nebo spektakulární děj. Silně mě přitahují filmy, které vyvolávají melancholii, kontemplaci nebo pocit tajemství existence, často prostřednictvím ticha, pomalého tempa nebo vizuální atmosféry.
-Velký význam má režijní rukopis a vizuální kompozice — oceňuji filmy, kde obraz, prostor a rytmus nesou význam stejně jako dialog. Přitahují mě režiséři s jasnou autorskou vizí, kteří vytvářejí svébytné světy a psychologicky komplexní postavy, často stojící mimo společenské normy nebo prožívající vnitřní konflikt.
-Opakovaně mě oslovují filmy, které kombinují existenciální témata, morální ambivalenci, samotu, identitu a hledání smyslu, ať už v realistickém, poetickém nebo lehce stylizovaném rámci. Mám silnou afinitu k evropské, japonské a americké autorské kinematografii od 60. let po současnost, stejně jako k některým inteligentním mainstreamovým filmům s výraznou autorskou integritou.
-Vyhýbám se filmům, které jsou formulaické, emocionálně manipulativní, povrchní nebo spoléhají na klišé, přehnanou akci nebo umělý humor, zejména sitcomovému stylu a produkcím bez psychologické nebo estetické hloubky.
-POZOR: Rád si také někdy vypláchnu hlavu. Miluju kvalitní akční filmy, thrillery, špionážní filmy, dobrodružné filmy, survivor filmy.  Jen by nemělo jít o slátaniny.
+Filmový vkus už nepopisuju sám — vyčítá ho AI z mého žebříčku viděných filmů (rituál /preskoruj, blok níž se při každém kole přepisuje). Můj žebříček je pravdivější než to, jak bych svůj vkus popsal já.
 
 Jak odhadovat skóre filmu (pro AI krok)
 Skóre = jak moc se mi film bude líbit, ne jak dobrý nebo důležitý je. Neříkám „správný / nesprávný", říkám „líbí se mi / nelíbí se mi".
-Hlavní vodítko je můj žebříček viděných filmů (v appce, záloha local/akce-zaloha.json: pole zebricek + zebricekSkore = moje kotvy 0–100, tři žebříčky film / seriál / dokument). Najdi filmy, které jsou odhadovanému nejblíž (tón, téma, hloubka, styl, režie, doba), podívej se, kam jsem je dal, a odhadovaný film mezi ně vsuň.
-Výchozí bod tam, kde žebříček mlčí: films101 (4–5★ ≈ u mě 70+, je to můj kánon), festivalová ocenění (Berlín, Cannes, Sundance), IMDb. Rotten Tomatoes a Metacritic jen okrajově (kritika je dnes angažovaná). Hodnoť provedení a to, jak film obstojí dnes, ne jen koncept, téma a pověst. Výjimky z kánonu (Kmotr) jsou v mých kotvách.
+Hlavní vodítko je můj žebříček viděných filmů (v appce, záloha local/akce-zaloha.json: pole zebricek + zebricekSkore = moje kotvy 0–100, tři žebříčky film / seriál / dokument; čísla včetně dopočtu vypíše `python -I .claude/skills/preskoruj/preskoruj.py zebricek <soubor>`). Najdi 2–3 filmy, které jsou odhadovanému nejblíž (tón, téma, hloubka, styl, režie, doba), podívej se, kam jsem je dal, a odhadovaný film mezi ně vsuň. Tendence níž jsou jen korekce, ne zákony.
+Výchozí bod tam, kde žebříček mlčí: films101 (4–5★ ≈ u mě 70+, je to můj kánon — ale v rámci špičky už pořadí neurčí), festivalová ocenění (Berlín, Cannes, Sundance), IMDb. Rotten Tomatoes a Metacritic jen okrajově. Hodnoť provedení a to, jak film obstojí dnes, ne jen koncept, téma a pověst.
 Do žebříčku a kotev AI nikdy nesahá, ty jsou jen moje.
+Oblíbené seriály (můj seznam — dokud je žebříček seriálů skoro prázdný): Twin Peaks, Succession, The Wire, Breaking Bad, Office, Mad Men, Vinyl, Firefly, Severance, Dark. Sitcomy s umělým smíchem nesnáším.
+
+<!-- ZEBRICEK-PROFIL:START -->
+### Filmový vkus — vyčteno ze žebříčku (2026-11-16, 95 filmů)
+
+#### Jádro vkusu
+
+Bob hodnotí film podle toho, jestli ho **vtáhne do stavu**: do psychického rozpoložení postavy, do atmosféry místa, do snu. Nahoře jsou filmy, kde se pravdivá lidská psychologie (rodina, šílenství, osamělost, mužská destrukce) potkává se silným smyslovým světem: obraz, zvuk a hudba nesou emoci líp než dialog (Přelet nad kukaččím hnízdem, 2001, Paříž, Texas, Rodinná oslava, Lost in Translation, Melancholia, Mulholland Dr.). Dolů jdou filmy, které ho **poučují, citově tlačí nebo nechávají chladně venku**: historické a životopisné „důležité" filmy, satira postavená na myšlence, Hanekeho klinický odstup. Žánr ani rok samy nerozhodují. Vetřelec, Osvícení a Blade Runner stojí vedle Bergmana. Rozhoduje, jestli z filmu dýchá autorský svět s vlastní teplotou.
+
+Pozor na čísla: kotvy (Bobova vlastní čísla) jsou jen u 15 filmů, zbytek je dopočtený z pořadí mezi nimi. Uprostřed (kolem 70–75) pořadí nesedí přesně na čísla: Kmotr 70 stojí výš než Duna 75. Rozdíly o ±3 body tam jsou šum.
+
+#### Tendence, které rozhodují
+
+1. **Psychologická pravda a vztahová dynamika ↑ (silná).** Rodina, ponížení, šílenství a instituce zahrané tak, že tomu terapeut věří: Rodinná oslava 100, Kukačka 100, Zvýšení červené lucerny 99, Žena pod vlivem 90, Persona / Podzimní sonáta / Šepoty a výkřiky / Mlčení 90, Americká krása 90, 4 měsíce, 3 týdny a 2 dny 90, Hon 88, Rozchod 80. Protipříklady: Haneke (Amour 76, Bílá stuha 72, Skryté 42). Psychologie tam je, ale podaná zvenčí, chladně a jako hádanka bez katarze. Psychologie s teplem jde nahoru, psychologie jako pitva dolů.
+
+2. **Atmosféra, ticho a hypnotický stav ↑ (silná, ale nespolehlivá).** Pomalé, smyslové, „být tam": 2001 100, Paříž, Texas 100, Lost in Translation 100, Melancholia 100, Chuť třešní 92, Krásná práce 91, Povolání: reportér 90, Tenkrát v Anatolii 90, Stalker 90, Sirât 86. Protipříklady jsou tvrdé: Pod kůží 50, Strom života 67, Solaris 69, Stvoření Brutalisty 55. Pravidlo tu přestává fungovat. Vodítkem je asi to, jestli pod atmosférou zůstane lidské těžiště, se kterým se dá cítit (Travis v Paříži, Texasu, stalkerova víra, Justine v Melancholii), nebo jestli film zůstane u konceptu, kosmického šepotu či chladné estetiky. Odhaduj podle sousedů, ne podle tempa.
+
+3. **Tlačená emoce, didaktika a „důležité téma" ↓ (silná).** 12 let v řetězech 30, Poslední skotský král 40, Tanec v temnotách 45 (vyždímaná bída), Tár 48, Million Dollar Baby 60, Brutalista 55, Oppenheimer 70, Pianista 72. Protipříklady: velkou emoci Bob bere, když je zasloužená a nekáže. Lovec jelenů 100, Zkrocená hora 90, Faunův labyrint 90, Amadeus 94 (životopisný film, ale smyslový a hravý), Valčík s Bašírem 82, Potomci lidí 90. Film, který mu říká, co si má myslet nebo cítit, prohrává.
+
+4. **Humor: vřelý a melancholický ↑, satirický a ideový ↓ (střední).** Harold a Maude 97, Lost in Translation 100, komické vrstvy Kukačky a Rodinné oslavy. Naopak Dr. Divnoláska 47 a Americká fikce 30. Parazit 79 stojí mezi tím: satiru vytáhla žánrová napínavost. Komedie jako žánr tedy není minus, minus je chladná ironie.
+
+5. **Násilí, válka a temná mužská psyché ↑ (střední).** Apokalypsa 100, Lovec jelenů 100, Město bohů 100, Až na krev 95, Nesmiřitelní 93, Olověná vesta 90, Oldboy 90, Zuřící býk 89, Tahle země není pro starý 84, Taxikář 81. Násilí ho neodrazuje, pokud má mýtickou nebo psychologickou váhu. Protipříklad: Smrtonosná past 65. Řemeslně výborný film, ale jen akce bez hloubky.
+
+6. **Snová logika, podivnost a erotické napětí ↑ (střední).** Mulholland Dr. 100, Modrý samet 98, Spalující touha 90 (kánon ho podceňuje, Bob ne), Donnie Darko 90, Osvícení 96. Protipříklad: Lynchův Sloní muž 69. Lynch bez snu je pro Boba jen slušný film.
+
+7. **Žánr s autorským světem ↑ (střední).** Vetřelec 100, Osvícení 96, Blade Runner 90, Oldboy 90. Velkofilmy jsou slabší: Duna 75, Příchozí 74, Temný rytíř 72, Smrtonosná past 65. Sci-fi samo o sobě nic neznamená. Rozhoduje hmatatelný, děsivý nebo melancholický svět.
+
+8. **Doba vzniku (slabší, než vypadá).** Nejsilnější pásmo je 1966–2011, zvlášť nový Hollywood 70. let. Klasika před rokem 1960 sedí níž: Občan Kane 68, Sedmá pečeť 68, Rašomon 66, Žít 66, Apuův svět 62, Vertigo 78, 400 ran 78. Protipříklady: Bergmanovo Mlčení (1963) a Persona (1966) mají 90, takže komorní psychologická intimita dobový handicap přebije. Novější filmy (po roce 2013) v žebříčku vycházejí spíš průměrně, jenže Sirât (2025) má 86 a Parazit 79. Žádný strop podle roku neplatí. Spíš jde o to, že novější festivalová „prestiž" je riskantní kategorie (Tár, Brutalista, Pod kůží).
+
+9. **Hudba a zvuk jako nositel emoce ↑ (slabá až střední).** Ry Cooder v Paříži, Texasu, Wagner v Melancholii, Ligeti a Strauss v roce 2001, Apokalypsa, taneční finále Krásné práce, Sirât, Amadeus. Protipříklady: muzikál Tanec v temnotách 45 a Tár 48. Hudba pomáhá, jen když nese stav, ne když je tématem.
+
+#### Kde se Bob rozchází s kánonem a kritikou
+
+Výš než kánon: Harold a Maude, Vetřelec, Donnie Darko, Americká krása, Melancholia, Lost in Translation, Spalující touha, Tenkrát v Anatolii, Faunův labyrint, Sirât. Níž než kánon: Kmotr 70, Občan Kane 68, Sedmá pečeť 68, Rašomon a Žít 66, Apuův svět 62, Solaris 69, Strom života 67, Pod kůží 50, Tár 48, Dr. Divnoláska 47, Skryté 42, 12 let v řetězech 30, Stvoření Brutalisty 55 a s menší odchylkou Za časů lásky 74 (styl bez dostatečného tahu). Kritický konsenzus a statut „klasiky" jsou proto slabý prediktor. U Boba víc váží žitá intenzita než filmově-historická důležitost. Autory nelze brát jako celek: Kubrick má 100/96/90/90, ale Divnoláska 47. Von Trier má 100/75/45, Tarkovskij 90/69, Lynch 100/98/69, Bergman komorní 90 a alegorický 68. Odhaduj podle konkrétního filmu, ne podle jména.
+
+#### Kalibrace škály
+
+- **100:** Přelet nad kukaččím hnízdem, 2001: Vesmírná odysea, Rodinná oslava (kotvy), Paříž, Texas, Vetřelec, Melancholia
+- **90:** Stalker, Americká krása (kotvy), Persona, Krásná práce 91, Tenkrát v Anatolii
+- **80:** Rozchod (kotva), Taxikář 81, Valčík s Bašírem 82, Parazit 79
+- **70:** Kmotr, Oppenheimer (kotvy), Cléo od 5 do 7 71, Drive My Car 71
+- **60:** Million Dollar Baby (kotva), Apuův svět 62, Smrtonosná past 65
+- **50:** Pod kůží (kotva), Brutalista 55
+- **40:** Poslední skotský král (kotva), Skryté 42, Tanec v temnotách 45
+- **30:** 12 let v řetězech (kotva), Americká fikce, Bod obnovy
+
+Žebříček obsahuje jen viděné a převážně předem vybrané filmy, takže medián leží vysoko (kolem 80). Průměrný neviděný film má začínat níž, zhruba na **60–65**. Slabé, nudné nebo prázdně řemeslné filmy klidně na 30–50. Hodnoty 90+ dávej jen tam, kde film opravdu sedí na jádro (psychologie s teplem plus silný smyslový svět) a má v žebříčku blízké sousedy.
+
+#### Seriály a dokumenty
+
+Dat je málo, jen dva a dva tituly, a každý druh má vlastní škálu. Seriály: Vinyl 75 a Babylon Berlín 30. Kánonově oblíbený Babylon Berlín propadl, nejspíš kvůli spektáklové dobové výpravě bez psychologické hloubky, ale to je jen hypotéza. Dokumenty: Grizzly Man 75 (psychologický portrét, Herzogův hlas), Koyaanisqatsi 70 (čistý audiovizuální stav). Filmové tendence se sem dají přenášet jen opatrně. Odhady drž blíž ke středu a nejistotu přiznej.
+
+#### Nejistoty
+
+Nejméně jasná je hranice mezi „hypnotickým" (Stalker 90, Anatolie 90, Krásná práce 91) a „chladným/prázdným" (Pod kůží 50, Strom života 67, Solaris 69). Tady rozhoduje srovnání s nejbližším sousedem, ne pravidlo. Velkofilmy (Nolan, Villeneuve) se drží v pásmu 70–75 a nevím, co by je posunulo výš. Čísla mezi kotvami jsou dopočtená z pořadí. Obzvlášť pásmo 66–79 je hustě namačkané a nepřesné. Málo dat je o komedii, animaci, hororu mimo Kubricka a o české a asijské kinematografii mimo pár titulů. Bob má výjimky, které nejde vysvětlit: Harold a Maude, Donnie Darko i Spalující touha by podle „pravidel" vyšly níž. Odhadovač má proto vždycky hledat 2–3 nejpodobnější filmy z žebříčku a pravidla brát jen jako korekci.
+<!-- ZEBRICEK-PROFIL:END -->
 
 Estetický profil – hudba (rock, soul, folk, psychedelie)
 Preferuji hudbu, která kombinuje emocionální autenticitu, harmonickou hloubku a existenciální nebo introspektivní atmosféru. Silně mě přitahují skladby, které působí intimně, zranitelně nebo melancholicky, často s pocitem samoty, vnitřního prostoru nebo tichého napětí. Důležitá je pro mě schopnost hudby vytvořit psychologický nebo téměř fyzický prostor, do kterého lze vstoupit, nikoli jen rytmická nebo povrchová stimulace.

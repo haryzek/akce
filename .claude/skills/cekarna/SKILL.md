@@ -43,11 +43,19 @@ estetické skóre podle profilu, dobovou zátěž (dudlík), vážený průměr 
    Preferuj oficiální/restaurovaný trailer; u starých českých filmů je OK i
    „Some like it Czech" nebo ukázka z filmu. Nic vhodného → `trailerUrl: null`.
 
-4. **Texty a skóre** — přečti `support/esteticky-profil.md` a pro každý film napiš:
+4. **Texty a skóre** — přečti `support/esteticky-profil.md` (hlavně „Jak odhadovat
+   skóre filmu" a „Filmový vkus — vyčteno ze žebříčku") a Bobův žebříček:
+   ```
+   python -I .claude/skills/preskoruj/preskoruj.py zebricek <scratchpad>/zebricek.json
+   ```
+   (čte zálohu `local/akce-zaloha.json`; když je stará, řekni Bobovi, ať ji uloží —
+   ale klidně jeď dál i se starou). Pro každý film napiš:
    - `popis`: 2–3 věty česky o filmu, bez spoilerů (o čem to je, jaký to má tón).
    - `duvodSkore`: JEDNA věta, proč to Bobovi sedne / nesedne (karta ji ukazuje jako hlavní text).
-   - `estetickeSkore`: 0–100 podle profilu, stejná přísnost jako zbytek filmotéky
-     (pro kalibraci se podívej na pár podobných filmů v `data/filmy_doma.json`).
+   - `estetickeSkore`: 0–100 = jak se to bude líbit Bobovi, ne jak je film dobrý.
+     Najdi v žebříčku 3–5 nejpodobnějších filmů (tón, téma, hloubka, styl, režie, doba),
+     podívej se, kam je dal, a vsuň film mezi ně; profil a f101/IMDb jen dotváří.
+     Na žebříček ani zálohu nesahej, jen je čti.
    - `dobovaZatez`: 0–10 = kolik z pověsti filmu nese doba vzniku, technika, vliv, závažnost
      tématu — NE provedení z dnešního pohledu. Kalibrace: 0 = Mulholland Dr., Festen,
      Parasite; 3–4 = 400 Blows, Vertigo, 2001; 6–7 = Tokyo Story, Citizen Kane, Ordet;

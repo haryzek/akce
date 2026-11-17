@@ -2406,6 +2406,18 @@ function zrusKotvu(id) {
   ulozKotvy();
 }
 
+// detail filmu z panelu žebříčku. Filmotéka se stahuje líně (až po kliku na pás),
+// takže když je panel otevřený nad kiny, film v DOMA_MAPA ještě není → dotáhnout a zkusit znova.
+async function otevriDetailZeZebricku(id) {
+  let nalez = filmPodleId(id);
+  if (!nalez) {
+    await nactiFilmyDoma();
+    nalez = filmPodleId(id);
+  }
+  if (nalez) otevriDashboardFilmu(nalez.film, nalez.typ);
+  else zobrazToast("Tenhle film už v datech není — detail nemám z čeho ukázat.");
+}
+
 function otevriZebricek(id) {
   const panel = document.getElementById("zebricek-panel");
   let zvyraznit = null;
@@ -2444,7 +2456,7 @@ function prekresliZebricek(zvyraznitId) {
           <input type="number" class="zeb-input" min="1" max="${viditelne.length + 1}" placeholder="pořadí" autocomplete="off">
           <button type="submit">Zařadit</button>
         </form>
-        <p class="zeb-napoveda">…nebo klikni na film v žebříčku — zařadí se nad něj.</p>
+        <p class="zeb-napoveda">…nebo klikni na řádek vedle názvu — zařadí se nad ten film. (Název otevře detail.)</p>
         <button type="button" class="zeb-odvidet">zrušit viděno</button>
       </div>`;
   }
@@ -2462,7 +2474,7 @@ function prekresliZebricek(zvyraznitId) {
       <li class="zeb-radek zeb-druh-${druh}${ZEBRICEK_PENDING ? " zeb-cil" : ""}${id === zvyraznitId ? " zeb-zvyraznen" : ""}" data-id="${encodeURIComponent(id)}">
         <button type="button" class="zeb-skore${sk?.kotva ? " zeb-kotva" : ""}" title="${titulSk}">${sk ? sk.skore : "—"}</button>
         <span class="zeb-pozice">${i + 1}.</span>
-        <span class="zeb-nazev">${escapeHtml(nazev)}${rok ? ` <span class="zeb-rok">${escapeHtml(rok)}</span>` : ""}</span>
+        <span class="zeb-nazev-obal"><button type="button" class="zeb-nazev" title="Otevřít detail filmu">${escapeHtml(nazev)}${rok ? ` <span class="zeb-rok">${escapeHtml(rok)}</span>` : ""}</button></span>
         <button type="button" class="zeb-preradit" title="Přeřadit — film vyskočí nahoru k novému zařazení">↕</button>
         <button type="button" class="zeb-smazat" title="Vyřadit ze žebříčku (viděno zůstane)">×</button>
       </li>`;
@@ -2588,6 +2600,13 @@ function nastavZebricek() {
       return;
     }
     if (e.target.closest(".zeb-skore-input")) return; // klik do políčka skóre nic nespouští
+    // klik na název = vždycky detail filmu (i když nahoře čeká film k zařazení —
+    // zařazuje se klikem na zbytek řádku)
+    const nazevTlacitko = e.target.closest(".zeb-nazev");
+    if (nazevTlacitko) {
+      otevriDetailZeZebricku(decodeURIComponent(nazevTlacitko.closest(".zeb-radek").dataset.id));
+      return;
+    }
     const radek = e.target.closest(".zeb-radek");
     if (radek) {
       const cilId = decodeURIComponent(radek.dataset.id);

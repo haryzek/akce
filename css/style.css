@@ -1506,6 +1506,16 @@ body.zebricek-otevreny {
   padding-right: 360px;
 }
 
+/* dashboard při otevřeném žebříčku končí u panelu (ne pod ním) — obsah se vystředí
+   do volného místa a fixní křížek se posune do rohu dashboardu, ať není schovaný */
+body.zebricek-otevreny .dash-overlay {
+  right: 360px;
+}
+
+body.zebricek-otevreny .dash-zavrit {
+  right: calc(360px + 1.6rem);
+}
+
 .zeb-hlavicka {
   display: flex;
   align-items: center;
@@ -1752,14 +1762,34 @@ body.zebricek-otevreny {
   background: var(--zeb-barva);
 }
 
-.zeb-nazev {
+/* obal drží místo (flex:1), samotný název je jen tak široký jako text — prázdné
+   místo za ním zůstává řádku, aby šlo při čekajícím filmu kliknout „zařadit sem" */
+.zeb-nazev-obal {
   flex: 1;
   min-width: 0;
+  display: flex;
+}
+
+.zeb-nazev {
+  min-width: 0;
+  max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
   font-family: "Georgia", "Iowan Old Style", "Charter", serif;
   font-size: 0.92rem;
+}
+
+.zeb-nazev:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--text-jemny);
+  text-underline-offset: 3px;
 }
 
 .zeb-rok {
@@ -2023,5 +2053,14 @@ body.zebricek-otevreny {
 
   body.zebricek-otevreny {
     padding-right: 0;
+  }
+
+  /* panel tu leží přes celou obrazovku, dashboard pod ním zůstává na plnou šířku */
+  body.zebricek-otevreny .dash-overlay {
+    right: 0;
+  }
+
+  body.zebricek-otevreny .dash-zavrit {
+    right: 1.6rem;
   }
 }

@@ -425,7 +425,9 @@ jednoho filmu posune čísla mnoha dalším; původní skóre nese `data-skore`)
 (`aside#zebricek-panel`, tvoří ho `nastavZebricek()` jako modal/dashboard; obsah stránky
 odsune `body.zebricek-otevreny { padding-right }`, grid karet se přeskládá sám; na mobilu
 fullscreen). Nahoře sticky čekající film (`ZEBRICEK_PENDING`), pod ním skrolovací seznam.
-Zařazení: číslo do inputu, klik na řádek (= NAD něj), nebo „na konec" — `zaradFilm` udělá
+Zařazení: číslo do inputu, klik na řádek mimo název (= NAD něj), nebo „na konec"
+(klik na **název** otevře vždycky dashboard filmu, filmotéku si případně dotáhne;
+dashboard při otevřeném panelu končí u něj a křížek jde s ním) — `zaradFilm` udělá
 splice, filmy pod pozicí se odsunou o jedna; zařazení implikuje viděno. Přeřazení: šipky ↕
 na řádku (vidět na hoveru) → film vyskočí nahoru jako čekající (z pole se nemaže, jen se v
 seznamu schová — čísla řádků pak rovnou odpovídají cílovým pozicím). Křížek řádku vyřadí

@@ -1520,7 +1520,8 @@ body.zebricek-otevreny .dash-zavrit {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 1.2rem;
+  gap: 0.4rem;
+  padding: 1rem 0.8rem 1rem 1.2rem;
   border-bottom: 1px solid var(--border);
   flex-shrink: 0;
 }
@@ -1718,12 +1719,55 @@ body.zebricek-otevreny .dash-zavrit {
 .zeb-druh-film     { --zeb-barva: #3a7a50; --zeb-text: #fff; }
 .zeb-druh-serial   { --zeb-barva: #8fd4a6; --zeb-text: #14281b; }
 .zeb-druh-dokument { --zeb-barva: #7f9686; --zeb-text: #fff; }
+.zeb-druh-kos      { --zeb-barva: #6a6a6a; --zeb-text: #fff; } /* koš smazaných — šedý, ať se nemíchá se zelenými žebříčky */
+
+/* koš: řádky bez kolečka a pořadí, název ztlumený */
+.zeb-zalozka.zeb-druh-kos {
+  gap: 0.2rem;
+}
+
+.ikona-kos {
+  display: block;
+}
+
+.zeb-kos-radek .zeb-nazev {
+  color: var(--text-tlumeny);
+}
+
+.zeb-vratit {
+  flex-shrink: 0;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text-jemny);
+  font: inherit;
+  font-size: 0.72rem;
+  padding: 0.1rem 0.55rem;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.zeb-kos-radek:hover .zeb-vratit,
+.zeb-vratit:focus-visible {
+  opacity: 1;
+}
+
+.zeb-vratit:hover {
+  color: var(--videno);
+  border-color: currentColor;
+}
+
+/* dotykové displeje hover nemají — tlačítko musí být vidět pořád */
+@media (hover: none) {
+  .zeb-vratit { opacity: 1; }
+}
 
 .zeb-legenda {
   display: flex;
-  gap: 0.7rem;
+  gap: 0.45rem; /* čtyři záložky (+koš) se musí vejít do 360px panelu i s křížkem */
   margin-left: auto;
-  margin-right: 0.8rem;
+  margin-right: 0.4rem;
   color: var(--text-jemny);
   font-size: 0.7rem;
 }

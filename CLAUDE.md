@@ -394,6 +394,13 @@ po načtení, po kliku i po importu; hledací řetězec staví `hledaciDoma()`. 
 jde vrátit tlačítkem „vrátit" v toastu (`zobrazToast(zprava, {popisek, akce})`, smazaný
 film se vrátí na původní místo v pořadí). Smazané filmy fyzicky zůstávají v JSONech;
 kdyby to vadilo, dají se promazat ručně podle `smazane` ze zálohy.
+**Koš:** smazané filmy nemizí, padají do čtvrté záložky panelu žebříčku (ikonka koše
+s počtem za film/seriál/dokument, `ZEB_ZALOZKA = "kos"`; slovo „koš" se do 360px
+hlavičky nevešlo). `aplikujTriaz` si je při odfiltrování schová do `KOS_MAPA`
+(`{polozka, index}`), takže z koše jde otevřít dashboard (`filmPodleId` tam sahá)
+a „vrátit" (`vratZKose`, sdílí ho i toast) — film se vrátí a `seradFilmyDoma` ho
+postaví na místo podle skóre. Nejčerstvěji smazané nahoře; do koše se nezařazuje
+(čekající film se v záložce koše schová).
 Pasti: IMDb suggest řadí podle relevance, ne podle `rank` (podle popularity by „Pelíšky"
 skončily jako Dodgeball); starý český film najde jen dotaz „název rok"; OMDb `Year` je rok
 premiéry (Stalker 1980) → rok se bere z IMDb a duplicity se hlídají s tolerancí ±1.

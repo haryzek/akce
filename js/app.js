@@ -40,6 +40,7 @@ let FILMY_DOMA = null; // null = soubor se ještě nestahoval; pak [{data, hleda
 let HLEDANI_DOMA = ""; // aktuální text ve vyhledávání
 let DOMA_OBSERVER = null; // IntersectionObserver pro infinite scroll (vytváří init)
 let DOMA_MAPA = new Map(); // domaId -> film (lookup pro dashboard po kliku na kartu)
+let KOS_MAPA = new Map(); // domaId -> {polozka, index} smazaných filmů (koš v panelu žebříčku)
 const DOMA_DAVKA = 100; // karet na jednu dávku renderu (3000 karet naráz by DOM zabilo)
 let DOMA_LIMIT = DOMA_DAVKA; // kolik karet je právě zobrazeno (infinite scroll zvyšuje)
 
@@ -200,6 +201,12 @@ function ulozTriaz() {
 // po kliku na ✓/✕ i po importu zálohy.
 function aplikujTriaz() {
   if (!FILMY_DOMA) return;
+  // smazané filmy nemizí úplně — schovají se do koše (záložka v panelu žebříčku),
+  // odkud jde otevřít detail i film vrátit na jeho původní místo
+  FILMY_DOMA.forEach((f, index) => {
+    const id = domaId(f.data);
+    if (SMAZANE.has(id)) KOS_MAPA.set(id, { polozka: f, index });
+  });
   FILMY_DOMA = FILMY_DOMA.filter((f) => !SMAZANE.has(domaId(f.data)));
   FILMY_DOMA.forEach((f) => {
     if (f.data.cekarna && CEKARNA_PRIJATE.has(domaId(f.data))) {
@@ -220,24 +227,42 @@ function triazFilmu(id, akce) {
   ulozTriaz();
   aplikujTriaz();
   prekresli();
+  prekresliZebricek(); // otevřený koš ukáže nový přírůstek
 
   // "vrátit" v toastu: smazaný film se vrátí na své původní místo v pořadí,
   // přijatému se vrátí štítek čekárny
   const vratit = () => {
-    if (akce === "pryc") {
-      SMAZANE.delete(id);
-      FILMY_DOMA.splice(Math.min(index, FILMY_DOMA.length), 0, polozka);
-    } else {
+    if (akce === "pryc") vratZKose(id);
+    else {
       CEKARNA_PRIJATE.delete(id);
       film.cekarna = true;
       polozka.hledaci = hledaciDoma(film);
+      ulozTriaz();
+      aplikujTriaz();
+      prekresli();
     }
-    ulozTriaz();
-    aplikujTriaz();
-    prekresli();
   };
   const zprava = akce === "pryc" ? `Pryč z filmotéky: ${film.nazevCz}` : `Do filmotéky: ${film.nazevCz}`;
   zobrazToast(zprava, { popisek: "vrátit", akce: vratit });
+}
+
+// vrátí smazaný film z koše (toast „vrátit" i tlačítko v koši) na jeho původní místo.
+// Když filmotéka ještě není načtená, stačí ho vyškrtnout ze SMAZANE — při načtení
+// se prostě neodfiltruje.
+function vratZKose(id) {
+  SMAZANE.delete(id);
+  const vKosi = KOS_MAPA.get(id);
+  KOS_MAPA.delete(id);
+  if (vKosi && FILMY_DOMA) {
+    FILMY_DOMA.splice(Math.min(vKosi.index, FILMY_DOMA.length), 0, vKosi.polozka);
+    // index je z pořadí při mazání (po reloadu z pořadí souboru) — řazení ho srovná
+    // na místo podle skóre; zamíchanou filmotéku seradFilmyDoma nechá být
+    seradFilmyDoma();
+  }
+  ulozTriaz();
+  aplikujTriaz();
+  prekresli();
+  prekresliZebricek();
 }
 
 // ---- žebříček viděných filmů (localStorage, panel vpravo) ----
@@ -316,6 +341,9 @@ function druhPrirozeny(id) {
 function druhVZebricku(id) {
   return ZEB_DRUH_RUCNE[id] || druhPrirozeny(id);
 }
+
+// záložka koše je jen ikonka (slovo by se do 360px panelu vedle tří žebříčků nevešlo)
+const IKONA_KOS = `<svg class="ikona-kos" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 4h11M6 4V2.5h4V4M3.8 4l.7 9.5h7l.7-9.5M6.6 6.5v4.5M9.4 6.5v4.5"/></svg>`;
 
 const nazevDruhu = (d) => (ZEB_DRUHY.find(([k]) => k === d) || [d, d])[1];
 
@@ -2335,6 +2363,7 @@ function nastavDashboard() {
 // vyloupne název přímo z ID ("typ::nazev|rezie").
 function filmPodleId(id) {
   if (DOMA_MAPA.has(id)) return { film: DOMA_MAPA.get(id), typ: "filmy_doma" };
+  if (KOS_MAPA.has(id)) return { film: KOS_MAPA.get(id).polozka.data, typ: "filmy_doma" };
   const akce = VSECHNY_AKCE.find((a) => akceId(a) === id);
   return akce ? { film: akce.data, typ: akce.typAkce } : null;
 }
@@ -2446,8 +2475,11 @@ function prekresliZebricek(zvyraznitId) {
   // na které by se zařadil (přesně jak to Bob popsal: "vyskočí nahoru z místa")
   const viditelne = ZEBRICEK.filter((id) => id !== ZEBRICEK_PENDING && druhVZebricku(id) === ZEB_ZALOZKA);
 
+  // čtvrtá záložka = koš smazaných filmů (žádné pořadí ani skóre, jen detail a vrátit)
+  const vKosi = ZEB_ZALOZKA === "kos";
+
   let pendingHtml = "";
-  if (ZEBRICEK_PENDING) {
+  if (ZEBRICEK_PENDING && !vKosi) { // do koše se nezařazuje — čekající film počká na návrat do žebříčku
     const { nazev, rok } = popisFilmuZId(ZEBRICEK_PENDING);
     pendingHtml = `
       <div class="zeb-pending">
@@ -2461,7 +2493,19 @@ function prekresliZebricek(zvyraznitId) {
       </div>`;
   }
 
-  const radky = viditelne
+  // koš: nejčerstvěji smazané nahoře (Set drží pořadí mazání)
+  const radkyKose = [...SMAZANE].reverse()
+    .map((id) => {
+      const { nazev, rok } = popisFilmuZId(id);
+      return `
+      <li class="zeb-radek zeb-kos-radek" data-id="${encodeURIComponent(id)}">
+        <span class="zeb-nazev-obal"><button type="button" class="zeb-nazev" title="Otevřít detail filmu">${escapeHtml(nazev)}${rok ? ` <span class="zeb-rok">${escapeHtml(rok)}</span>` : ""}</button></span>
+        <button type="button" class="zeb-vratit" title="Vrátit do filmotéky">vrátit</button>
+      </li>`;
+    })
+    .join("");
+
+  const radky = vKosi ? radkyKose : viditelne
     .map((id, i) => {
       const { nazev, rok } = popisFilmuZId(id);
       // barva kolečka podle druhu (tři odstíny zelené) — v záložce jsou všechny stejné
@@ -2481,8 +2525,8 @@ function prekresliZebricek(zvyraznitId) {
     })
     .join("");
 
-  const konec = ZEBRICEK_PENDING
-    ? `<li class="zeb-konec"><button type="button" class="zeb-na-konec">zařadit na konec (${viditelne.length + 1}.)</button></li>`
+  const konec = ZEBRICEK_PENDING && !vKosi
+    ?`<li class="zeb-konec"><button type="button" class="zeb-na-konec">zařadit na konec (${viditelne.length + 1}.)</button></li>`
     : "";
 
   panel.innerHTML = `
@@ -2493,13 +2537,17 @@ function prekresliZebricek(zvyraznitId) {
           <button type="button" role="tab" class="zeb-zalozka zeb-druh-${k}${k === ZEB_ZALOZKA ? " aktivni" : ""}"
                   data-druh="${k}" aria-selected="${k === ZEB_ZALOZKA}"><i></i>${popisek}
             <span class="zeb-pocet">${ZEBRICEK.filter((id) => druhVZebricku(id) === k).length}</span></button>`).join("")}
+        <button type="button" role="tab" class="zeb-zalozka zeb-druh-kos${vKosi ? " aktivni" : ""}"
+                data-druh="kos" aria-selected="${vKosi}" aria-label="koš" title="Koš — smazané filmy, odtud jde film vrátit">${IKONA_KOS}<span class="zeb-pocet">${SMAZANE.size}</span></button>
       </span>
       <button type="button" class="zeb-zavrit" aria-label="Zavřít">×</button>
     </header>
     ${pendingHtml}
     ${radky || konec
       ? `<ol class="zeb-seznam">${radky}${konec}</ol>`
-      : `<p class="zeb-prazdny">Žebříček „${nazevDruhu(ZEB_ZALOZKA)}" je prázdný — klikni na zelené kolečko viděného filmu a zařaď ho.</p>`}`;
+      : vKosi
+        ? `<p class="zeb-prazdny">Koš je prázdný — film sem spadne křížkem ✕ na kartě filmotéky.</p>`
+        : `<p class="zeb-prazdny">Žebříček „${nazevDruhu(ZEB_ZALOZKA)}" je prázdný — klikni na zelené kolečko viděného filmu a zařaď ho.</p>`}`;
 
   const vstup = panel.querySelector(".zeb-input");
   if (vstup) vstup.focus();
@@ -2600,6 +2648,11 @@ function nastavZebricek() {
       return;
     }
     if (e.target.closest(".zeb-skore-input")) return; // klik do políčka skóre nic nespouští
+    const vratit = e.target.closest(".zeb-vratit");
+    if (vratit) {
+      vratZKose(decodeURIComponent(vratit.closest(".zeb-radek").dataset.id));
+      return;
+    }
     // klik na název = vždycky detail filmu (i když nahoře čeká film k zařazení —
     // zařazuje se klikem na zbytek řádku)
     const nazevTlacitko = e.target.closest(".zeb-nazev");
@@ -2610,7 +2663,7 @@ function nastavZebricek() {
     const radek = e.target.closest(".zeb-radek");
     if (radek) {
       const cilId = decodeURIComponent(radek.dataset.id);
-      if (ZEBRICEK_PENDING) {
+      if (ZEBRICEK_PENDING && ZEB_ZALOZKA !== "kos") {
         // zařadit NAD kliknutý film — pozice = jeho číslo v zobrazeném (filtrovaném) seznamu
         const zalozkaBez = ZEBRICEK.filter((x) => x !== ZEBRICEK_PENDING && druhVZebricku(x) === ZEB_ZALOZKA);
         zaradFilm(ZEBRICEK_PENDING, zalozkaBez.indexOf(cilId) + 1);

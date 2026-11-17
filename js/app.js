@@ -94,7 +94,22 @@ const prumerDoma = (film) => penalizovane(film.hodnoceni?.vazenePrumer, film);
 // dudlíku se musí přeřadit, protože srážka je per film.
 function seradFilmyDoma() {
   if (!FILMY_DOMA || ZAMICHANO) return; // zamíchaná filmotéka drží náhodné pořadí
-  FILMY_DOMA.sort((a, b) => (skoreDoma(b.data) ?? -1) - (skoreDoma(a.data) ?? -1));
+  FILMY_DOMA.sort((a, b) =>
+    (skoreDoma(b.data) ?? -1) - (skoreDoma(a.data) ?? -1) ||
+    remizaPodleZebricku(domaId(a.data), domaId(b.data)));
+}
+
+// Druhý klíč řazení při stejném skóre: Bobovo pořadí v žebříčku. Deset stovek
+// není deset stejných filmů — Kukačka (1.) jde před Absolventa (11.), i když mají
+// obě 100. Film ze žebříčku má přednost před filmem, který má stejné číslo jen
+// od AI (zážitek > odhad). Zbytek remízy zůstane v pořadí dat (sort je stabilní).
+function remizaPodleZebricku(idA, idB) {
+  const pa = poradiVZebricku(idA);
+  const pb = poradiVZebricku(idB);
+  if (pa && pb) return pa - pb;
+  if (pa) return -1;
+  if (pb) return 1;
+  return 0;
 }
 
 // ---- oblíbené (localStorage, generické napříč typy akcí) ----
@@ -1617,7 +1632,7 @@ function ziskejFiltrovaneARazene() {
 
   vysledek.sort((a, b) => {
     if (razeniPodle === "estetickeSkore") {
-      return (skoreAkce(b) ?? -1) - (skoreAkce(a) ?? -1);
+      return (skoreAkce(b) ?? -1) - (skoreAkce(a) ?? -1) || remizaPodleZebricku(akceId(a), akceId(b));
     }
     if (razeniPodle === "vazenePrumer") {
       return (b.data.hodnoceni?.vazenePrumer ?? -1) - (a.data.hodnoceni?.vazenePrumer ?? -1);

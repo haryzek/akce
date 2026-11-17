@@ -458,6 +458,10 @@ na všechno: **přesun filmu (↕ nebo nové zařazení) kotvu zruší**, film v
 sousedů. Bobovo skóre přebíjí AI skóre všude (kolečko karty i dashboardu, řazení
 filmotéky `skoreDoma`, hvězda, kinofilm v žebříčku přes `skoreAkce`); **dudlík na něj
 nesahá** (Bob hodnotí zážitkem dnešníma očima). Bez jediné kotvy se nic nemění.
+Při **stejném skóre rozhoduje pořadí v žebříčku** (`remizaPodleZebricku`, druhý klíč
+v `seradFilmyDoma` i v řazení kin podle skóre): deset stovek není deset stejných filmů,
+film ze žebříčku jde před stejné AI číslo. Řeší se v appce, ne přeskórováním —
+Bobova čísla se nepřepisují.
 Přepočet `prepocitejSkoreZebricku` → `ZEB_SKORE`, po změně `zmenaSkoreZebricku` (tiché
 přeřazení + přepis čísel v kolečkách z `data-ai`, bez překreslení). Záloha nese pole
 `zebricekSkore`, import doplní jen kotvy, které lokálně chybí. Cíl: kotvy jsou kalibrace

@@ -32,43 +32,48 @@ Do žebříčku a kotev AI nikdy nesahá, ty jsou jen moje.
 Oblíbené seriály (můj seznam — dokud je žebříček seriálů skoro prázdný): Twin Peaks, Succession, The Wire, Breaking Bad, Office, Mad Men, Vinyl, Firefly, Severance, Dark. Sitcomy s umělým smíchem nesnáším.
 
 <!-- ZEBRICEK-PROFIL:START -->
-### Filmový vkus — vyčteno ze žebříčku (2026-11-17, 121 titulů: 116 filmů, 3 seriály, 2 dokumenty)
+### Filmový vkus — vyčteno ze žebříčku (2026-11-21, 152 titulů: 146 filmů, 3 seriály, 3 dokumenty; 21 kotev)
 
 #### Jádro vkusu
-Bob hodnotí **zážitek dnešníma očima, ne význam filmu**. Nahoru jdou filmy, které ho vtáhnou do prožitku postav nebo stavu mysli a nechají ho tam žít: horká, pravdivá emoce nesená herci (Přelet nad kukaččím hnízdem 100, Festen 100, A Woman Under the Influence 90), osamělost a melancholie s velkou atmosférou a hudbou (Paříž, Texas 100, Lost in Translation 100, Melancholia 100, Before Sunset 100), a silný, sebevědomý filmový styl, který je zábavný i hluboký zároveň (Pulp Fiction 100, Tenkrát na Západě 100, Apokalypsa 100, Město bohů 100). Společný jmenovatel: film **cítí a pulzuje**, nevykládá. Jakmile film začne učit, mravně dokazovat nebo chladně konstruovat, padá, i když je kánonem.
+
+Bob hodnotí **zážitek**, ne důležitost. Nahoře je film, který ho vtáhne do světa a nechá ho tam žít, buď intimně (dva lidi a jejich osamělost), nebo smyslově (obraz a zvuk, které pohltí). Na vrcholu žebříčku (100) se potkávají dvě rodiny. **Intimní melancholie setkání:** Lost in Translation, Before Sunset (Before Sunrise 90), The Band's Visit, Paris, Texas, The Graduate, Harold and Maude 99, Her 97. Ztracení lidé, kteří se na chvíli potkají, humor tichý a smutek nevyslovený. **Strhující imerze:** 2001, Once Upon a Time in the West, Apocalypse Now, City of God, Pulp Fiction, Mulholland Dr. Silný rukopis, rytmus a atmosféra, film jako prostředí. Spojuje je **pravdivá emoce bez tlačení** a **živé, fyzické herectví**: Cuckoo's Nest 100 (kotva), Festen 100 (kotva), Who's Afraid of Virginia Woolf? 98, A Woman Under the Influence 90, Raging Bull 88, There Will Be Blood 94, Uncut Gems 93.
 
 #### Tendence
-- **Emoce pravdivá vs. tlačená (silná váha).** Ambivalentní, žitá emoce vítězí: The Band's Visit 100, Harold a Maude 99, Absolvent 100, Brokeback Mountain 90. Utrpení naservírované k soucitu klesá: Tanec v temnotách 45 (mučednická melodramata), 12 let v řetězech 30, Poslední skotský král 40. Protipříklad: Amour 76 a Pianista 73 bolí, a přesto drží slušně, protože netlačí.
-- **Didaktičnost a „důležité téma" (silná negativní váha).** Historické/issue filmy, kde téma nese film místo zážitku, končí nízko: 12 let v řetězech 30, American Fiction 30, United 93 71, Brutalista 55. Výjimka: Network 90 — satira, ale zuřivá, herecky rozžhavená a prorocká, ne kázající.
-- **Chladný formalismus a distance (střední až silná negativní váha).** Haneke a Glazer jen napůl: Caché 42, Under the Skin 50, Tár 49, Bílá stuha 72, Zone of Interest 77 (koncept zabral, ale srdce ne). Pomalé alegorie bez tahu: Duch úlu 46. Protipříklad: 2001 100 je chladný a formální, ale je to čistý smyslový trip — chlad nevadí, když film pohltí.
-- **Psychologická intenzita a hra s myslí (silná pozitivní váha).** Mysteriózní, paranoidní, snové: Mulholland Dr. 100, The Game 90 (kritika ho nemá, Bob ano), Donnie Darko 90, Eyes Wide Shut 90, Oldboy 90, Seven 89, Klub rváčů 83. Bergmanovy komorní tváře taky: Persona, Šepoty a výkřiky, Mlčení, Podzimní sonáta všechny 90.
-- **Válka jako vnitřní rozpad (silná pozitivní váha).** Všechny čtyři vietnamské filmy ≥ 90: Apokalypsa 100, Lovec jelenů 100, Četa 98, Olověná vesta 90. Válka jako historická lekce méně: Pianista 73, United 93 71.
-- **Intimní sci-fi (silná pozitivní).** Sci-fi o vztahu, vědomí a osamělosti: Ex Machina 97, Her 97, Vetřelec 95, Blade Runner 90, Potomci lidí 90, Stalker 90. Velkolepá sci-fi podívaná jen solidně: Duna 75, Příchod 74. Pomalá filozofická méně: Solaris 69, Under the Skin 50.
-- **Hudba a nálada (hypotéza, ale konzistentní).** Mezi 100kami je nápadně hodně filmů se silnou písňovou/hudební identitou: Tenkrát na Západě, Paříž, Texas, Absolvent, Harold a Maude, Pulp Fiction, Lost in Translation, Apokalypsa; o kus níž Magnolia a Boogie Nights 90. Výrazný soundtrack nesoucí náladu = plus.
-- **Humor vřelý vs. satirický.** Vřelý, lidský, absurdně smutný humor je top (Band's Visit, Harold a Maude, Absolvent, Fargo 87, Kukačka). Studená satira padá: Dr. Divnoláska 48, American Fiction 30. Network je výjimka (viz výše).
-- **Tempo.** Pomalost sama nevadí (Chuť třešní 91, Beau Travail 91, Tenkrát v Anatolii 90, Pasažér 90), vadí pomalost bez vnitřního napětí nebo smyslové pohlcenosti (Duch úlu 46, Apur Sansar 60, Strom života 67).
-- **Herectví.** Přirozené, fyzické, rozžhavené herectví je silný tahoun (Cassavetes, Nicholson, De Niro, Festen). Divadelní či dobově strnulé herectví táhne dolů (Občan Kane 68, Rašómon 67, Sedmá pečeť 68).
-- **Žánrový film.** Řemeslně skvělý žánr bez vnitřního rozměru drží 65–75: Smrtonosná past 65, Temný rytíř 72, Mlčení jehňátek 71, Věc 74. Žánr s psychologií nebo stylem jde k 90+ (Osvícení 96, Vetřelec 95, Seven 89, Historie násilí 90).
+
+- **Emoce pravdivá vs. tlačená (nejsilnější osa).** Utrpení podané tak, aby divák musel brečet, padá: Dancer in the Dark 45 (kotva), Precious 56, 12 Years a Slave 30 (kotva). Stejně těžká témata podaná suše a bez manipulace stoupají: 4 Months 90, The Hunt 87, Festen 100. Ani režisér nic nezaručuje: von Trier má Melancholii 100, Dogville 75, Dancer 45.
+- **Rodina a vztahy pod tlakem.** Komorní psychologická exploze je silná kotva: Festen, Virginia Woolf, Autumn Sonata, Persona, Cries and Whispers, American Beauty 90 (kotva), Magnolia 90. Bergman komorní 90, Bergman alegorický (The Seventh Seal) 69.
+- **Vzpoura jedince proti systému** s lidským jádrem: Cuckoo's Nest 100, Thelma & Louise 100, Network 90 (kotva).
+- **Kriminálka a thriller jsou doma**, pokud mají styl a postavy: GoodFellas 95, Seven 89, Heat 89, Drive 88, Fargo 86, Reservoir Dogs 86, The Game 90. Čistá akce bez vnitřku je střed: Die Hard 65 (kotva), Predator 59, The Fugitive 70.
+- **Sci-fi s atmosférou a existenciální úzkostí** hodně táhne, i ta mainstreamová: Alien 96, Ex Machina 97, Blade Runner 90, Children of Men 90, Donnie Darko 90 (kotva), Prometheus 85 (o 20+ nad konsenzem), Minority Report 79, Solaris 84, Stalker 90 (kotva). Chytré mechanismy bez duše méně: Inception 66, Dune 75 (kotva), Arrival 74.
+- **Válka jako šílenství a trauma**: Apocalypse Now 100, Deer Hunter 100, Platoon 98, Full Metal Jacket 90.
+- **Naturalismus a dětský pohled** stoupají nad očekávání: The Florida Project 92, The Spirit of the Beehive 71 (konsenzus by dal míň), City of God 100.
+- **Napětí jako fyzický zážitek**: Uncut Gems 93 a The Shining 96 ukazují, že úzkost a chaos mu nevadí, když jsou prožité, ne vykalkulované.
+- **Pomalé a kontemplativní projde, když je to existenciální a lidské**: Taste of Cherry 91, Once Upon a Time in Anatolia 90, The Passenger 90, Beau Travail 91. Pomalé a chladně konceptuální neprojde: Under the Skin 50 (kotva), Tár 49, The Brutalist 52.
 
 #### Rozchod s kánonem
-Kmotr jen 70 (kotva), Občan Kane 68, Sedmá pečeť 68, Rašómon 67, Ikiru 66, Apur Sansar 60, Duch úlu 46, Dr. Divnoláska 48, Caché 42, Tanec v temnotách 45, 12 let v řetězech 30 — kanonické nebo oceňované, Bobovi nesedí. Naopak výš než kánon: The Game 90, Thelma & Louise 100, The Band's Visit 100, Before Sunset 100, Network 90, Donnie Darko 90, Ex Machina 97, Her 97. Neplatí ale „staré = nízko": 2001 (1968) 100, Absolvent (1967) 100, Harold a Maude (1971) 99, Persona (1966) 90, Pianista ale jen 73. Rozhoduje, jestli film dnes žije, ne rok.
+
+- **Satira, groteska a ironický odstup** dopadají špatně i u milovaných autorů. Kubrick má 2001 100, Shining 96 a FMJ s EWS po 90, ale Dr. Strangelove 48 a A Clockwork Orange 46 (konsenzus by dal přes 85). Dál American Fiction 30 a V for Vendetta 35. Výjimky: Network 90 (satira se vzteklým lidským jádrem) a Triangle of Sadness 72.
+- **Chladná distance a intelektuální hra s divákem:** Caché 42 (ale Haneke Amour 76), Under the Skin 50 (ale Glazer Zone of Interest 77).
+- **Hravá, poetická, rozvláčně snivá forma:** Wings of Desire 67 (konsenzus 85+), Chungking Express 54 (ale In the Mood for Love a 2046 po 75), Life of Pi 58, The Tree of Life 68.
+- **„Důležitý" oscarový historický film:** 12 Years a Slave 30, The Last King of Scotland 40 (kotva), Brutalist 52, Oppenheimer 70 (kotva). The Pianist 73 a United 93 70 se drží ve středu.
+- **Klasici před rokem 1960** sedí solidně, ale ne nahoře: 400 Blows 78, Vertigo 77, Citizen Kane 71, Rashomon a Ikiru 68, Apur Sansar 61. Není to strop. Šedesátky už na vrchol dosáhnou (Graduate, Virginia Woolf, Persona) a The Godfather (1972) dostal jen 70 (kotva). Rozhoduje tedy živost zážitku, ne rok.
+- **Nostalgie mládí** tlačí nahoru: Return of the Jedi 100, Waterworld 63, K-PAX 71.
 
 #### Kalibrace škály
-Neviděný průměrný solidní film začíná **~60–65**; posouvá se podle sousedů v žebříčku.
-- **90+** = srdeční filmy, emoce/stav, ve kterém by chtěl žít (Kukačka, Paříž, Texas, Lost in Translation, Melancholia, Festen, Četa). Hustá zóna 90 = vynikající a osobně silné (Stalker, Bergman, American Beauty, Seven).
-- **~80** = velmi dobré, respektované, ale bez úplného zasažení (Rozchod Nadera a Simin 80, Parazit 79, Badlands 79, Taxikář 81).
-- **~70** = kvalitní, rád viděl, ale chladněji (Kmotr 70, Oppenheimer 70, Temný rytíř 72, Drive My Car 72, Spirited Away 71).
-- **~50** = minulo ho to, cítí odstup nebo nudu (Under the Skin 50, Tár 49, Strangelove 48).
-- **~30** = vadilo mu to: tlačené, kázající nebo prostě slabé (12 let v řetězech, American Fiction, Bod obnovy).
+
+Neviděný průměrný solidní film začíná **~60–65**. Pásma podle kotev: **100** = srdeční filmy (Cuckoo's Nest, Paris Texas, Festen), **90** = silná láska (American Beauty, Network, Donnie Darko, Stalker), **80** = velmi dobré (A Separation), **70–75** = respekt bez nadšení (Godfather, Oppenheimer, Dune), **65** = příjemný žánr (Die Hard), **45–50** = nesedí (Under the Skin, Dancer in the Dark), **30–40** = odpor (12 Years a Slave, Last King of Scotland). Horní třetina žebříčku je hustá (přes 60 filmů v pásmu 85–100), takže Bob rozlišuje hlavně nahoře. Na 90+ potřebuje film konkrétní důvod z Jádra. Vysoký kritický konsenzus sám o sobě dává spíš 70–78.
 
 #### Seriály a dokumenty
-Seriály mají vlastní škálu: Dekalog 90 (komorní morální dilemata, žádné kázání — sedí s jádrem), Vinyl 75 (hudba + Scorsese energie), Babylon Berlin 30 (navzdory IMDb 8,4 — patrně dobová výprava a žánrová konstrukce bez emočního jádra). Dokumenty: Grizzly Man 75 (lidská psychologie, Herzogův hlas), Koyaanisqatsi 70 (čistě smyslový, hudební). Málo dat — spíš opatrné odhady kolem 65–75.
+
+Seriály: Dekalog 90 (kotva), Vinyl 75 (kotva), Babylon Berlin 30 (kotva, přestože má IMDb 8.4). Platí stejná osa jako u filmů: komorní morální drama vede, vyleštěná žánrová dobovka bez pravdivého jádra padá na dno. Dokumenty mají úzké pásmo 70–75: Grizzly Man 75 (kotva), Man on Wire 72, Koyaanisqatsi 70 (kotva). Portrét posedlého člověka vede před čistě smyslovou formou. Neviděný dokument proto odhaduj kolem 65–72 a nad 80 jen výjimečně.
 
 #### Nejistoty
-- Pozice 66–104 v žebříčku mají nemonotónní čísla (kotvy Kmotr 70, Duna 75 vs. dopočty 71–74); rozlišení mezi 70 a 78 je hrubé.
-- Hudební tendence je hypotéza z korelace, ne potvrzení.
-- Animace (Spirited Away 71, Valčík s Bašírem 82), komedie čistého žánru, horory mimo klasiku a nové filmy po 2020 mají málo zástupců.
-- Proč Babylon Berlin tak nízko a Network tak vysoko, je spíš odhad; nesmí se z toho dělat pravidlo o seriálech nebo satiře.
+
+- 17 filmů na 100 má dopočtené skóre (nad nejvyšší kotvou se dopočet nerozlišuje), takže jejich vzájemné pořadí znamená víc než samotné číslo.
+- Pásmo 85–90 se dopočítává mezi dvěma kotvami 90 (Donnie Darko, Stalker), takže 4 Bergmani a dalších asi 20 filmů mají 90 „zadarmo". Skutečná diferenciace uvnitř pásma je neznámá.
+- Komedie, animace, horor, muzikál a neanglofonní mainstream mají v žebříčku 1–3 zástupce. Tendence jsou tam slabé.
+- Satira dopadá nízko jen v 5 případech a Network jde proti. Za pravidlo ji neber, je to spíš podezření.
+- Seriály a dokumenty mají po třech titulech, takže jde o odhad, ne profil.
 <!-- ZEBRICEK-PROFIL:END -->
 
 Estetický profil – hudba (rock, soul, folk, psychedelie)
